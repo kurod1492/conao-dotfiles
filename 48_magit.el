@@ -4,7 +4,7 @@
 ;; Author: Naoya Yamashita
 ;; Keywords: 
 ;; Created:      <2015/12/08 10:31:57>
-;; Last-Updated: <2015/12/08 10:31:57>
+;; Last-Updated: <2015/12/08 10:48:08>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -24,4 +24,7 @@
 ;; 
 
 ;;; Code:
+
+(require 'magit)
+
 
