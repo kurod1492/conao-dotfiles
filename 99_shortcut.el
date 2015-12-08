@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/11/20 13:25:01>
-;; Last-Updated: <2015/12/03 03:55:22>
+;; Last-Updated: <2015/12/08 11:41:34>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 
 ;; 01_core-emacs.el
 (global-set-key (kbd "C-c b") 'battery)
-;(global-set-key (kbd "M-g") 'goto-line)
+;; (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "M-r") 'query-replace)
 (global-set-key (kbd "M-c") 'c-mode)
 (global-set-key (kbd "C-c a") 'align)
@@ -124,3 +124,4 @@
 (global-set-key (kbd "C-S-t") 'split-window-suitably)
 (global-set-key [?\C-,] (lambda () (interactive) (my-operate-buffer nil)))
 (global-set-key [?\C-.] (lambda () (interactive) (my-operate-buffer t)))
+

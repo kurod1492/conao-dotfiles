@@ -4,7 +4,7 @@
 ;; Author: Naoya Yamashita
 ;; Keywords: 
 ;; Created:      <2015/12/01 11:46:12>
-;; Last-Updated: <2015/12/03 21:28:05>
+;; Last-Updated: <2015/12/08 12:49:35>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 ;; 
 
 ;;; Code:
-(require 'sequential-command)
-(require 'sequential-command-config)
-(sequential-command-setup-keys)
+;; (require 'sequential-command)
+;; (require 'sequential-command-config)
+;; ;; sequential-command
+;; (sequential-command-setup-keys)
