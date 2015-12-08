@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/11/24 13:30:07>
-;; Last-Updated: <2015/12/04 14:39:37>
+;; Last-Updated: <2015/12/08 09:13:08>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -28,15 +28,13 @@
 (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
 ;; ファイルを削除したらゴミ箱へ
 (setq delete-by-moving-to-trash t)
-;; コピーと削除を再帰で
-(setq dired-recursive-copies 'always)
-(setq dired-recursive-deletes 'always)
-;; 2画面なら他方にコピー
-(setq dired-dwim-target t)
-;; ls のオプション変更
-(setq dired-listing-switches "-GFlhLA --group-directories-first")
-;; 新規バッファを生成しない
-(put 'dired-find-alternate-file 'disabled nil)
+;; ;; コピーと削除を再帰で
+;; (setq dired-recursive-copies 'always)
+;; (setq dired-recursive-deletes 'always)
+;; ;; 2画面なら他方にコピー
+;; (setq dired-dwim-target t)
+;; ;; ls のオプション変更
+;; (setq dired-listing-switches "-GFlhLA --group-directories-first")
 
 ;; (defun my-dired-do-quicklook ()
 ;;   "In dired, preview with Quick Look."

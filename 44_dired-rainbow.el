@@ -4,7 +4,7 @@
 ;; Author: Naoya Yamashita
 ;; Keywords: 
 ;; Created:      <2015/12/03 19:42:59>
-;; Last-Updated: <2015/12/03 19:58:47>
+;; Last-Updated: <2015/12/08 09:27:52>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -25,11 +25,17 @@
 
 ;;; Code:
 
-;;; 日本語の dired 仕様に変更
+;; https://github.com/akisute3/dotfiles/blob/master/.emacs.d/inits/30_dired-rainbow.el
+
+;;;; dired をファイルの拡張子に合わせて色分けする
 
 (require 'dired-rainbow)
-
+;;; 日本語の dired 仕様に変更
 (setq dired-rainbow-date-regexp "\\(?:[0-9][0-9]:[0-9][0-9]\\|.[0-9]\\{4\\}\\)")
+
+;;;;;;;;;;;;;;
+;;; 色設定
+;;;;;;;;;;;;;;
 
 (defconst dired-rainbow-omit1-extensions
   '("elc" "class" "so" "ko" "la" "o" "al" "ix" "db" "td" "dat" "dll" "Dll" "DLL" "sav" "rdp" "sys" "SYS" "prf" "tlb" "cat" "bak")
@@ -43,14 +49,12 @@
   "\\..*$"
   "extensions to match hidden files")
 
-(dired-rainbow-define omit1 "chartreuse" dired-rainbow-omit1-extensions)
+(dired-rainbow-define omit1 "Chartreuse" dired-rainbow-omit1-extensions)
 (dired-rainbow-define omit2 "Chartreuse" dired-rainbow-omit2-extensions)
 (dired-rainbow-define omit3 "Chartreuse" dired-rainbow-omit3-extensions)
 
 (defconst dired-rainbow-document-extensions
-  '("pdf" "chm" "CHM" "tex"
-    "doc" "docx" "xls" "xlsx"
-    "ppt" "pptx" "odt" "ott" "rtf" "sdw" "ods" "sxc" "odp" "otp" "sdx" "kdh" "shx")
+  '("pdf" "chm" "CHM" "tex" "doc" "docx" "xls" "xlsx" "ppt" "pptx" "odt" "ott" "rtf" "sdw" "ods" "sxc" "odp" "otp" "sdx" "kdh" "shx")
   "extensions to match rich document filetypes")
 
 (dired-rainbow-define document "DarkCyan" dired-rainbow-document-extensions)
@@ -71,19 +75,19 @@
   '("htm" "html" "HTM" "HTML" "xml" "XML" "xsl" "xsd" "rng" "dtd" "mht" "jsp" "asp" "js" "xaml")
   "extensions to match xml filetype")
 
-(dired-rainbow-define xml "chocolate" dired-rainbow-xml-extensions)
+(dired-rainbow-define xml "Chocolate" dired-rainbow-xml-extensions)
 
 (defconst dired-rainbow-compress-extensions
   '("tar" "zip" "ZIP" "rar" "RAR" "tgz" "gz" "bzip2" "bz2" "7z" "7Z" "Z" "z" "xz" "XZ" "rpm" "deb" "lzma" "cab" "gzip" "taz" "wim" "iso" "tbz2" "xar" "XAR" "jar" "war" "img")
   "extensions to match compressed filetypes")
 
-(dired-rainbow-define compress "orchid" dired-rainbow-compress-extensions)
+(dired-rainbow-define compress "Orchid" dired-rainbow-compress-extensions)
 
 (defconst dired-rainbow-source-extensions
   '("c" "cpp" "java" "JAVA" "C" "php" "h" "rb" "pl" "css" "el" "lua" "sql" "ahk" "cs" "erl" "hrl")
   "extensions to match source code filetypes")
 
-(dired-rainbow-define source "GreenYellow" dired-rainbow-source-extensions)
+(dired-rainbow-define source "SpringGreen" dired-rainbow-source-extensions)
 
 (defconst dired-rainbow-execute-extensions
   '("exe" "EXE" "bat" "BAT" "msi" "MSI" "sh" "run" "reg" "REG" "com" "COM" "vbx" "VBX" "bin" "xpi" "bundle")
