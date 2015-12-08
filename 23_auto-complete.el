@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/11/20 13:22:31>
-;; Last-Updated: <2015/11/30 17:07:05>
+;; Last-Updated: <2015/12/08 13:18:19>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -92,3 +92,6 @@
                         "foo3@example.com"))
     (prefix . "^To: \\(.*\\)")))
 ;;(setq ac-sources '(ac-source-to-mailaddr))
+
+;;; shortcut
+(global-set-key (kbd "C-TAB") 'auto-complete)

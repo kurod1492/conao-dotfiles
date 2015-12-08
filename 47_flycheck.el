@@ -1,10 +1,10 @@
-;;; 32_develop.el --- 
+;;; 47_flycheck.el --- 
 
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
-;; Created:      <2015/11/20 13:37:29>
-;; Last-Updated: <2015/12/08 13:18:36>
 ;; Keywords: 
+;; Created:      <2015/12/08 13:20:05>
+;; Last-Updated: <2015/12/08 13:20:26>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -24,27 +24,10 @@
 ;; 
 
 ;;; Code:
-
-;; open junc file
-(require 'open-junk-file)
-
-;; show discription eval code
-(require 'lispxmp)
-
-;; edit contain parent pair
-;;(require 'paredit)
-
-;; disable auto bite compile
-(require 'auto-async-byte-compile)
-(setq auto-async-byte-compile-exclude-files-regexp "/junk/")
-(setq eldoc-idle-delay 0.2)
-(setq eldoc-minor-mode-string "") ;;dont show ElDoc in mode line
-
-(find-function-setup-keys)
+(require 'flycheck)
 
 ;;; shortcut
-;; open junc file
-(global-set-key (kbd "C-x C-z") 'open-junk-file)
-;; show discription eval code
-(define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
+(smartrep-define-key
+    global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
+                       ("M-p" . 'flymake-goto-prev-error)))
 

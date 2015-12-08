@@ -4,7 +4,7 @@
 ;; Author: Naoya Yamashita
 ;; Keywords: 
 ;; Created:      <2015/12/03 03:13:04>
-;; Last-Updated: <2015/12/03 19:44:00>
+;; Last-Updated: <2015/12/08 13:19:00>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -64,3 +64,9 @@
 ;; とするだけです.
 ;; やめるときは C-g で.
 ;; たぶんやってみればすぐわかるかと.
+
+
+;;; shortcut
+;; (global-set-key (kbd "") 'swap-rectangle)
+;; (global-set-key (kbd "") 'swap-region)
+

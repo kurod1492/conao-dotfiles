@@ -4,7 +4,7 @@
 ;; Author: Naoya Yamashita
 ;; Keywords: 
 ;; Created:      <2015/12/04 00:47:05>
-;; Last-Updated: <2015/12/07 11:53:36>
+;; Last-Updated: <2015/12/08 13:22:06>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -122,5 +122,17 @@
 ;; start elscreen
 (elscreen-start)
 
-;; instead elscreen-persist
+;;; shortcut
+;; C-z c	新規スクリーンを作成して移動する
+;; C-z k	現在のスクリーンを閉じる
+;; c-z p	前のスクリーンへ
+;; c-z n	次のスクリーンへ
+;; c-z a	前と次のスクリーンをトグル
+;; c-z [0-9]	番号のスクリーンへ
+;; c-z ?	ヘルプを表示する
 
+(define-key elscreen-map "\C-k" 'elscreen-kill-screen-and-buffers)
+(global-set-key (kbd "C-M-<right>") 'elscreen-swap-next)           ; screenの配置位置ずらし(右)
+(global-set-key (kbd "C-M-<left>") 'elscreen-swap-previous)        ; screenの配置位置ずらし(左)
+(global-set-key [(C-tab)] 'elscreen-next) ; ブラウザみたいに
+(global-set-key [(C-S-tab)] 'elscreen-previous) ; ブラウザみたいに　その2

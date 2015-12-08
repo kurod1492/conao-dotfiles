@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/11/20 14:27:00>
-;; Last-Updated: <2015/11/30 17:15:01>
+;; Last-Updated: <2015/12/08 13:16:39>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -34,3 +34,14 @@
         ))
 
 (yas-global-mode 1)
+
+;;; shortcut
+;; 既存スニペットを挿入する
+(define-key yas-minor-mode-map (kbd "C-c i") 'yas-insert-snippet)
+;; 新規スニペットを作成するバッファを用意する
+(define-key yas-minor-mode-map (kbd "C-c n") 'yas-new-snippet)
+;; 既存スニペットを閲覧・編集する
+(define-key yas-minor-mode-map (kbd "C-c e") 'yas-visit-snippet-file)
+;; helm連携
+(define-key yas-minor-mode-map (kbd "C-c h") 'my-yas/prompt)
+
