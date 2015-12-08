@@ -4,7 +4,7 @@
 ;; Author: Naoya Yamashita
 ;; Keywords: 
 ;; Created:      <2015/12/04 00:47:05>
-;; Last-Updated: <2015/12/08 13:22:06>
+;; Last-Updated: <2015/12/08 13:26:05>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -134,5 +134,5 @@
 (define-key elscreen-map "\C-k" 'elscreen-kill-screen-and-buffers)
 (global-set-key (kbd "C-M-<right>") 'elscreen-swap-next)           ; screenの配置位置ずらし(右)
 (global-set-key (kbd "C-M-<left>") 'elscreen-swap-previous)        ; screenの配置位置ずらし(左)
-(global-set-key [(C-tab)] 'elscreen-next) ; ブラウザみたいに
-(global-set-key [(C-S-tab)] 'elscreen-previous) ; ブラウザみたいに　その2
+(global-set-key (kbd "C-<tab>") 'elscreen-next) ; ブラウザみたいに
+(global-set-key (kbd "C-S-<tab>") 'elscreen-previous) ; ブラウザみたいに　その2

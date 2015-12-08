@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/11/20 13:25:01>
-;; Last-Updated: <2015/12/08 13:22:20>
+;; Last-Updated: <2015/12/08 13:34:32>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 ;;; Code:
 
 ;; 01_core-emacs.el
+(global-set-key (kbd "C-x e") 'eval-last-sexp)
 (global-set-key (kbd "C-c b") 'battery)
 ;; (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "M-r") 'query-replace)
