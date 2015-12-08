@@ -1,10 +1,10 @@
-;;; 14_wdired.el --- 
+;;; 48_magit.el --- 
 
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
-;; Created:      <2015/11/24 13:30:07>
-;; Last-Updated: <2015/12/08 09:45:53>
 ;; Keywords: 
+;; Created:      <2015/12/08 10:31:57>
+;; Last-Updated: <2015/12/08 10:31:57>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -24,21 +24,4 @@
 ;; 
 
 ;;; Code:
-(require 'wdired)
-(define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
-;; ファイルを削除したらゴミ箱へ
-(setq delete-by-moving-to-trash t)
 
-;; (defun my-dired-do-quicklook ()
-;;   "In dired, preview with Quick Look."
-;;   (interactive)
-;;   (let ((file (dired-get-filename))
-;;         (process (get-process "qlmanage_ps")))
-;;     (if process
-;;         (kill-process process)
-;;       (start-process "qlmanage_ps" nil "qlmanage" "-p" file))))
-
-;; (add-hook 'dired-mode-hook
-;;           '(lambda ()
-;;              (define-key dired-mode-map (kbd "SPC") 'my-dired-do-quicklook)
-;;              ))
