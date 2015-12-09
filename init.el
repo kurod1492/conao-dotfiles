@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2014/03/20 23:24:35>
-;; Last-Updated: <2015/12/10 03:49:56>
+;; Last-Updated: <2015/12/10 04:02:21>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -40,7 +40,7 @@
 ;; key-chord
 (use-package key-chord
   :ensure t
-  :init (key-chord-mode 1))
+  :config (key-chord-mode 1))
 
 (use-package use-package-chords
   :ensure bind-chord)
