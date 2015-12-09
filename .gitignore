@@ -13,3 +13,6 @@ history
 /undohist/
 /auto-save-list/
 /backup/
+
+# Temp ignore files
+/bk.emacs.d/
