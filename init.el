@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2014/03/20 23:24:35>
-;; Last-Updated: <2015/12/10 03:32:14>
+;; Last-Updated: <2015/12/10 03:49:56>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -41,8 +41,9 @@
 (use-package key-chord
   :ensure t
   :init (key-chord-mode 1))
+
 (use-package use-package-chords
-  :ensure key-chord)
+  :ensure bind-chord)
 
 ;; theme settings
 (use-package solarized-theme
