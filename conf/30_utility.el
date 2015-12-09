@@ -1,9 +1,9 @@
-;;; 00_shortcut.el --- 
+;;; 30_utility.el --- 
 
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
-;; Created:      <2015/12/10 04:59:43>
-;; Last-Updated: <2015/12/10 05:27:00>
+;; Created:      <2015/12/10 05:38:03>
+;; Last-Updated: <2015/12/10 05:38:04>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,13 +24,4 @@
 ;; 
 
 ;;; Code:
-(bind-key "C-c a" 'align)
-(bind-key "C-c S-a" 'align-regexp)
-(bind-key "C-c b" 'battery)
 
-(bind-key "C-x e" 'eval-last-sexp)
-
-(bind-key "M-r" 'query-replace)
-(bind-key "M-c" 'c-mode)
-
-(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
