@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2014/03/20 23:24:35>
-;; Last-Updated: <2015/12/10 03:06:47>
+;; Last-Updated: <2015/12/10 03:32:14>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -25,24 +25,31 @@
 
 ;;; Code:
 
-;;; package manager
+;; package manager
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
-;;; use-package
+;; use-package
 (when (not (package-installed-p 'use-package))
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
 
-;;; theme settings
+;; key-chord
+(use-package key-chord
+  :ensure t
+  :init (key-chord-mode 1))
+(use-package use-package-chords
+  :ensure key-chord)
+
+;; theme settings
 (use-package solarized-theme
   :ensure t
   :config (load-theme 'solarized-dark))
 
-;;; init-loader
+;; init-loader
 (use-package init-loader
   :ensure t
   :config (init-loader-load "~/.emacs.d/conf"))
