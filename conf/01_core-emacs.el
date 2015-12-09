@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/11/20 13:11:08>
-;; Last-Updated: <2015/12/04 03:15:28>
+;; Last-Updated: <2015/12/10 03:08:02>
 ;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -36,7 +36,7 @@
 		(add-to-list 'load-path default-directory)
 		(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
 			(normal-top-level-add-subdirs-to-load-path))))))
-(add-to-load-path "site-lisp" "conf")
+(add-to-load-path "lisp" "site-lisp" "conf")
 
 ;; coding system
 (set-language-environment "Japanese")
