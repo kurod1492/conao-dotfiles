@@ -1,0 +1,15 @@
+# Elisp byte code
+*.elc
+
+# Installed packages
+/elpa/
+/.cask/
+
+# Recovery and backup directories
+.session
+history
+/site-lisp/
+/crottiSnippets/
+/undohist/
+/auto-save-list/
+/backup/
