@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:52>
-;; Last-Updated: <2015/12/10 05:39:08>
+;; Last-Updated: <2015/12/10 05:55:57>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -25,3 +25,9 @@
 
 ;;; Code:
 
+(use-package 'split-window
+  :bind* (("C-t" . other-window-or-split)
+          ("C-S-t" 'split-window-suitably)))
+
+(use-package 'elscreen-swap
+  :bind* (("C-"elscreen-swap-next)))
