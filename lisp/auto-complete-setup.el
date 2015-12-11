@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/11/29 16:06:45>
-;; Last-Updated: <2015/12/10 05:44:24>
+;; Last-Updated: <2015/12/11 12:09:11>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,21 +24,21 @@
 ;; 
 
 ;;; Code:
-(defun my-ac-common-setup ()
+(defun conao-ac-common-setup ()
   (setq ac-sources '(ac-source-filename
                      ac-source-abbrev
                      ac-source-gtags
                      ac-source-yasnippet
                      ac-source-dictionary
                      ac-source-words-in-same-mode-buffers)))
-(defun my-ac-emacs-lisp-setup ()
+(defun conao-ac-emacs-lisp-setup ()
   (append ac-sources '(ac-source-functions
                        ac-source-variables
                        ac-source-symbols
                        ac-source-features)))
-(defun my-ac-cc-mode-setup ()
+(defun conao-ac-cc-mode-setup ()
   (append ac-sources '(ac-source-semantic)))
-(defun my-css-mode-setup ()
+(defun conao-ac-css-mode-setup ()
   (append ac-sources '(ac-source-css-property)))
 
 (provide 'auto-complete-setup)

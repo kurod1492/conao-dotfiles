@@ -4,7 +4,7 @@
 ;; Author: Naoya Yamashita
 ;; Keywords: 
 ;; Created:      <2015/12/03 03:08:00>
-;; Last-Updated: <2015/12/10 05:49:08>
+;; Last-Updated: <2015/12/11 12:09:09>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -26,45 +26,45 @@
 ;;; Code:
 ;; http://homepage1.nifty.com/blankspace/emacs/dired.html
 
-(defvar my-view-from-dired-flag nil)
-(make-variable-buffer-local 'my-view-from-dired-flag)
-(defvar my-binary-file-ext-list
+(defvar conao-view-from-dired-flag nil)
+(make-variable-buffer-local 'conao-view-from-dired-flag)
+(defvar conao-binary-file-ext-list
   '("tar" "tar.gz" "mpg" "jpg" "gif" "png"))
-(defvar my-binary-file-exp "\\.elc$")
-(let ((l my-binary-file-ext-list))
+(defvar conao-binary-file-exp "\\.elc$")
+(let ((l conao-binary-file-ext-list))
   (while l
-    (setq my-binary-file-exp
-          (concat my-binary-file-exp "\\|\\." (car l) "$"))
+    (setq conao-binary-file-exp
+          (concat conao-binary-file-exp "\\|\\." (car l) "$"))
     (setq l (cdr l))))
-(defun my-dired-view-file ()
+(defun conao-dired-view-file ()
   (interactive)
   (unless (or (file-directory-p (dired-get-filename))
-              (string-match my-binary-file-exp (dired-get-filename)))
+              (string-match conao-binary-file-exp (dired-get-filename)))
     (view-file (dired-get-filename))
-    (setq my-view-from-dired-flag t)))
+    (setq conao-view-from-dired-flag t)))
 
-(defun my-View-next-file-in-dired ()
+(defun conao-view-next-file-in-dired ()
   (interactive)
-  (when my-view-from-dired-flag
+  (when conao-view-from-dired-flag
     (View-kill-and-leave)
-    (my-dired-next-line 1)
-    (my-dired-view-file)))
+    (conao-dired-next-line 1)
+    (conao-dired-view-file)))
 
-(defun my-View-prev-file-in-dired ()
+(defun conao-view-prev-file-in-dired ()
   (interactive)
-  (when my-view-from-dired-flag
+  (when conao-view-from-dired-flag
     (View-kill-and-leave)
-    (my-dired-previous-line 1)
-    (my-dired-view-file)))
+    (conao-dired-previous-line 1)
+    (conao-dired-view-file)))
 
 (add-hook 'dired-mode-hook
           '(lambda ()
-             (define-key dired-mode-map "\C-v"      'my-dired-view-file)
+             (define-key dired-mode-map "\C-v"      'conao-dired-view-file)
              ))
 (add-hook 'view-mode-hook
           '(lambda ()
-             (define-key view-mode-map "N" 'my-View-next-file-in-dired)
-             (define-key view-mode-map "P" 'my-View-prev-file-in-dired)
+             (define-key view-mode-map "N" 'conao-view-next-file-in-dired)
+             (define-key view-mode-map "P" 'conao-view-prev-file-in-dired)
              ))
 
 (provide 'view-next-file)

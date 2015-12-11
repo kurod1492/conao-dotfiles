@@ -4,7 +4,7 @@
 ;; Author: Naoya Yamashita
 ;; Keywords: 
 ;; Created:      <2015/12/03 02:41:34>
-;; Last-Updated: <2015/12/10 05:47:40>
+;; Last-Updated: <2015/12/11 12:09:08>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -49,8 +49,6 @@
           ;; major mode
           (when (eq mode major-mode)
             (setq mode-name mode-str)))))
-
-(add-hook 'after-change-major-mode-hook 'clean-mode-line)
 
 (provide 'modeline-replace)
 ;;; modeline-replace.el ends here
