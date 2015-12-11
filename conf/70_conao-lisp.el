@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:52>
-;; Last-Updated: <2015/12/12 08:30:10>
+;; Last-Updated: <2015/12/12 08:59:24>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -54,3 +54,16 @@
   :config (add-hook 'after-init-hook 'my-elscreen-kill-0))
 
 (use-package other-function)
+
+(use-package dired-rainbow)
+(use-package dired-color-conf)
+
+
+
+
+
+
+
+
+
+
