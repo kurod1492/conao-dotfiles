@@ -1,9 +1,9 @@
-;;; 60_site-lisp.el --- 
+;;; 60_site-lisp.Eli --- 
 
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:37>
-;; Last-Updated: <2015/12/10 05:38:38>
+;; Last-Updated: <2015/12/11 14:17:06>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,3 +24,20 @@
 ;; 
 
 ;;; Code:
+(use-package auto-save-buffers
+  :config (run-with-idle-timer 0.5 t 'auto-save-buffers)
+  :bind   (("C-x a s" . auto-save-buffers-toggle)))
+
+(use-package navbarx-elscreen)
+(use-package navbarx-version)
+(use-package navbarx-time
+  :config (progn
+            (setq navbar-item-list '(navbarx-version
+                                   navbarx-time
+                                   navbarx-elscreen))
+            (navbar-mode)
+            (navbar-revive-workaround)
+            (display-time-mode)
+
+            ;;: elscreen-start ;;;
+            (elscreen-start)))
