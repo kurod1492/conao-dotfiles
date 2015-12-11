@@ -1,9 +1,9 @@
-;;; 00_shortcut.el --- 
+;;; other-function.el --- 
 
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
-;; Created:      <2015/12/10 04:59:43>
-;; Last-Updated: <2015/12/12 08:37:50>
+;; Created:      <2015/12/12 08:28:58>
+;; Last-Updated: <2015/12/12 08:29:09>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,11 +24,11 @@
 ;; 
 
 ;;; Code:
-(bind-keys ("C-c a"   . align)
-           ("C-c S-a" . align-regexp)
-           ("C-c b"   . battery)
-           ("C-x e"   . eval-last-sexp)
-           ("M-r"     . query-replace)
-           ("M-c"     . c-mode))
-
-(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+(defun region-or-prompt (prompt)
+  (if (region-active-p)
+      (prog1
+          (buffer-substring (region-beginning) (region-end))
+        (deactivate-mark)
+        (message ""))
+    (read-string (format "%s (default:%s): " prompt (thing-at-point 'symbol))
+                 nil nil (thing-at-point 'symbol))))

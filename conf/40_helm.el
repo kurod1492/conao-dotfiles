@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:13>
-;; Last-Updated: <2015/12/12 08:25:43>
+;; Last-Updated: <2015/12/12 08:39:10>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -39,12 +39,12 @@
               (when (file-exists-p candidate)
                 ad-do-it))
             (bind-keys :map helm-map
-                       (("C-h" . delete-backward-char)))
+                       ("C-h" . delete-backward-char))
             (bind-keys :map helm-find-files-map
-                       (("C-h" . delete-backward-char)
-                        ("TAB" . helm-execute-persistent-action)))
+                       ("C-h" . delete-backward-char)
+                       ("TAB" . helm-execute-persistent-action))
             (bind-keys :map helm-read-file-map
-                       (("TAB" . helm-execute-persistent-action))))
+                       ("TAB" . helm-execute-persistent-action)))
   :bind (("M-x"    . helm-M-x)
          ("C-x C-f". helm-find-files)
          ("C-x C-r". helm-recentf)
@@ -68,7 +68,7 @@
               source))
   ;; [2015-09-06 Sun]helm-match-plugin -> helm-multi-match変更の煽りを受けて
   (defalias 'helm-mp-3-get-patterns 'helm-mm-3-get-patterns)
-  (defalias 'helm-mp-3-search-base 'helm-mm-3-search-base)))
+  (defalias 'helm-mp-3-search-base 'helm-mm-3-search-base))
 
 (use-package ace-jump-mode
   :ensure helm
