@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/11 17:11:02>
+;; Last-Updated: <2015/12/12 08:10:36>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -62,3 +62,7 @@
                      (yatemplate-fill-alist)))
                  (add-hook 'find-file-hook 'find-file-hook--yatemplate)
                  (add-hook 'after-save-hook 'after-save-hook--yatempl)))
+
+(use-package free-keys
+  :ensure t
+  :defer  t)
