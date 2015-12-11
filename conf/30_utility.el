@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/12 08:44:18>
+;; Last-Updated: <2015/12/12 08:47:05>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -75,3 +75,8 @@
 (use-package neotree
   :ensure t
   :defer  t)
+
+(use-package magit
+  :ensure t
+  :defer  t)
+
