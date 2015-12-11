@@ -1,9 +1,9 @@
-;;; 20_editor.el --- 
+;;; 20_editor.Eli --- 
 
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/10 05:37:48>
+;; Last-Updated: <2015/12/11 14:02:12>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,3 +24,67 @@
 ;; 
 
 ;;; Code:
+(use-package pos-tip
+  :ensure t
+  :defer  t)
+
+(use-package yasnippet
+  :ensure t
+  :defer  t
+  :diminish (yas-minor-mode . "YS")
+  :config (progn
+            (setq yas-snippet-dirs
+                  '("~/.emacs.d/mySnippets"
+                    "~/.emacs.d/crottiSnippets"
+                    "~/.emacs.d/elpa/yasnippet-20151108.1505/snippets"
+                    ))
+            (yas-global-mode 1)
+            (bind-keys :map yas-minor-mode-map
+                       ("C-c i" . yas-insert-snippet)
+                       ("C-c n" . yas-new-snippet)
+                       ("C-c e" . yas-visit-snippet-file))))
+
+(use-package auto-complete-config
+  :ensure fuzzy
+  :defer  t
+  :diminish (auto-complete-mode . "AC")
+  :config (progn
+            (ac-config-default)
+            (ac-flyspell-workaround)
+            (setq ac-auto-start 1
+                  ac-delay 0.0
+                  ;; ac-use-menu-map t
+                  ac-use-fuzzy t
+                  ac-ignore-case 't
+                  ac-dwim t))
+  :bind (("A-M-?" . 'ac-last-help)))
+
+(use-package undohist
+  :ensure t
+  :defer  t
+  :config (progn
+            (setq undo-limit 500000
+                  undo-strong-limit 500000
+                  history-length 4000
+                  message-log-max 10000)
+            (savehist-mode 1)
+            (undohist-initialize)))
+
+(use-package undo-tree
+  :ensure t
+  :defer  t
+  :deminish (undo-tree-mode . "UT")
+  :config (global-undo-tree-mode t))
+
+(use-package redo+
+  :ensure t
+  :defer  t
+  :bind   (("C-M-/" . redo)))
+
+(use-package helm
+  :ensure t
+  :defer  t
+  :deminish (helm)
+  :config (progn
+            
+            ))
