@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:37>
-;; Last-Updated: <2015/12/11 22:51:43>
+;; Last-Updated: <2015/12/12 08:48:30>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -65,3 +65,12 @@
 
 (use-package guide-key-tip
   :defer t)
+
+(use-package sequential-command-config
+  :disabled t
+  :config (sequential-command-setup-keys))
+
+(use-package smartparens-config
+  :defer t
+  :config (progn (smartparens-global-mode)
+                 (sp-pair "$" "$")))
