@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/12 08:10:36>
+;; Last-Updated: <2015/12/12 08:42:34>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -66,3 +66,18 @@
 (use-package free-keys
   :ensure t
   :defer  t)
+
+(use-package shell-pop
+  :ensure t
+  :defer  t
+  :bind   (("<f8>" . shell-pop)))
+
+
+
+
+
+
+
+
+
+
