@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:52>
-;; Last-Updated: <2015/12/11 12:09:47>
+;; Last-Updated: <2015/12/11 14:50:10>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -49,3 +49,6 @@
 
 (use-package modeline-replace
   :config (add-hook after-change-major-mode-hook 'clean-mode-line))
+
+(use-package elscreen-start-with-1
+  :config (add-hook 'after-init-hook 'my-elscreen-kill-0))

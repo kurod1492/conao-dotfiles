@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 03:11:42>
-;; Last-Updated: <2015/12/10 04:31:19>
+;; Last-Updated: <2015/12/11 22:46:21>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -103,10 +103,12 @@
              (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))))
 
 (use-package wdired
+  :defer t
   :bind (("r" . wdired-change-to-wdired-mode))
   :config (setq delete-by-moving-to-trash t))
 
 (use-package view
+  :defer t
   :config (progn
             (setcar (cdr (assq 'view-mode minor-mode-alist))
                     (if (fboundp 'propertize)
@@ -124,3 +126,33 @@
                                minor-mode-map-alist
                                (cons (cons 'view-mode view-mode-map) minor-mode-map-alist))
                          ))))
+
+(use-package auto-insert
+  :defer t
+  :config (progn (setq auto-insert-query nil
+                       auto-insert-alist nil
+                       auto-insert-directory "~/.emacs.d/template/")
+                 (auto-insert-mode 1)))
+
+(use-package session
+  :defer t
+  :config (progn
+            (setq session-initialize '(de-saveplace session keys menus places)
+                  session-globals-include '((kill-ring 50)
+                                            (session-files-alist 500 t)
+                                            (file-name-history 10000))
+                  session-globals-maxlstring 100000000
+                  history-length t
+                  session-undo-check -1)
+            (add-hook 'after-init-hook 'session-initialize)))
+
+(use-package mode-compile
+  :defer  t
+  :config (setq mode-compile-always-save-buffer-p t
+                mode-compile-never-edit-command-p t
+                mode-compile-expert-p t)
+  :bind (("C-c c" . mode-compile)))
+
+(use-package mode-compile-kill
+  :defer t
+  :bind (("C-c k" . mode-compile-kill)))

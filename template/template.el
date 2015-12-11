@@ -1,10 +1,10 @@
-;;; `(file-name-nondirectory (buffer-file-name))` ---
+;;; `(file-name-nondirectory (buffer-file-name))` --- 
 
-;; Copyright (C) `(format-time-string "%Y" (current-time))` by Naoya YAMASHITA
-
-;; Author: Naoya YAMASHITA <conao3@gmail.com>
-;; URL: http://conao.wp.xdomain.jp/
-;; Version: 0.01
+;; Copyright (C) `(format-time-string "%Y")` `(user-full-name)`
+;; Author: `(user-full-name)`
+;; Created:      `(format-time-string "<%Y/%m/%d %H:%M:%S>" (current-time))`
+;; Last-Updated: <2015/12/11 17:05:27>
+;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,4 +21,7 @@
 
 ;;; Commentary:
 
+;; 
+
 ;;; Code:
+$1
