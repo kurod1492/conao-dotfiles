@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/12 08:42:34>
+;; Last-Updated: <2015/12/12 08:44:18>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -72,12 +72,6 @@
   :defer  t
   :bind   (("<f8>" . shell-pop)))
 
-
-
-
-
-
-
-
-
-
+(use-package neotree
+  :ensure t
+  :defer  t)
