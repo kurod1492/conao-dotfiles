@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:37>
-;; Last-Updated: <2015/12/11 22:40:49>
+;; Last-Updated: <2015/12/11 22:51:43>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -31,7 +31,7 @@
 (use-package navbarx-elscreen)
 (use-package navbarx-version)
 (use-package navbarx-time
-  :defer  elscreen
+  :ensure  elscreen
   :config (progn
             (setq navbar-item-list '(navbarx-version
                                      navbarx-time
@@ -50,12 +50,18 @@
   :bind (("C-c C-d" . lispxmp)))
 
 (use-package paredit
-  :disabled t)
+  :disabled t
+  :defer t)
 
 (use-package auto-async-byte-compile
+  :defer t
   :config (progn (setq auto-async-byte-compile-exclude-files-regexp "/junk/"
                        eldoc-idle-delay 0.2
                        eldoc-minor-mode-string "")  ;; dont show ElDoc in mode line
                  (find-function-setup-keys)))
 
-(use-package minibuf-isearch)
+(use-package minibuf-isearch
+  :defer t)
+
+(use-package guide-key-tip
+  :defer t)
