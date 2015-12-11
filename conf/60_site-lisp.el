@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:37>
-;; Last-Updated: <2015/12/11 14:17:06>
+;; Last-Updated: <2015/12/11 14:19:06>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -31,6 +31,7 @@
 (use-package navbarx-elscreen)
 (use-package navbarx-version)
 (use-package navbarx-time
+  :defer  elscreen
   :config (progn
             (setq navbar-item-list '(navbarx-version
                                    navbarx-time
