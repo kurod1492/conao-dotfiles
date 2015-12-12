@@ -57,7 +57,7 @@
                   ac-use-fuzzy t
                   ac-ignore-case 't
                   ac-dwim t))
-  :bind (("A-M-?" . 'ac-last-help)))
+  :bind (("C-M-?" . ac-last-help)))
 
 (use-package undohist
   :ensure t
@@ -85,5 +85,5 @@
   :ensure t
   :defer  t
   :config (smartrep-define-key
-              global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
-                                 ("M-p" . 'flymake-goto-prev-error))))
+           global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
+                              ("M-p" . 'flymake-goto-prev-error))))
