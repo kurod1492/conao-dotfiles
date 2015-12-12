@@ -62,12 +62,14 @@
 
 (use-package uniquify
   :defer t
-  :config uniquify-buffer-name-style 'post-forward-angle-brackets)
+  :config (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
 
 (use-package linum
   :defer t
-  :config (setq linum-delay nil
-                linum-format "%5d"))
+  :config (progn
+            (global-linum-mode t)
+            (setq linum-delay nil
+                  linum-format "%5d")))
 
 (use-package newcomment
   :defer t
@@ -77,30 +79,30 @@
 
 (use-package Flyspell
   :defer t
-  :bind* (("<f12>" . 'flyspell-mode)
-          ("<f10>" . 'flyspell-buffer)
-          ("<f9>"  . 'ispell-word))
+  :bind* (("<f12>" . flyspell-mode)
+          ("<f10>" . flyspell-buffer)
+          ("<f9>"  . ispell-word))
   :config (progn 
-             (setq-default ispell-program-name "aspell")
+            (setq-default ispell-program-name "aspell")
 
-             ;; fly-spell
-             (mapc
-              (lambda (hook)
-                (add-hook hook 'flyspell-prog-mode))
-              '(
-                c++-mode-hook
-                emacs-lisp-mode-hook
-                ruby-mode-hook
-                python-mode-hook
-                ))
-             (mapc
-              (lambda (hook)
-                (add-hook hook
-                          '(lambda () (flyspell-mode 1))))
-              '(
-                yatex-mode-hook
-                ))
-             (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))))
+            ;; fly-spell
+            (mapc
+             (lambda (hook)
+               (add-hook hook 'flyspell-prog-mode))
+             '(
+               c++-mode-hook
+               emacs-lisp-mode-hook
+               ruby-mode-hook
+               python-mode-hook
+               ))
+            (mapc
+             (lambda (hook)
+               (add-hook hook
+                         '(lambda () (flyspell-mode 1))))
+             '(
+               yatex-mode-hook
+               ))
+            (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))))
 
 (use-package wdired
   :defer t
