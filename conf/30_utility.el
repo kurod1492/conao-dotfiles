@@ -79,7 +79,8 @@
 (use-package magit
   ;; not found magit-popup
   ;; :ensure t
-  :defer  t)
+  ;; :defer  t)
+  )
 
 (use-package auto-install
   :ensure t
