@@ -53,12 +53,12 @@
   ;; %U   -- ログインしたユーザのフルネーム 
   :defer t
   :config (progn
-          (add-hook 'before-save-hook 'time-stamp)
-          (setq time-stamp-active t
-                time-stamp-start "[lL]ast[ -][uU]pdated[ \t]*:[ \t]*<"
-                time-stamp-format "%:y/%02m/%02d %02H:%02M:%02S"
-                time-stamp-end ">"
-                time-stamp-line-limit 20)))
+            (add-hook 'before-save-hook 'time-stamp)
+            (setq time-stamp-active t
+                  time-stamp-start "[lL]ast[ -][uU]pdated[ \t]*:[ \t]*<"
+                  time-stamp-format "%:y/%02m/%02d %02H:%02M:%02S"
+                  time-stamp-end ">"
+                  time-stamp-line-limit 20)))
 
 (use-package uniquify
   :defer t
