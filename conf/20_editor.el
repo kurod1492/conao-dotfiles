@@ -73,7 +73,7 @@
 (use-package undo-tree
   :ensure t
   :defer  t
-  :deminish (undo-tree-mode . "UT")
+  :diminish (undo-tree-mode . "UT")
   :config (global-undo-tree-mode t))
 
 (use-package redo+
