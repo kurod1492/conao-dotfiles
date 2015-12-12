@@ -114,5 +114,5 @@
 
 (dired-rainbow-define lnk "yellow" dired-rainbow-lnk-extensions)
 
-(provide dired-color-conf)
+(provide 'dired-color-conf)
 ;;; dired-color-conf.el ends here
