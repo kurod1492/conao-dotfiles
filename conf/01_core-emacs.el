@@ -104,11 +104,11 @@
 (setq-default bidi-display-reordering nil)
 
 ;; us mode when emacs start
-(add-hook 'after-init-hook 'mac-change-language-to-us)
+;(add-hook 'after-init-hook 'mac-change-language-to-us)
 ;; us mode when mini-buffer
-(add-hook 'minibuffer-setup-hook 'mac-change-language-to-us)
+;(add-hook 'minibuffer-setup-hook 'mac-change-language-to-us)
 ;; us mode when iserach
-(add-hook 'isearch-mode-hook 'mac-change-language-to-us)
+;(add-hook 'isearch-mode-hook 'mac-change-language-to-us)
 
 ;; Emacs serverを起動
 (if window-system (server-start))

@@ -27,7 +27,7 @@
 
 ;; package manager
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("melpa"     . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
@@ -46,9 +46,10 @@
   :ensure bind-chord)
 
 ;; theme settings
-(use-package solarized-theme
-  :ensure t
-  :config (load-theme 'solarized-dark))
+(unless (package-installed-p 'solarized-theme)
+  (package-refresh-contents)
+  (package-install 'solarized-theme))
+(load-theme 'solarized-dark t)
 
 ;; init-loader
 (use-package init-loader
