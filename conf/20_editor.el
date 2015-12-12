@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/11 14:02:12>
+;; Last-Updated: <2015/12/12 09:05:15>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -81,10 +81,9 @@
   :defer  t
   :bind   (("C-M-/" . redo)))
 
-(use-package helm
+(use-package flycheck
   :ensure t
   :defer  t
-  :deminish (helm)
-  :config (progn
-            
-            ))
+  :config (smartrep-define-key
+              global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
+                                 ("M-p" . 'flymake-goto-prev-error))))
