@@ -54,5 +54,5 @@
     (my-elscreen-kill-0)
     (select-frame selected-frame)))
 
-(provide elscreen-start-with-1)
+(provide 'elscreen-start-with-1)
 ;;; elscreen-start-with-1.el ends here

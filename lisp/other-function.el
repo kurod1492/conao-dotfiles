@@ -32,3 +32,5 @@
         (message ""))
     (read-string (format "%s (default:%s): " prompt (thing-at-point 'symbol))
                  nil nil (thing-at-point 'symbol))))
+
+(provide 'other-function)
