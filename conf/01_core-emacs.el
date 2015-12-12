@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/11/20 13:11:08>
-;; Last-Updated: <2015/12/10 03:08:02>
+;; Last-Updated: <2015/12/12 19:13:10>
 ;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -102,6 +102,13 @@
 
 ;;; 右から左に読む言語に対応させないことで描画高速化
 (setq-default bidi-display-reordering nil)
+
+;; us mode when emacs start
+(add-hook 'after-init-hook 'mac-change-language-to-us)
+;; us mode when mini-buffer
+(add-hook 'minibuffer-setup-hook 'mac-change-language-to-us)
+;; us mode when iserach
+(add-hook 'isearch-mode-hook 'mac-change-language-to-us)
 
 ;; Emacs serverを起動
 (if window-system (server-start))
