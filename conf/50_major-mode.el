@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:25>
-;; Last-Updated: <2015/12/10 05:38:26>
+;; Last-Updated: <2015/12/12 19:07:16>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,3 +24,12 @@
 ;; 
 
 ;;; Code:
+(use-package web-mode
+  :ensure t
+  :defer  t
+  :mode  (("\\.html?\\'" . web-mode)
+          ("\\.jsp\\'"   . web-mode)
+          ("\\.gsp\\'"   . web-mode))
+  :config (setq web-mode-markup-indent-offset 4
+                web-mode-css-indent-offset 4
+                web-mode-code-indent-offset 4))
