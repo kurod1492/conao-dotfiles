@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/12 20:53:59>
+;; Last-Updated: <2015/12/12 20:56:59>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -91,5 +91,8 @@
   :defer  t
   :config (setq yas-fallback-behavior '(apply tab-jump-out 1)))
 
-(use-package w3m)
+(use-package w3m
+  :if (executable-find "w3m")
+  :ensure t
+  :defer  t)
 
