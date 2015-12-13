@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/12 09:05:15>
+;; Last-Updated: <2015/12/13 10:47:42>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -30,7 +30,7 @@
 
 (use-package yasnippet
   :ensure t
-  :defer  t
+  ;; :defer  t
   :diminish (yas-minor-mode . "YS")
   :config (progn
             (setq yas-snippet-dirs
@@ -45,8 +45,8 @@
                        ("C-c e" . yas-visit-snippet-file))))
 
 (use-package auto-complete-config
-  :ensure fuzzy
-  :defer  t
+  ;; :ensure fuzzy
+  ;; :defer  t
   :diminish (auto-complete-mode . "AC")
   :config (progn
             (ac-config-default)
@@ -61,7 +61,7 @@
 
 (use-package undohist
   :ensure t
-  :defer  t
+  ;; :defer  t
   :config (progn
             (setq undo-limit 500000
                   undo-strong-limit 500000
@@ -74,7 +74,8 @@
   :ensure t
   :defer  t
   :diminish (undo-tree-mode . "UT")
-  :config (global-undo-tree-mode t))
+  :config (global-undo-tree-mode t)
+  :bind   (("C-x u" . undo-tree-visualize)))
 
 (use-package redo+
   :ensure t
@@ -83,7 +84,5 @@
 
 (use-package flycheck
   :ensure t
-  :defer  t
-  :config (smartrep-define-key
-           global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
-                              ("M-p" . 'flymake-goto-prev-error))))
+  ;;:defer  t)
+  )
