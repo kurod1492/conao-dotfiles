@@ -39,7 +39,7 @@
 
 (use-package elscreen-persist
   :ensure t
-  :defer  t
+  ;; :defer  t
   :config (elscreen-persist-mode))
 
 (use-package elscreen-dired  :defer t)
@@ -47,8 +47,8 @@
 (use-package elscreen-server :defer t)
 
 (use-package yatemplate
-  :ensure t
-  :defer  t
+  :ensure yasnippet
+  ;; :defer  t
   :config (progn (yatemplate-fill-alist)
                  (defun find-file-hook--yatemplate ()
                    "yatemplateのsnippetのテストができるようにするためにsnippet-modeにする"
@@ -61,7 +61,7 @@
                    (when (string-match "emacs.*/templates/" buffer-file-name)
                      (yatemplate-fill-alist)))
                  (add-hook 'find-file-hook 'find-file-hook--yatemplate)
-                 (add-hook 'after-save-hook 'after-save-hook--yatempl)))
+                 (add-hook 'after-save-hook 'after-save-hook--yatemplate)))
 
 (use-package free-keys
   :ensure t
@@ -89,7 +89,7 @@
 
 (use-package tab-jump-out
   :ensure t
-  :defer  t
+  ;; :defer  t
   :config (setq yas-fallback-behavior '(apply tab-jump-out 1)))
 
 (use-package w3m
