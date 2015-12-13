@@ -81,7 +81,7 @@
 
 (use-package ace-isearch
   :ensure helm
-  :defer  t
+  ;; :defer  t
   ;; 1文字     -> ace-jump-mode
   ;; 2〜5文字  -> isearch
   ;; 6文字以上 -> helm-swoop
