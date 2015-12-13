@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 03:11:42>
-;; Last-Updated: <2015/12/13 09:17:18>
+;; Last-Updated: <2015/12/13 09:21:13>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -105,7 +105,7 @@
             (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))))
 
 (use-package wdired
-  :defer t
+  ;; :defer t
   :config (progn (setq delete-by-moving-to-trash t)
                  (bind-key "r" 'wdired-change-to-wdired-mode dired-mode-map)))
 
@@ -130,9 +130,9 @@
                          ))))
 
 (use-package auto-insert
-  :defer t
-  :config (progn (setq auto-insert-query nil
-                       auto-insert-alist nil
+  ;; :defer t
+  :config (progn (setq ;; auto-insert-query nil
+                       ;; auto-insert-alist nil
                        auto-insert-directory "~/.emacs.d/template/")
                  (auto-insert-mode 1)))
 

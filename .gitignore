@@ -8,11 +8,13 @@
 # Recovery and backup directories
 .session
 history
+/url/
 /site-lisp/
 /crottiSnippets/
 /undohist/
 /auto-save-list/
 /backup/
+/game/
 
 # Temp ignore files
 /bk.emacs.d/
