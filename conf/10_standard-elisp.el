@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 03:11:42>
-;; Last-Updated: <2015/12/11 22:46:21>
+;; Last-Updated: <2015/12/13 09:17:18>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -33,7 +33,7 @@
   ;; %:a -- Monday 曜日
   ;; %#A -- MONDAY 全部大文字で曜日
   ;; %:b -- January 月
-  
+
   ;; 桁数を指定すると指定した文字だけが表示される.
   ;; "%2#A"なら MO など．
   
@@ -51,7 +51,7 @@
   ;; %s   -- マシン名
   ;; %u   -- ログインしたユーザ名
   ;; %U   -- ログインしたユーザのフルネーム 
-  :defer t
+  ;; :defer t
   :config (progn
             (add-hook 'before-save-hook 'time-stamp)
             (setq time-stamp-active t
@@ -65,7 +65,7 @@
   :config (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
 
 (use-package linum
-  :defer t
+  ;; :defer t
   :config (progn
             (global-linum-mode t)
             (setq linum-delay nil
@@ -106,8 +106,8 @@
 
 (use-package wdired
   :defer t
-  :bind (("r" . wdired-change-to-wdired-mode))
-  :config (setq delete-by-moving-to-trash t))
+  :config (progn (setq delete-by-moving-to-trash t)
+                 (bind-key "r" 'wdired-change-to-wdired-mode dired-mode-map)))
 
 (use-package view
   :defer t
