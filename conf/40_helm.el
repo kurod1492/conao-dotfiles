@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:13>
-;; Last-Updated: <2015/12/12 19:14:37>
+;; Last-Updated: <2015/12/13 10:47:43>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -53,9 +53,10 @@
          ("C-x b"  . helm-buffers-list)))
 
 (use-package helm-migemo
+  :disabled t
   :if (executable-find "cmigemo")
   :ensure helm
-  :defer  t
+  ;; :defer  t
   :config (defun helm-compile-source--candidates-in-buffer (source)
             (helm-aif (assoc 'candidates-in-buffer source)
                 (append source
