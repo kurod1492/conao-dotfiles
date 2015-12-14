@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/14 15:13:59>
+;; Last-Updated: <2015/12/14 15:26:38>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -36,7 +36,7 @@
             (setq yas-snippet-dirs
                   '("~/.emacs.d/mySnippets"
                     "~/.emacs.d/crottiSnippets"
-                    "~/.emacs.d/elpa/yasnippet-20151108.1505/snippets"
+                    yas-installed-snippets-dir
                     ))
             (yas-global-mode 1)
             (bind-keys :map yas-minor-mode-map

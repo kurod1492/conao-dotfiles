@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:13>
-;; Last-Updated: <2015/12/13 10:47:43>
+;; Last-Updated: <2015/12/14 15:26:38>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -49,7 +49,6 @@
          ("C-x C-f". helm-find-files)
          ("C-x C-r". helm-recentf)
          ("M-y"    . helm-show-kill-ring)
-         ("C-c i"  . helm-imenu)
          ("C-x b"  . helm-buffers-list)))
 
 (use-package helm-migemo
