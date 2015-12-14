@@ -1,9 +1,9 @@
-;;; 20_editor.Eli --- 
+;;; 20_editor.El --- 
 
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/14 15:26:38>
+;; Last-Updated: <2015/12/14 15:33:06>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify

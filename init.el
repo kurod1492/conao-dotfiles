@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2014/03/20 23:24:35>
-;; Last-Updated: <2015/12/14 15:26:37>
+;; Last-Updated: <2015/12/14 15:33:00>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -31,20 +31,6 @@
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
-;; use-package
-(when (not (package-installed-p 'use-package))
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
-
-;; key-chord
-(use-package key-chord
-  :ensure t
-  :config (key-chord-mode 1))
-
-(use-package use-package-chords
-  :ensure bind-chord)
-
 ;; theme settings
 (unless (package-installed-p 'solarized-theme)
   (package-refresh-contents)
@@ -52,6 +38,10 @@
 (load-theme 'solarized-dark t)
 
 ;; init-loader
-(use-package init-loader
-  :ensure t
-  :config (init-loader-load "~/.emacs.d/conf"))
+(unless (package-installed-p 'init-loader)
+  (package-refresh-contents)
+  (package-install 'init-loader))
+(require 'init-loader)
+;; (custom-set-variables
+;;  '(init-loader-show-log-after-init 'error-only))
+(init-loader-load "~/.emacs.d/conf")
