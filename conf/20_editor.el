@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/13 10:47:42>
+;; Last-Updated: <2015/12/14 15:13:59>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -84,5 +84,10 @@
 
 (use-package flycheck
   :ensure t
-  ;;:defer  t)
+  ;; :defer  t)
   )
+
+(use-package electric-operator
+  :ensure t
+  :defer  t
+  :config (progn (add-hook 'c-mode-common-hook 'electric-operator-mode)))
