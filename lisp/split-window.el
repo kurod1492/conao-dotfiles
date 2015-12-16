@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/11/29 16:04:04>
-;; Last-Updated: <2015/12/10 05:48:32>
+;; Last-Updated: <2015/12/16 16:33:38>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -57,15 +57,10 @@
 ;;; split window absolutely
 (defun split-window-suitably ()
   (interactive)
-  (if (<= (window-body-height) 50)
-	  (if (<= (window-body-width) 150)
-		  (split-window-vertically))
-	(if (<= 270 (window-body-width))
-		(split-window-horizontally-n 3)
-	  (if (<= (* (window-body-height) 2) (window-body-width))
-		  (split-window-horizontally)
-		(split-window-vertically))
-	  (other-window 1))))
+  (cond ((<= (* 3 (window-body-height)) (window-body-width))
+         (split-window-horizontally))
+        (t
+         (split-window-vertically))))
 
 (provide 'split-window)
 ;;; split-window.el ends here
