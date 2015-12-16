@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/16 16:12:09>
+;; Last-Updated: <2015/12/16 17:04:03>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -79,10 +79,8 @@
   :defer  t)
 
 (use-package magit
-  ;; not found magit-popup
   :ensure t
   :defer  t)
-  ;)
 
 (use-package auto-install
   :ensure t
