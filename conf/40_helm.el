@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:13>
-;; Last-Updated: <2015/12/14 15:26:38>
+;; Last-Updated: <2015/12/16 15:17:47>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -54,8 +54,8 @@
 (use-package helm-migemo
   :disabled t
   :if (executable-find "cmigemo")
-  :ensure helm
-  ;; :defer  t
+  :ensure t
+  ;; :defer t
   :config (defun helm-compile-source--candidates-in-buffer (source)
             (helm-aif (assoc 'candidates-in-buffer source)
                 (append source
@@ -72,15 +72,15 @@
   (defalias 'helm-mp-3-search-base 'helm-mm-3-search-base))
 
 (use-package ace-jump-mode
-  :ensure helm
+  :ensure t ;helm
   :defer  t)
 
 (use-package helm-swoop
-  :ensure helm
+  :ensure t ;helm
   :defer  t)
 
 (use-package ace-isearch
-  :ensure helm
+  :ensure t ;helm
   ;; :defer  t
   ;; 1文字     -> ace-jump-mode
   ;; 2〜5文字  -> isearch

@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/13 10:29:28>
+;; Last-Updated: <2015/12/16 16:12:09>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -26,12 +26,14 @@
 ;;; Code:
 (use-package elscreen
   :ensure t
-  :defer  t
+  ;; :defer  t
   :config (progn (setq elscreen-prefix-key "\C-z"
                        elscreen-tab-display-kill-screen nil
                        elscreen-tab-display-control nil
                        elscreen-display-screen-number nil)
-                 (bind-key "C-k" 'elscreen-kill-screen-and-buffers elscreen-map))
+                 (bind-key "C-k" 'elscreen-kill-screen-and-buffers elscreen-map)
+                 (use-package elscreen-start-with-1
+                   :config (add-hook 'after-init-hook 'my-elscreen-kill-0)))
   :bind (("C-M-<right>" . elscreen-swap-next)
          ("C-M-<left>"  . elscreen-swap-previous)
          ("C-<tab>"     . elscreen-next)
@@ -47,7 +49,7 @@
 (use-package elscreen-server :defer t)
 
 (use-package yatemplate
-  :ensure yasnippet
+  :ensure t
   ;; :defer  t
   :config (progn (yatemplate-fill-alist)
                  (defun find-file-hook--yatemplate ()
@@ -78,9 +80,9 @@
 
 (use-package magit
   ;; not found magit-popup
-  ;; :ensure t
-  ;; :defer  t)
-  )
+  :ensure t
+  :defer  t)
+  ;)
 
 (use-package auto-install
   :ensure t
@@ -94,6 +96,48 @@
 
 (use-package w3m
   :if (executable-find "w3m")
+  :ensure t
+  :defer  t)
+
+(use-package open-junk-file
+  :ensure t
+  :defer  t
+  :bind (("C-x C-z" . open-junk-file)))
+
+(use-package lispxmp
+  :ensure t
+  :defer  t
+  :bind (("C-c C-d" . lispxmp)))
+
+(use-package paredit
+  :disabled t
+  :ensure t
+  :defer  t)
+
+(use-package auto-async-byte-compile
+  :ensure t
+  :defer  t
+  :config (progn (setq auto-async-byte-compile-exclude-files-regexp "/junk/"
+                       eldoc-idle-delay 0.2
+                       eldoc-minor-mode-string "")  ;; dont show ElDoc in mode line
+                 (find-function-setup-keys)))
+
+(use-package minibuf-isearch
+  :ensure t
+  :defer  t)
+
+(use-package sequential-command-config
+  ;; :disabled t
+  :init   (use-package sequential-command :ensure t)
+  :config (progn (sequential-command-setup-keys)))
+
+(use-package smartparens-config
+  :init   (use-package smartparens :ensure t)
+  ;; :defer t
+  :config (progn (smartparens-global-mode)
+                 (sp-pair "$" "$")))
+
+(use-package dired-rainbow
   :ensure t
   :defer  t)
 

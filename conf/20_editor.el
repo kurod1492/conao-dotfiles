@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/14 15:33:06>
+;; Last-Updated: <2015/12/16 15:09:20>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,9 +24,6 @@
 ;; 
 
 ;;; Code:
-(use-package pos-tip
-  :ensure t
-  :defer  t)
 
 (use-package yasnippet
   :ensure t
@@ -45,9 +42,13 @@
                        ("C-c e" . yas-visit-snippet-file))))
 
 (use-package auto-complete-config
-  ;; :ensure fuzzy
+  ;; :ensure t ;contain auto-complete
   ;; :defer  t
   :diminish (auto-complete-mode . "AC")
+  :init   (progn
+            (use-package pos-tip       :ensure t)
+            (use-package fuzzy         :ensure t)
+            (use-package auto-complete :ensure t))
   :config (progn
             (ac-config-default)
             (ac-flyspell-workaround)
@@ -78,8 +79,8 @@
   :bind   (("C-x u" . undo-tree-visualize)))
 
 (use-package redo+
-  :ensure t
-  :defer  t
+  ;; :ensure t ; fetch error at 2015/12/16
+  ;; :defer  t
   :bind   (("C-M-/" . redo)))
 
 (use-package flycheck

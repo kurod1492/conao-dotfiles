@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 03:11:42>
-;; Last-Updated: <2015/12/13 09:21:13>
+;; Last-Updated: <2015/12/16 15:55:44>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -129,7 +129,7 @@
                                (cons (cons 'view-mode view-mode-map) minor-mode-map-alist))
                          ))))
 
-(use-package auto-insert
+(use-package autoinsert
   ;; :defer t
   :config (progn (setq ;; auto-insert-query nil
                        ;; auto-insert-alist nil

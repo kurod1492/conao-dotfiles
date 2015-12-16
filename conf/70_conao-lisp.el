@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:52>
-;; Last-Updated: <2015/12/12 08:59:24>
+;; Last-Updated: <2015/12/16 16:22:40>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -48,22 +48,8 @@
                        ("P" . conao-view-prev-file-in-dired))))
 
 (use-package modeline-replace
-  :config (add-hook after-change-major-mode-hook 'clean-mode-line))
-
-(use-package elscreen-start-with-1
-  :config (add-hook 'after-init-hook 'my-elscreen-kill-0))
+  :config (add-hook 'after-change-major-mode-hook 'clean-mode-line))
 
 (use-package other-function)
 
-(use-package dired-rainbow)
 (use-package dired-color-conf)
-
-
-
-
-
-
-
-
-
-

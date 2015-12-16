@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/14 10:35:27>
-;; Last-Updated: <2015/12/14 15:33:06>
+;; Last-Updated: <2015/12/16 15:52:07>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -37,6 +37,7 @@
   :config (key-chord-mode 1))
 
 (use-package use-package-chords
-  :ensure bind-chord)
+  :ensure t)
 
-
+(use-package smartrep
+  :ensure t)
