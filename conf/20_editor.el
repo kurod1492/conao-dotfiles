@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/16 15:09:20>
+;; Last-Updated: <2015/12/21 16:46:01>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -37,9 +37,9 @@
                     ))
             (yas-global-mode 1)
             (bind-keys :map yas-minor-mode-map
-                       ("C-c i" . yas-insert-snippet)
-                       ("C-c n" . yas-new-snippet)
-                       ("C-c e" . yas-visit-snippet-file))))
+                       ("C-c C-i" . yas-insert-snippet)
+                       ("C-c C-n" . yas-new-snippet)
+                       ("C-c C-e" . yas-visit-snippet-file))))
 
 (use-package auto-complete-config
   ;; :ensure t ;contain auto-complete
@@ -92,3 +92,12 @@
   :ensure t
   :defer  t
   :config (progn (add-hook 'c-mode-common-hook 'electric-operator-mode)))
+
+(use-package rainbow-mode
+  :ensure t
+  :defer  t
+  :config (progn (add-hook 'emacs-lisp-mode 'rainbow-mode)
+                 (add-hook 'css-mode-hook   'rainbow-mode)
+                 (add-hook 'less-mode-hook  'rainbow-mode)
+                 (add-hook 'web-mode-hook   'rainbow-mode)
+                 (add-hook 'html-mode-hook  'rainbow-mode)))
