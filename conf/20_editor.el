@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/22 13:18:26>
+;; Last-Updated: <2015/12/22 23:28:30>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,7 +24,6 @@
 ;; 
 
 ;;; Code:
-
 (use-package yasnippet
   :ensure t
   ;; :defer  t
@@ -32,14 +31,12 @@
   :config (progn
             (setq yas-snippet-dirs
                   '("~/.emacs.d/mySnippets"
-                    "~/.emacs.d/crottiSnippets"
                     yas-installed-snippets-dir
                     ))
-            (yas-global-mode 1)
-            (bind-keys :map yas-minor-mode-map
-                       ("C-c C-i" . yas-insert-snippet)
-                       ("C-c C-n" . yas-new-snippet)
-                       ("C-c C-e" . yas-visit-snippet-file))))
+            (yas-global-mode 1))
+  :bind*  (("C-i C-i" . yas-insert-snippet)
+           ("C-i C-n" . yas-new-snippet)
+           ("C-i C-e" . yas-visit-snippet-file)))
 
 (use-package auto-complete-config
   ;; :ensure t ;contain auto-complete
@@ -76,8 +73,8 @@
   :ensure t
   ;; :defer  t
   :diminish (undo-tree-mode . "UT")
-  :config (global-undo-tree-mode t)
-  :bind   (("C-x u" . undo-tree-visualize)))
+  :config   (global-undo-tree-mode t)
+  :bind    (("C-x u" . undo-tree-visualize)))
 
 (use-package redo+
   ;; :ensure t ; fetch error at 2015/12/16
