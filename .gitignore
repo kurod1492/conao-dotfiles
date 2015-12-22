@@ -9,7 +9,6 @@
 .session
 history
 /url/
-/site-lisp/
 /crottiSnippets/
 /undohist/
 /auto-save-list/
