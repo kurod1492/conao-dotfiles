@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/22 14:31:28>
+;; Last-Updated: <2015/12/22 21:29:49>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -78,7 +78,7 @@
 (use-package shell-pop
   :ensure t
   :defer  t
-  :bind   (("<f8>" . shell-pop)))
+  :bind   (("C-o" . shell-pop)))
 
 (use-package neotree
   :ensure t
@@ -87,8 +87,7 @@
 (use-package magit
   :ensure t
   :defer  t
-  :bind  (("C-x v" . nil)
-          ("C-x v v" . magit-status)))
+  :bind  (("C-v" . magit-status)))
 
 (use-package auto-install
   :ensure t
