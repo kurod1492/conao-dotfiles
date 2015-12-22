@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/22 21:29:49>
+;; Last-Updated: <2015/12/23 00:05:28>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -38,6 +38,7 @@
           ("C-M-<left>"  . elscreen-swap-previous)
           ("C-<tab>"     . elscreen-next)
           ("C-S-<tab>"   . elscreen-previous)
+          ("C-z d"       . elscreen-dired)
           ("C-z r"       . elscreen-screen-nickname)))
 
 ;; use my lisp/elscreen-swap.el
@@ -92,6 +93,12 @@
 (use-package auto-install
   :ensure t
   :defer  t
+  :commands
+  auto-install-batch
+  auto-install-from-url
+  auto-install-from-gist
+  auto-install-from-library
+  auto-install-from-emacswiki
   :config (setq auto-install-directory "~/.emacs.d/site-lisp"))
 
 (use-package tab-jump-out
