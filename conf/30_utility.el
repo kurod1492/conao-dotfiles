@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/21 14:18:15>
+;; Last-Updated: <2015/12/22 09:17:17>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -39,6 +39,11 @@
           ("C-<tab>"     . elscreen-next)
           ("C-S-<tab>"   . elscreen-previous)
           ("C-z r"       . elscreen-screen-nickname)))
+
+;; use my lisp/elscreen-swap.el
+(use-package elscreen-swap
+  :bind* (("C-M-S-<right>" . elscreen-swap-next)
+          ("C-M-S-<left>"  . elscreen-swap-previous)))
 
 (use-package elscreen-persist
   :ensure t
@@ -143,3 +148,10 @@
 (use-package mode-compile
   :ensure t
   :defer  t)
+
+(use-package auto-async-byte-compile
+  :ensure t
+  ;; :defer  t
+  :config (progn (setq auto-async-byte-compile-exclude-filess-regexp "/junk/")
+                 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)))
+
