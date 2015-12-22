@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:25>
-;; Last-Updated: <2015/12/12 19:07:16>
+;; Last-Updated: <2015/12/21 15:38:31>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -33,3 +33,8 @@
   :config (setq web-mode-markup-indent-offset 4
                 web-mode-css-indent-offset 4
                 web-mode-code-indent-offset 4))
+
+(use-package yatex
+  :ensure t
+  :defer  t
+  :mode (("\\.tex" . yatex-mode)))
