@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/12 08:57:28>
-;; Last-Updated: <2015/12/12 08:58:48>
+;; Last-Updated: <2015/12/17 10:13:03>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,6 +24,8 @@
 ;; 
 
 ;;; Code:
+
+(require 'dired-rainbow)
 
 ;;; 日本語の dired 仕様に変更
 (setq dired-rainbow-date-regexp "\\(?:[0-9][0-9]:[0-9][0-9]\\|.[0-9]\\{4\\}\\)")
