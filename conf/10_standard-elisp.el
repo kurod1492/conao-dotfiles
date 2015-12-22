@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 03:11:42>
-;; Last-Updated: <2015/12/16 15:55:44>
+;; Last-Updated: <2015/12/22 09:48:51>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -122,7 +122,7 @@
             ;; viewmodeのキーバインドを優先
             (add-hook 'view-mode-hook
                       '(lambda ()
-                         (setq minor-mode-map-alist
+                         (setq minor-mode-Map-Alist
                                (delete (assq 'view-mode minor-mode-map-alist)
                                        minor-mode-map-alist)
                                minor-mode-map-alist
@@ -135,18 +135,6 @@
                        ;; auto-insert-alist nil
                        auto-insert-directory "~/.emacs.d/template/")
                  (auto-insert-mode 1)))
-
-(use-package session
-  :defer t
-  :config (progn
-            (setq session-initialize '(de-saveplace session keys menus places)
-                  session-globals-include '((kill-ring 50)
-                                            (session-files-alist 500 t)
-                                            (file-name-history 10000))
-                  session-globals-maxlstring 100000000
-                  history-length t
-                  session-undo-check -1)
-            (add-hook 'after-init-hook 'session-initialize)))
 
 (use-package mode-compile
   :defer  t
