@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/14 10:35:27>
-;; Last-Updated: <2015/12/16 15:52:07>
+;; Last-Updated: <2015/12/22 09:45:18>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -41,3 +41,20 @@
 
 (use-package smartrep
   :ensure t)
+
+(defsubst hook-into-modes (func &rest modes)
+  (dolist (mode-hook modes) (add-hook mode-hook func)))
+
+
+;; (use-package autopair
+;;   :disabled t
+;;   :load-path "site-lisp/autopair"
+;;   :commands autopair-mode
+;;   :diminish autopair-mode
+;;   :init
+;;   (hook-into-modes #'autopair-mode
+;;                    'c-mode-common-hook
+;;                    'text-mode-hook
+;;                    'ruby-mode-hook
+;;                    'python-mode-hook
+;;                    'sh-mode-hook))
