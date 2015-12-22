@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/22 09:17:17>
+;; Last-Updated: <2015/12/22 09:19:55>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -151,7 +151,7 @@
 
 (use-package auto-async-byte-compile
   :ensure t
-  ;; :defer  t
-  :config (progn (setq auto-async-byte-compile-exclude-filess-regexp "/junk/")
-                 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)))
+  :defer  t
+  :init (progn (setq auto-async-byte-compile-exclude-filess-regexp "/junk/")
+               (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)))
 
