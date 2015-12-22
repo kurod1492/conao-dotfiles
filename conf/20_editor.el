@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/22 13:01:11>
+;; Last-Updated: <2015/12/22 13:03:58>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -74,7 +74,7 @@
 
 (use-package undo-tree
   :ensure t
-  :defer  t
+  ;; :defer  t
   :diminish (undo-tree-mode . "UT")
   :config (global-undo-tree-mode t)
   :bind   (("C-x u" . undo-tree-visualize)))
@@ -92,7 +92,9 @@
 (use-package electric-operator
   :ensure t
   :defer  t
-  :config (progn (add-hook 'c-mode-common-hook 'electric-operator-mode)))
+  :commands electric-operator-mode
+  :init (progn (hook-into-modes #'electric-operator-mode
+                                'c-mode-common-hook)))
 
 (use-package rainbow-mode
   :ensure t
