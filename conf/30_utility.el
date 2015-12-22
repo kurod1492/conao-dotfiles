@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/16 17:04:03>
+;; Last-Updated: <2015/12/21 14:18:15>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -34,10 +34,11 @@
                  (bind-key "C-k" 'elscreen-kill-screen-and-buffers elscreen-map)
                  (use-package elscreen-start-with-1
                    :config (add-hook 'after-init-hook 'my-elscreen-kill-0)))
-  :bind (("C-M-<right>" . elscreen-swap-next)
-         ("C-M-<left>"  . elscreen-swap-previous)
-         ("C-<tab>"     . elscreen-next)
-         ("C-S-<tab>"   . elscreen-previous)))
+  :bind* (("C-M-<right>" . elscreen-swap-next)
+          ("C-M-<left>"  . elscreen-swap-previous)
+          ("C-<tab>"     . elscreen-next)
+          ("C-S-<tab>"   . elscreen-previous)
+          ("C-z r"       . elscreen-screen-nickname)))
 
 (use-package elscreen-persist
   :ensure t
@@ -139,3 +140,6 @@
   :ensure t
   :defer  t)
 
+(use-package mode-compile
+  :ensure t
+  :defer  t)
