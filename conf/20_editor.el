@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/22 13:03:58>
+;; Last-Updated: <2015/12/22 13:16:24>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -101,6 +101,8 @@
   :defer  t
   :commands rainbow-mode
   :init (progn (hook-into-modes #'rainbow-mode
+                                'emacs-lisp-mode-hook
+                                'lisp-mode-hook
                                 'css-mode-hook
                                 'less-mode-hook
                                 'web-mode-hook
