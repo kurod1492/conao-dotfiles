@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/21 16:46:01>
+;; Last-Updated: <2015/12/22 12:52:12>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -50,6 +50,7 @@
             (use-package fuzzy         :ensure t)
             (use-package auto-complete :ensure t))
   :config (progn
+            (global-auto-complete-mode t)
             (ac-config-default)
             (ac-flyspell-workaround)
             (setq ac-auto-start 1
