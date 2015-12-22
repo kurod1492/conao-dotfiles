@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/22 09:19:55>
+;; Last-Updated: <2015/12/22 12:48:56>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -152,6 +152,21 @@
 (use-package auto-async-byte-compile
   :ensure t
   :defer  t
-  :init (progn (setq auto-async-byte-compile-exclude-filess-regexp "/junk/")
-               (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)))
+  :commands enable-auto-async-byte-compile-mode
+  :init   (hook-into-modes #'enable-auto-async-byte-compile-mode
+                           'emacs-lisp-mode-hook)
+  :config (progn (setq auto-async-byte-compile-exclude-files-regexp "/junk/")))
+
+(use-package session
+  :ensure t
+  ;; :defer  t
+  :config (progn
+            (setq session-initialize '(de-saveplace session keys menus places)
+                  session-globals-include '((kill-ring 50)
+                                            (session-files-alist 500 t)
+                                            (file-name-history 10000))
+                  session-globals-maxlstring 100000000
+                  history-length t
+                  session-undo-check -1)
+            (add-hook 'after-init-hook 'session-initialize)))
 
