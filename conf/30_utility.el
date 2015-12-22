@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/23 00:05:28>
+;; Last-Updated: <2015/12/23 01:14:31>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -114,12 +114,12 @@
 (use-package open-junk-file
   :ensure t
   :defer  t
-  :bind (("C-x C-z" . open-junk-file)))
+  :bind (("C-c C-j" . open-junk-file)))
 
 (use-package lispxmp
   :ensure t
   :defer  t
-  :bind (("C-c C-d" . lispxmp)))
+  :bind (("C-c C-e" . lispxmp)))
 
 (use-package paredit
   :disabled t
