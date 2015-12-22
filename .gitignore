@@ -13,7 +13,7 @@ history
 /undohist/
 /auto-save-list/
 /backup/
-/game/
+/games/
 
 # Temp ignore files
 /bk.emacs.d/
