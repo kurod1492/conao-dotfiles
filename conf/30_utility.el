@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/23 01:14:31>
+;; Last-Updated: <2015/12/23 22:06:28>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -82,6 +82,7 @@
   :bind   (("C-o" . shell-pop)))
 
 (use-package neotree
+  :disabled t
   :ensure t
   :defer  t)
 
