@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/24 14:33:05>
+;; Last-Updated: <2015/12/24 15:05:54>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -115,7 +115,7 @@
 (use-package open-junk-file
   :ensure t
   :defer  t
-  :bind (("C-c C-j" . open-junk-file)))
+  :bind (("C-i C-j" . open-junk-file)))
 
 (use-package lispxmp
   :ensure t
@@ -179,3 +179,21 @@
                   session-undo-check -1)
             (add-hook 'after-init-hook 'session-initialize)))
 
+(use-package electric-operator
+  :ensure t
+  :defer  t
+  :commands electric-operator-mode
+  :init (progn (hook-into-modes #'electric-operator-mode
+                                'c-mode-common-hook)))
+
+(use-package rainbow-mode
+  :ensure t
+  :defer  t
+  :commands rainbow-mode
+  :init (progn (hook-into-modes #'rainbow-mode
+                                'emacs-lisp-mode-hook
+                                'lisp-mode-hook
+                                'css-mode-hook
+                                'less-mode-hook
+                                'web-mode-hook
+                                'html-mode-hook)))

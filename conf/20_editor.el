@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/24 14:49:31>
+;; Last-Updated: <2015/12/24 15:05:24>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -27,21 +27,21 @@
 ;;; Code:
 (use-package yasnippet
   :ensure t
-  ;; :defer  t
   :diminish (yas-minor-mode . "YS")
   :config (progn
             (setq yas-snippet-dirs
                   '("~/.emacs.d/mySnippets"
                     yas-installed-snippets-dir
                     ))
-            (yas-global-mode 1))
-  :bind*  (("C-i C-i" . yas-insert-snippet)
-           ("C-i C-n" . yas-new-snippet)
-           ("C-i C-e" . yas-visit-snippet-file)))
+            (custom-set-variables '(yas-trigger-key "TAB"))
+            (yas-global-mode 1)
+            (bind-keys
+             ("C-i C-i" . yas-insert-snippet)
+             ("C-i C-n" . yas-new-snippet)
+             ("C-i C-e" . yas-visit-snippet-file))))
 
 (use-package auto-complete-config
   ;; :ensure t ;contain auto-complete
-  ;; :defer  t
   :diminish (auto-complete-mode . "AC")
   :init   (progn
             (use-package pos-tip       :ensure t)
@@ -60,7 +60,6 @@
 
 (use-package undohist
   :ensure t
-  ;; :defer  t
   :config (progn
             (setq undo-limit 500000
                   undo-strong-limit 500000
@@ -71,7 +70,6 @@
 
 (use-package undo-tree
   :ensure t
-  ;; :defer  t
   :diminish (undo-tree-mode . "UT")
   :config   (progn
               (global-undo-tree-mode t)
@@ -80,29 +78,9 @@
 
 (use-package redo+
   ;; :ensure t ; fetch error at 2015/12/16
-  ;; :defer  t
   :bind   (("C-M-/" . redo)))
 
 (use-package flycheck
   :ensure t
-  ;; :defer  t)
   )
 
-(use-package electric-operator
-  :ensure t
-  :defer  t
-  :commands electric-operator-mode
-  :init (progn (hook-into-modes #'electric-operator-mode
-                                'c-mode-common-hook)))
-
-(use-package rainbow-mode
-  :ensure t
-  :defer  t
-  :commands rainbow-mode
-  :init (progn (hook-into-modes #'rainbow-mode
-                                'emacs-lisp-mode-hook
-                                'lisp-mode-hook
-                                'css-mode-hook
-                                'less-mode-hook
-                                'web-mode-hook
-                                'html-mode-hook)))
