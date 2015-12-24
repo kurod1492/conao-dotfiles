@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/23 00:59:02>
+;; Last-Updated: <2015/12/24 14:41:52>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -55,8 +55,7 @@
                   ;; ac-use-menu-map t
                   ac-use-fuzzy t
                   ac-ignore-case 't
-                  ac-dwim t))
-  :bind (("C-M-?" . ac-last-help)))
+                  ac-dwim t)))
 
 (use-package undohist
   :ensure t
@@ -73,8 +72,10 @@
   :ensure t
   ;; :defer  t
   :diminish (undo-tree-mode . "UT")
-  :config   (global-undo-tree-mode t)
-  :bind    (("C-x u" . undo-tree-visualize)))
+  :config   (progn
+              (global-undo-tree-mode t)
+              (bind-keys
+               ("C-x u" . undo-tree-visualize))))
 
 (use-package redo+
   ;; :ensure t ; fetch error at 2015/12/16
