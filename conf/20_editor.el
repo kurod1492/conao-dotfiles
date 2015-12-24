@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/24 14:41:52>
+;; Last-Updated: <2015/12/24 14:49:31>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -21,7 +21,8 @@
 
 ;;; Commentary:
 
-;; 
+;; NOT use bind, bind* keyword in this file!!
+;; those file must be load at emacs startup.
 
 ;;; Code:
 (use-package yasnippet
