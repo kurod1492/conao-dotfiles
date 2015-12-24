@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2015/12/24 15:05:24>
+;; Last-Updated: <2015/12/24 16:03:30>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -36,9 +36,9 @@
             (custom-set-variables '(yas-trigger-key "TAB"))
             (yas-global-mode 1)
             (bind-keys
-             ("C-i C-i" . yas-insert-snippet)
-             ("C-i C-n" . yas-new-snippet)
-             ("C-i C-e" . yas-visit-snippet-file))))
+             ("C-c y i" . yas-insert-snippet)
+             ("C-c y n" . yas-new-snippet)
+             ("C-c y e" . yas-visit-snippet-file))))
 
 (use-package auto-complete-config
   ;; :ensure t ;contain auto-complete
@@ -81,6 +81,5 @@
   :bind   (("C-M-/" . redo)))
 
 (use-package flycheck
-  :ensure t
-  )
+  :ensure t)
 
