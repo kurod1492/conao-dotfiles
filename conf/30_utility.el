@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/23 22:06:28>
+;; Last-Updated: <2015/12/24 14:33:05>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -89,7 +89,7 @@
 (use-package magit
   :ensure t
   :defer  t
-  :bind  (("C-v" . magit-status)))
+  :bind  (("C-x v" . magit-status)))
 
 (use-package auto-install
   :ensure t
