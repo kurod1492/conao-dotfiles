@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/11/20 13:11:08>
-;; Last-Updated: <2015/12/12 19:13:10>
+;; Last-Updated: <2015/12/24 15:24:44>
 ;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -112,3 +112,6 @@
 
 ;; Emacs serverを起動
 (if window-system (server-start))
+
+;; C-i to normal bind
+(setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
