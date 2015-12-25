@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:13>
-;; Last-Updated: <2015/12/16 15:17:47>
+;; Last-Updated: <2015/12/25 12:42:20>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -80,9 +80,14 @@
   :defer  t)
 
 (use-package ace-isearch
+  :disabled t
   :ensure t ;helm
   ;; :defer  t
   ;; 1文字     -> ace-jump-mode
   ;; 2〜5文字  -> isearch
   ;; 6文字以上 -> helm-swoop
   :config (global-ace-isearch-mode))
+
+
+
+
