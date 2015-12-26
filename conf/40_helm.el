@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:13>
-;; Last-Updated: <2015/12/25 12:42:20>
+;; Last-Updated: <2015/12/26 08:53:10>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -38,6 +38,14 @@
               "Execute command only if CANDIDATE exists"
               (when (file-exists-p candidate)
                 ad-do-it))
+
+            ;; emulate 'kill-line' in helm buffer
+            (setq helm-delete-minibuffer-contents-from-point t)
+            (defadvice helm-delete-minibuffer-contents (before emulate-kill-line activate)
+              "Emulate `kill-line' in helm minibuffer"
+              (kill-new (buffer-substring (point) (field-end))))
+
+            ;; keybind
             (bind-keys :map helm-map
                        ("C-h" . delete-backward-char))
             (bind-keys :map helm-find-files-map
