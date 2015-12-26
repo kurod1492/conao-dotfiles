@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:25>
-;; Last-Updated: <2015/12/21 15:38:31>
+;; Last-Updated: <2015/12/25 18:46:49>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -38,3 +38,33 @@
   :ensure t
   :defer  t
   :mode (("\\.tex" . yatex-mode)))
+
+(use-package org
+  :ensure t
+  :defer  t
+  :config (progn (setq org-latex-default-class "jsarticle")
+                 (add-to-list 'org-latex-classes
+                              '("thesis"
+                                "\\documentclass{jarticle}
+                [NO-PACKAGES]
+                [NO-DEFAULT-PACKAGES]
+                \\usepackage[dvipdfmx]{graphicx}"
+                                ("\\section{%s}"       . "\\section*{%s}")
+                                ("\\subsection{%s}"    . "\\subsection*{%s}")
+                                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                                ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+                                ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+                 (require 'ox-latex)
+                 (require 'ox-bibtex)
+
+;;; LaTeX 形式のファイル PDF に変換するためのコマンド
+                 (setq org-latex-pdf-process
+                       '("platex %f"
+                         "platex %f"
+                         "bibtex %b"
+                         "platex %f"
+                         "platex %f"
+                         "dvipdfmx %b.dvi"))
+
+;;; \hypersetup{...} を出力しない
+                 (setq org-latex-with-hyperref nil)))
