@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:13>
-;; Last-Updated: <2015/12/26 08:53:10>
+;; Last-Updated: <2015/12/26 14:14:40>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -80,12 +80,16 @@
   (defalias 'helm-mp-3-search-base 'helm-mm-3-search-base))
 
 (use-package ace-jump-mode
+  :disabled t
   :ensure t ;helm
   :defer  t)
 
 (use-package helm-swoop
   :ensure t ;helm
-  :defer  t)
+  :defer  t
+  :commands helm-swoop
+  :init   (bind-keys
+           ("C-s" . helm-swoop)))
 
 (use-package ace-isearch
   :disabled t
