@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/26 13:31:54>
+;; Last-Updated: <2015/12/26 14:12:22>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -201,22 +201,23 @@
 (use-package dired-filter
   :ensure t
   :defer  t
-  )
+  :commands dired-filter-mode
+  :init   (add-hook 'dired-mode-hook 'dired-filter-mode))
 
-(use-package subtree
+(use-package dired-subtree
   :ensure t
   :defer  t
-  :init  (use-package dired-details)
+  :commands dired-subtree-insert
+  :init  (progn (use-package dired-details :ensure t)
+                (bind-keys :map dired-mode-map
+                           ("i" . dired-subtree-insert)))
   :config (progn
-            ;; iを置き換え
-            (define-key dired-mode-map (kbd "i") 'dired-subtree-insert)
             ;; org-modeのようにTABで折り畳む
             (define-key dired-mode-map (kbd "<tab>") 'dired-subtree-remove)
             ;; C-x n nでsubtreeにナローイング
             (define-key dired-mode-map (kbd "C-x n n") 'dired-subtree-narrow)
 
             ;; ファイル名以外の情報を(と)で隠したり表示したり
-            (require 'dired-details)
             (dired-details-install)
             (setq dired-details-hidden-string "")
             (setq dired-details-hide-link-targets nil)
