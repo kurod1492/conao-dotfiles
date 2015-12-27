@@ -1,0 +1,3 @@
+[submodule "site-lisp/org-mode"]
+	path = site-lisp/org-mode
+	url = http://orgmode.org/cgit.cgi/org-mode.git

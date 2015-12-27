@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:25>
-;; Last-Updated: <2015/12/25 18:46:49>
+;; Last-Updated: <2015/12/26 15:37:04>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -55,9 +55,10 @@
                                 ("\\paragraph{%s}"     . "\\paragraph*{%s}")
                                 ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
                  (require 'ox-latex)
+                 (require 'org-element)
                  (require 'ox-bibtex)
 
-;;; LaTeX 形式のファイル PDF に変換するためのコマンド
+                 ;; LaTeX 形式のファイル PDF に変換するためのコマンド
                  (setq org-latex-pdf-process
                        '("platex %f"
                          "platex %f"
@@ -66,5 +67,5 @@
                          "platex %f"
                          "dvipdfmx %b.dvi"))
 
-;;; \hypersetup{...} を出力しない
+                 ;; \hypersetup{...} を出力しない
                  (setq org-latex-with-hyperref nil)))
