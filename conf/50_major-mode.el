@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:25>
-;; Last-Updated: <2015/12/29 15:14:00>
+;; Last-Updated: <2015/12/29 15:21:08>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -33,7 +33,8 @@
           ("\\.php\\'"   . web-mode))
   :config (setq web-mode-markup-indent-offset 4
                 web-mode-css-indent-offset    4
-                web-mode-code-indent-offset   4))
+                web-mode-code-indent-offset   4
+                indent-tabs-mode              nil))
 
 (use-package yatex
   :ensure t

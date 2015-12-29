@@ -1,10 +1,10 @@
-;;; 00_shortcut.el --- 
+;;; 00_shortcut.el ---
 
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 04:59:43>
-;; Last-Updated: <2015/12/12 08:37:50>
-;; Keywords: 
+;; Last-Updated: <2015/12/29 15:28:53>
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,11 +21,12 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 (bind-keys ("C-c a"   . align)
            ("C-c S-a" . align-regexp)
+           ("C-c s"   . delete-trailing-whitespace)
            ("C-c b"   . battery)
            ("C-x e"   . eval-last-sexp)
            ("M-r"     . query-replace)
