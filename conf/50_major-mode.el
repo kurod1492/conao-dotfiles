@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:25>
-;; Last-Updated: <2015/12/26 15:37:04>
+;; Last-Updated: <2015/12/29 15:14:00>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -29,10 +29,11 @@
   :defer  t
   :mode  (("\\.html?\\'" . web-mode)
           ("\\.jsp\\'"   . web-mode)
-          ("\\.gsp\\'"   . web-mode))
+          ("\\.gsp\\'"   . web-mode)
+          ("\\.php\\'"   . web-mode))
   :config (setq web-mode-markup-indent-offset 4
-                web-mode-css-indent-offset 4
-                web-mode-code-indent-offset 4))
+                web-mode-css-indent-offset    4
+                web-mode-code-indent-offset   4))
 
 (use-package yatex
   :ensure t
@@ -55,6 +56,7 @@
                                 ("\\paragraph{%s}"     . "\\paragraph*{%s}")
                                 ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
                  (require 'ox-latex)
+                 (require 'org-macro)
                  (require 'org-element)
                  (require 'ox-bibtex)
 
