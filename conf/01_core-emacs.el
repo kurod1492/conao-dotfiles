@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/11/20 13:11:08>
-;; Last-Updated: <2015/12/27 10:56:55>
+;; Last-Updated: <2015/12/27 15:34:01>
 ;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -47,6 +47,23 @@
 (setq locale-coding-system    'utf-8-unix)
 (setq default-process-coding-system '(undecided-dos . utf-8-unix))
 
+;; font settings
+;; (set-face-attribute 'default nil :family "Source Code Pro" :height 130)
+;; (set-face-attribute 'default nil :family "Menlo" :height 130)
+;; (set-fontset-font (frame-parameter nil 'font)
+;;                   'japanese-jisx0208
+;;                   (font-spec :family "Hiragino Kaku Gothic Pro"))
+;; (add-to-list 'face-font-rescale-alist 
+;;              '(".*Hiragino Kaku Gothic Pro.*" . 1.2))
+;; (set-fontset-font (frame-parameter nil 'font)
+;;                   'japanese-jisx0208
+;;                   (font-spec :family "Hiragino Kaku Gothic ProN" :size 16))
+;; ;; (setq face-font-rescale-alist nil)
+;; (setq face-font-rescale-alist
+;;              '(
+;;                (".*Source Code Pro.*" . 1.0)
+;;                (".*Hiragino Kaku Gothic Pro.*" . 1.1)
+;;               ))
 ;; set current directory
 (cd "~/.emacs.d/conf")
 
