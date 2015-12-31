@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/27 15:39:11>
+;; Last-Updated: <2015/12/31 19:40:35>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -142,7 +142,11 @@
 (use-package sequential-command-config
   ;; :disabled t
   :init   (use-package sequential-command :ensure t)
-  :config (progn (sequential-command-setup-keys)))
+  :config (progn (global-set-key "\C-a" 'seq-home)
+                 (global-set-key "\C-e" 'seq-end)
+                 (global-set-key "\M-u" 'seq-upcase-backward-word)
+                 (global-set-key "\M-c" 'seq-capitalize-backward-word)
+                 (global-set-key "\M-l" 'seq-downcase-backward-word)))
 
 (use-package smartparens-config
   :init   (use-package smartparens :ensure t)
