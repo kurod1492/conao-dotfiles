@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2015/12/31 19:40:35>
+;; Last-Updated: <2016/01/08 14:03:33>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -34,8 +34,9 @@
                  (bind-key "C-k" 'elscreen-kill-screen-and-buffers elscreen-map)
                  (use-package elscreen-start-with-1
                    :config (add-hook 'after-init-hook 'my-elscreen-kill-0)))
-  :bind* (("C-M-<right>" . elscreen-swap-next)
-          ("C-M-<left>"  . elscreen-swap-previous)
+  :bind* (;; confrict with org-mode
+          ;; ("C-M-<right>" . elscreen-swap-next)
+          ;; ("C-M-<left>"  . elscreen-swap-previous)
           ("C-<tab>"     . elscreen-next)
           ("C-S-<tab>"   . elscreen-previous)
           ("C-z d"       . elscreen-dired)
@@ -43,8 +44,10 @@
 
 ;; use my lisp/elscreen-swap.el
 (use-package elscreen-swap
-  :bind* (("C-M-S-<right>" . elscreen-swap-next)
-          ("C-M-S-<left>"  . elscreen-swap-previous)))
+  :bind* (;; confrict with org-mode
+          ;; ("C-M-S-<right>" . elscreen-swap-next)
+          ;; ("C-M-S-<left>"  . elscreen-swap-previous)
+          ))
 
 (use-package elscreen-persist
   :ensure t
