@@ -8,6 +8,8 @@
 # Recovery and backup directories
 .session
 history
+elscreen
+kkcrc
 /url/
 /crottiSnippets/
 /undohist/
