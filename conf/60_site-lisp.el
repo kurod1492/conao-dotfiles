@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:37>
-;; Last-Updated: <2015/12/16 16:11:15>
+;; Last-Updated: <2016/01/12 11:24:32>
 ;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -42,6 +42,9 @@
 
             ;;: elscreen-start ;;;
             (elscreen-start)))
+(use-package ox-qmd
+  :config (progn
+            (add-to-list 'ox-qmd-language-keyword-alist '("shell-script" . "sh"))))
 
 (use-package swap
   ;; swap-rectangle
