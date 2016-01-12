@@ -4,3 +4,6 @@
 [submodule "site-lisp/ox-qmd"]
 	path = site-lisp/ox-qmd
 	url = https://github.com/0x60df/ox-qmd.git
+[submodule "site-lisp/emacs-navbar"]
+	path = site-lisp/emacs-navbar
+	url = https://github.com/papaeye/emacs-navbar.git
