@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:25>
-;; Last-Updated: <2015/12/31 17:51:39>
+;; Last-Updated: <2016/01/13 04:08:00>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -42,10 +42,16 @@
   :mode (("\\.tex" . yatex-mode)))
 
 (use-package org
+  :ensure t
+  :defer  t
+  :config (progn (setq org-src-fontify-natively t)))
+
+(use-package org
   :disabled t
   :ensure t
   :defer  t
-  :config (progn (setq org-latex-default-class "jsarticle")
+  :config (progn (setq org-src-fontify-natively t)
+                 (setq org-latex-default-class "jsarticle")
                  (add-to-list 'org-latex-classes
                               '("thesis"
                                 "\\documentclass{jarticle}
