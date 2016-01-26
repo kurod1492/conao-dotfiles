@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2016/01/27 05:53:49>
+;; Last-Updated: <2016/01/27 06:09:48>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -163,7 +163,19 @@
 
 (use-package mode-compile
   :ensure t
-  :defer  t)
+  :defer  t
+  :config (progn
+            (use-package mode-compile-kill
+              :bind* (("C-c k" . mode-compile-kill)))
+            ;; 全てバッファを自動的にセーブする
+            (setq mode-compile-always-save-buffer-p t
+                  ;; コマンドをいちいち確認しない
+                  mode-compile-never-edit-command-p t
+                  ;; メッセージ出力を抑制
+                  mode-compile-expert-p t
+                  ;; メッセージを読み終わるまで待つ時間
+                  mode-compile-reading-time 0))
+  :bind* (("C-c c" . mode-compile)))
 
 (use-package auto-async-byte-compile
   :ensure t

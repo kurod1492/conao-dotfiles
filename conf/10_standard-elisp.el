@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 03:11:42>
-;; Last-Updated: <2016/01/27 06:00:38>
+;; Last-Updated: <2016/01/27 06:05:49>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -140,13 +140,3 @@
                        auto-insert-directory "~/.emacs.d/template/")
                  (auto-insert-mode 1)))
 
-(use-package mode-compile
-  :defer  t
-  :config (setq mode-compile-always-save-buffer-p t
-                mode-compile-never-edit-command-p t
-                mode-compile-expert-p t)
-  :bind (("C-c c" . mode-compile)))
-
-(use-package mode-compile-kill
-  :defer t
-  :bind (("C-c k" . mode-compile-kill)))
