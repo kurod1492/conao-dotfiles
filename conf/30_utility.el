@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2016/01/14 20:37:34>
+;; Last-Updated: <2016/01/27 05:38:55>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -254,9 +254,9 @@
             (define-key dired-mode-map (kbd "^") 'dired-subtree-up-dwim)))
 
 (use-package qiita
+  :disabled t
   :config (progn
             (setq qiita->token "xxxxxxxxxxx")))
-
 
 
 
