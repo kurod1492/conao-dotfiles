@@ -1,10 +1,10 @@
-;;; 20_editor.El --- 
+;;; 20_editor.El ---
 
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2016/01/27 05:25:30>
-;; Keywords: 
+;; Last-Updated: <2016/01/27 05:36:43>
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -86,9 +86,9 @@
             (use-package flycheck-pos-tip :ensure t)
             (custom-set-variables
              '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
-            (add-hook 'python-mode-hook     'flycheck-mode)
-            (add-hook 'perl-mode-hook       'flycheck-mode)
-            (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
-            (add-hook 'c-mode-common-hook   'flycheck-mode)
-            (add-hook 'ruby-mode-hook       'flycheck-mode)))
-
+            (hook-into-modes #'flycheck-mode
+                             'python-mode-hook
+                             'perl-mode-hook
+                             'emacs-lisp-mode-hook
+                             'c-mode-common-hook
+                             'ruby-mode-hook)))
