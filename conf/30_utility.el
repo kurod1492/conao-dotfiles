@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2016/01/27 05:38:55>
+;; Last-Updated: <2016/01/27 05:53:49>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -255,13 +255,24 @@
 
 (use-package qiita
   :disabled t
+  :defer t
   :config (progn
             (setq qiita->token "xxxxxxxxxxx")))
 
+(use-package google-translate
+  :init (use-package popwin
+          :defer t
+          :config (setq display-buffer-function      'popwin:display-buffer
+                        popwin:popup-window-position 'bottom))
+  :defer t
+  :config (progn ;; 翻訳のデフォルト値を設定(ja -> en)（無効化は C-u する）
+            (custom-set-variables
+             '(google-translate-default-source-language "ja")
+             '(google-translate-default-target-language "en"))
 
-
-
-
-
+            ;; google-translate.elの翻訳バッファをポップアップで表示させる
+            (push '("*Google Translate*") popwin:special-display-config))
+  :bind* (("C-x t"   . google-translate-at-point)
+          ("C-x S-t" . google-translate-query-translate)))
 
 
