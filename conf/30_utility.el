@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2016/01/13 02:32:52>
+;; Last-Updated: <2016/01/27 06:15:20>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -163,7 +163,19 @@
 
 (use-package mode-compile
   :ensure t
-  :defer  t)
+  :defer  t
+  :config (progn
+            (use-package mode-compile-kill
+              :bind* (("C-c k" . mode-compile-kill)))
+            ;; 全てバッファを自動的にセーブする
+            (setq mode-compile-always-save-buffer-p t
+                  ;; コマンドをいちいち確認しない
+                  mode-compile-never-edit-command-p t
+                  ;; メッセージ出力を抑制
+                  mode-compile-expert-p t
+                  ;; メッセージを読み終わるまで待つ時間
+                  mode-compile-reading-time 0))
+  :bind* (("C-c c" . mode-compile)))
 
 (use-package auto-async-byte-compile
   :ensure t
@@ -187,6 +199,7 @@
             (add-hook 'after-init-hook 'session-initialize)))
 
 (use-package electric-operator
+  :disabled t
   :ensure t
   :defer  t
   :commands electric-operator-mode
@@ -253,5 +266,30 @@
             (define-key dired-mode-map (kbd "^") 'dired-subtree-up-dwim)))
 
 (use-package qiita
-  config: (progn
+  :disabled t
+  :ensure t
+  :defer t
+  :config (progn
             (setq qiita->token "xxxxxxxxxxx")))
+
+(use-package google-translate
+  :init (use-package popwin
+          :defer t
+          :ensure t
+          :config (setq display-buffer-function      'popwin:display-buffer
+                        popwin:popup-window-position 'bottom))
+  :defer t
+  :ensure t
+  :config (progn ;; 翻訳のデフォルト値を設定(ja -> en)（無効化は C-u する）
+            (custom-set-variables
+             '(google-translate-default-source-language "ja")
+             '(google-translate-default-target-language "en"))
+
+            ;; google-translate.elの翻訳バッファをポップアップで表示させる
+            (push '("*Google Translate*") popwin:special-display-config))
+  :bind* (("C-x t"   . google-translate-at-point)
+          ("C-x S-t" . google-translate-query-translate)))
+
+(use-package codic
+  :defer t
+  :ensure t)
