@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 03:11:42>
-;; Last-Updated: <2015/12/27 15:04:30>
+;; Last-Updated: <2016/01/27 06:00:38>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -101,6 +101,9 @@
                (add-hook hook
                          '(lambda () (flyspell-mode 1))))
              '(
+               fundamental-mode
+               text-mode-hook
+               org-mode-hook
                yatex-mode-hook
                ))
             (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))))
