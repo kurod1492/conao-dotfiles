@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2016/01/13 02:32:52>
+;; Last-Updated: <2016/01/14 20:37:34>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -187,6 +187,7 @@
             (add-hook 'after-init-hook 'session-initialize)))
 
 (use-package electric-operator
+  :disabled t
   :ensure t
   :defer  t
   :commands electric-operator-mode
@@ -253,5 +254,14 @@
             (define-key dired-mode-map (kbd "^") 'dired-subtree-up-dwim)))
 
 (use-package qiita
-  config: (progn
+  :config (progn
             (setq qiita->token "xxxxxxxxxxx")))
+
+
+
+
+
+
+
+
+
