@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:37>
-;; Last-Updated: <2016/02/01 15:36:43>
+;; Last-Updated: <2016/02/01 15:38:27>
 ;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -29,7 +29,6 @@
   :config (progn
             (setq yas-snippet-dirs
                   '("~/.emacs.d/mySnippets"
-                    yas-installed-snippets-dir
                     ))
             (custom-set-variables '(yas-trigger-key "TAB"))
             (yas-global-mode 1)
