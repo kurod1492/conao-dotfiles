@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/11/20 13:11:08>
-;; Last-Updated: <2015/12/27 15:34:01>
+;; Last-Updated: <2016/02/01 15:52:24>
 ;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -73,6 +73,8 @@
 (setq auto-save-default nil)
 ;; don't create backup file
 (setq vc-make-backup-files nil)
+(setq auto-save-list-file-prefix nil)
+(setq create-lockfiles nil)
 
 ;;; don't show splash screen
 (setq inhibit-splash-screen t)
