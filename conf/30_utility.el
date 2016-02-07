@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2016/01/27 06:15:20>
+;; Last-Updated: <2016/02/07 12:33:49>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -293,3 +293,20 @@
 (use-package codic
   :defer t
   :ensure t)
+
+(use-package org2blog
+  :defer t
+  :ensure t
+  :config (setq org2blog/wp-blog-alist '(("Conao-Tech" 
+                                          :url "http://conao.php.xdomain.jp/xmlrpc.php"  ;;xmlrcp.phpのURL
+                                          :username "conao"
+                                          :default-title "Hello World" ;; デフォルトタイトル
+                                          :default-categories ("dairy") ;;カテゴリを指定 
+                                          :tags-as-categories nil ;; タグを指定
+                                          ))
+                org2blog/wp-buffer-template "#+DATE: %s
+#+OPTIONS: toc:t ^:nil
+#+CATEGORY: %s
+#+TAGS:
+#+DESCRIPTION:
+#+TITLE: %s\n\n"))
