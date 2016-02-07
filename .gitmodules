@@ -7,3 +7,6 @@
 [submodule "site-lisp/emacs-navbar"]
 	path = site-lisp/emacs-navbar
 	url = https://github.com/papaeye/emacs-navbar.git
+[submodule "site-lisp/yasnippet"]
+	path = site-lisp/yasnippet
+	url = https://github.com/conao/yasnippet.git

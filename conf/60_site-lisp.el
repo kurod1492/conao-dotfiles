@@ -1,9 +1,9 @@
-;;; 60_site-lisp.Eli --- 
+;;; 60_site-lisp.El ---
 
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:37>
-;; Last-Updated: <2016/01/12 11:24:32>
+;; Last-Updated: <2016/02/01 15:49:13>
 ;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,6 +24,19 @@
 ;; 
 
 ;;; Code:
+(use-package yasnippet
+  :diminish (yas-minor-mode . "YS")
+  :config (progn
+            (setq yas-snippet-dirs
+                  '("~/.emacs.d/mySnippets"
+                    ))
+            (custom-set-variables '(yas-trigger-key "TAB"))
+            (yas-global-mode 1)
+            (bind-keys
+             ("C-c y i" . yas-insert-snippet)
+             ("C-c y n" . yas-new-snippet)
+             ("C-c y e" . yas-visit-snippet-file))))
+
 (use-package auto-save-buffers
   :config (progn
             (run-with-idle-timer 0.5 t 'auto-save-buffers)

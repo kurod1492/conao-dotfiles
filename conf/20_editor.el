@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:37:47>
-;; Last-Updated: <2016/01/27 05:36:43>
+;; Last-Updated: <2016/02/01 15:35:19>
 ;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -25,21 +25,6 @@
 ;; those file must be load at emacs startup.
 
 ;;; Code:
-(use-package yasnippet
-  :ensure t
-  :diminish (yas-minor-mode . "YS")
-  :config (progn
-            (setq yas-snippet-dirs
-                  '("~/.emacs.d/mySnippets"
-                    yas-installed-snippets-dir
-                    ))
-            (custom-set-variables '(yas-trigger-key "TAB"))
-            (yas-global-mode 1)
-            (bind-keys
-             ("C-c y i" . yas-insert-snippet)
-             ("C-c y n" . yas-new-snippet)
-             ("C-c y e" . yas-visit-snippet-file))))
-
 (use-package auto-complete-config
   ;; :ensure t ;contain auto-complete
   :diminish (auto-complete-mode . "AC")
