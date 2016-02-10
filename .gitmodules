@@ -1,0 +1,12 @@
+[submodule "quicklook/qlmarkdown"]
+	path = quicklook/qlmarkdown
+	url = https://github.com/toland/qlmarkdown.git
+[submodule "quicklook/qlstephen"]
+	path = quicklook/qlstephen
+	url = https://github.com/whomwah/qlstephen.git
+[submodule "quicklook/qlcolorcode"]
+	path = quicklook/qlcolorcode
+	url = https://github.com/n8gray/QLColorCode.git
+[submodule "quicklook/qlimagesize"]
+	path = quicklook/qlimagesize
+	url = https://github.com/Nyx0uf/qlImageSize.git
