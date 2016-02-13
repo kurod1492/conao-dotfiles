@@ -10,3 +10,15 @@
 [submodule ".emacs.d/site-lisp/yasnippet"]
 	path = .emacs.d/site-lisp/yasnippet
 	url = https://github.com/conao/yasnippet.git
+[submodule "quicklook/qlcolorcode-extra"]
+	path = quicklook/qlcolorcode-extra
+	url = https://github.com/BrianGilbert/QLColorCode-extra.git
+[submodule "quicklook/qlimagesize"]
+	path = quicklook/qlimagesize
+	url = https://github.com/Nyx0uf/qlImageSize.git
+[submodule "quicklook/qlmarkdown"]
+	path = quicklook/qlmarkdown
+	url = https://github.com/toland/qlmarkdown.git
+[submodule "quicklook/qlstephen"]
+	path = quicklook/qlstephen
+	url = https://github.com/whomwah/qlstephen.git
