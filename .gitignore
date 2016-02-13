@@ -1,23 +1,7 @@
-# Elisp byte code
-*.elc
+# general ignore files
+# finder cached file
+.DS_Store
 
-# Installed packages
-/elpa/
-/.cask/
-
-# Recovery and backup directories
-.session
-history
-elscreen
-/url/
-/eshell/
-/crottiSnippets/
-/undohist/
-/auto-save-list/
-/backup/
-/games/
-
-ac-comphist.dat
-*.DS_Store
+# general backup files
 *~
 .#*

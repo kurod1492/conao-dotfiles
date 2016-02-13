@@ -11,13 +11,9 @@ history
 elscreen
 /url/
 /eshell/
-/crottiSnippets/
 /undohist/
 /auto-save-list/
 /backup/
 /games/
 
 ac-comphist.dat
-.DS_Store
-*~
-.#*
