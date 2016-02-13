@@ -13,9 +13,6 @@
 [submodule "quicklook/qlcolorcode-extra"]
 	path = quicklook/qlcolorcode-extra
 	url = https://github.com/BrianGilbert/QLColorCode-extra.git
-[submodule "quicklook/qlimagesize"]
-	path = quicklook/qlimagesize
-	url = https://github.com/Nyx0uf/qlImageSize.git
 [submodule "quicklook/qlmarkdown"]
 	path = quicklook/qlmarkdown
 	url = https://github.com/toland/qlmarkdown.git
