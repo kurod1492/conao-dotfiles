@@ -19,3 +19,6 @@
 [submodule "quicklook/qlstephen"]
 	path = quicklook/qlstephen
 	url = https://github.com/whomwah/qlstephen.git
+[submodule "quicklook/qlimagesize"]
+	path = quicklook/qlimagesize
+	url = https://github.com/Nyx0uf/qlImageSize.git
