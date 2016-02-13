@@ -9,7 +9,6 @@
 .session
 history
 elscreen
-kkcrc
 /url/
 /eshell/
 /crottiSnippets/
@@ -18,5 +17,7 @@ kkcrc
 /backup/
 /games/
 
-# Temp ignore files
-/bk.emacs.d/
+ac-comphist.dat
+.DS_Store
+*~
+.#*
