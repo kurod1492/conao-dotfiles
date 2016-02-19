@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 03:11:42>
-;; Last-Updated: <2016/01/27 06:05:49>
+;; Last-Updated: <2016/02/19 21:07:31>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -70,7 +70,7 @@
             (global-linum-mode t)
             (setq linum-delay nil
                   linum-format "%5d")
-            (set-face-attribute 'linum nil :height 130)))
+            (set-face-attribute 'linum nil :height 120)))
 
 (use-package newcomment
   :defer t
