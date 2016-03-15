@@ -22,6 +22,3 @@
 [submodule "quicklook/qlimagesize"]
 	path = quicklook/qlimagesize
 	url = https://github.com/Nyx0uf/qlImageSize.git
-[submodule ".emacs.d/site-lisp/vbasense"]
-	path = .emacs.d/site-lisp/vbasense
-	url = https://github.com/aki2o/emacs-vbasense.git
