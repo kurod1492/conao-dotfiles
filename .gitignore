@@ -1,5 +1,7 @@
-# Compiled
-*.elc
+# general ignore files
+# finder cached file
+.DS_Store
 
-# Packaging
-.cask
+# general backup files
+*~
+.#*

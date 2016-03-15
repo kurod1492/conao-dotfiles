@@ -1,0 +1,19 @@
+# Elisp byte code
+*.elc
+
+# Installed packages
+/elpa/
+/.cask/
+
+# Recovery and backup directories
+.session
+history
+elscreen
+/url/
+/eshell/
+/undohist/
+/auto-save-list/
+/backup/
+/games/
+
+ac-comphist.dat
