@@ -1,0 +1,15 @@
+カスタマイズ
+本プラグインは、今回ご紹介するプラグインの中で唯一カスタマイズ可能なプラグインです。例えば、以下のコマンドを実行すると、ハイライト表示とともに行番号を表示するようになります。
+
+$ defaults write org.n8gray.QLColorCode extraHLFlags '-l'
+また、フォントサイズを調整したい場合は、以下のコマンドで変更できます。
+
+$ defaults write org.n8gray.QLColorCode fontSizePoints 10
+さらに、以下のコマンドを実行することでハイライト表示のテーマを変更することができます。ぜひお気に入りのテーマを見つけてみてください。
+
+$ defaults write org.n8gray.QLColorCode hlTheme <テーマ名>
+- navy
+- neon
+- orion
+- seashell
+
