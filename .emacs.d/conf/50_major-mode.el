@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:25>
-;; Last-Updated: <2016/03/03 10:10:44>
+;; Last-Updated: <2016/03/05 01:10:03>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -44,20 +44,24 @@
 (use-package org
   :ensure t
   :defer  t
-  :config (progn (setq org-src-fontify-natively t)
+  :config (progn (require 'org-install)
+                 (setq org-html-htmlize-output-type 'css)
+                 (setq org-src-fontify-natively t)
                  (setq org-latex-default-class "org-jsarticle")
                  (add-to-list 'org-latex-classes
-                              '("org-jsarticle"
-                                "\\documentclass{jsarticle}
+                              '("org-jsarticle" "\\documentclass{jsarticle}
+\\usepackage[top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot]{geometry}
 [NO-PACKAGES]
 [NO-DEFAULT-PACKAGES]
 \\usepackage[dvipdfmx]{graphicx}
-\\usepackage{hyperref}"
-                                ("\\section{%s}"       . "\\section*{%s}")
-                                ("\\subsection{%s}"    . "\\subsection*{%s}")
-                                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                                ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-                                ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+\\usepackage{fancyhdr}
+\\pagestyle{fancy}
+\\rhead{\\thepage{}}"
+  ("\\section{%s}" . "\\section*{%s}")
+  ("\\subsection{%s}" . "\\subsection*{%s}")
+  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
                  (require 'ox-latex)
 ;;                  (require 'org-macro)
 ;;                  (require 'org-element)

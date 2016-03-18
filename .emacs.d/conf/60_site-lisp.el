@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:37>
-;; Last-Updated: <2016/03/03 10:18:09>
+;; Last-Updated: <2016/03/03 10:19:45>
 ;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -59,6 +59,8 @@
 (use-package ox-qmd
   :config (progn
             (add-to-list 'ox-qmd-language-keyword-alist '("shell-script" . "sh"))))
+
+(use-package edit-list)
 
 (use-package swap
   ;; swap-rectangle
