@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:25>
-;; Last-Updated: <2016/03/03 10:10:44>
+;; Last-Updated: <2016/03/15 15:00:00>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -74,3 +74,12 @@
 
                  ;; \hypersetup{...} を出力しない
                  (setq org-latex-with-hyperref nil)))
+
+(use-package vbasense
+  :ensure t
+  :defer  t
+  :mode (("\\.vb" . vbasense))
+  :config (progn (setq vbasense-popup-help-key "C-:")
+                 (setq vbasense-jump-to-definition-key "C->")
+                 (vbasense-config-default)))
+
