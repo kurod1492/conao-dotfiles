@@ -1,0 +1,67 @@
+h1, h2, h3, h4, h5, ol, ul{
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+p {
+    text-indent: 1em;
+    margin: 0.3em;
+    margin-left: 0.7em;
+}
+
+body {
+    font-family: "KozGoPr6N-Regular";
+    width: 1000px;
+    margin: 0 auto;
+    line-height: 1.7em;
+    text-align: justify;
+}
+
+h1 {
+    font-family: "KozGoPr6N-Heavy";
+    font-size: 3em;
+}
+
+h2 {
+    font-family: "KozGoPr6N-Heavy";
+    border-style: none none solid solid;
+    border-left-width: 15px;
+    border-bottom-width: 5px;
+    font-size: 2.5em;
+    margin-top: 1em;
+    padding: 0.3em 0.4em;
+    page-break-before: always;
+}
+
+h3 {
+    border-style: none none solid solid;
+    border-left-width: 10px;
+    border-bottom-width: 4px;
+    font-size: 2em;
+    margin-top: 1.5em;
+    padding: 0.3em 0.4em;
+}
+
+h4 {
+    font-size: 1.2em;
+}
+
+.outline-4 {
+    margin-left: 1em;
+    margin-right: 1.3em;
+}
+
+#postamble {
+    margin-top: 2.5em;
+    display: none;
+}
+
+.renewpage{
+/*     width: 172mm; /\* A4縦の幅 *\/ */
+/*     height: 251mm; /\* A4縦の高さ *\/ */
+    page-break-after: always; /* 各ページの終わりに改ページ */
+}

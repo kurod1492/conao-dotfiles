@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:03>
-;; Last-Updated: <2016/02/07 12:33:49>
+;; Last-Updated: <2016/03/05 01:13:14>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -310,3 +310,17 @@
 #+TAGS:
 #+DESCRIPTION:
 #+TITLE: %s\n\n"))
+
+(use-package htmlize
+  :defer t
+  :ensure t)
+
+
+
+
+
+
+
+
+
+

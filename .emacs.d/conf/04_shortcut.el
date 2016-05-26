@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 04:59:43>
-;; Last-Updated: <2015/12/29 15:28:53>
+;; Last-Updated: <2016/03/12 19:46:36>
 ;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -33,3 +33,6 @@
            ("M-c"     . c-mode))
 
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+
+;; C-x r f r : save frame configuration
+;; C-x r j r : restore frame configuration
