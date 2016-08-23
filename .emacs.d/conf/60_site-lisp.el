@@ -3,7 +3,7 @@
 ;; Copyright (C) 2015 Naoya Yamashita
 ;; Author: Naoya Yamashita
 ;; Created:      <2015/12/10 05:38:37>
-;; Last-Updated: <2016/03/03 10:19:45>
+;; Last-Updated: <2016/06/02>
 ;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -75,7 +75,7 @@
   ;; Y J B
   ;; Z K C
   ;; みたいに変更したい場合, レジスタを使ったり kill-rectangle を使ったりする方法だと ちょっと余計な手間がかかりますよね.
-  ;; この程度のことを一発でできる elisp くらい既にありそうなもんですが, 私の調べた限 りでは見付からなかったのでした.
+  ;; この程度のことを一発でできる elisp くらい既にありそうなもんですが, 私の調べた限りでは見付からなかったのでした.
   ;; 結構こういう処理をしたいことが多かったので, 作ってみました.
   ;; 使い方は,
   ;; M-x swap-rectangle
