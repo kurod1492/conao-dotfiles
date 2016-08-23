@@ -1,15 +1,6 @@
 [submodule ".emacs.d/site-lisp/org-mode"]
 	path = .emacs.d/site-lisp/org-mode
 	url = http://orgmode.org/cgit.cgi/org-mode.git
-[submodule ".emacs.d/site-lisp/ox-qmd"]
-	path = .emacs.d/site-lisp/ox-qmd
-	url = https://github.com/0x60df/ox-qmd.git
-[submodule ".emacs.d/site-lisp/emacs-navbar"]
-	path = .emacs.d/site-lisp/emacs-navbar
-	url = https://github.com/papaeye/emacs-navbar.git
-[submodule ".emacs.d/site-lisp/yasnippet"]
-	path = .emacs.d/site-lisp/yasnippet
-	url = https://github.com/conao/yasnippet.git
 [submodule "quicklook/qlcolorcode-extra"]
 	path = quicklook/qlcolorcode-extra
 	url = https://github.com/BrianGilbert/QLColorCode-extra.git

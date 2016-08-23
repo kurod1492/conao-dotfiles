@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>URL</key>
-	<string>http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=contrib/lisp/ox-bibtex.el;hb=HEAD</string>
-</dict>
-</plist>
