@@ -1,0 +1,16 @@
+# backupfiles
+/history
+/undohist
+
+#unnesesary files
+.emacs.desktop*
+.session
+elscreen
+ac-comphist.dat
+/recentf
+
+#download packages
+/elpa
+
+#compiled files
+*.elc
