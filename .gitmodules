@@ -25,3 +25,6 @@
 [submodule ".emacs.d/sitelisp/yasnippet"]
 	path = .emacs.d/sitelisp/yasnippet
 	url = https://github.com/conao/yasnippet.git
+[submodule ".emacs.d/sitelisp/ox-qmd"]
+	path = .emacs.d/sitelisp/ox-qmd
+	url = https://github.com/0x60df/ox-qmd.git
