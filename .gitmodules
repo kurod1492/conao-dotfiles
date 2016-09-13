@@ -13,9 +13,6 @@
 [submodule "quicklook/qlimagesize"]
 	path = quicklook/qlimagesize
 	url = https://github.com/Nyx0uf/qlImageSize.git
-[submodule ".emacs.d/sitelisp/ESS"]
-	path = .emacs.d/sitelisp/ESS
-	url = https://github.com/emacs-ess/ESS.git
 [submodule ".emacs.d/sitelisp/emacs-navbar"]
 	path = .emacs.d/sitelisp/emacs-navbar
 	url = https://github.com/papaeye/emacs-navbar.git
