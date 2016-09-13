@@ -13,7 +13,7 @@
 		(add-to-list 'load-path default-directory)
 		(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
 			(normal-top-level-add-subdirs-to-load-path))))))
-(add-to-load-path "site-lisp" "conf")
+(add-to-load-path "site-lisp" "conf" "elpa")
 
 ;; coding system
 (set-language-environment "Japanese")

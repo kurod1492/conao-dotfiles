@@ -68,5 +68,5 @@
 ;; R を起動する時に ess-site をロード
 ;; (autoload 'R "ess-site" "start R" t)
 
-(add-hook 'org-babel-after-execute-hook 'org-display-inline-images)  
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
 (add-hook 'org-mode-hook 'org-display-inline-images))

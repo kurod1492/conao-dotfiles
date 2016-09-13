@@ -73,7 +73,7 @@
 (use-package multiple-cursors
   :config
   (use-package smartrep
-    :config (declare-function smartrep-define-key "smartrep"))          
+    :config (declare-function smartrep-define-key "smartrep"))
 
   (global-set-key (kbd "C-M-c") 'mc/edit-lines)
   (global-set-key (kbd "C-M-r") 'mc/mark-all-in-region)
