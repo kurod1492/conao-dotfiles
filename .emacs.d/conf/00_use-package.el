@@ -19,3 +19,8 @@
 
 (defsubst hook-into-modes (func &rest modes)
   (dolist (mode-hook modes) (add-hook mode-hook func)))
+
+(eval-when-compile
+  (require 'use-package)
+(require 'diminish)              
+(require 'bind-key))

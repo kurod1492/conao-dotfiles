@@ -1,9 +1,9 @@
-;;; 30_utility.el ---
+;;; 30_utility.el ---                                -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2016 Naoya Yamashita
+;; Copyright (C) 2017  Naoya Yamashita
 
-;; Author: Naoya Yamashita
-;; Keywords:
+;; Author: Naoya Yamashita <conao@Naoya-MacBook-Air.local>
+;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,253 +20,94 @@
 
 ;;; Commentary:
 
-;;
+;; 
 
 ;;; Code:
-(use-package elscreen
-  :ensure t
 
+(use-package auto-install :ensure t :defer t
+  :commands (auto-install-from-buffer
+             auto-install-from-url
+             auto-install-from-emacswiki
+             auto-install-from-gist
+             auto-install-mode)
   :config
-  (setq elscreen-prefix-key "\C-z"
-        ;; don't show [x] mark in tab
-        elscreen-tab-display-kill-screen nil
-        ;; don't show [<->] mark in header-line
-        elscreen-tab-display-control nil
-        ;; don't show screen number in mode-line
-        elscreen-display-screen-number nil)
-  (bind-keys* ("C-z k"         . elscreen-kill-screen-and-buffers)
-              ;; confrict with org-mode
-              ;; ("C-M-<right>" . elscreen-swap-next)
-              ;; ("C-M-<left>"  . elscreen-swap-previous)
-              ("C-<tab>"     . elscreen-next)
-              ("C-S-<tab>"   . elscreen-previous)
-              ("C-z d"       . elscreen-dired)
-              ("C-z r"       . elscreen-screen-nickname)))
-  
-;; use my lisp/elscreen-swap.el
-(use-package elscreen-swap
-  :bind* (;; confrict with org-mode
-          ;; ("C-M-S-<right>" . elscreen-swap-next)
-          ;; ("C-M-S-<left>"  . elscreen-swap-previous)
-          ))
+  (setq auto-install-directory "~/.emacs.d/auto-install")
+  (setq auto-install-emacswiki-base-url "https://www.emacswiki.org/emacs/download/")
 
-(use-package elscreen-persist
-  :ensure t
+  (setq auto-install-save-confirm nil)
+  (setq auto-install-replace-confirm nil)
+  (setq auto-install-install-confirm nil)
+  (setq auto-install-from-dired-confirm nil)
+  ;; always connect Internet to update package name when Emacs start up
+  ;; but not necessary, auto-install will automatically update before install method
+  ;; (auto-install-update-emacswiki-package-name t)
 
-  :config (elscreen-persist-mode))
-
-(use-package elscreen-dired  :defer t)
-(use-package elscreen-w3m    :defer t)
-(use-package elscreen-server :defer t)
-(use-package yatemplate
-  :ensure t
-  ;; :defer t
-  :config
-  (yatemplate-fill-alist)
-  (auto-insert-mode 1))
+;;   (use-package split-root
+;;     :init (auto-install-from-url "http://nschum.de/src/emacs/split-root/split-root.el")
+;;     :config
+;;     (setq split-root-window-height 20)
+;;     (defun display-buffer-function--split-root (buf &optional ignore)
+;;       (let ((window (split-root-window split-root-window-height)))
+;;         (set-window-buffer window buf)
+;;         window))
+;;     (setq anything-display-function 'display-buffer-function--split-root))
+  )
 
 (use-package free-keys :ensure t :defer t)
-(use-package shell-pop :ensure t :defer t :bind ("C-o" . shell-pop))
-(use-package magit     :ensure t :defer t :bind ("C-x v" . magit-status))
-(use-package auto-install
-  :ensure t
-  :defer  t
-  :commands
-  auto-install-batch
-  auto-install-from-url
-  auto-install-from-gist
-  auto-install-from-library
-  auto-install-from-emacswiki
-  :config (setq auto-install-directory "~/.emacs.d/site-lisp"))
 
-(use-package tab-jump-out
-  :ensure t
-  :config (setq yas-fallback-behavior '(apply tab-jump-out 1)))
+(use-package fold-dwim :ensure t :defer t
+  :bind (("<f7>"     . fold-dwim-toggle)
+         ("M-<f7>"   . fold-dwim-hide-all)
+         ("C-M-<f7>" . fold-dwim-show-all)))
 
-(use-package w3m :if (executable-find "w3m") :ensure t :defer t)
-(use-package open-junk-file :ensure t :defer t :bind ("C-x C-x" . open-junk-file))
-(use-package lispxmp        :ensure t :defer t :bind ("C-c C-e" . lispxmp))
-(use-package paredit        :disabled t :ensure t :defer t)
-(use-package auto-async-byte-compile
-  :ensure t
-  :defer  t
+(use-package org2blog :ensure t :defer t
+  :init (setq org2blog/wp-keymap-prefix "C-c n")
+  :bind (;;("" . org2blog/wp-mode)
+;;          :map org2blog/wp-entry-mode-map
+;;          ("n" . org2blog/wp-new-entry)
+;;          ("i" . org2blog/wp-login)
+;;          ("o" . org2blog/wp-logout)
+;;          ("p" . org2blog/wp-post-buffer-as-page-and-publish)
+;;          ("d" . org2blog/wp-post-buffer)           ;; draft
+;;          ("D" . org2blog/wp-post-buffer-as-page)   ;; draft
+;;          ("l" . org2blog/wp-insert-post-or-page-link))
+         ("C-c n n" . org2blog/wp-new-entry)
+         :map org-mode-map
+         ("C-c n i" . org2blog/wp-login)
+         ("C-c n o" . org2blog/wp-logout)
+         ("C-c n p" . org2blog/wp-post-buffer-and-publish)
+         ("C-c n d" . org2blog/wp-post-buffer)           ;; draft
+         ("C-c n D" . org2blog/wp-post-buffer-as-page)   ;; draft
+         ("C-c n l" . org2blog/wp-insert-post-or-page-link))
   :config
-  (setq auto-async-byte-compile-exclude-files-regexp "/junk/"
-        eldoc-idle-delay 0.2
-        eldoc-minor-mode-string "")  ;; dont show ElDoc in mode line
-  (find-function-setup-keys))
-
-(use-package minibuf-isearch :ensure t :defer  t)
-(use-package sequential-command-config
-  ;; :disabled t
-  :init   (use-package sequential-command :ensure t)
-  
-  :config (global-set-key "\C-a" 'seq-home)
-  (global-set-key "\C-e" 'seq-end)
-  (global-set-key "\M-u" 'seq-upcase-backward-word)
-  (global-set-key "\M-c" 'seq-capitalize-backward-word)
-  (global-set-key "\M-l" 'seq-downcase-backward-word))
-
-(use-package smartparens-config
-  :init
-  (use-package smartparens :ensure t)
-  ;; :defer t
-  :config
-  (smartparens-global-mode)
-  (sp-pair "$" "$"))
-
-(use-package dired-rainbow :ensure t :defer t)
-(use-package mode-compile
-  :ensure t
-  :defer  t
-  :config
-  (use-package mode-compile-kill
-    :bind* (("C-c k" . mode-compile-kill)))
-  ;; 全てバッファを自動的にセーブする
-  (setq mode-compile-always-save-buffer-p t
-        ;; コマンドをいちいち確認しない
-        mode-compile-never-edit-command-p t
-        ;; メッセージ出力を抑制
-        mode-compile-expert-p t
-        ;; メッセージを読み終わるまで待つ時間
-        mode-compile-reading-time 0)
-  :bind* (("C-c c" . mode-compile)))
-
-(use-package auto-async-byte-compile
-  :ensure t
-  :defer  t
-  :commands enable-auto-async-byte-compile-mode
-  :init   (hook-into-modes #'enable-auto-async-byte-compile-mode
-                           'emacs-lisp-mode-hook)
-  :config
-  (setq auto-async-byte-compile-exclude-files-regexp "/junk/"))
-(use-package session
-  :ensure t
-  ;; :defer  t
-  :config
-  (setq session-initialize '(de-saveplace session keys menus places)
-        session-globals-include '((kill-ring 50)
-                                  (session-files-alist 500 t)
-                                  (file-name-history 10000))
-        session-globals-maxlstring 100000000
-        history-length t
-        session-undo-check -1)
-  (add-hook 'after-init-hook 'session-initialize))
-(use-package electric-operator :disabled t :ensure t :defer t
-  :commands electric-operator-mode
-  :init
-  (hook-into-modes #'electric-operator-mode
-                   'c-mode-common-hook))
-
-(use-package rainbow-mode :ensure t :defer t
-  :commands rainbow-mode
-  :init
-  (hook-into-modes #'rainbow-mode
-                   'emacs-lisp-mode-hook
-                   'lisp-mode-hook
-                   'css-mode-hook
-                   'less-mode-hook
-                   'web-mode-hook
-                   'html-mode-hook))
-
-(use-package dired-filter :ensure t :defer t
-  :commands dired-filter-mode
-  :init
-  (add-hook 'dired-mode-hook 'dired-filter-mode))
-
-(use-package dired-subtree :ensure t :defer t
-  :commands dired-subtree-insert
-  :init
-  (use-package dired-details :ensure t)
-  (bind-keys :map dired-mode-map
-             ("i" . dired-subtree-insert))
-  :config
-  ;; org-modeのようにTABで折り畳む
-  (define-key dired-mode-map (kbd "<tab>") 'dired-subtree-remove)
-  ;; C-x n nでsubtreeにナローイング
-  (define-key dired-mode-map (kbd "C-x n n") 'dired-subtree-narrow)
-
-  ;; ファイル名以外の情報を(と)で隠したり表示したり
-  (dired-details-install)
-  (setq dired-details-hidden-string "")
-  (setq dired-details-hide-link-targets nil)
-  (setq dired-details-initially-hide nil)
-
-  ;; dired-subtreeをdired-detailsに対応させる
-  (defun dired-subtree-after-insert-hook--dired-details ()
-    (dired-details-delete-overlays)
-    (dired-details-activate))
-  (add-hook 'dired-subtree-after-insert-hook
-            'dired-subtree-after-insert-hook--dired-details)
-
-  ;; find-dired対応
-  (defadvice find-dired-sentinel (after dired-details (proc state) activate)
-    (ignore-errors
-      (with-current-buffer (process-buffer proc)
-        (dired-details-activate))))
-  ;; (progn (ad-disable-advice 'find-dired-sentinel 'after 'dired-details) (ad-update 'find-dired-sentinel))
-
-  ;; [2014-12-30 Tue]^をdired-subtreeに対応させる
-  (defun dired-subtree-up-dwim (&optional arg)
-    "subtreeの親ディレクトリに移動。そうでなければ親ディレクトリを開く(^の挙動)。"
-    (interactive "p")
-    (or (dired-subtree-up arg)
-        (dired-up-directory)))
-  (define-key dired-mode-map (kbd "^") 'dired-subtree-up-dwim))
-
-(use-package qiita :disabled t :ensure t :defer t
-  :config (progn
-            (setq qiita->token "xxxxxxxxxxx")))
-
-(use-package google-translate
-  :init
-  (use-package popwin
-    :defer t
-    :ensure t
-    :config (setq display-buffer-function      'popwin:display-buffer
-                  popwin:popup-window-position 'bottom))
-  :defer t
-  :ensure t
-  :config  ;; 翻訳のデフォルト値を設定(ja -> en)（無効化は C-u する）
-  (custom-set-variables
-   '(google-translate-default-source-language "ja")
-   '(google-translate-default-target-language "en"))
-
-  ;; google-translate.elの翻訳バッファをポップアップで表示させる
-  (push '("*Google Translate*") popwin:special-display-config)
-  :bind* (("C-x t"   . google-translate-at-point)
-          ("C-x S-t" . google-translate-query-translate)))
-
-(use-package codic :defer t :ensure t)
-(use-package org2blog :defer t :ensure t
-  :config
-  (setq org2blog/wp-blog-alist '(("Conao-Tech"
-                                  :url "http://conao.php.xdomain.jp/xmlrpc.php"  ;;xmlrcp.phpのURL
-                                  :username "conao"
-                                  :default-title "Hello World" ;; デフォルトタイトル
-                                  :default-categories ("dairy") ;;カテゴリを指定
-                                  :tags-as-categories nil ;; タグを指定
-                                  ))
-        org2blog/wp-buffer-template "#+DATE: %s
-#+OPTIONS: toc:t ^:nil
+  (setq org2blog/wp-buffer-template
+        "#+DATE: %s
+#+OPTIONS: toc:t num:nil todo:nil pri:nil tags:nil ^:nil
 #+CATEGORY: %s
-#+TAGS:
-#+DESCRIPTION:
-#+TITLE: %s\n\n"))
+#+TAGS: %s
+#+TITLE: %s
 
-(use-package htmlize :defer t :ensure t)
+* 概要
+#+HTML: <!--more-->
+* 環境\n")
+  
+  (defun my-format-function (format-string)
+    (format format-string
+            (format-time-string "[%Y-%m-%d %a %H:%M]" (current-time))
+            (read-string "input category: " "emacs")
+            (read-string "input tags: " "emacs")
+            (read-string "input title: ")))
+  
+  (setq org2blog/wp-buffer-format-function 'my-format-function)
 
-(use-package vbasense :defer t :ensure t
-  :config
+  (setq org2blog/wp-blog-alist
+        '(("today-note"
+           :url "http://conao3.com//xmlrpc.php"
+           :username "conao"
+           ;;:wp-code t
+           ))))
 
-  ;; Keybinding
-  (setq vbasense-popup-help-key "C-:")
-  (setq vbasense-jump-to-definition-key "C->")
 
-  ;; Make config suit for you. About the config item, eval the following sexp.
-  ;;(customize-group "vbasense")
 
-  ;; Do setting a recommemded configuration
-  (vbasense-config-default))
 (provide '30_utility)
 ;;; 30_utility.el ends here

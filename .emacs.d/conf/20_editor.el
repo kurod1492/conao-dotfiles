@@ -1,9 +1,9 @@
-;;; 20_editor.el ---                                      -*- lexical-binding: t; -*-
+;;; 20_editor.el ---                                 -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2016  Naoya Yamashita
+;; Copyright (C) 2017  Naoya Yamashita
 
-;; Author: Naoya Yamashita <conao@naoya-imac.local>
-;; Keywords:
+;; Author: Conao
+;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,83 +23,133 @@
 ;; 
 
 ;;; Code:
-
-
-(use-package helm :ensure t
+(use-package helm :ensure t :diminish "helm"
+  :bind (("M-x"     . helm-M-x)
+         ("C-x b"   . helm-mini)
+         ("C-x C-f" . helm-find-files)
+         ("C-x C-r" . helm-recentf)
+         ("C-x b"   . helm-buffers-list)
+         ("C-x g"   . helm-google-suggest)
+         ("C-R"     . helm-regexp)
+         ("M-O"     . helm-occur)
+         ("M-y"     . helm-show-kill-ring)
+         ("C-c h"   . helm-command-prefix)
+         :map helm-command-map
+         ("o"       . helm-occur)
+         :map helm-map
+         ("<tab>"   . helm-execute-persistent-action)
+         ("C-i"     . helm-execute-persistent-action)
+         ("C-z"     . helm-select-action))
   :config
-  (require 'helm-config)
+  (use-package helm-config)
+  
+  ;; Change helm-command-prefix "C-x c" to "c-c h"
+  ;; default "C-x c" is quite close to "C-x C-c" which quits Emacs
+  ;;  (global-set-key (kbd "C-c h") helm-command-map)
+  (global-unset-key (kbd "C-x c"))
+  
+  (when (executable-find "curl")
+    (setq helm-google-suggest-use-curl-p t))
+  
+  (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+        helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+        helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+        helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+        helm-ff-file-name-history-use-recentf t
+        helm-echo-input-in-header-line nil)
+  
+  ;; helm window setting
+  (setq helm-autoresize-max-height 0)
+  (setq helm-autoresize-min-height 40)
+  (helm-autoresize-mode t)
+  
+  ;; enable fuzzy seach in helm-mini, semantic
+  (setq helm-M-x-fuzzy-match        t
+        helm-buffers-fuzzy-matching t
+        helm-recentf-fuzzy-match    t
+        helm-semantic-fuzzy-match   t
+        helm-imenu-fuzzy-match      t
+        helm-apropos-fuzzy-match    t)
+  
+  (setq helm-idle-delay 0.0)	; 候補を作って描写するまでのタイムラグ。デフォルトで 0.3
+  (setq helm-input-idle-delay 0.0) ; 文字列を入力してから検索するまでのタイムラグ。デフォルトで 0
+  (setq helm-candidate-number-limit 100) ; 表示する最大候補数。デフォルトで 50
+
+  ;; use man in helm (C-c h m)
+  (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
+  
   (helm-mode 1)
-  (define-key global-map (kbd "M-x")     'helm-M-x)
-  (define-key global-map (kbd "C-x C-f") 'helm-find-files)
-  (define-key global-map (kbd "C-x C-r") 'helm-recentf)
-  (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
-  (define-key global-map (kbd "C-c i")   'helm-imenu)
-  (define-key global-map (kbd "C-x b")   'helm-buffers-list)
-  (define-key global-map (kbd "M-r")     'helm-resume)
-  (define-key global-map (kbd "C-M-h")   'helm-apropos)
-  (define-key helm-map (kbd "C-h") 'delete-backward-char)
-  (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-  (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-  (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action))
 
-(use-package auto-complete-config
-  ;; :ensure t ;contain auto-complete
-  :diminish (auto-complete-mode . "AC")
+  ;; "M-a" to select(mark) all
+  ;; "C-c C-i" to insert file path to current buffer
+
+  ;; "C-w" to yank words after cursor
+  ;; "M-n" to yank symbol at cursor
+
+  ;; "TAB" to disp command help in "Helm-M-x" buffer
+
+  ;; helm-mini
+  ;; pattern "*<major-mode>" to match that major-mode
+  ;; pattern "*!<major-made>" to not match that major-mode
+  ;; pattern "/directory" to match that directory
+  ;; pattern "!/directory" to not match that directory
+  ;; pattern "@hoge" to search hoge in all buffer
+  ;; then type "C-s" to disp line num (switch helm-moccur)
+
+  ;; helm-find-files
+  ;; "C-l" to find above directory
+  ;; "C-r" to find previous directory
+  ;; "C-s" to do grep at current directory
+  ;; "C-u C-s" to do recursive grep at current directory
+  ;; add "~/" to home directory
+  ;; add "/"  to root directory
+  ;; add "./" to current directory
+  ;; "C-c h" to disp file history
+  
+  ;; split-root
+  ;;   (require 'split-root)
+  ;;   (setq helm-compilation-window-height-percent 20.0)
+  ;;   (defun helm-compilation-window-root (buf)
+  ;;     (setq helm-compilation-window
+  ;;           (split-root-window (truncate (* (window-height)
+  ;;                                           (/ helm-compilation-window-height-percent
+  ;;                                              100.0)))))
+  ;;      (set-window-buffer helm-compilation-window buf))
+  
+  ;;   (setq helm-display-function 'helm-compilation-window-root)
+  )
+
+(use-package flex-autopair :ensure t :diminish "flex-pair"
+  :config
+  (setq flex-autopair 1))
+
+(use-package auto-complete :ensure t :diminish "AC"
+  :bind (:map ac-menu-map
+              ("C-n" . ac-next)
+              ("C-p" . ac-previous))
   :init
-  (use-package pos-tip       :ensure t)
-  (use-package fuzzy         :ensure t)
-  (use-package auto-complete :ensure t)
-
+  (use-package fuzzy :ensure t)
+  (use-package pos-tip :ensure t)
   :config
+  (use-package auto-complete-config)
   (ac-config-default)
-  (global-auto-complete-mode t)
+  (setq ac-auto-show-menu   0
+        ac-delay            0
+        ac-quick-help-delay 0
+        ac-menu-height      15
+        ac-auto-start       1
+        ac-use-menu-map     t)
+  (push 'ac-source-filename ac-sources)
   (ac-flyspell-workaround)
-  (setq ac-auto-start 1
-        ac-delay 0.0
-        ;; ac-use-menu-map t
-        ac-use-fuzzy t
-        ac-ignore-case 't
-        ac-dwim t))
+  (add-to-list 'ac-modes 'text-mode)
+  (add-to-list 'ac-modes 'fundamental-mode)
+  (add-to-list 'ac-modes 'org-mode)
+  (add-to-list 'ac-modes 'yatex-mode)
+  
+  (push 'ac-source-filename ac-sources))
 
-(use-package undohist
-  :ensure t
-
+(use-package yascroll :ensure t
   :config
-  (undohist-initialize)
-  (setq undohist-ignored-files '("/tmp" "/elpa"))
-        undohist-directory "~/.emacs.d/undohist")
-
-(use-package undo-tree
-  :ensure t
-  :diminish (undo-tree-mode . "UT")
-
-  :config
-  (global-undo-tree-mode)
-  (bind-keys
-   ("C-x u" . undo-tree-visualize)))
-
-(use-package flycheck
-  :ensure t
-
-  :config
-  (global-flycheck-mode)
-  (bind-keys
-   ("C-c n" . flycheck-next-error)
-   ("C-c p" . flycheck-previous-error)
-   ("C-c l" . flycheck-list-errors))
-
-  (use-package flycheck-pos-tip :ensure t)
-  (custom-set-variables
-   '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
-
-  ;; add js checker
-  (flycheck-add-next-checker 'javascript-jshint
-                             'javascript-gjslint))
-(use-package fold-dwim :ensure t
-  :bind*
-  ("<f7>" . fold-dwim-toggle)
-  ("C-<f7>" . fold-dwim-show-all)
-  ("C-S-<f7>" . fold-dwim-hide-all)
-  :config
-  (use-package hideshow))
-
+  (global-yascroll-bar-mode 1))
+(provide '20_editor)
+;;; 20_editor.el ends here

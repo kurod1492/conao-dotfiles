@@ -4,16 +4,23 @@
 
 (use-package generic-x
   :config
-  (global-font-lock-mode))
+  (global-font-lock-mode t)
+  ;; hi-light 'FIXME:' in c-source file
+  (add-hook 'c-mode-hook
+            (lambda ()
+              (font-lock-add-keywords
+               nil
+               '(("\\<\\(FIXME\\):" 1
+                  font-lock-warning-face t))))))
 
 (use-package time-stamp
   ;; %:a -- Monday 曜日
   ;; %#A -- MONDAY 全部大文字で曜日
   ;; %:b -- January 月
-
+  
   ;; 桁数を指定すると指定した文字だけが表示される.
   ;; "%2#A"なら MO など．
-
+  
   ;; %02H -- 15  時刻 (24 時間)
   ;; %02I -- 03  時刻 (12 時間)
   ;; %#p  -- pm  PM と AM の別
@@ -42,7 +49,6 @@
   (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
 
 (use-package linum
-  ;; :defer t
   :config
   (global-linum-mode t)
   (setq linum-delay nil
@@ -116,13 +122,19 @@
    auto-insert-directory "~/.emacs.d/template/")
   (auto-insert-mode 1))
 
-(use-package outline
+(use-package recentf
   :config
-  (bind-key "<tab>" 'org-cycle outline-minor-mode-map)
-  (bind-key "C-<tab>" 'org-global-cycle outline-minor-mode-map)
-  (bind-key "C-c C-f" 'outline-forward-same-level outline-minor-mode-map)
-  (bind-key "C-c C-b" 'outline-backward-same-level outline-minor-mode-map)
-  (bind-key "C-c C-n" 'outline-next-visible-heading outline-minor-mode-map)
-  (bind-key "C-c C-p" 'outline-previous-visible-heading outline-minor-mode-map)
-  (bind-key "<tab>" 'org-cycle outline-mode-map)
-  (bind-key "S-<tab>" 'org-global-cycle outline-mode-map))
+  (defmacro with-suppressed-message (&rest body)
+    "Suppress new messages temporarily in the echo area 
+and the `*Messages*' buffer while BODY is evaluated."
+    (declare (indent 0))
+    (let ((message-log-max nil))
+      `(with-temp-message (or (current-message) "") ,@body)))
+  
+  (setq recentf-save-file "~/.emacs.d/.recentf")
+  (setq recentf-max-saved-items 1000)            ;; recentf に保存するファイルの数
+  (setq recentf-exclude '(".recentf"))           ;; .recentf自体は含まない
+  (setq recentf-auto-cleanup 'never)             ;; 保存する内容を整理
+  (run-with-idle-timer 30 t '(lambda ()          ;; 30秒ごとに .recentf を保存
+                               (with-suppressed-message (recentf-save-list))))
+  (use-package recentf-ext :ensure t))

@@ -2,9 +2,7 @@
 
 ;;; Code:
 
-(when (< emacs-major-version 23)
-  (defvar user-emacs-directory "~/.emacs.d/"))
-
+;;;;; core-emacs-settings
 (defun add-to-load-path (&rest paths)
   (let (path)
 	(dolist (path paths paths)
@@ -13,7 +11,14 @@
 		(add-to-list 'load-path default-directory)
 		(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
 			(normal-top-level-add-subdirs-to-load-path))))))
-(add-to-load-path "site-lisp" "conf" "elpa")
+
+(setq load-path-folder-list '("site-lisp" "conf" "elpa" "el-get"))
+
+(dolist (folder load-path-folder-list)
+  (unless (file-directory-p (concat user-emacs-directory folder))
+    (mkdir (concat user-emacs-directory folder))
+    (message "mkdir: %s%s" user-emacs-directory folder))
+  (add-to-load-path folder))
 
 ;; coding system
 (set-language-environment "Japanese")
@@ -61,3 +66,101 @@
 
 ;; IME off when focus minibuffer
 (mac-auto-ascii-mode t)
+
+;;;;; frame-settings
+;; frame title
+(setq frame-title-format
+      '("emacs " emacs-version (buffer-file-name " - %f")))
+
+;;; window setting
+;; hide toolbar, scroll-bar
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+
+;;; mode-line setting
+;; show line number
+(line-number-mode t)
+;; show column number
+(column-number-mode t)
+;; show battery force
+(display-battery-mode t)
+
+;; display line and char count
+(defun count-lines-and-chars ()
+  (if mark-active
+      (format "%d lines, %d chars "
+              (count-lines (region-beginning) (region-end))
+              (- (region-end) (region-beginning)))))
+(add-to-list 'default-mode-line-format
+             '(:eval (count-lines-and-chars)))
+
+;;;;; window-settings
+;; show parent
+(setq show-paren-delay 0)
+(show-paren-mode t)
+
+;; truncate
+(setq-default truncate-lines t)
+
+;; enlighten editing line
+(global-hl-line-mode t)
+
+;;; cursor
+;; cursor not blink
+(blink-cursor-mode 0)
+
+;; hi-light region
+(transient-mark-mode)
+(setq highlight-nonselected-windows t)
+;; (set-face-background 'region "royalblue4")
+
+;; temporary hi-light after yank region
+(when window-system
+  (defadvice yank (after ys:yank-highlight activate)
+    (let ((ol (make-overlay (mark t) (point))))
+      (overlay-put ol 'face 'highlight)
+      (sit-for 1.0)
+      (delete-overlay ol)))
+  (defadvice yank-pop (after ys:yank-pop-highlight activate)
+    (when (eq last-command 'yank)
+      (let ((ol (make-overlay (mark t) (point))))
+        (overlay-put ol 'face 'highlight)
+        (sit-for 1.0)
+        (delete-overlay ol)))))
+
+;; open with drag file
+(define-key global-map [ns-drag-file] 'ns-find-file)
+
+;; save buffer condition
+(desktop-save-mode t)
+
+;;;;; buffer-settings
+;; insert "\", instead "¥"
+(define-key global-map [?¥] [?\\])
+
+;; tab width
+(setq-default tab-width 4)
+(setq-default c-basic-offset 4)
+(setq-default indent-tabs-mode nil)
+
+;; delete region, when yank
+(delete-selection-mode t)
+
+;; comment style
+(setq comment-style 'multi-line)
+
+;;;;; shortcut-settings
+(bind-keys ("C-c a"   . align)
+           ("C-c S-a" . align-regexp)
+           ("C-c d"   . delete-trailing-whitespace)
+           ("C-c b"   . battery)
+           ("C-x e"   . eval-last-sexp)
+           ("M-r"     . query-replace)
+           ("M-c"     . c-mode))
+
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+
+;; C-x r f r : save frame configuration
+;; C-x r j r : restore frame configuration
+
+;; Cmd-Ctl-d ; open apple's default dicitonaly
