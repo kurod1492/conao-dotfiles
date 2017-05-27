@@ -28,7 +28,7 @@
   :config
   (setq org-startup-indented t)
   (setq org-indent-mode-turns-on-hiding-stars t)
-  (setq org-indent-indentation-per-level 4)
+  (setq org-indent-indentation-per-level 2)
   (require 'org-install)
   (require 'ox-latex)
   (require 'org-bibtex)
