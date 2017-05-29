@@ -48,8 +48,19 @@
   :init
   (unless (require 'other-window-or-split nil 'noerror)
     (el-get-bundle conao/other-window-or-split))
-  :bind ("C-t" . other-window-or-split))
+  :bind* ("C-t" . other-window-or-split))
 
 (provide '90_el-get)
 ;;; 90_el-get.el ends here
+
+
+
+
+
+
+
+
+
+
+
 

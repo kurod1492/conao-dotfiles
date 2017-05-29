@@ -130,16 +130,18 @@
   :init
   (use-package fuzzy :ensure t)
   (use-package pos-tip :ensure t)
+  
   :config
   (use-package auto-complete-config)
   (ac-config-default)
   (setq ac-auto-show-menu   0
         ac-delay            0
-        ac-quick-help-delay 0
+        ac-quick-help-delay 1
         ac-menu-height      15
         ac-auto-start       1
         ac-use-menu-map     t)
   (push 'ac-source-filename ac-sources)
+  
   (ac-flyspell-workaround)
   (add-to-list 'ac-modes 'text-mode)
   (add-to-list 'ac-modes 'fundamental-mode)
@@ -151,5 +153,12 @@
 (use-package yascroll :ensure t
   :config
   (global-yascroll-bar-mode 1))
+
+(use-package undohist :ensure t
+  :config
+  (undohist-initialize)
+  (setq undohist-directory (user-setting-directory "undohist")
+        undohist-ignored-files '("/tmp" "elpa" "el-get")))
+
 (provide '20_editor)
 ;;; 20_editor.el ends here

@@ -29,4 +29,7 @@
 (require 'init-loader)
 ;; (custom-set-variables
 ;;  '(init-loader-show-log-after-init 'error-only))
-(init-loader-load "~/.emacs.d/conf")
+(defmacro user-setting-directory (directory)
+  (concat user-emacs-directory directory))
+
+(init-loader-load (user-setting-directory "conf"))
