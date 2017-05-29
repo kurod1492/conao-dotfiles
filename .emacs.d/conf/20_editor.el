@@ -160,5 +160,125 @@
   (setq undohist-directory (user-setting-directory "undohist")
         undohist-ignored-files '("/tmp" "elpa" "el-get")))
 
-(provide '20_editor)
+(use-package undo-tree :ensure t :diminish ""
+  :config
+  (global-undo-tree-mode)
+  ;; Quick-Start
+  ;; ===========
+  ;; `undo-tree-mode' and `global-undo-tree-mode'
+  ;;   Enable undo-tree mode (either in the current buffer or globally).
+  ;;
+  ;; C-_  C-/  (`undo-tree-undo')
+  ;;   Undo changes.
+  ;;
+  ;; M-_  C-?  (`undo-tree-redo')
+  ;;   Redo changes.
+  ;;
+  ;; `undo-tree-switch-branch'
+  ;;   Switch undo-tree branch.
+  ;;   (What does this mean? Better press the button and see!)
+  ;;
+  ;; C-x u  (`undo-tree-visualize')
+  ;;   Visualize the undo tree.
+  ;;   (Better try pressing this button too!)
+  ;;
+  ;; In the undo-tree visualizer:
+  ;;
+  ;; <up>  p  C-p  (`undo-tree-visualize-undo')
+  ;;   Undo changes.
+  ;;
+  ;; <down>  n  C-n  (`undo-tree-visualize-redo')
+  ;;   Redo changes.
+  ;;
+  ;; <left>  b  C-b  (`undo-tree-visualize-switch-branch-left')
+  ;;   Switch to previous undo-tree branch.
+  ;;
+  ;; <right>  f  C-f  (`undo-tree-visualize-switch-branch-right')
+  ;;   Switch to next undo-tree branch.
+  ;;
+  ;; C-<up>  M-{  (`undo-tree-visualize-undo-to-x')
+  ;;   Undo changes up to last branch point.
+  ;;
+  ;; C-<down>  M-}  (`undo-tree-visualize-redo-to-x')
+  ;;   Redo changes down to next branch point.
+  ;;
+  ;; <down>  n  C-n  (`undo-tree-visualize-redo')
+  ;;   Redo changes.
+  ;;
+  ;; <mouse-1>  (`undo-tree-visualizer-mouse-set')
+  ;;   Set state to node at mouse click.
+  ;;
+  ;; t  (`undo-tree-visualizer-toggle-timestamps')
+  ;;   Toggle display of time-stamps.
+  ;;
+  ;; d  (`undo-tree-visualizer-toggle-diff')
+  ;;   Toggle diff display.
+  ;;
+  ;; s  (`undo-tree-visualizer-selection-mode')
+  ;;   Toggle keyboard selection mode.
+  ;;
+  ;; q  (`undo-tree-visualizer-quit')
+  ;;   Quit undo-tree-visualizer.
+  ;;
+  ;; C-q  (`undo-tree-visualizer-abort')
+  ;;   Abort undo-tree-visualizer.
+  ;;
+  ;; ,  <
+  ;;   Scroll left.
+  ;;
+  ;; .  >
+  ;;   Scroll right.
+  ;;
+  ;; <pgup>  M-v
+  ;;   Scroll up.
+  ;;
+  ;; <pgdown>  C-v
+  ;;   Scroll down.
+  ;;
+  ;; In visualizer selection mode:
+  ;;
+  ;; <up>  p  C-p  (`undo-tree-visualizer-select-previous')
+  ;;   Select previous node.
+  ;;
+  ;; <down>  n  C-n  (`undo-tree-visualizer-select-next')
+  ;;   Select next node.
+  ;;
+  ;; <left>  b  C-b  (`undo-tree-visualizer-select-left')
+  ;;   Select left sibling node.
+  ;;
+  ;; <right>  f  C-f  (`undo-tree-visualizer-select-right')
+  ;;   Select right sibling node.
+  ;;
+  ;; <pgup>  M-v
+  ;;   Select node 10 above.
+  ;;
+  ;; <pgdown>  C-v
+  ;;   Select node 10 below.
+  ;;
+  ;; <enter>  (`undo-tree-visualizer-set')
+  ;;   Set state to selected node and exit selection mode.
+  ;;
+  ;; s  (`undo-tree-visualizer-mode')
+  ;;   Exit selection mode.
+  ;;
+  ;; t  (`undo-tree-visualizer-toggle-timestamps')
+  ;;   Toggle display of time-stamps.
+  ;;
+  ;; d  (`undo-tree-visualizer-toggle-diff')
+  ;;   Toggle diff display.
+  ;;
+  ;; q  (`undo-tree-visualizer-quit')
+  ;;   Quit undo-tree-visualizer.
+  ;;
+  ;; C-q  (`undo-tree-visualizer-abort')
+  ;;   Abort undo-tree-visualizer.
+  ;;
+  ;; ,  <
+  ;;   Scroll left.
+  ;;
+  ;; .  >
+  ;;   Scroll right.
+  )
+
+  (provide '20_editor)
 ;;; 20_editor.el ends here
