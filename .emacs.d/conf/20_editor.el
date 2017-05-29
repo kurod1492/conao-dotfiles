@@ -280,5 +280,15 @@
   ;;   Scroll right.
   )
 
-  (provide '20_editor)
+(use-package flycheck :ensure t
+  :config
+  (use-package flycheck-pos-tip :ensure t)
+  
+  (global-flycheck-mode)
+  (custom-set-variables
+   '(flycheck-keymap-prefix           (kbd "C-c f"))
+   '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
+  
+
+(provide '20_editor)
 ;;; 20_editor.el ends here
