@@ -23,7 +23,7 @@
 ;; 
 
 ;;; Code:
-(use-package helm :ensure t :diminish "helm"
+(use-package helm :ensure t :diminish ""
   :bind (("M-x"     . helm-M-x)
          ("C-x b"   . helm-mini)
          ("C-x C-f" . helm-find-files)
@@ -119,11 +119,11 @@
   ;;   (setq helm-display-function 'helm-compilation-window-root)
   )
 
-(use-package flex-autopair :ensure t :diminish "flex-pair"
+(use-package flex-autopair :ensure t :diminish ""
   :config
   (setq flex-autopair 1))
 
-(use-package auto-complete :ensure t :diminish "AC"
+(use-package auto-complete :ensure t :diminish ""
   :bind (:map ac-menu-map
               ("C-n" . ac-next)
               ("C-p" . ac-previous))

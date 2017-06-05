@@ -61,7 +61,7 @@
          ("C-M-<f7>" . fold-dwim-show-all))
   :init
   (use-package hideshow
-    :diminish (hs-minor-mode . " hs")
+    :diminish (hs-minor-mode . "")
     :config
     (add-hook 'find-file-hook
               (lambda () (hs-minor-mode 1)))))
@@ -114,7 +114,9 @@
            ;;:wp-code t
            ))))
 
-
+(use-package elscreen :ensure t
+  :config
+  (use-package elscreen-persist :ensure t))
 
 (provide '30_utility)
 ;;; 30_utility.el ends here
