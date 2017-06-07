@@ -24,31 +24,39 @@
 
 ;;; Code:
 
-;(setq el-get-dir "~/.emacs.d/el-get/")
+;; (use-package el-get :ensure t
+;;   :config
+;;   (el-get-bundle el-get)
+;;   (el-get-bundle! linkd)
+;;   (el-get-bundle conao/auto-save-buffers)
+;;   (el-get-bundle conao/other-window-or-split))
+;; (use-package el-get
+;;   :init
+;;   (setq el-get-dir "~/.emacs.d/el-get/")
+;;   (unless (require 'el-get nil 'noerror)
+;;     (with-current-buffer
+;;       (url-retrieve-synchronously
+;;        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+;;       (goto-char (point-max))
+;;       (eval-print-last-sexp)))
+;;   :config
+  
+;;   (el-get-bundle el-get)
+;;   (el-get-bundle! linkd)
+;;   (el-get-bundle conao/auto-save-buffers)
+;;   (el-get-bundle conao/other-window-or-split)
+  
+;;   (use-package auto-save-buffers
+;;     :bind (("C-x a s" . auto-save-buffers-toggle))
+;;     :config
+;;     ;; save buffer 0.5s each
+;;     (run-with-idle-timer 0.5 t 'auto-save-buffers))
+;;   (use-package other-window-or-split
+;;     :bind* ("C-t" . other-window-or-split))
 
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
-;; (el-get 'sync)
+;;   (el-get 'sync)
 
-;; (el-get-bundle! linkd)
-
-(use-package auto-save-buffers
-  :init
-  (unless (require 'auto-save-buffers nil 'noerror)
-    (el-get-bundle conao/auto-save-buffers))
-  :bind (("C-x a s" . auto-save-buffers-toggle))
-  :config
-  (run-with-idle-timer 0.5 t 'auto-save-buffers)) ; アイドル0.5秒で保存
-
-(use-package other-window-or-split
-  :init
-  (unless (require 'other-window-or-split nil 'noerror)
-    (el-get-bundle conao/other-window-or-split))
-  :bind* ("C-t" . other-window-or-split))
+;;   )
 
 (provide '90_el-get)
 ;;; 90_el-get.el ends here
