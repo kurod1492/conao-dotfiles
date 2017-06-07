@@ -5,13 +5,14 @@
 #unnesesary files
 .emacs.desktop*
 .session
+.recentf
 elscreen
 ac-comphist.dat
-/recentf
 
 #download packages
-/elpa
-/el-get
+elpa/
+el-get/
+auto-install/
 
 #compiled files
 *.elc

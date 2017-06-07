@@ -5,4 +5,6 @@
 # general backup files
 *~
 .#*
+\#*
+
 /.emacs.d/abbrev_defs
