@@ -3,23 +3,6 @@
 ;;; Code:
 
 ;;;;; core-emacs-settings
-(defun add-to-load-path (&rest paths)
-  (let (path)
-	(dolist (path paths paths)
-	  (let ((default-directory
-			  (expand-file-name (concat user-emacs-directory path))))
-		(add-to-list 'load-path default-directory)
-		(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-			(normal-top-level-add-subdirs-to-load-path))))))
-
-(setq load-path-folder-list '("site-lisp" "conf" "elpa" "el-get"))
-
-(dolist (folder load-path-folder-list)
-  (unless (file-directory-p (concat user-emacs-directory folder))
-    (mkdir (concat user-emacs-directory folder))
-    (message "mkdir: %s%s" user-emacs-directory folder))
-  (add-to-load-path folder))
-
 ;; coding system
 (set-language-environment "Japanese")
 (set-default-coding-systems   'utf-8-unix)
