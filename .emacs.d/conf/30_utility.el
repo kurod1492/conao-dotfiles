@@ -119,5 +119,11 @@
   :config
   (use-package elscreen-persist :ensure t))
 
+
+;; el-get packages
+(use-package other-window-or-split
+  :init (el-get-bundle conao/other-window-or-split)
+  :bind* ("C-t" . other-window-or-split))
+
 (provide '30_utility)
 ;;; 30_utility.el ends here

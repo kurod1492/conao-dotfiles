@@ -288,7 +288,14 @@
   (custom-set-variables
    '(flycheck-keymap-prefix           (kbd "C-c f"))
    '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
-  
+
+
+;;; el-get packages
+(use-package auto-save-buffers
+  :init (el-get-bundle conao/auto-save-buffers)
+  :config
+  ;; save buffer 0.5s each
+  (run-with-idle-timer 0.5 t 'auto-save-buffers))
 
 (provide '20_editor)
 ;;; 20_editor.el ends here
