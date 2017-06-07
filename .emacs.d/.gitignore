@@ -1,18 +1,19 @@
 # backupfiles
-/history
-/undohist
+history/
+undohist/
 
-#unnesesary files
+# unnesesary files
 .emacs.desktop*
 .session
 .recentf
+recentf
 elscreen
 ac-comphist.dat
 
-#download packages
+# download packages
 elpa/
 el-get/
 auto-install/
 
-#compiled files
+# compiled files
 *.elc
