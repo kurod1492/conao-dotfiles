@@ -115,6 +115,7 @@
            ))))
 
 (use-package elscreen :ensure t
+  :disabled t
   :config
   (use-package elscreen-persist :ensure t))
 
