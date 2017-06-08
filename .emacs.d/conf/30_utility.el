@@ -3,7 +3,7 @@
 ;; Copyright (C) 2017  Naoya Yamashita
 
 ;; Author: Naoya Yamashita <conao@Naoya-MacBook-Air.local>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
