@@ -3,7 +3,7 @@
 ;; Copyright (C) 2017  Naoya Yamashita
 
 ;; Author: Conao
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -286,7 +286,7 @@
   
   (global-flycheck-mode)
   (custom-set-variables
-   '(flycheck-keymap-prefix           (kbd "C-c f"))
+   '(flycheck-keymap-prefix (kbd "C-c f"))
    '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
 
 
