@@ -3,7 +3,7 @@
 ;; Copyright (C) 2017  Naoya Yamashita
 
 ;; Author: Naoya Yamashita <conao@Naoya-MacBook-Air.local>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -142,7 +142,7 @@
 (use-package recentf
   :config
   (defmacro with-suppressed-message (&rest body)
-    "Suppress new messages temporarily in the echo area 
+    "Suppress new messages temporarily in the echo area
 and the `*Messages*' buffer while BODY is evaluated."
     (declare (indent 0))
     (let ((message-log-max nil))
@@ -155,3 +155,7 @@ and the `*Messages*' buffer while BODY is evaluated."
   (run-with-idle-timer 30 t '(lambda ()          ;; 30秒ごとに .recentf を保存
                                (with-suppressed-message (recentf-save-list))))
   (use-package recentf-ext :ensure t))
+
+(provide '10_starndard-elisp)
+;;; 10_standard-elisp.el ends here
+
