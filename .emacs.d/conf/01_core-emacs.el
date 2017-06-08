@@ -117,7 +117,6 @@
 ;; hi-light region
 (transient-mark-mode)
 (setq highlight-nonselected-windows t)
-;; (set-face-background 'region "royalblue4")
 
 ;; temporary hi-light after yank region
 (when window-system
