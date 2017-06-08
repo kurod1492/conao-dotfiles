@@ -120,11 +120,15 @@
 
 (use-package flex-autopair :ensure t :diminish ""
   :config
-  (setq flex-autopair 1))
+  (setq flex-autopair 1)
+  ;; http://d.hatena.ne.jp/uk-ar/20120401/1333282805
+  )
 
 (use-package paredit :ensure t :diminish ""
   :config
-  (add-hook 'emacs-lisp-mode 'enable-paredit-mode)
+  (hook-into-modes 'paredit-mode '(lisp-mode-hook
+                                   emacs-lisp-mode-hook
+                                   lisp-interaction-mode-hook))
   ;; M-( to include S function in ()
   ;; ( to make empty S function
   ;; C-) to slurp S function
