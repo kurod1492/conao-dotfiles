@@ -3,7 +3,7 @@
 ;; Copyright (C) 2017  Naoya Yamashita
 
 ;; Author: Naoya Yamashita <conao@Naoya-MacBook-Air.local>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -31,18 +31,19 @@
   (setq user-emacs-directory "~/.emacs.d/"))
 
 (defmacro user-setting-directory (directory)
+  "Return user-emacs-directory/DIRECTORY to setting Emacs."
   (concat user-emacs-directory directory))
 
 (defun add-to-load-path (&rest paths)
-  (let (path)
+  "Add load path recursive in PATHS."
 	(dolist (path paths paths)
 	  (let ((default-directory
 			  (expand-file-name (concat user-emacs-directory path))))
 		(add-to-list 'load-path default-directory)
 		(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-			(normal-top-level-add-subdirs-to-load-path))))))
+			(normal-top-level-add-subdirs-to-load-path)))))
 
-(setq load-path-folder-list '("site-lisp" "conf" "elpa" "el-get"))
+(defvar load-path-folder-list '("site-lisp" "conf" "elpa" "el-get"))
 
 (dolist (folder load-path-folder-list)
   (unless (file-directory-p (concat user-emacs-directory folder))
