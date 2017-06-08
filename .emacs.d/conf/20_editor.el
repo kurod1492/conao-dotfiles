@@ -179,7 +179,7 @@
   :config
   (undohist-initialize)
   (setq undohist-directory (user-setting-directory "undohist")
-        undohist-ignored-files '("/tmp" "elpa" "el-get")))
+        undohist-ignored-files '("/tmp" "/elpa" "/el-get")))
 
 (use-package undo-tree :ensure t :diminish ""
   :config
