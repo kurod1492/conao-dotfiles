@@ -101,7 +101,6 @@
 
 ;;;;; window-settings
 ;; show parent
-(setq show-paren-delay 0)
 (show-paren-mode t)
 
 ;; truncate
