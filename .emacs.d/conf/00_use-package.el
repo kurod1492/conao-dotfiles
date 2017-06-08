@@ -58,3 +58,6 @@
   (require 'use-package)
 (require 'diminish)
 (require 'bind-key))
+
+(provide '00_use-package)
+;;; 00_use-package.el ends here
