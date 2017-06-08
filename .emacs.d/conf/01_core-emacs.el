@@ -92,6 +92,7 @@
 
 ;; display line and char count
 (defun count-lines-and-chars ()
+  "Count line and chars, use in mode line."
   (if mark-active
       (format "%d lines, %d chars "
               (count-lines (region-beginning) (region-end))
