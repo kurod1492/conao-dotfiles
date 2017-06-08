@@ -30,6 +30,9 @@
     (setq user-emacs-directory (file-name-directory load-file-name))
   (setq user-emacs-directory "~/.emacs.d/"))
 
+(defmacro user-setting-directory (directory)
+  (concat user-emacs-directory directory))
+
 (defun add-to-load-path (&rest paths)
   (let (path)
 	(dolist (path paths paths)
@@ -71,9 +74,6 @@
   (package-refresh-contents)
   (package-install 'init-loader))
 (require 'init-loader)
-
-(defmacro user-setting-directory (directory)
-  (concat user-emacs-directory directory))
 
 (init-loader-load (user-setting-directory "conf"))
 
