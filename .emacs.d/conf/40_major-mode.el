@@ -26,15 +26,23 @@
 
 (use-package org :ensure t :defer t
   :config
-  (setq org-startup-indented t)
-  (setq org-indent-mode-turns-on-hiding-stars t)
-  (setq org-indent-indentation-per-level 2)
-  (require 'org-install)
-  (require 'ox-latex)
-  (require 'org-bibtex)
-  (setq org-html-htmlize-output-type 'css)
-  (setq org-src-fontify-natively t)
-  (setq org-latex-default-class "org-jsarticle")
+  ;; org default package
+  ;; (require 'org-macro)
+  ;; (require 'org-element)
+  (use-package ox-latex)
+  (use-package org-install)
+  (use-package org-bibtex)
+
+  ;; org extension package
+   (use-package ox-novel
+     :init (el-get-bundle conao/ox-novel :branch "del-export-block"))
+  
+  (setq org-startup-indented t
+        org-indent-mode-turns-on-hiding-stars t
+        org-indent-indentation-per-level 2
+        org-html-htmlize-output-type 'css
+        org-src-fontify-natively t
+        org-latex-default-class "org-jsarticle")
   (add-to-list 'org-latex-classes
                '("org-jsarticle" "\\documentclass{jsarticle}
 \\usepackage[top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot]{geometry}
@@ -49,8 +57,6 @@
              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
              ("\\paragraph{%s}" . "\\paragraph*{%s}")
              ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-;; (require 'org-macro)
-;; (require 'org-element)
 
              ;; LaTeX 形式のファイル PDF に変換するためのコマンド
              (setq org-latex-pdf-process
@@ -83,6 +89,7 @@
 
 ;; (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
 ;; (add-hook 'org-mode-hook 'org-display-inline-images))
+
 )
 
 (provide '40_major-mode)
