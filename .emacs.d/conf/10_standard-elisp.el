@@ -148,7 +148,7 @@ and the `*Messages*' buffer while BODY is evaluated."
     (let ((message-log-max nil))
       `(with-temp-message (or (current-message) "") ,@body)))
   
-  (setq recentf-save-file "~/.emacs.d/.recentf")
+  (setq recentf-save-file (user-setting-directory ".recentf"))
   (setq recentf-max-saved-items 1000)            ;; recentf に保存するファイルの数
   (setq recentf-exclude '(".recentf"))           ;; .recentf自体は含まない
   (setq recentf-auto-cleanup 'never)             ;; 保存する内容を整理
