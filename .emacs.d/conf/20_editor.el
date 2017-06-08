@@ -71,7 +71,6 @@
         helm-imenu-fuzzy-match      t
         helm-apropos-fuzzy-match    t)
   
-  (setq helm-idle-delay 0.0)	; 候補を作って描写するまでのタイムラグ。デフォルトで 0.3
   (setq helm-input-idle-delay 0.0) ; 文字列を入力してから検索するまでのタイムラグ。デフォルトで 0
   (setq helm-candidate-number-limit 100) ; 表示する最大候補数。デフォルトで 50
 
