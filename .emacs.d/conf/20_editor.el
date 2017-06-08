@@ -122,6 +122,24 @@
   :config
   (setq flex-autopair 1))
 
+(use-package paredit :ensure t :diminish ""
+  :config
+  (add-hook 'emacs-lisp-mode 'enable-paredit-mode)
+  ;; M-( to include S function in ()
+  ;; ( to make empty S function
+  ;; C-) to slurp S function
+  ;; C-} to barf S function
+
+  ;; M-s to reduce ()
+  ;; M-<up> to raise list to line end (pointer at |)
+  ;; (list (list |"Okabe" "Shiina") "Hashida")  ;; type M-s
+  ;; (list "Okabe" "Shiina" "Hashida")
+
+  ;; M-r to raise
+  ;; (when mac |(setq okebe "okabe"))    ;; type M-r
+  ;; (setq okebe "okabe")
+  )
+
 (use-package auto-complete :ensure t :diminish ""
   :bind (:map ac-menu-map
               ("C-n" . ac-next)
