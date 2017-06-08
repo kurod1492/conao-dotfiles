@@ -112,10 +112,7 @@
 (use-package wdired
   :config
   (setq delete-by-moving-to-trash t)
-  (bind-key "r" 'wdired-change-to-wdired-mode dired-mode-map)
-
-  ;; o . open dired
-  )
+  (bind-key "r" 'wdired-change-to-wdired-mode dired-mode-map))
 
 (use-package view
   :config
