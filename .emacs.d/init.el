@@ -50,7 +50,6 @@
     (mkdir (concat user-emacs-directory folder))
     (message "mkdir: %s%s" user-emacs-directory folder))
   (add-to-load-path folder))
-(add-to-load-path "site-lisp" "conf")
 
 (require 'package)
 (add-to-list 'package-archives '("gnu"       . "http://elpa.gnu.org/packages/"))
