@@ -43,7 +43,15 @@
   :ensure t)
 
 (defsubst hook-into-modes (func &rest modes)
-  (dolist (mode-hook modes) (add-hook mode-hook func)))
+  "Apply function to hook. (add-hook MODES FUNC).
+Use like that
+(hook-into-modes 'hl-line-mode '(prog-mode-hook
+                                 package-menu-mode-hook))"
+  (dolist (mode-hook modes)
+    (add-hook mode-hook func)))
+;; use-like
+;; (hook-into-modes 'hl-line-mode '(prog-mode-hook
+;;                                 package-menu-mode-hook))
 
 (use-package el-get :ensure t)
 
