@@ -126,9 +126,10 @@
 
 (use-package paredit :ensure t :diminish ""
   :config
-  (hook-into-modes 'paredit-mode '(lisp-mode-hook
-                                   emacs-lisp-mode-hook
-                                   lisp-interaction-mode-hook))
+  (hook-into-modes 'paredit-mode
+                   'lisp-mode-hook
+                   'emacs-lisp-mode-hook
+                   'lisp-interaction-mode-hook)
   ;; M-( to include S function in ()
   ;; ( to make empty S function
   ;; C-) to slurp S function
