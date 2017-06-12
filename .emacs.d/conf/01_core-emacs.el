@@ -3,7 +3,7 @@
 ;; Copyright (C) 2017  Naoya Yamashita
 
 ;; Author: Naoya Yamashita <conao@Naoya-MacBook-Air.local>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -70,7 +70,8 @@
 (setq-default bidi-display-reordering nil)
 
 ;; IME off when focus minibuffer
-(mac-auto-ascii-mode t)
+(when (fboundp 'mac-auto-ascii-mode)
+  (mac-auto-ascii-mode 1))
 
 ;;;;; frame-settings
 ;; frame title
@@ -168,6 +169,13 @@
 ;; C-x r j r : restore frame configuration
 
 ;; Cmd-Ctl-d ; open apple's default dicitonaly
+
+(set-face-attribute 'default nil :family "Monaco" :height 120)
+(set-fontset-font (frame-parameter nil 'font)
+                  'japanese-jisx0208
+                  (font-spec :family "Hiragino Kaku Gothic ProN"))
+(add-to-list 'face-font-rescale-alist
+             '(".*Hiragino Kaku Gothic ProN.*" . 1.2))
 
 (provide '01_core-emacs)
 ;;; 01_core-emacs.el ends here
