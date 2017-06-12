@@ -70,7 +70,8 @@
 (setq-default bidi-display-reordering nil)
 
 ;; IME off when focus minibuffer
-(mac-auto-ascii-mode t)
+(when (fboundp 'mac-auto-ascii-mode)
+  (mac-auto-ascii-mode 1))
 
 ;;;;; frame-settings
 ;; frame title
