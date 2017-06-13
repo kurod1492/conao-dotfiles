@@ -260,6 +260,7 @@ Also turns off numbering in starred modes like *scratch*"
   :bind* (("C-x t"   . google-translate-at-point)
           ("C-x S-t" . google-translate-query-translate)))
 
+(use-package htmlize :defer t :ensure t)
 
 
 ;; el-get packages
