@@ -169,6 +169,7 @@ Also turns off numbering in starred modes like *scratch*"
   (use-package sequential-command-config)
   (sequential-command-setup-keys))
 
+(use-package dired-rainbow :ensure t :defer t)
 
 ;; el-get packages
 (use-package other-window-or-split
