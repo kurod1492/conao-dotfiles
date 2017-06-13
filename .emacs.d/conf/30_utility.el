@@ -155,6 +155,14 @@ Also turns off numbering in starred modes like *scratch*"
 
 (use-package lispxmp        :ensure t :defer t :bind ("C-c C-e" . lispxmp))
 
+(use-package auto-async-byte-compile :ensure t :defer t :disabled t
+  :config
+  (setq auto-async-byte-compile-exclude-files-regexp "/junk/"
+        eldoc-idle-delay 0.2
+        eldoc-minor-mode-string "")  ;; dont show ElDoc in mode line
+  (find-function-setup-keys))
+
+
 ;; el-get packages
 (use-package other-window-or-split
   :init (el-get-bundle conao/other-window-or-split)
@@ -162,3 +170,4 @@ Also turns off numbering in starred modes like *scratch*"
 
 (provide '30_utility)
 ;;; 30_utility.el ends here
+
