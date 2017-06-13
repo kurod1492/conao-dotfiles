@@ -17,3 +17,6 @@ auto-install/
 
 # compiled files
 *.elc
+
+# annoying comstom file
+costom.el
