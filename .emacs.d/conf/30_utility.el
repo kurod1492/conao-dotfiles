@@ -64,7 +64,11 @@
     :diminish (hs-minor-mode . "")
     :config
     (add-hook 'find-file-hook
-              (lambda () (hs-minor-mode 1)))))
+              (lambda () ;;(hs-minor-mode 1)
+                (unless (or (string-equal (file-name-extension buffer-file-name) "pdf")
+                            (string-equal (file-name-extension buffer-file-name) "PDF"))
+                  (hs-minor-mode 1))
+                ))))
 
 (use-package org2blog :ensure t :defer t
   :init (setq org2blog/wp-keymap-prefix "C-c n")
@@ -118,12 +122,13 @@
   :config
   (use-package elscreen-persist :ensure t))
 
-(use-package pdf-tools :ensure t :disabled t
+(use-package pdf-tools :ensure t
   :config
-  ;; depend glib, poppler, ghostscript, imagemagick
+  ;; depend on glib, poppler, ghostscript, imagemagick
   ;; brew install glib poppler ghostscript imagemagick
   (pdf-tools-install)
 
+  (add-to-list 'auto-mode-alist (cons "\\.pdf$" 'pdf-view-mode))
   ;; linum mode off in pdf-mode
   (defcustom linum-disabled-modes-list '(doc-view-mode pdf-view-mode)
     "* List of modes disabled when global linum mode is on"
@@ -136,8 +141,10 @@
     :type 'boolean
     :group 'linum)
   (defun linum-on ()
-    "* When linum is running globally, disable line number in modes defined in `linum-disabled-modes-list'.
-Changed by linum-off. Also turns off numbering in starred modes like *scratch*"
+    "* When linum is running globally,
+disable line number in modes defined in `linum-disabled-modes-list'.
+Changed by linum-off.
+Also turns off numbering in starred modes like *scratch*"
     (unless (or (minibufferp) (member major-mode linum-disabled-modes-list)
                 (and linum-disable-starred-buffers (string-match "*" (buffer-name))))
       (linum-mode 1)))
