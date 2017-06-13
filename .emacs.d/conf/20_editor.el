@@ -173,8 +173,27 @@
   (push 'ac-source-filename ac-sources))
 
 (use-package elscreen :ensure t
+  :bind* (("C-z k"       . elscreen-kill-screen-and-buffers)
+          ;; confrict with org-mode
+          ;; ("C-M-<right>" . elscreen-swap-next)
+          ;; ("C-M-<left>"  . elscreen-swap-previous)
+          ("C-<tab>"     . elscreen-next)
+          ("C-S-<tab>"   . elscreen-previous)
+          ("C-z d"       . elscreen-dired)
+          ("C-z r"       . elscreen-screen-nickname))
+  ;; :init (el-get-bundle conao/elscreen-swap)
   :config
-  (use-package elscreen-persist :ensure t))
+  (use-package elscreen-persist :ensure t
+    :config (elscreen-persist-mode))
+  (use-package elscreen-server :defer t)
+  (setq elscreen-prefix-key "\C-z"
+        ;; don't show [x] mark in tab
+        elscreen-tab-display-kill-screen nil
+        ;; don't show [<->] mark in header-line
+        elscreen-tab-display-control nil
+        ;; don't show screen number in mode-line
+        elscreen-display-screen-number nil)
+  )
 
 (use-package yascroll :ensure t
   :config
