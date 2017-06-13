@@ -153,6 +153,8 @@ Also turns off numbering in starred modes like *scratch*"
 
 (use-package open-junk-file :ensure t :defer t :bind ("C-x C-x" . open-junk-file))
 
+(use-package lispxmp        :ensure t :defer t :bind ("C-c C-e" . lispxmp))
+
 ;; el-get packages
 (use-package other-window-or-split
   :init (el-get-bundle conao/other-window-or-split)
