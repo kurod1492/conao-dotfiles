@@ -171,6 +171,21 @@ Also turns off numbering in starred modes like *scratch*"
 
 (use-package dired-rainbow :ensure t :defer t)
 
+(use-package mode-compile  :ensure t :defer t
+  :bind* (("C-c c" . mode-compile))
+  :config
+  (use-package mode-compile-kill
+    :bind* (("C-c k" . mode-compile-kill)))
+  ;; 全てバッファを自動的にセーブする
+  (setq mode-compile-always-save-buffer-p t
+        ;; コマンドをいちいち確認しない
+        mode-compile-never-edit-command-p t
+        ;; メッセージ出力を抑制
+        mode-compile-expert-p t
+        ;; メッセージを読み終わるまで待つ時間
+        mode-compile-reading-time 0))
+
+
 ;; el-get packages
 (use-package other-window-or-split
   :init (el-get-bundle conao/other-window-or-split)
