@@ -153,6 +153,8 @@ Also turns off numbering in starred modes like *scratch*"
   (yatemplate-fill-alist)
   (auto-insert-mode 1))
 
+(use-package shell-pop :ensure t :defer t :bind ("C-o" . shell-pop))
+
 
 ;; el-get packages
 (use-package other-window-or-split
