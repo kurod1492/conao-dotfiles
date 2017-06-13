@@ -155,6 +155,7 @@ Also turns off numbering in starred modes like *scratch*"
 
 (use-package shell-pop :ensure t :defer t :bind ("C-o" . shell-pop))
 
+(use-package magit     :ensure t :defer t :bind ("C-x v" . magit-status))
 
 ;; el-get packages
 (use-package other-window-or-split
