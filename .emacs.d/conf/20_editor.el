@@ -195,6 +195,17 @@
         elscreen-display-screen-number nil)
   )
 
+(use-package session :ensure t
+  :config
+  (setq session-initialize '(de-saveplace session keys menus places)
+        session-globals-include '((kill-ring 50)
+                                  (session-files-alist 500 t)
+                                  (file-name-history 10000))
+        session-globals-maxlstring 100000000
+        history-length t
+        session-undo-check -1)
+  (add-hook 'after-init-hook 'session-initialize))
+
 (use-package yascroll :ensure t
   :config
   (global-yascroll-bar-mode 1))
