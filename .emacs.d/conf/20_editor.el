@@ -193,7 +193,11 @@
   (global-flycheck-mode)
   (custom-set-variables
    '(flycheck-keymap-prefix (kbd "C-c f"))
-   '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
+   '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
+
+  ;; add js checker
+  (flycheck-add-next-checker 'javascript-jshint
+                             'javascript-gjslint))
 
 
 ;;; el-get packages
