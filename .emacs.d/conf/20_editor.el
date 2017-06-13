@@ -228,7 +228,7 @@
   (yas-global-mode))
 
 (use-package yatemplate :ensure t ;; :defer t
-  :init (use-package buttercup :ensure t)
+  :init (use-package buttercup :ensure t :defer t)
   :config
   (setq yatemplate-dir (user-setting-directory "template"))
   (yatemplate-fill-alist)
