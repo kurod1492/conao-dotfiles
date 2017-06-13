@@ -241,6 +241,25 @@ Also turns off numbering in starred modes like *scratch*"
                    'web-mode-hook
                    'html-mode-hook))
 
+(use-package google-translate
+  :init
+  (use-package popwin
+    :defer t
+    :ensure t
+    :config (setq display-buffer-function      'popwin:display-buffer
+                  popwin:popup-window-position 'bottom))
+  :defer t
+  :ensure t
+  :config  ;; 翻訳のデフォルト値を設定(ja -> en)（無効化は C-u する）
+  (custom-set-variables
+   '(google-translate-default-source-language "ja")
+   '(google-translate-default-target-language "en"))
+
+  ;; google-translate.elの翻訳バッファをポップアップで表示させる
+  (push '("*Google Translate*") popwin:special-display-config)
+  :bind* (("C-x t"   . google-translate-at-point)
+          ("C-x S-t" . google-translate-query-translate)))
+
 
 
 ;; el-get packages
