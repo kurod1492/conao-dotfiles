@@ -150,6 +150,7 @@ Also turns off numbering in starred modes like *scratch*"
 (use-package yatemplate :ensure t ;; :defer t
   :init (use-package buttercup :ensure t)
   :config
+  (setq yatemplate-dir (user-setting-directory "template"))
   (yatemplate-fill-alist)
   (auto-insert-mode 1))
 
