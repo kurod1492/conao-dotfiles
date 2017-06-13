@@ -162,6 +162,8 @@ Also turns off numbering in starred modes like *scratch*"
         eldoc-minor-mode-string "")  ;; dont show ElDoc in mode line
   (find-function-setup-keys))
 
+(use-package minibuf-isearch :ensure t :defer t)
+
 
 ;; el-get packages
 (use-package other-window-or-split
@@ -170,4 +172,3 @@ Also turns off numbering in starred modes like *scratch*"
 
 (provide '30_utility)
 ;;; 30_utility.el ends here
-
