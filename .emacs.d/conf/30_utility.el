@@ -185,6 +185,18 @@ Also turns off numbering in starred modes like *scratch*"
         ;; メッセージを読み終わるまで待つ時間
         mode-compile-reading-time 0))
 
+(use-package rainbow-mode :ensure t :defer t
+  :commands rainbow-mode
+  :init
+  (hook-into-modes #'rainbow-mode
+                   'emacs-lisp-mode-hook
+                   'lisp-mode-hook
+                   'css-mode-hook
+                   'less-mode-hook
+                   'web-mode-hook
+                   'html-mode-hook))
+
+
 
 ;; el-get packages
 (use-package other-window-or-split
