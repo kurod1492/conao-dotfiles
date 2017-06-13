@@ -157,6 +157,8 @@ Also turns off numbering in starred modes like *scratch*"
 
 (use-package magit     :ensure t :defer t :bind ("C-x v" . magit-status))
 
+(use-package open-junk-file :ensure t :defer t :bind ("C-x C-x" . open-junk-file))
+
 ;; el-get packages
 (use-package other-window-or-split
   :init (el-get-bundle conao/other-window-or-split)
