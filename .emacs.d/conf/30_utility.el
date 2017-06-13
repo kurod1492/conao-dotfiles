@@ -119,10 +119,6 @@
            ;;:wp-code t
            ))))
 
-(use-package elscreen :ensure t
-  :config
-  (use-package elscreen-persist :ensure t))
-
 (use-package pdf-tools :ensure t
   :config
   ;; depend on glib, poppler, ghostscript, imagemagick

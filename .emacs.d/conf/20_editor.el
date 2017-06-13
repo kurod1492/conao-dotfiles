@@ -172,6 +172,10 @@
   
   (push 'ac-source-filename ac-sources))
 
+(use-package elscreen :ensure t
+  :config
+  (use-package elscreen-persist :ensure t))
+
 (use-package yascroll :ensure t
   :config
   (global-yascroll-bar-mode 1))
