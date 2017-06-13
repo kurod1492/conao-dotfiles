@@ -164,6 +164,11 @@ Also turns off numbering in starred modes like *scratch*"
 
 (use-package minibuf-isearch :ensure t :defer t)
 
+(use-package sequential-command :ensure t :defer t
+  :config
+  (use-package sequential-command-config)
+  (sequential-command-setup-keys))
+
 
 ;; el-get packages
 (use-package other-window-or-split
