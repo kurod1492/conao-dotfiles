@@ -65,7 +65,8 @@
     :config
     (add-hook 'find-file-hook
               (lambda () ;;(hs-minor-mode 1)
-                (unless (or (string-equal (file-name-extension buffer-file-name) "pdf")
+                (unless (or (string-equal (file-name-extension buffer-file-name) "")
+                            (string-equal (file-name-extension buffer-file-name) "pdf")
                             (string-equal (file-name-extension buffer-file-name) "PDF"))
                   (hs-minor-mode 1))
                 ))))
