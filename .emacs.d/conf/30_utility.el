@@ -147,13 +147,6 @@ Also turns off numbering in starred modes like *scratch*"
       (linum-mode 1)))
   )
 
-(use-package yatemplate :ensure t ;; :defer t
-  :init (use-package buttercup :ensure t)
-  :config
-  (setq yatemplate-dir (user-setting-directory "template"))
-  (yatemplate-fill-alist)
-  (auto-insert-mode 1))
-
 (use-package shell-pop :ensure t :defer t :bind ("C-o" . shell-pop))
 
 (use-package magit     :ensure t :defer t :bind ("C-x v" . magit-status))

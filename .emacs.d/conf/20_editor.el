@@ -222,6 +222,14 @@
   (flycheck-add-next-checker 'javascript-jshint
                              'javascript-gjslint))
 
+(use-package yatemplate :ensure t ;; :defer t
+  :init (use-package buttercup :ensure t)
+  :config
+  (setq yatemplate-dir (user-setting-directory "template"))
+  (yatemplate-fill-alist)
+  (auto-insert-mode 1))
+
+
 
 ;;; el-get packages
 (use-package auto-save-buffers
