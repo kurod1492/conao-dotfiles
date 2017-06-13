@@ -171,6 +171,11 @@ Also turns off numbering in starred modes like *scratch*"
 
 (use-package dired-rainbow :ensure t :defer t)
 
+(use-package dired-filter :ensure t :defer t
+  :commands dired-filter-mode
+  :init
+  (add-hook 'dired-mode-hook 'dired-filter-mode))
+
 (use-package mode-compile  :ensure t :defer t
   :bind* (("C-c c" . mode-compile))
   :config
