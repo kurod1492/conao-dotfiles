@@ -147,6 +147,13 @@ Also turns off numbering in starred modes like *scratch*"
       (linum-mode 1)))
   )
 
+(use-package yatemplate :ensure t ;; :defer t
+  :init (use-package buttercup :ensure t)
+  :config
+  (yatemplate-fill-alist)
+  (auto-insert-mode 1))
+
+
 ;; el-get packages
 (use-package other-window-or-split
   :init (el-get-bundle conao/other-window-or-split)
