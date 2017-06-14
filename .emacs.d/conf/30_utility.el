@@ -241,15 +241,13 @@ Also turns off numbering in starred modes like *scratch*"
                    'web-mode-hook
                    'html-mode-hook))
 
-(use-package google-translate
+(use-package google-translate :ensure t :defer t
   :init
   (use-package popwin
     :defer t
     :ensure t
     :config (setq display-buffer-function      'popwin:display-buffer
                   popwin:popup-window-position 'bottom))
-  :defer t
-  :ensure t
   :config  ;; 翻訳のデフォルト値を設定(ja -> en)（無効化は C-u する）
   (custom-set-variables
    '(google-translate-default-source-language "ja")
