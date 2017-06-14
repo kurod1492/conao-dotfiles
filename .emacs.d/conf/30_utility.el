@@ -147,14 +147,6 @@ Also turns off numbering in starred modes like *scratch*"
       (linum-mode 1)))
   )
 
-(use-package shell-pop :ensure t :defer t :bind ("C-o" . shell-pop))
-
-(use-package magit     :ensure t :defer t :bind ("C-x v" . magit-status))
-
-(use-package open-junk-file :ensure t :defer t :bind ("C-x C-x" . open-junk-file))
-
-(use-package lispxmp        :ensure t :defer t :bind ("C-c C-e" . lispxmp))
-
 (use-package auto-async-byte-compile :ensure t :defer t :disabled t
   :config
   (setq auto-async-byte-compile-exclude-files-regexp "/junk/"
@@ -258,7 +250,11 @@ Also turns off numbering in starred modes like *scratch*"
   :bind* (("C-x t"   . google-translate-at-point)
           ("C-x S-t" . google-translate-query-translate)))
 
-(use-package htmlize :defer t :ensure t)
+(use-package open-junk-file :ensure t :defer t :bind ("C-x C-x" . open-junk-file))
+(use-package shell-pop      :ensure t :defer t :bind ("C-o"     . shell-pop))
+(use-package lispxmp        :ensure t :defer t :bind ("C-c C-e" . lispxmp))
+(use-package magit          :ensure t :defer t :bind ("C-x v"   . magit-status))
+(use-package htmlize        :ensure t :defer t)
 
 
 ;; el-get packages
