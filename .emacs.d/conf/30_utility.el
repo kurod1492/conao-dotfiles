@@ -119,7 +119,7 @@
            ;;:wp-code t
            ))))
 
-(use-package pdf-tools :ensure t
+(use-package pdf-tools :ensure t :defer t
   :config
   ;; depend on glib, poppler, ghostscript, imagemagick
   ;; brew install glib poppler ghostscript imagemagick
