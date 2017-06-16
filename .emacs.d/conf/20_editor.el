@@ -220,14 +220,13 @@
         elscreen-display-screen-number nil)
   (elscreen-start))
 
-(use-package undohist :ensure t
-  :config
-  (undohist-initialize)
-  (setq undohist-directory (user-setting-directory "undohist")
-        undohist-ignored-files '("/tmp" "/elpa" "/el-get")))
-
 (use-package undo-tree :ensure t :diminish ""
   :config
+  (use-package undohist :ensure t
+    :config
+    (undohist-initialize)
+    (setq undohist-directory (user-setting-directory "undohist")
+          undohist-ignored-files '("/tmp" "/elpa" "/el-get")))
   (global-undo-tree-mode))
 
 (use-package flycheck :ensure t
