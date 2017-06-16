@@ -60,8 +60,7 @@
                 (unless (or (string-equal (file-name-extension buffer-file-name) "")
                             (string-equal (file-name-extension buffer-file-name) "pdf")
                             (string-equal (file-name-extension buffer-file-name) "PDF"))
-                  (hs-minor-mode 1))
-                ))))
+                  (hs-minor-mode 1))))))
 
 (use-package org2blog :ensure t :defer t
   :init (setq org2blog/wp-keymap-prefix "C-c n")
