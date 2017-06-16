@@ -222,7 +222,7 @@ Also turns off numbering in starred modes like *scratch*"
         ;; メッセージを読み終わるまで待つ時間
         mode-compile-reading-time 0))
 
-(use-package rainbow-mode :ensure t :defer t
+(use-package rainbow-mode :ensure t :defer t :diminish (rainbow-mode . "")
   :commands rainbow-mode
   :init
   (hook-into-modes #'rainbow-mode
