@@ -220,10 +220,6 @@
         elscreen-display-screen-number nil)
   (elscreen-start))
 
-(use-package yascroll :ensure t
-  :config
-  (global-yascroll-bar-mode 1))
-
 (use-package undohist :ensure t
   :config
   (undohist-initialize)
