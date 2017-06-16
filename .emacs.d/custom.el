@@ -38,7 +38,7 @@
  '(flycheck-keymap-prefix (kbd "C-c f"))
  '(package-selected-packages
    (quote
-    (htmlize magit lispxmp shell-pop open-junk-file popwin google-translate rainbow-mode mode-compile dired-details dired-subtree dired-filter dired-rainbow sequential-command minibuf-isearch buttercup yatemplate yasnippet session yascroll use-package-chords undohist undo-tree solarized-theme smartrep recentf-ext pdf-tools paredit org2blog init-loader helm fuzzy free-keys fold-dwim flycheck-pos-tip flex-autopair elscreen-persist el-get auto-install auto-complete)))
+    (elscreen-persist yatemplate yascroll use-package-chords undohist undo-tree solarized-theme smartrep shell-pop session sequential-command revive recentf-ext rainbow-mode popwin pdf-tools paredit org2blog open-junk-file mode-compile minibuf-isearch magit lispxmp init-loader htmlize helm google-translate fuzzy free-keys fold-dwim flycheck-pos-tip flex-autopair elscreen el-get dired-subtree dired-rainbow dired-filter dired-details buttercup auto-install auto-complete)))
  '(session-use-package t nil (session)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -136,9 +136,6 @@
 ;; open with drag file
 (define-key global-map [ns-drag-file] 'ns-find-file)
 
-;; save buffer condition
-(desktop-save-mode t)
-
 ;;;;; buffer-settings
 ;; insert "\", instead "¥"
 (define-key global-map [?¥] [?\\])

@@ -192,9 +192,14 @@
     (navbar-mode)
     (display-time-mode)
     (navbar-revive-workaround))
-  (use-package elscreen-persist :ensure t
+  (use-package elscreen-persist :ensure t ;; :disabled t
     :config
-    (elscreen-persist-mode 1))
+    (elscreen-persist-mode 1)
+
+    ;; desktop.el settings
+    (setq desktop-files-not-to-save "")
+    (setq desktop-restore-frames nil)
+    (desktop-save-mode t))
   (use-package elscreen-server)
   (setq elscreen-prefix-key "\C-c e"
         ;; don't show [x] mark in tab
