@@ -200,13 +200,11 @@
     (setq desktop-restore-frames nil)
     (desktop-save-mode t))
   (use-package elscreen-server)
-  (setq elscreen-prefix-key "\C-c e"
-        ;; don't show [x] mark in tab
-        elscreen-tab-display-kill-screen nil
-        ;; don't show [<->] mark in header-line
-        elscreen-tab-display-control nil
-        ;; don't show screen number in mode-line
-        elscreen-display-screen-number nil)
+  (custom-set-variables
+   '(elscreen-prefix-key (kbd "C-c e"))
+   '(elscreen-tab-display-kill-screen nil)    ;; don't show [x] mark in tab
+   '(elscreen-tab-display-control nil))       ;; don't show [<->] mark in header-line
+  (setq elscreen-display-screen-number nil)   ;; don't show screen number in mode-line
   (elscreen-start))
 
 (use-package fold-dwim :ensure t
