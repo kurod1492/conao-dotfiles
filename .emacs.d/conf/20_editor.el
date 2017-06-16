@@ -105,18 +105,6 @@
   ;; add "/"  to root directory
   ;; add "./" to current directory
   ;; "C-c h" to disp file history
-  
-  ;; split-root
-  ;;   (require 'split-root)
-  ;;   (setq helm-compilation-window-height-percent 20.0)
-  ;;   (defun helm-compilation-window-root (buf)
-  ;;     (setq helm-compilation-window
-  ;;           (split-root-window (truncate (* (window-height)
-  ;;                                           (/ helm-compilation-window-height-percent
-  ;;                                              100.0)))))
-  ;;      (set-window-buffer helm-compilation-window buf))
-  
-  ;;   (setq helm-display-function 'helm-compilation-window-root)
   )
 
 (use-package flex-autopair :ensure t :diminish ""
