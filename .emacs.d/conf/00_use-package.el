@@ -30,17 +30,11 @@
 
 (require 'use-package)
 
-;; key-chord
-(use-package key-chord
-  :ensure t
-  :config
-  (key-chord-mode 1))
-
-(use-package use-package-chords
-  :ensure t)
-
-(use-package smartrep
-  :ensure t)
+;; config packages
+(use-package key-chord          :ensure t :config (key-chord-mode 1))
+(use-package use-package-chords :ensure t)
+(use-package smartrep           :ensure t)
+(use-package el-get             :ensure t)
 
 (defsubst hook-into-modes (func &rest modes)
   "Apply function to hook. (add-hook MODES FUNC).
@@ -49,23 +43,11 @@ Use like that
                                  package-menu-mode-hook))"
   (dolist (mode-hook modes)
     (add-hook mode-hook func)))
-;; use-like
-;; (hook-into-modes 'hl-line-mode '(prog-mode-hook
-;;                                 package-menu-mode-hook))
-
-(use-package el-get :ensure t)
-
-;; (unless (require 'el-get nil 'noerror)
-;;   (with-current-buffer
-;;       (url-retrieve-synchronously
-;;        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-;;     (goto-char (point-max))
-;;     (eval-print-last-sexp)))
 
 (eval-when-compile
   (require 'use-package)
-(require 'diminish)
-(require 'bind-key))
+  (require 'diminish)
+  (require 'bind-key))
 
 (provide '00_use-package)
 ;;; 00_use-package.el ends here
