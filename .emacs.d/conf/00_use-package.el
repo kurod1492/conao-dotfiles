@@ -36,6 +36,12 @@
 (use-package smartrep           :ensure t)
 (use-package el-get             :ensure t)
 
+;; cords config
+;; (use-package ace-jump-mode
+;;   :chords (("jj" . ace-jump-char-mode)
+;;            ("jk" . ace-jump-word-mode)
+;;            ("jl" . ace-jump-line-mode)))
+
 (defsubst hook-into-modes (func &rest modes)
   "Apply function to hook. (add-hook MODES FUNC).
 Use like that
