@@ -156,11 +156,6 @@ Also turns off numbering in starred modes like *scratch*"
 
 (use-package minibuf-isearch :ensure t :defer t)
 
-(use-package sequential-command :ensure t :defer t
-  :config
-  (use-package sequential-command-config)
-  (sequential-command-setup-keys))
-
 (use-package dired-rainbow :ensure t :defer t)
 
 (use-package dired-filter :ensure t :defer t

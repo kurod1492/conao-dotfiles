@@ -250,6 +250,10 @@
   (yatemplate-fill-alist)
   (auto-insert-mode 1))
 
+(use-package sequential-command :ensure t
+  :config
+  (use-package sequential-command-config)
+  (sequential-command-setup-keys))
 
 ;;; el-get packages
 (use-package auto-save-buffers
