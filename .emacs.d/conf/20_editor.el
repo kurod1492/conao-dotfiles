@@ -183,6 +183,16 @@
           ("C-z r"       . elscreen-screen-nickname))
 ;;  :init (el-get-bundle conao/elscreen-swap)
   :config
+  (use-package session :ensure t
+    :config
+    (setq session-initialize '(places session)
+          session-globals-include '((kill-ring 100)
+                                    (session-files-alist 500 t)
+                                    (file-name-history 10000))
+          session-globals-max-string 100000
+          history-length t
+          session-undo-check -1)
+    (add-hook 'after-init-hook 'session-initialize))
   (use-package navbar
     :init
     (el-get-bundle papaeye/emacs-navbar
@@ -209,17 +219,6 @@
         ;; don't show screen number in mode-line
         elscreen-display-screen-number nil)
   (elscreen-start))
-
-(use-package session :ensure t
-  :config
-  (setq session-initialize '(de-saveplace session keys menus places)
-        session-globals-include '((kill-ring 50)
-                                  (session-files-alist 500 t)
-                                  (file-name-history 10000))
-        session-globals-maxlstring 100000000
-        history-length t
-        session-undo-check -1)
-  (add-hook 'after-init-hook 'session-initialize))
 
 (use-package yascroll :ensure t
   :config
