@@ -43,7 +43,7 @@
 		(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
 			(normal-top-level-add-subdirs-to-load-path)))))
 
-(defvar load-path-folder-list '("site-lisp" "conf" "elpa" "el-get"))
+(defvar load-path-folder-list '("site-lisp" "conf" "elpa" "el-get" "auto-install"))
 
 (dolist (folder load-path-folder-list)
   (unless (file-directory-p (concat user-emacs-directory folder))
