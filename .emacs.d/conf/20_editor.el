@@ -260,6 +260,11 @@
   (use-package sequential-command-config)
   (sequential-command-setup-keys))
 
+(use-package anzu :ensure t :diminish ""
+  :config
+  (global-anzu-mode 1)
+  (setq anzu-use-migemo t
+        anzu-search-threshold 1000))
 ;;; el-get packages
 (use-package auto-save-buffers
   :init (el-get-bundle conao/auto-save-buffers)
