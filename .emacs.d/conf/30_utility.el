@@ -123,7 +123,7 @@
   :config
   ;; depend on glib, poppler, ghostscript, imagemagick
   ;; brew install glib poppler ghostscript imagemagick
-  (pdf-tools-install)
+  (pdf-tools-install t)
 
   (add-to-list 'auto-mode-alist (cons "\\.pdf$" 'pdf-view-mode))
   ;; linum mode off in pdf-mode
