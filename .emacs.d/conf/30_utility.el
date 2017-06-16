@@ -39,13 +39,12 @@
              auto-install-from-gist
              auto-install-mode)
   :config
-  (setq auto-install-directory "~/.emacs.d/auto-install")
-  (setq auto-install-emacswiki-base-url "https://www.emacswiki.org/emacs/download/")
-
-  (setq auto-install-save-confirm nil)
-  (setq auto-install-replace-confirm nil)
-  (setq auto-install-install-confirm nil)
-  (setq auto-install-from-dired-confirm nil))
+  (setq auto-install-directory "~/.emacs.d/auto-install"
+        auto-install-emacswiki-base-url "https://www.emacswiki.org/emacs/download/"
+        auto-install-save-confirm nil
+        auto-install-replace-confirm nil
+        auto-install-install-confirm nil
+        auto-install-from-dired-confirm nil))
 
 (use-package org2blog :ensure t :defer t
   :init (setq org2blog/wp-keymap-prefix "C-c n")
