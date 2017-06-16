@@ -160,10 +160,9 @@ Also turns off numbering in starred modes like *scratch*"
   :config
   (use-package dired-rainbow :ensure t :defer t)
   (use-package dired-filter  :ensure t :defer t
-    :init
+    :config
     (add-hook 'dired-mode-hook 'dired-filter-mode))
   (use-package dired-subtree :ensure t :defer t
-    :commands dired-subtree-insert
     :init
     (use-package dired-details :ensure t)
     (bind-keys :map dired-mode-map
