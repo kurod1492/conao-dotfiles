@@ -47,21 +47,6 @@
   (setq auto-install-install-confirm nil)
   (setq auto-install-from-dired-confirm nil))
 
-(use-package fold-dwim :ensure t :defer t
-  :bind (("<f7>"     . fold-dwim-toggle)
-         ("M-<f7>"   . fold-dwim-hide-all)
-         ("C-M-<f7>" . fold-dwim-show-all))
-  :init
-  (use-package hideshow
-    :diminish (hs-minor-mode . "")
-    :config
-    (add-hook 'find-file-hook
-              (lambda () ;;(hs-minor-mode 1)
-                (unless (or (string-equal (file-name-extension buffer-file-name) "")
-                            (string-equal (file-name-extension buffer-file-name) "pdf")
-                            (string-equal (file-name-extension buffer-file-name) "PDF"))
-                  (hs-minor-mode 1))))))
-
 (use-package org2blog :ensure t :defer t
   :init (setq org2blog/wp-keymap-prefix "C-c n")
   :bind (

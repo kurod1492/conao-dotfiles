@@ -220,6 +220,21 @@
         elscreen-display-screen-number nil)
   (elscreen-start))
 
+(use-package fold-dwim :ensure t
+  :bind (("<f7>"     . fold-dwim-toggle)
+         ("M-<f7>"   . fold-dwim-hide-all)
+         ("C-M-<f7>" . fold-dwim-show-all))
+  :init
+  (use-package hideshow
+    :diminish (hs-minor-mode . "")
+    :config
+    (add-hook 'find-file-hook
+              (lambda () ;;(hs-minor-mode 1)
+                (unless (or (string-equal (file-name-extension buffer-file-name) "")
+                            (string-equal (file-name-extension buffer-file-name) "pdf")
+                            (string-equal (file-name-extension buffer-file-name) "PDF"))
+                  (hs-minor-mode 1))))))
+
 (use-package undo-tree :ensure t :diminish ""
   :config
   (use-package undohist :ensure t
