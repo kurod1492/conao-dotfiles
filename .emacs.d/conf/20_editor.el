@@ -172,7 +172,7 @@
   
   (push 'ac-source-filename ac-sources))
 
-(use-package elscreen :ensure t
+(use-package elscreen :ensure t :demand t
   :bind* (("C-z k"       . elscreen-kill-screen-and-buffers)
           ;; confrict with org-mode
           ;; ("C-M-<right>" . elscreen-swap-next)
@@ -181,19 +181,29 @@
           ("C-S-<tab>"   . elscreen-previous)
           ("C-z d"       . elscreen-dired)
           ("C-z r"       . elscreen-screen-nickname))
-  ;; :init (el-get-bundle conao/elscreen-swap)
+;;  :init (el-get-bundle conao/elscreen-swap)
   :config
+  (use-package navbar
+    :init
+    (el-get-bundle papaeye/emacs-navbar
+      :features (navbarx-elscreen navbarx-version navbarx-time))
+    :config
+    (setq navbar-item-list '(navbarx-version navbarx-time navbarx-elscreen))
+    (navbar-mode)
+    (display-time-mode)
+    (navbar-revive-workaround))
   (use-package elscreen-persist :ensure t
-    :config (elscreen-persist-mode))
-  (use-package elscreen-server :defer t)
-  (setq elscreen-prefix-key "\C-z"
+    :config
+    (elscreen-persist-mode 1))
+  (use-package elscreen-server)
+  (setq elscreen-prefix-key "\C-c e"
         ;; don't show [x] mark in tab
         elscreen-tab-display-kill-screen nil
         ;; don't show [<->] mark in header-line
         elscreen-tab-display-control nil
         ;; don't show screen number in mode-line
         elscreen-display-screen-number nil)
-  )
+  (elscreen-start))
 
 (use-package session :ensure t
   :config

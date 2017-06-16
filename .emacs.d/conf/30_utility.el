@@ -262,21 +262,5 @@ Also turns off numbering in starred modes like *scratch*"
   :init (el-get-bundle conao/other-window-or-split)
   :bind* ("C-t" . other-window-or-split))
 
-(use-package emacs-navbar
-  :init (el-get-bundle papaeye/emacs-navbar)
-  :config
-  (use-package navbarx-elscreen)
-  (use-package navbarx-time
-    :config
-    (setq navbar-item-list '(navbarx-version
-                             navbarx-time
-                             navbarx-elscreen))
-    (navbar-mode)
-    (navbar-revive-workaround)
-    (display-time-mode)
-    
-    ;;; elscreen-start ;;;
-    (elscreen-start)))
-
 (provide '30_utility)
 ;;; 30_utility.el ends here
