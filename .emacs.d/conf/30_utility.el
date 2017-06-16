@@ -120,8 +120,7 @@ Changed by linum-off.
 Also turns off numbering in starred modes like *scratch*"
     (unless (or (minibufferp) (member major-mode linum-disabled-modes-list)
                 (and linum-disable-starred-buffers (string-match "*" (buffer-name))))
-      (linum-mode 1)))
-  )
+      (linum-mode 1))))
 
 (use-package auto-async-byte-compile :ensure t :defer t :disabled t
   :config
@@ -216,8 +215,6 @@ Also turns off numbering in starred modes like *scratch*"
   (push '("*Google Translate*") popwin:special-display-config)
   :bind* (("C-x t"   . google-translate-at-point)
           ("C-x S-t" . google-translate-query-translate)))
-
-
 
 
 ;; el-get packages
