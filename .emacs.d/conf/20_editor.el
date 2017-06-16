@@ -29,6 +29,7 @@
          ("C-x C-f" . helm-find-files)
          ("C-x C-r" . helm-recentf)
          ("C-x b"   . helm-buffers-list)
+         ("C-x C-b" . helm-buffers-list)
          ("C-x g"   . helm-google-suggest)
          ("C-R"     . helm-regexp)
          ("M-O"     . helm-occur)
