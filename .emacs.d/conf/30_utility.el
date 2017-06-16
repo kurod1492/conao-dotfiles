@@ -45,21 +45,7 @@
   (setq auto-install-save-confirm nil)
   (setq auto-install-replace-confirm nil)
   (setq auto-install-install-confirm nil)
-  (setq auto-install-from-dired-confirm nil)
-  ;; always connect Internet to update package name when Emacs start up
-  ;; but not necessary, auto-install will automatically update before install method
-  ;; (auto-install-update-emacswiki-package-name t)
-
-;;   (use-package split-root
-;;     :init (auto-install-from-url "http://nschum.de/src/emacs/split-root/split-root.el")
-;;     :config
-;;     (setq split-root-window-height 20)
-;;     (defun display-buffer-function--split-root (buf &optional ignore)
-;;       (let ((window (split-root-window split-root-window-height)))
-;;         (set-window-buffer window buf)
-;;         window))
-;;     (setq anything-display-function 'display-buffer-function--split-root))
-  )
+  (setq auto-install-from-dired-confirm nil))
 
 (use-package fold-dwim :ensure t :defer t
   :bind (("<f7>"     . fold-dwim-toggle)
