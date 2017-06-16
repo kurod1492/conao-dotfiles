@@ -24,6 +24,14 @@
 
 ;;; Code:
 
+(use-package free-keys       :ensure t :defer t)
+(use-package minibuf-isearch :ensure t :defer t)
+(use-package open-junk-file  :ensure t :defer t :bind ("C-x C-x" . open-junk-file))
+(use-package shell-pop       :ensure t :defer t :bind ("C-o"     . shell-pop))
+(use-package lispxmp         :ensure t :defer t :bind ("C-c C-e" . lispxmp))
+(use-package magit           :ensure t :defer t :bind ("C-x v"   . magit-status))
+(use-package htmlize         :ensure t :defer t)
+
 (use-package auto-install :ensure t :defer t
   :commands (auto-install-from-buffer
              auto-install-from-url
@@ -52,8 +60,6 @@
 ;;         window))
 ;;     (setq anything-display-function 'display-buffer-function--split-root))
   )
-
-(use-package free-keys :ensure t :defer t)
 
 (use-package fold-dwim :ensure t :defer t
   :bind (("<f7>"     . fold-dwim-toggle)
@@ -154,8 +160,6 @@ Also turns off numbering in starred modes like *scratch*"
         eldoc-minor-mode-string "")  ;; dont show ElDoc in mode line
   (find-function-setup-keys))
 
-(use-package minibuf-isearch :ensure t :defer t)
-
 (use-package dired :defer t
   :config
   (use-package dired-rainbow :ensure t :defer t)
@@ -243,11 +247,7 @@ Also turns off numbering in starred modes like *scratch*"
   :bind* (("C-x t"   . google-translate-at-point)
           ("C-x S-t" . google-translate-query-translate)))
 
-(use-package open-junk-file :ensure t :defer t :bind ("C-x C-x" . open-junk-file))
-(use-package shell-pop      :ensure t :defer t :bind ("C-o"     . shell-pop))
-(use-package lispxmp        :ensure t :defer t :bind ("C-c C-e" . lispxmp))
-(use-package magit          :ensure t :defer t :bind ("C-x v"   . magit-status))
-(use-package htmlize        :ensure t :defer t)
+
 
 
 ;; el-get packages
