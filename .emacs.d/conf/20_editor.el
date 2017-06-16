@@ -236,7 +236,10 @@
   (global-flycheck-mode)
   (custom-set-variables
    '(flycheck-keymap-prefix (kbd "C-c f"))
-   '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
+   '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
+  (smartrep-define-key
+      global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
+                         ("M-p" . 'flymake-goto-prev-error))))
 
 (use-package yasnippet :ensure t
   :config
