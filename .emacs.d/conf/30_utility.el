@@ -215,6 +215,11 @@ Also turns off numbering in starred modes like *scratch*"
   :bind* (("C-x t"   . google-translate-at-point)
           ("C-x S-t" . google-translate-query-translate)))
 
+(use-package elisp-slime-nav :ensure t :diminish (elisp-slime-nav-mode . "")
+  :config
+  (hook-into-modes 'elisp-slime-nav-mode
+                   'emacs-lisp-mode-hook
+                   'lisp-interaction-mode-hook))
 
 ;; el-get packages
 (use-package other-window-or-split
