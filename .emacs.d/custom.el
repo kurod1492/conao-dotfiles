@@ -41,7 +41,8 @@
  '(flycheck-keymap-prefix (kbd "C-c f"))
  '(package-selected-packages
    (quote
-    (elisp-slime-nav anzu yatemplate yascroll use-package-chords undohist undo-tree solarized-theme smartrep shell-pop session sequential-command recentf-ext rainbow-mode popwin pdf-tools paredit org2blog open-junk-file mode-compile minibuf-isearch magit lispxmp init-loader htmlize helm google-translate fuzzy free-keys fold-dwim flycheck-pos-tip flex-autopair elscreen-persist el-get dired-subtree dired-rainbow dired-filter dired-details buttercup auto-install auto-complete))))
+    (elisp-slime-nav popwin google-translate rainbow-mode mode-compile dired-details dired-subtree dired-filter dired-rainbow pdf-tools org2blog auto-install htmlize magit lispxmp shell-pop open-junk-file minibuf-isearch free-keys anzu sequential-command buttercup yatemplate yasnippet flycheck-pos-tip flycheck undohist undo-tree fold-dwim elscreen-persist session elscreen pos-tip fuzzy auto-complete paredit flex-autopair helm recentf-ext el-get smartrep use-package-chords key-chord use-package init-loader solarized-theme)))
+ '(session-use-package t nil (session)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
