@@ -23,7 +23,7 @@
 ;; 
 
 ;;; Code:
-(use-package helm :ensure t :diminish ""
+(use-package helm :ensure t :demand t :diminish ""
   :bind (("M-x"     . helm-M-x)
          ("C-x b"   . helm-mini)
          ("C-x C-f" . helm-find-files)
@@ -134,7 +134,7 @@
   ;; (setq okebe "okabe")
   )
 
-(use-package auto-complete :ensure t :diminish ""
+(use-package auto-complete :ensure t :demand t :diminish ""
   :bind (:map ac-menu-map
               ("C-n" . ac-next)
               ("C-p" . ac-previous))
