@@ -221,6 +221,11 @@ Also turns off numbering in starred modes like *scratch*"
                    'emacs-lisp-mode-hook
                    'lisp-interaction-mode-hook))
 
+(use-package latex-math-preview :ensure t
+  :if (executable-find "platex")
+  :bind (("C-c l l" . latex-math-preview-expression)
+         ("C-c l s" . latex-math-preview-insert-mathematical-symbol)))
+
 ;; el-get packages
 (use-package other-window-or-split
   :init (el-get-bundle conao/other-window-or-split)
