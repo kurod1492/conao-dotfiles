@@ -261,10 +261,28 @@
   (sequential-command-setup-keys))
 
 (use-package anzu :ensure t :diminish ""
+  :init
+  (use-package migemo
+    :if (executable-find "cmigemo")
+    :ensure t
+    :config
+    ;; depend on latest cmigemo
+    ;; $ brew install cmigemo --HEAD
+    (setq migemo-command "cmigemo")
+    (setq migemo-options '("-q" "--emacs"))
+    (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+    
+    (setq migemo-user-dictionary nil)
+    (setq migemo-regex-dictionary nil)
+    (setq migemo-coding-system 'utf-8-unix)
+    (migemo-init))
   :config
   (global-anzu-mode 1)
-  (setq anzu-use-migemo t
-        anzu-search-threshold 1000))
+  (when (executable-find "cmigemo")
+    (setq anzu-use-migemo t))
+  (setq anzu-search-threshold 1000))
+
+
 
 
 ;;; el-get packages
