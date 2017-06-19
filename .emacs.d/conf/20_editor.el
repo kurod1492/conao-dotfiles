@@ -244,9 +244,11 @@
                          ("M-p" . 'flymake-goto-prev-error))))
 
 (use-package yasnippet :ensure t
+  :bind (("C-c i i" . yas-insert-snippet)
+         ("C-c i n" . yas-new-snippet)
+         ("C-c i v" . yas-visit-snippet-file))
   :config
-  (add-to-list yas-snippet-dirs (user-setting-directory "snippet"))
-  (yas-global-mode))
+  (yas-global-mode 1))
 
 (use-package yatemplate :ensure t ;; :defer t
   :init (use-package buttercup :ensure t :defer t)
