@@ -226,6 +226,7 @@ Also turns off numbering in starred modes like *scratch*"
   :bind (("C-c l l" . latex-math-preview-expression)
          ("C-c l s" . latex-math-preview-insert-mathematical-symbol)))
 
+
 ;; el-get packages
 (use-package other-window-or-split
   :init (el-get-bundle conao/other-window-or-split)
