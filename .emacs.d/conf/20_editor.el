@@ -139,7 +139,7 @@
               ("C-n" . ac-next)
               ("C-p" . ac-previous))
   :init
-  (use-package fuzzy :ensure t)
+  (use-package fuzzy   :ensure t)
   (use-package pos-tip :ensure t)
   
   :config
