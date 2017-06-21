@@ -182,4 +182,3 @@ and the `*Messages*' buffer while BODY is evaluated."
   )
 (provide '10_starndard-elisp)
 ;;; 10_standard-elisp.el ends here
-
