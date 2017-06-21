@@ -161,6 +161,37 @@
   
   (push 'ac-source-filename ac-sources))
 
+(use-package yasnippet :ensure t
+  :bind (("C-c i i" . yas-insert-snippet)
+         ("C-c i n" . yas-new-snippet)
+         ("C-c i e" . yas-visit-snippet-file)
+         ("C-c i v" . yas-describe-tables))
+  :config
+  (use-package yatemplate :ensure t ;; :defer t
+    :init (use-package buttercup :ensure t :defer t)
+    :config
+    (setq yatemplate-dir (user-setting-directory "template"))
+    (yatemplate-fill-alist)
+    (auto-insert-mode 1))
+  
+  (prog1 "yas-desable-flymake-when-expanding"
+         (defvar flymake-is-active-flag nil)
+
+         (defadvice yas-expand-snippet
+             (before inhibit-flymake-syntax-checking-while-expanding-snippet activate)
+           (setq flymake-is-active-flag
+                 (or flymake-is-active-flag
+                     (assoc-default 'flymake-mode (buffer-local-variables))))
+           (when flymake-is-active-flag
+             (flymake-mode-off)))
+
+         (add-hook 'yas/after-exit-snippet-hook
+                   '(lambda ()
+                      (when flymake-is-active-flag
+                        (flymake-mode-on)
+                        (setq flymake-is-active-flag nil)))))
+  (yas-global-mode 1))
+
 (use-package elscreen :ensure t :demand t
   :bind* (("C-z k"       . elscreen-kill-screen-and-buffers)
           ;; confrict with org-mode
@@ -242,21 +273,6 @@
   (smartrep-define-key
       global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
                          ("M-p" . 'flymake-goto-prev-error))))
-
-(use-package yasnippet :ensure t
-  :bind (("C-c i i" . yas-insert-snippet)
-         ("C-c i n" . yas-new-snippet)
-         ("C-c i e" . yas-visit-snippet-file)
-         ("C-c i v" . yas-describe-tables))
-  :config
-  (yas-global-mode 1))
-
-(use-package yatemplate :ensure t ;; :defer t
-  :init (use-package buttercup :ensure t :defer t)
-  :config
-  (setq yatemplate-dir (user-setting-directory "template"))
-  (yatemplate-fill-alist)
-  (auto-insert-mode 1))
 
 (use-package sequential-command :ensure t
   :config
