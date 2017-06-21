@@ -23,7 +23,7 @@
 ;; 
 
 ;;; Code:
-(use-package helm :ensure t :demand t :diminish ""
+(use-package helm :ensure t :diminish ""
   :bind (("M-x"     . helm-M-x)
          ("C-x b"   . helm-mini)
          ("C-x C-f" . helm-find-files)
