@@ -246,7 +246,8 @@
 (use-package yasnippet :ensure t
   :bind (("C-c i i" . yas-insert-snippet)
          ("C-c i n" . yas-new-snippet)
-         ("C-c i v" . yas-visit-snippet-file))
+         ("C-c i e" . yas-visit-snippet-file)
+         ("C-c i v" . yas-describe-tables))
   :config
   (yas-global-mode 1))
 
