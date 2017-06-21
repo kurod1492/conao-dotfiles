@@ -156,6 +156,29 @@ and the `*Messages*' buffer while BODY is evaluated."
                                (with-suppressed-message (recentf-save-list))))
   (use-package recentf-ext :ensure t))
 
+(use-package table
+  ;; make table
+  ;; M-x table-insert to make table with size
+  ;; M-x table-capture to make table with csv like text
+  ;; M-x org-table-convert to make table from org-mode's table
+
+  ;; M-x table-unrexognize-table to text
+  ;; M-x table-rexognize-table to table
+  
+  ;; TAB to move cell
+  ;; C->, C-< to adjust column width
+  ;; C-}, C-{ to adjust row hight
+  ;; C-- to split cell horizontal
+  ;; C-| to split cell vertical
+  ;; C-* to merge cell
+  ;; C-+ to add row
+  ;; C-^ to convert HTML, LaTeX
+  ;; C-: to adjust text
+
+  ;; in org mode
+  ;; out of org's table, C-c ~ to make table (M-x table-insert)
+  ;; in org's table, C-c ~ to convert table (M-x org-table-convert)
+  ;; in org's table, C-c ' to edit table
+  )
 (provide '10_starndard-elisp)
 ;;; 10_standard-elisp.el ends here
-

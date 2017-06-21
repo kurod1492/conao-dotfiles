@@ -285,7 +285,17 @@
     (setq anzu-use-migemo t))
   (setq anzu-search-threshold 1000))
 
-
+(use-package multiple-cursors :ensure t
+  :bind* (("C-M-SPC" . mc/mark-all-dwim-or-expand-region))
+  :init
+  (use-package expand-region :ensure t
+    :config
+    (defun mc/mark-all-dwim-or-expand-region (arg)
+      (interactive "p")
+      (cl-case arg
+        (16 (mc/mark-all-dwim t))
+        (4 (mc/mark-all-dwim nil))
+        (1 (call-interactively 'er/expand-region))))))
 
 
 ;;; el-get packages
@@ -297,3 +307,6 @@
 
 (provide '20_editor)
 ;;; 20_editor.el ends here
+
+
+
