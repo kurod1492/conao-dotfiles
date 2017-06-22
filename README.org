@@ -1,0 +1,3 @@
+* Conao's dotfiles
+** Installation
+$ git clone https://github.com/conao/dotfiles.git
