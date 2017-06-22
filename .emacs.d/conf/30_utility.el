@@ -232,7 +232,10 @@ Also turns off numbering in starred modes like *scratch*"
                 latex-math-preview-tex-to-ps-for-save     '(platex dvips-to-ps)
                 latex-math-preview-beamer-to-png          '(platex dvipdfmx gs-to-png))
   (setq latex-math-preview-latex-template-header
-        "\\documentclass{jsarticle}\n\\pagestyle{empty}\n\\usepackage[dvips]{color}\\color{white}"
+"\\documentclass{jsarticle}
+\\pagestyle{empty}
+\\usepackage[dvips]{color}
+color{white}"
         latex-math-preview-initial-page-of-symbol-list '((math . nil) (text . nil)))
   (add-to-list 'latex-math-preview-command-option-alist
                '(gs-to-png "-q" "-dSAFER" "-dNOPAUSE" "-dBATCH" "-sDEVICE=pngalpha"

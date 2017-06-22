@@ -40,7 +40,7 @@
          :map helm-map
          ("<tab>"   . helm-execute-persistent-action)
          ("C-i"     . helm-execute-persistent-action)
-         ("C-z"     . helm-select-action))
+         ("C-c c"   . helm-select-action))
   :config
   (use-package helm-config)
   
@@ -302,9 +302,9 @@
   (setq anzu-search-threshold 1000))
 
 (use-package multiple-cursors :ensure t
-  :bind* (("C-M-SPC" . mc/mark-all-dwim-or-expand-region))
   :init
   (use-package expand-region :ensure t
+    :bind* (("C-M-SPC" . mc/mark-all-dwim-or-expand-region))
     :config
     (defun mc/mark-all-dwim-or-expand-region (arg)
       (interactive "p")
