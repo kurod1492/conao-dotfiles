@@ -323,6 +323,3 @@
 
 (provide '20_editor)
 ;;; 20_editor.el ends here
-
-
-

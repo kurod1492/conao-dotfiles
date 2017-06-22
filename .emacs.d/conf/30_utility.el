@@ -224,8 +224,20 @@ Also turns off numbering in starred modes like *scratch*"
 (use-package latex-math-preview :ensure t
   :if (executable-find "platex")
   :bind (("C-c l l" . latex-math-preview-expression)
-         ("C-c l s" . latex-math-preview-insert-mathematical-symbol)))
-
+         ("C-c l s" . latex-math-preview-insert-mathematical-symbol))
+  :config
+  (setq-default latex-math-preview-tex-to-png-for-preview '(platex dvips-to-eps gs-to-png)
+                latex-math-preview-tex-to-png-for-save    '(platex dvipng)
+                latex-math-preview-tex-to-eps-for-save    '(platex dvips-to-eps)
+                latex-math-preview-tex-to-ps-for-save     '(platex dvips-to-ps)
+                latex-math-preview-beamer-to-png          '(platex dvipdfmx gs-to-png))
+  (setq latex-math-preview-latex-template-header
+        "\\documentclass{jsarticle}\n\\pagestyle{empty}\n\\usepackage[dvips]{color}\\color{white}"
+        latex-math-preview-initial-page-of-symbol-list '((math . nil) (text . nil)))
+  (add-to-list 'latex-math-preview-command-option-alist
+               '(gs-to-png "-q" "-dSAFER" "-dNOPAUSE" "-dBATCH" "-sDEVICE=pngalpha"
+                           "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
+                           "-dGraphicsAlphaBits=4" "-dQUIET")))
 
 ;; el-get packages
 (use-package other-window-or-split
