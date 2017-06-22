@@ -1,0 +1,11 @@
+# general ignore files
+# finder cached file
+.DS_Store
+
+# general backup files
+*~
+.#*
+\#*
+._*
+
+/.emacs.d/abbrev_defs

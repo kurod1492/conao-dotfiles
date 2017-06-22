@@ -1,0 +1,25 @@
+# backupfiles
+history/
+undohist/
+
+# unnesesary files
+.emacs.desktop*
+.session
+.recentf
+recentf
+elscreen
+ac-comphist.dat
+
+# download packages
+elpa/
+el-get/
+auto-install/
+
+# cookie files
+url/
+
+# compiled files
+*.elc
+
+# annoying comstom file
+custom.el
