@@ -15,6 +15,9 @@ elpa/
 el-get/
 auto-install/
 
+# cookie files
+url/
+
 # compiled files
 *.elc
 
