@@ -107,11 +107,11 @@
   ;; "C-c h" to disp file history
   )
 
-(use-package flex-autopair :ensure t :diminish ""
+(use-package smartparens :ensure t :diminish ""
+  :init (use-package markdown-mode :ensure t)
   :config
-  (setq flex-autopair 1)
-  ;; http://d.hatena.ne.jp/uk-ar/20120401/1333282805
-  )
+  (sp-pair "$" "$")
+  (smartparens-global-mode t))
 
 (use-package paredit :ensure t :diminish ""
   :config
