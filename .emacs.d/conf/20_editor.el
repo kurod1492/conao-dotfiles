@@ -30,9 +30,9 @@
          ("C-x C-r" . helm-recentf)
          ("C-x b"   . helm-buffers-list)
          ("C-x C-b" . helm-buffers-list)
+         ("C-s"     . helm-occur)
          ("C-x g"   . helm-google-suggest)
          ("C-R"     . helm-regexp)
-         ("M-O"     . helm-occur)
          ("M-y"     . helm-show-kill-ring)
          ("C-c h"   . helm-command-prefix)
          :map helm-command-map

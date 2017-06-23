@@ -242,13 +242,6 @@ color{white}"
                            "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
                            "-dGraphicsAlphaBits=4" "-dQUIET")))
 
-(use-package color-moccur :ensure t
-  :config
-  (setq moccur-split-word t)
-  (use-package moccur-edit :ensure t)
-  (use-package helm-c-moccur :ensure t))
-
-(use-package helm-swoop :ensure t)
 ;; el-get packages
 (use-package other-window-or-split
   :init (el-get-bundle conao/other-window-or-split)
