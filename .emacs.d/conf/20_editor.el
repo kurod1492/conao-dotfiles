@@ -280,7 +280,7 @@
   (use-package sequential-command-config)
   (sequential-command-setup-keys))
 
-(use-package anzu :ensure t :diminish ""
+(use-package anzu :ensure t :diminish "" :disabled t ;; C-s bind to helm-occur
   :init
   (use-package migemo
     :if (executable-find "cmigemo")
