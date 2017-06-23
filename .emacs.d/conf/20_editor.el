@@ -111,6 +111,7 @@
   :init (use-package markdown-mode :ensure t)
   :config
   (sp-pair "$" "$")
+  (show-smartparens-global-mode t)
   (smartparens-global-mode t))
 
 (use-package paredit :ensure t :diminish ""
