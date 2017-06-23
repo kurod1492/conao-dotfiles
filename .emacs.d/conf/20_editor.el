@@ -40,7 +40,7 @@
          :map helm-map
          ("<tab>"   . helm-execute-persistent-action)
          ("C-i"     . helm-execute-persistent-action)
-         ("C-c c"   . helm-select-action))
+         ("C-z"   . helm-select-action))
   :config
   (use-package helm-config)
   
@@ -193,14 +193,14 @@
   (yas-global-mode 1))
 
 (use-package elscreen :ensure t :demand t
-  :bind* (("C-z k"       . elscreen-kill-screen-and-buffers)
+  :bind* (("C-c e k"       . elscreen-kill-screen-and-buffers)
           ;; confrict with org-mode
           ;; ("C-M-<right>" . elscreen-swap-next)
           ;; ("C-M-<left>"  . elscreen-swap-previous)
           ("C-<tab>"     . elscreen-next)
           ("C-S-<tab>"   . elscreen-previous)
-          ("C-z d"       . elscreen-dired)
-          ("C-z r"       . elscreen-screen-nickname))
+          ("C-c e d"       . elscreen-dired)
+          ("C-c e r"       . elscreen-screen-nickname))
 ;;  :init (el-get-bundle conao/elscreen-swap)
   :config
   (use-package session :ensure t
