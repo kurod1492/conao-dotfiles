@@ -111,10 +111,13 @@
   :init (use-package markdown-mode :ensure t)
   :config
   (sp-pair "$" "$")
+
+  (sp-use-smartparens-bindings)
+  (smartparens-global-strict-mode t)
   (show-smartparens-global-mode t)
   (smartparens-global-mode t))
 
-(use-package paredit :ensure t :diminish ""
+(use-package paredit :ensure t :diminish "" :disabled t
   :config
   (hook-into-modes 'paredit-mode
                    'lisp-mode-hook
