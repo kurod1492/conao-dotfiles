@@ -110,6 +110,7 @@
 (use-package smartparens :ensure t :diminish ""
   :init (use-package markdown-mode :ensure t)
   :config
+  (use-package smartparens-config)
   (sp-pair "$" "$")
 
   (sp-use-smartparens-bindings)
