@@ -319,8 +319,9 @@
 
 
 ;;; el-get packages
-(use-package auto-save-buffers
+(use-package auto-save-buffers :demand t
   :init (el-get-bundle conao/auto-save-buffers)
+  :bind ("C-x a s" . auto-save-buffers-toggle)
   :config
   ;; save buffer 0.5s each
   (run-with-idle-timer 0.5 t 'auto-save-buffers))
