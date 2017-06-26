@@ -73,7 +73,7 @@
 #+CATEGORY: %s
 #+TAGS: %s
 #+TITLE: %s
-
+#+PERMALINK: %s
 * 概要
 #+HTML: <!--more-->
 * 環境\n")
@@ -83,7 +83,8 @@
             (format-time-string "[%Y-%m-%d %a %H:%M]" (current-time))
             (read-string "input category: " "emacs")
             (read-string "input tags: " "emacs")
-            (read-string "input title: ")))
+            (read-string "input title: ")
+            (read-string "input permalink-keyword: ")))
   
   (setq org2blog/wp-buffer-format-function 'my-format-function)
 
