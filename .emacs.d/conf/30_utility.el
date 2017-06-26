@@ -32,6 +32,7 @@
 (use-package shell-pop          :ensure t :defer t :bind ("C-o"     . shell-pop))
 (use-package lispxmp            :ensure t :defer t :bind ("C-c C-e" . lispxmp))
 (use-package htmlize            :ensure t :defer t)
+(use-package ctable             :ensure t :defer t)
 
 ;;;;;;;;;;;;;;;;;;
 ;; API's
