@@ -34,8 +34,11 @@
   (use-package org-bibtex)
 
   ;; org extension package
-   (use-package ox-novel
-     :init (el-get-bundle conao/ox-novel :branch "del-export-block"))
+  (use-package ox-novel
+    :init (el-get-bundle conao/ox-novel :branch "del-export-block"))
+
+  (prog1 "disable auto-save-buffer when src block editing"
+    ())
   
   (setq org-startup-indented t
         org-indent-mode-turns-on-hiding-stars t
@@ -89,7 +92,6 @@
 
 ;; (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
 ;; (add-hook 'org-mode-hook 'org-display-inline-images))
-
 )
 
 (provide '40_major-mode)
