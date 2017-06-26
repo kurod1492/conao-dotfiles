@@ -33,7 +33,13 @@
 (use-package lispxmp            :ensure t :defer t :bind ("C-c C-e" . lispxmp))
 (use-package htmlize            :ensure t :defer t)
 
-;;;;;;;;;
+;;;;;;;;;;;;;;;;;;
+;; API's
+(use-package dash :ensure t)
+(use-package s :ensure t)
+(use-package f :ensure t)
+
+;;;;;;;;;;;;;;;;;;
 ;; git modes
 (use-package magit              :ensure t :defer t :bind ("C-x v"   . magit-status))
 (use-package gitconfig-mode     :ensure t :defer t)
