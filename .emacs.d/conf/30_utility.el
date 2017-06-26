@@ -253,7 +253,7 @@ Also turns off numbering in starred modes like *scratch*"
 "\\documentclass{jsarticle}
 \\pagestyle{empty}
 \\usepackage[dvips]{color}
-color{white}"
+\\color{white}"
         latex-math-preview-initial-page-of-symbol-list '((math . nil) (text . nil)))
   (add-to-list 'latex-math-preview-command-option-alist
                '(gs-to-png "-q" "-dSAFER" "-dNOPAUSE" "-dBATCH" "-sDEVICE=pngalpha"
