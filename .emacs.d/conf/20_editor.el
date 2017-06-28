@@ -318,6 +318,10 @@
         (4 (mc/mark-all-dwim nil))
         (1 (call-interactively 'er/expand-region))))))
 
+(use-package which-key :ensure t
+  :config
+  (which-key-setup-side-window-right)
+  (which-key-mode t))
 
 ;;; el-get packages
 (use-package auto-save-buffers :demand t
