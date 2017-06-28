@@ -180,5 +180,11 @@ and the `*Messages*' buffer while BODY is evaluated."
   ;; in org's table, C-c ~ to convert table (M-x org-table-convert)
   ;; in org's table, C-c ' to edit table
   )
+
+(use-package which-func
+  :config
+  ;; disp current func name in modeline
+  (which-function-mode 1))
+
 (provide '10_starndard-elisp)
 ;;; 10_standard-elisp.el ends here
