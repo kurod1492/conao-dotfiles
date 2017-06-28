@@ -66,26 +66,36 @@
 (use-package org2blog :ensure t :defer t
   :init (setq org2blog/wp-keymap-prefix "C-c n")
   :bind (
-         ;;("" . org2blog/wp-mode)
-;;          :map org2blog/wp-entry-mode-map
-;;          ("n" . org2blog/wp-new-entry)
-;;          ("i" . org2blog/wp-login)
-;;          ("o" . org2blog/wp-logout)
-;;          ("p" . org2blog/wp-post-buffer-as-page-and-publish)
-;;          ("d" . org2blog/wp-post-buffer)           ;; draft
-;;          ("D" . org2blog/wp-post-buffer-as-page)   ;; draft
-;;          ("l" . org2blog/wp-insert-post-or-page-link))
-         ("C-c n n" . org2blog/wp-new-entry)
-         :map org-mode-map
-         ("C-c n i" . org2blog/wp-login)
-         ("C-c n o" . org2blog/wp-logout)
-         ("C-c n p" . org2blog/wp-post-buffer-and-publish)
-         ("C-c n d" . org2blog/wp-post-buffer)           ;; draft
-         ("C-c n D" . org2blog/wp-post-buffer-as-page)   ;; draft
-         ("C-c n l" . org2blog/wp-insert-post-or-page-link))
+         ("C-c n n" . org2blog/wp-mode)
+         :map org2blog/wp-map
+         ("n" . org2blog/wp-new-entry)
+         ("i" . org2blog/wp-login)
+         ("o" . org2blog/wp-logout)
+         ("p" . org2blog/wp-post-buffer-as-page-and-publish)
+         ("d" . org2blog/wp-post-buffer)           ;; draft
+         ("D" . org2blog/wp-post-buffer-as-page)   ;; draft
+         ("l" . org2blog/wp-insert-post-or-page-link))
+;;          ("C-c n n" . org2blog/wp-new-entry)
+;;          :map org-mode-map
+;;          ("C-c n i" . org2blog/wp-login)
+;;          ("C-c n o" . org2blog/wp-logout)
+;;          ("C-c n p" . org2blog/wp-post-buffer-and-publish)
+;;          ("C-c n d" . org2blog/wp-post-buffer)                   ;; post as draft
+;;          ("C-c n D" . org2blog/wp-post-buffer-as-page)           ;; post as draft
+;;          ("C-c n l" . org2blog/wp-insert-post-or-page-link))
   :config
-  (setq org2blog/wp-buffer-template
-        "#+DATE: %s
+  ;; (org2blog/wp-reload-entry-mode-map)
+  (org2blog/wp-reload-entry-mode-map)
+  (setq org2blog/wp-show-post-in-browser 'show
+        org2blog/wp-blog-alist '(("today-note"
+                                  :url "http://conao3.com/xmlrpc.php"
+                                  :username "conao"
+                                  ;; :wp-code t
+                                  )))
+
+  (prog1 "Setting templete with wp-new-entry"
+    (setq org2blog/wp-buffer-template
+          "#+DATE: %s
 #+OPTIONS: toc:t num:nil todo:nil pri:nil tags:nil ^:nil
 #+CATEGORY: %s
 #+TAGS: %s
@@ -94,23 +104,15 @@
 * 概要
 #+HTML: <!--more-->
 * 環境\n")
-  
-  (defun my-format-function (format-string)
-    (format format-string
-            (format-time-string "[%Y-%m-%d %a %H:%M]" (current-time))
-            (read-string "input category: " "emacs")
-            (read-string "input tags: " "emacs")
-            (read-string "input title: ")
-            (read-string "input permalink-keyword: ")))
-  
-  (setq org2blog/wp-buffer-format-function 'my-format-function)
-
-  (setq org2blog/wp-blog-alist
-        '(("today-note"
-           :url "http://conao3.com//xmlrpc.php"
-           :username "conao"
-           ;;:wp-code t
-           ))))
+    
+    (defun my-format-function (format-string)
+      (format format-string
+              (format-time-string "[%Y-%m-%d %a %H:%M]" (current-time))
+              (read-string "input category: " "emacs")
+              (read-string "input tags: " "emacs")
+              (read-string "input title: ")
+              (read-string "input permalink-keyword: ")))
+    (setq org2blog/wp-buffer-format-function 'my-format-function)))
 
 (use-package pdf-tools :ensure t :defer t
   :config
