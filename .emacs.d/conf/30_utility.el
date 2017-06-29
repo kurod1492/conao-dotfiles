@@ -29,7 +29,6 @@
 (use-package free-keys          :ensure t :defer t)
 (use-package minibuf-isearch    :ensure t :defer t)
 (use-package open-junk-file     :ensure t :defer t :bind ("C-x C-x" . open-junk-file))
-(use-package shell-pop          :ensure t :defer t :bind ("C-o"     . shell-pop))
 (use-package lispxmp            :ensure t :defer t :bind ("C-c C-e" . lispxmp))
 (use-package htmlize            :ensure t :defer t)
 (use-package ctable             :ensure t :defer t)
@@ -66,23 +65,23 @@
 (use-package org2blog :ensure t :defer t
   :init (setq org2blog/wp-keymap-prefix "C-c n")
   :bind (
-         ("C-c n n" . org2blog/wp-mode)
-         :map org2blog/wp-map
-         ("n" . org2blog/wp-new-entry)
-         ("i" . org2blog/wp-login)
-         ("o" . org2blog/wp-logout)
-         ("p" . org2blog/wp-post-buffer-as-page-and-publish)
-         ("d" . org2blog/wp-post-buffer)           ;; draft
-         ("D" . org2blog/wp-post-buffer-as-page)   ;; draft
-         ("l" . org2blog/wp-insert-post-or-page-link))
-;;          ("C-c n n" . org2blog/wp-new-entry)
-;;          :map org-mode-map
-;;          ("C-c n i" . org2blog/wp-login)
-;;          ("C-c n o" . org2blog/wp-logout)
-;;          ("C-c n p" . org2blog/wp-post-buffer-and-publish)
-;;          ("C-c n d" . org2blog/wp-post-buffer)                   ;; post as draft
-;;          ("C-c n D" . org2blog/wp-post-buffer-as-page)           ;; post as draft
-;;          ("C-c n l" . org2blog/wp-insert-post-or-page-link))
+;;         ("C-c n n" . org2blog/wp-mode)
+;;          :map org2blog/wp-map
+;;          ("n" . org2blog/wp-new-entry)
+;;          ("i" . org2blog/wp-login)
+;;          ("o" . org2blog/wp-logout)
+;;          ("p" . org2blog/wp-post-buffer-as-page-and-publish)
+;;          ("d" . org2blog/wp-post-buffer)           ;; draft
+;;          ("D" . org2blog/wp-post-buffer-as-page)   ;; draft
+;;          ("l" . org2blog/wp-insert-post-or-page-link))
+         ("C-c n n" . org2blog/wp-new-entry)
+         :map org-mode-map
+         ("C-c n i" . org2blog/wp-login)
+         ("C-c n o" . org2blog/wp-logout)
+         ("C-c n p" . org2blog/wp-post-buffer-and-publish)
+         ("C-c n d" . org2blog/wp-post-buffer)                   ;; post as draft
+         ("C-c n D" . org2blog/wp-post-buffer-as-page)           ;; post as draft
+         ("C-c n l" . org2blog/wp-insert-post-or-page-link))
   :config
   ;; (org2blog/wp-reload-entry-mode-map)
   (org2blog/wp-reload-entry-mode-map)
@@ -120,26 +119,26 @@
   ;; $ brew install glib poppler ghostscript imagemagick
   (pdf-tools-install t)
 
-  (add-to-list 'auto-mode-alist (cons "\\.pdf$" 'pdf-view-mode))
-  ;; linum mode off in pdf-mode
-  (defcustom linum-disabled-modes-list '(doc-view-mode pdf-view-mode)
-    "* List of modes disabled when global linum mode is on"
-    :type '(repeat (sexp :tag "Major mode"))
-    :tag " Major modes where linum is disabled: "
-    :group 'linum
-    )
-  (defcustom linum-disable-starred-buffers 't
-    "* Disable buffers that have stars in them like *Gnu Emacs*"
-    :type 'boolean
-    :group 'linum)
-  (defun linum-on ()
-    "* When linum is running globally,
+  (add-to-list 'auto-mode-alist '("\\.pdf$" . 'pdf-view-mode))
+  
+  (prog1 "linum mode off in pdf-mode"
+    (defcustom linum-disabled-modes-list '(doc-view-mode pdf-view-mode)
+      "* List of modes disabled when global linum mode is on"
+      :type '(repeat (sexp :tag "Major mode"))
+      :tag " Major modes where linum is disabled: "
+      :group 'linum)
+    (defcustom linum-disable-starred-buffers 't
+      "* Disable buffers that have stars in them like *Gnu Emacs*"
+      :type 'boolean
+      :group 'linum)
+    (defun linum-on ()
+      "* When linum is running globally,
 disable line number in modes defined in `linum-disabled-modes-list'.
 Changed by linum-off.
 Also turns off numbering in starred modes like *scratch*"
-    (unless (or (minibufferp) (member major-mode linum-disabled-modes-list)
-                (and linum-disable-starred-buffers (string-match "*" (buffer-name))))
-      (linum-mode 1))))
+      (unless (or (minibufferp) (member major-mode linum-disabled-modes-list)
+                  (and linum-disable-starred-buffers (string-match "*" (buffer-name))))
+        (linum-mode 1)))))
 
 (use-package auto-async-byte-compile :ensure t :defer t :disabled t
   :config
@@ -261,6 +260,16 @@ Also turns off numbering in starred modes like *scratch*"
                '(gs-to-png "-q" "-dSAFER" "-dNOPAUSE" "-dBATCH" "-sDEVICE=pngalpha"
                            "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
                            "-dGraphicsAlphaBits=4" "-dQUIET")))
+
+(use-package shell-pop :ensure t :defer t
+  :bind ("C-o" . shell-pop)
+  :config
+  (setq shell-pop-shell-type (executable-find "fish")
+        shell-pop-shell-type '("term" "*terminal<1>*" (lambda () (multi-term)))))
+
+(use-package multi-term :ensure t
+  :config
+  (setq multi-term-program (executable-find "fish")))
 
 ;; el-get packages
 (use-package other-window-or-split
