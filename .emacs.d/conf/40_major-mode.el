@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(use-package matlab-mode :ensure t :defer t)
+
 (use-package org :ensure t :defer t
   :config
   ;; org default package
