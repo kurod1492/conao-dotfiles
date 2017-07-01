@@ -3,7 +3,7 @@
 ;; Copyright (C) 2017 conao
 
 ;; Author: conao
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -109,25 +109,7 @@
                         ))
 
              ;; \hypersetup{...} を出力しない
-             (setq org-latex-with-hyperref nil)
-;; (require ‘ess)
-;; (org-babel-do-load-languages
-;;  'org-babel-load-languages
-;;  '((R . t)
-;;    )
-;;  )
-;; (require 'org-babel-init)
-;; (require 'org-babel-R)
-;; (org-babel-load-library-of-babel)
-;; (add-to-list 'auto-mode-alist '("\\.[rR]$" . R-mode))
-;; R-mode を起動する時に ess-site をロード
-;; (autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t)
-;; R を起動する時に ess-site をロード
-;; (autoload 'R "ess-site" "start R" t)
-
-;; (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
-;; (add-hook 'org-mode-hook 'org-display-inline-images))
-)
+             (setq org-latex-with-hyperref nil))
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
