@@ -28,30 +28,39 @@
 
 (use-package org :ensure t :defer t
   :config
+  (setq org-startup-indented                  t
+        org-indent-mode-turns-on-hiding-stars t
+        org-indent-indentation-per-level      2)
   ;; org default package
   ;; (require 'org-macro)
   ;; (require 'org-element)
-  (use-package ox-latex)
-  (use-package org-install)
-  (use-package org-bibtex)
 
-  ;; org extension package
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; org babel
+  
+  (setq org-confirm-babel-evaluate nil)
+  (use-package ob-ipython :ensure t
+    ;; depend of jypyter, ipython
+    )
+  
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; org exporting
+  
+  (use-package ox-latex)
   (use-package ox-novel
     :init (el-get-bundle conao/ox-novel :branch "del-export-block"))
 
-  (use-package ob-ipython :ensure t
-    ;; depend of jypyter, ipython
-   )
-  
-  (setq org-confirm-babel-evaluate nil)
+  (use-package org-install)
+  (use-package org-bibtex)
   
   (prog1 "disable auto-save-buffer when src block editing"
     ())
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; - latex export
   
-  (setq org-startup-indented t
-        org-indent-mode-turns-on-hiding-stars t
-        org-indent-indentation-per-level 2
-        org-html-htmlize-output-type 'css
+  (setq org-html-htmlize-output-type 'css
         org-src-fontify-natively t
         org-latex-default-class "org-jsarticle")
   (add-to-list 'org-latex-classes
