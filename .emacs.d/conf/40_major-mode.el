@@ -65,7 +65,7 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; misc tools
 
-  (use-package org-present :ensure t)
+  (use-package org-present :ensure t :disabled t)
   
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; org exporting
