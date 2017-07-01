@@ -37,6 +37,12 @@
   (use-package ox-novel
     :init (el-get-bundle conao/ox-novel :branch "del-export-block"))
 
+  (use-package ob-ipython :ensure t
+    ;; depend of jypyter, ipython
+   )
+  
+  (setq org-confirm-babel-evaluate nil)
+  
   (prog1 "disable auto-save-buffer when src block editing"
     ())
   
