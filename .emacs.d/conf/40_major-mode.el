@@ -60,8 +60,13 @@
   (use-package ob-ipython :ensure t
     ;; depend of jypyter, ipython
     )
-  
+  (use-package orgtbl-aggregate :ensure t)
 
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; misc tools
+
+  (use-package org-present :ensure t)
+  
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; org exporting
   
