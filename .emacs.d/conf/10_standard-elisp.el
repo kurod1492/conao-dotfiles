@@ -116,6 +116,30 @@
 
 (use-package view
   :config
+
+  (prog1 "unwritable file, open in view-mode"
+    ;; unwritable file, open in view mode
+    (defadvice find-file
+        (around find-file-switch-to-view-file (file &optional wild) activate)
+      (if (and (not (file-writable-p file))
+               (not (file-directory-p file)))
+          (view-(format "message" format-args)ile file)
+        ad-do-it))
+
+    ;; unwritable file, don't quit view mode
+    (defvar view-mode-force-exit nil)
+    (defmacro do-not-exit-view-mode-unless-writable-advice (f)
+      `(defadvice ,f (around do-not-exit-view-mode-unless-writable activate)
+         (if (and (buffer-file-name)
+                  (not view-mode-force-exit)
+                  (not (file-writable-p (buffer-file-name))))
+             (message "File is unwritable, so stay in view-mode.")
+           (progn
+             (hl-line-mode 0)
+             ad-do-it))))
+    (do-not-exit-view-mode-unless-writable-advice view-mode-exit)
+    (do-not-exit-view-mode-unless-writable-advice view-mode-disable))
+  
   (setcar (cdr (assq 'view-mode minor-mode-alist))
           (if (fboundp 'propertize)
               (list (propertize " View"
