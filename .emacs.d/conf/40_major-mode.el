@@ -67,6 +67,15 @@
 
   (use-package org-present :ensure t :disabled t)
   
+  (prog1 "org-sparse-tree-buffer using indirect buffer"
+    (defun org-sparse-tree-indirect-buffer (arg)
+    (interactive "P")
+    (let ((ibuf (switch-to-buffer (org-get-indirect-buffer))))
+      (condition-case _
+          (org-sparse-tree arg)
+        (quit (kill-buffer ibuf)))))
+    (bind-key "C-c /" 'org-sparse-tree-indirect-buffer org-mode-map))
+
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; org exporting
   
