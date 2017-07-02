@@ -191,5 +191,12 @@ and the `*Messages*' buffer while BODY is evaluated."
   ;; show all output of eval
   (setq eval-expression-print-length nil))
 
+(use-package paren
+  :config
+  ;; bright parent
+  (show-paren-mode t)
+  ;; bright region when ending paren not displaying
+  (setq show-paren-style 'mixed))
+
 (provide '10_starndard-elisp)
 ;;; 10_standard-elisp.el ends here

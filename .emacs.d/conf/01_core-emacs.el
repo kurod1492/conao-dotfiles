@@ -102,9 +102,6 @@
              '(:eval (count-lines-and-chars)))
 
 ;;;;; window-settings
-;; show parent
-(show-paren-mode t)
-
 ;; truncate
 (setq-default truncate-lines t)
 
