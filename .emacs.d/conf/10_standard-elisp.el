@@ -186,5 +186,10 @@ and the `*Messages*' buffer while BODY is evaluated."
   ;; disp current func name in modeline
   (which-function-mode 1))
 
+(use-package simple
+  :config
+  ;; show all output of eval
+  (setq eval-expression-print-length nil))
+
 (provide '10_starndard-elisp)
 ;;; 10_standard-elisp.el ends here
