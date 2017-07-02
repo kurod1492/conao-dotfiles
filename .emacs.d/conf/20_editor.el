@@ -314,6 +314,7 @@
               ("q" . selected-off)
               ("u" . upcase-region)
               ("d" . downcase-region)
+              ("c" . capitalize-region)
               ("w" . count-words-region)
               ("m" . apply-macro-to-region-lines)
          :map selected-org-mode-map
