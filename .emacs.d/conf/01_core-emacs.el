@@ -173,5 +173,9 @@
 
 (setq custom-file (locate-user-emacs-file "custom.el"))
 
+;; not worn these commands
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region   'disabled nil)
+
 (provide '01_core-emacs)
 ;;; 01_core-emacs.el ends here
