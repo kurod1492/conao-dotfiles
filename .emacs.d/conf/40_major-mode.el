@@ -60,6 +60,11 @@
   (use-package ob-ipython :ensure t
     ;; depend of jypyter, ipython
     )
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               '((ipython . t)
+                                 ;; other languages..
+                                 ))
+  
   (use-package orgtbl-aggregate :ensure t)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
