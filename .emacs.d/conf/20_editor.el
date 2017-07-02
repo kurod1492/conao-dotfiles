@@ -306,7 +306,7 @@
     (setq anzu-use-migemo t))
   (setq anzu-search-threshold 1000))
 
-(use-package selected :ensure t :diminish (selected-minor-mode . "")
+(use-package selected :ensure t :diminish (selected-minor-mode . "") :demand t
   :init
   (setq selected-org-mode-map (make-sparse-keymap))
   :bind (:map selected-keymap
