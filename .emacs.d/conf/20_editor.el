@@ -310,13 +310,17 @@
   :init
   (setq selected-org-mode-map (make-sparse-keymap))
   :bind (:map selected-keymap
-              ("k" . kill-region)
-              ("q" . selected-off)
+              ;; capitalization
               ("u" . upcase-region)
               ("d" . downcase-region)
               ("c" . capitalize-region)
-              ("w" . count-words-region)
+              
+              ("k" . kill-region)
               ("m" . apply-macro-to-region-lines)
+
+              ;; misc
+              ("w" . count-words-region)
+              ("q" . selected-off)
          :map selected-org-mode-map
          ("t" . org-table-convert-region))
   :config
