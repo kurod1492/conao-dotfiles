@@ -222,5 +222,9 @@ and the `*Messages*' buffer while BODY is evaluated."
   ;; bright region when ending paren not displaying
   (setq show-paren-style 'mixed))
 
+(use-package saveplace
+  :config
+  (setq-default save-place t))
+
 (provide '10_starndard-elisp)
 ;;; 10_standard-elisp.el ends here
