@@ -306,6 +306,21 @@
     (setq anzu-use-migemo t))
   (setq anzu-search-threshold 1000))
 
+(use-package selected :ensure t :diminish (selected-minor-mode . "")
+  :init
+  (setq selected-org-mode-map (make-sparse-keymap))
+  :bind (:map selected-keymap
+              ("k" . kill-region)
+              ("q" . selected-off)
+              ("u" . upcase-region)
+              ("d" . downcase-region)
+              ("w" . count-words-region)
+              ("m" . apply-macro-to-region-lines)
+         :map selected-org-mode-map
+         ("t" . org-table-convert-region))
+  :config
+  (selected-global-mode t))
+
 (use-package multiple-cursors :ensure t
   :init
   (use-package expand-region :ensure t
