@@ -36,6 +36,11 @@
   ;; (require 'org-element)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; table
+    
+  (use-package orgtbl-aggregate :ensure t)
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; calendar
   (use-package japanese-holidays :ensure t :defer t
     :config
@@ -65,8 +70,6 @@
                                  ;; other languages..
                                  ))
   
-  (use-package orgtbl-aggregate :ensure t)
-
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; misc tools
 
