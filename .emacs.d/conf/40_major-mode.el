@@ -37,7 +37,7 @@
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; table
-    
+  
   (use-package orgtbl-aggregate :ensure t)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -49,7 +49,7 @@
           calendar-mark-holidays-flag     t         ; 祝日をカレンダーに表示
           japanese-holiday-weekend        '(0 6)    ; 土日を祝日として表示
           japanese-holiday-weekend-marker '(holiday nil nil nil nil nil japanese-holiday-saturday)
-                                                    ; 土曜日を水色で表示
+                                        ; 土曜日を水色で表示
           org-agenda-include-diary        t)        ; org-agendaで祝日を表示する
 
     (add-hook 'calendar-today-visible-hook   'japanese-holiday-mark-weekend)
@@ -63,8 +63,9 @@
   
   (setq org-confirm-babel-evaluate nil)
   (use-package ob-ipython :ensure t
+    :config
     ;; depend of jypyter, ipython
-    )
+    (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((ipython . t)
                                  ;; other languages..
@@ -77,11 +78,11 @@
   
   (prog1 "org-sparse-tree-buffer using indirect buffer"
     (defun org-sparse-tree-indirect-buffer (arg)
-    (interactive "P")
-    (let ((ibuf (switch-to-buffer (org-get-indirect-buffer))))
-      (condition-case _
-          (org-sparse-tree arg)
-        (quit (kill-buffer ibuf)))))
+      (interactive "P")
+      (let ((ibuf (switch-to-buffer (org-get-indirect-buffer))))
+        (condition-case _
+            (org-sparse-tree arg)
+          (quit (kill-buffer ibuf)))))
     (bind-key "C-c /" 'org-sparse-tree-indirect-buffer org-mode-map))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

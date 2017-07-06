@@ -264,13 +264,13 @@ Also turns off numbering in starred modes like *scratch*"
 (use-package shell-pop :ensure t :defer t
   :bind ("C-o" . shell-pop)
   :config
-  (setq shell-pop-shell-type (executable-find "fish")
-        shell-pop-shell-type '("term" "*terminal<1>*" (lambda () (multi-term)))))
-
+  ;; (setq shell-pop-shell-type (executable-find "fish")
+  ;;       shell-pop-shell-type '("term" "*terminal<1>*" (lambda () (multi-term)))))
+)
 (use-package multi-term :ensure t
   :config
-  (setq multi-term-program (executable-find "fish")))
-
+  ;; (setq multi-term-program (executable-find "fish")))
+)
 ;; el-get packages
 (use-package other-window-or-split
   :init (el-get-bundle conao/other-window-or-split)
