@@ -9,6 +9,7 @@ undohist/
 recentf
 elscreen
 ac-comphist.dat
+srecode-map.el
 
 # download packages
 elpa/
