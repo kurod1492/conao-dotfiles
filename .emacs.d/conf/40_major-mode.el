@@ -70,7 +70,10 @@
   ;; plantuml
   ;; depend on graphviz, plantuml
   ;; $ brew install graphviz plantuml
-  (setq org-plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
+  ;; add 'export GRAPHVIZ_DOT=/Users/conao/local/homebrew/bin/dot' in .bashrc
+  (if (file-exists-p "/usr/local/opt/plantuml/libexec/plantuml.jar")
+      (setq org-plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
+    (setq org-plantuml-jar-path "/Users/conao/local/homebrew//opt/plantuml/libexec/plantuml.jar"))
 
   ;; general settings
   (setq org-confirm-babel-evaluate nil)
