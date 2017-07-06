@@ -110,6 +110,7 @@
 [NO-DEFAULT-PACKAGES]
 \\usepackage[dvipdfmx]{graphicx,xcolor}
 \\usepackage{fancyhdr}
+\\usepackage{here}
 \\pagestyle{fancy}
 \\rhead{\\thepage{}}"
              ("\\section{%s}" . "\\section*{%s}")
