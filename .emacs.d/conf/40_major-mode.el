@@ -61,14 +61,22 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; org babel
   
-  (setq org-confirm-babel-evaluate nil)
+  ;; ipython
   (use-package ob-ipython :ensure t
     :config
     ;; depend of jypyter, ipython
     (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
+
+  ;; plantuml
+  ;; depend on graphviz, plantuml
+  ;; $ brew install graphviz plantuml
+  (setq org-plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
+
+  ;; general settings
+  (setq org-confirm-babel-evaluate nil)
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((ipython . t)
-                                 ;; other languages..
+                                 (plantuml . t)
                                  ))
   
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
