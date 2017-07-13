@@ -120,7 +120,8 @@
   
   (setq org-html-htmlize-output-type 'css
         org-src-fontify-natively t
-        org-latex-default-class "org-jsarticle")
+        org-latex-default-class "org-jsarticle"
+        org-latex-default-figure-position "H")
   (add-to-list 'org-latex-classes
                '("org-jsarticle" "\\documentclass{jsarticle}
 \\usepackage[top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot]{geometry}
@@ -129,6 +130,8 @@
 \\usepackage[dvipdfmx]{graphicx,xcolor}
 \\usepackage{fancyhdr}
 \\usepackage{here}
+\\usepackage{lscape}
+\\usepackage{amsmath,amssymb}
 \\pagestyle{fancy}
 \\rhead{\\thepage{}}"
              ("\\section{%s}" . "\\section*{%s}")
