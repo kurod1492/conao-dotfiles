@@ -26,6 +26,12 @@
 
 (use-package matlab-mode :ensure t :defer t)
 
+(use-package plantuml-mode :ensure t :defer t
+  :config
+  (if (file-exists-p "/usr/local/opt/plantuml/libexec/plantuml.jar")
+      (setq plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
+    (setq plantuml-jar-path "/Users/conao/local/homebrew//opt/plantuml/libexec/plantuml.jar")))
+
 (use-package org :ensure t :defer t
   :config
   (setq org-startup-indented                  t
