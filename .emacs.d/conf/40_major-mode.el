@@ -27,6 +27,11 @@
 (use-package matlab-mode :ensure t :defer t)
 
 (use-package org :ensure t :defer t
+  :bind (("C-c c o l" . org-store-link)
+         ("C-c c o a" . org-agenda)
+         ("C-c c o c" . org-capture)
+         ("C-c c o b" . org-iswitchb))
+
   :config
   (setq org-startup-indented                  t
         org-indent-mode-turns-on-hiding-stars t

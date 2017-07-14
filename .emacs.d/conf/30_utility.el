@@ -26,12 +26,13 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; small utilities
-(use-package free-keys          :ensure t :defer t)
 (use-package minibuf-isearch    :ensure t :defer t)
 (use-package open-junk-file     :ensure t :defer t :bind ("C-x C-x" . open-junk-file))
 (use-package lispxmp            :ensure t :defer t :bind ("C-c C-e" . lispxmp))
 (use-package htmlize            :ensure t :defer t)
 (use-package ctable             :ensure t :defer t)
+(use-package free-keys          :ensure t :defer t
+  :commands (free-keys free-keys-set-prefix))
 
 ;;;;;;;;;;;;;;;;;;
 ;; API's
