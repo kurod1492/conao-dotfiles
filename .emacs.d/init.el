@@ -24,6 +24,11 @@
 
 ;;; Code:
 
+;; enable debug
+(setq debug-on-error t
+      debug-on-signal nil
+      debug-on-quit nil)
+
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
 ;; load settings in ~/hoge/
 (if load-file-name
