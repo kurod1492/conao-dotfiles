@@ -26,6 +26,12 @@
 
 (use-package matlab-mode :ensure t :defer t)
 
+(use-package plantuml-mode :ensure t :defer t
+  :config
+  (if (file-exists-p "/usr/local/opt/plantuml/libexec/plantuml.jar")
+      (setq plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
+    (setq plantuml-jar-path "/Users/conao/local/homebrew//opt/plantuml/libexec/plantuml.jar")))
+
 (use-package org :ensure t :defer t
   :bind (("C-c c o l" . org-store-link)
          ("C-c c o a" . org-agenda)
@@ -75,7 +81,10 @@
   ;; plantuml
   ;; depend on graphviz, plantuml
   ;; $ brew install graphviz plantuml
-  (setq org-plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
+  ;; add 'export GRAPHVIZ_DOT=/Users/conao/local/homebrew/bin/dot' in .bashrc
+  (if (file-exists-p "/usr/local/opt/plantuml/libexec/plantuml.jar")
+      (setq org-plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
+    (setq org-plantuml-jar-path "/Users/conao/local/homebrew//opt/plantuml/libexec/plantuml.jar"))
 
   ;; general settings
   (setq org-confirm-babel-evaluate nil)
@@ -116,7 +125,8 @@
   
   (setq org-html-htmlize-output-type 'css
         org-src-fontify-natively t
-        org-latex-default-class "org-jsarticle")
+        org-latex-default-class "org-jsarticle"
+        org-latex-default-figure-position "H")
   (add-to-list 'org-latex-classes
                '("org-jsarticle" "\\documentclass{jsarticle}
 \\usepackage[top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot]{geometry}
@@ -124,6 +134,9 @@
 [NO-DEFAULT-PACKAGES]
 \\usepackage[dvipdfmx]{graphicx,xcolor}
 \\usepackage{fancyhdr}
+\\usepackage{here}
+\\usepackage{lscape}
+\\usepackage{amsmath,amssymb}
 \\pagestyle{fancy}
 \\rhead{\\thepage{}}"
              ("\\section{%s}" . "\\section*{%s}")
