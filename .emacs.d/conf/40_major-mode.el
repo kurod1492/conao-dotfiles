@@ -33,10 +33,10 @@
     (setq plantuml-jar-path "/Users/conao/local/homebrew//opt/plantuml/libexec/plantuml.jar")))
 
 (use-package org :ensure t :defer t
-  :bind (("C-c c o l" . org-store-link)
-         ("C-c c o a" . org-agenda)
-         ("C-c c o c" . org-capture)
-         ("C-c c o b" . org-iswitchb))
+  :bind (("C-c o l" . org-store-link)
+         ("C-c o a" . org-agenda)
+         ("C-c o c" . org-capture)
+         ("C-c o b" . org-iswitchb))
 
   :config
   (setq org-startup-indented                  t
@@ -46,6 +46,17 @@
   ;; (require 'org-macro)
   ;; (require 'org-element)
 
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; org-capture
+
+  (setq org-capture-templates
+        '(("t" "Todo" entry (file+headline "~/Dropbox/org/todo.org" "Tasks")
+           "* TODO %?n %in %a")
+          ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
+           "* %?(not ) %Un %in %a")
+          ("n" "Note" entry (file+headline "~/Dropbox/org/notes.org" "Notes")
+           "* %?n %Un %i")))
+  
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; table
   
