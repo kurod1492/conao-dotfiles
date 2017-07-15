@@ -235,7 +235,7 @@
     (setq desktop-files-not-to-save "")
     (setq desktop-restore-frames nil)
     (desktop-save-mode t))
-  (use-package elscreen-server)
+  (use-package elscreen-server :disabled)
   (custom-set-variables
    '(elscreen-prefix-key (kbd "C-c e"))
    '(elscreen-tab-display-kill-screen nil)    ;; don't show [x] mark in tab
