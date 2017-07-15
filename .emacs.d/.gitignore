@@ -11,6 +11,7 @@ elscreen
 places
 ac-comphist.dat
 srecode-map.el
+bookmarks
 
 # download packages
 elpa/
