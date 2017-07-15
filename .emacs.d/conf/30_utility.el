@@ -220,7 +220,7 @@ Also turns off numbering in starred modes like *scratch*"
 
 (use-package google-translate :ensure t :defer t
   :init
-  (use-package popwin
+  (use-package popwin :disabled
     :defer t
     :ensure t
     :config (setq display-buffer-function      'popwin:display-buffer
