@@ -338,10 +338,18 @@
         (4 (mc/mark-all-dwim nil))
         (1 (call-interactively 'er/expand-region))))))
 
-(use-package which-key :ensure t
+(use-package which-key :ensure t :diminish ""
   :config
   (which-key-setup-side-window-right)
   (which-key-mode t))
+
+(use-package popwin :ensure t
+  :config
+  (setq display-buffer-function      'popwin:display-buffer
+        popwin:popup-window-position 'bottom)
+  (popwin-mode 1)
+  (push '("*magit*" :height 20) popwin:special-display-config)
+  (push '("*magit*" :noselect t :height 40 :width 80 :stick t) popwin:special-display-config))
 
 ;;; el-get packages
 (use-package auto-save-buffers :demand t
