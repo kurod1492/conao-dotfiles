@@ -197,7 +197,10 @@
                         (setq flymake-is-active-flag nil)))))
   (yas-global-mode 1))
 
-(use-package elscreen :ensure t :demand t
+(use-package elscreen :demand t
+  :init
+  (el-get-bundle conao/elscreen)
+  (el-get-bundle emacsmirror/revive)
   :bind* (("C-c e k"       . elscreen-kill-screen-and-buffers)
           ;; confrict with org-mode
           ;; ("C-M-<right>" . elscreen-swap-next)
@@ -208,7 +211,8 @@
           ("C-c e r"       . elscreen-screen-nickname))
 ;;  :init (el-get-bundle conao/elscreen-swap)
   :config
-  (use-package session :ensure t
+  (use-package session
+    :init (el-get-bundle emacsorphanage/session)
     :config
     (setq session-initialize '(places session)
           session-globals-include '((kill-ring 100)
@@ -219,15 +223,15 @@
           session-undo-check -1)
     (add-hook 'after-init-hook 'session-initialize))
   (use-package navbar
-    :init
-    (el-get-bundle papaeye/emacs-navbar
+    :init (el-get-bundle papaeye/emacs-navbar
       :features (navbarx-elscreen navbarx-version navbarx-time))
     :config
     (setq navbar-item-list '(navbarx-version navbarx-time navbarx-elscreen))
     (navbar-mode)
     (display-time-mode)
     (navbar-revive-workaround))
-  (use-package elscreen-persist :ensure t ;; :disabled t
+  (use-package elscreen-persist
+    :init (el-get-bundle robario/elscreen-persist)
     :config
     (elscreen-persist-mode 1)
 
