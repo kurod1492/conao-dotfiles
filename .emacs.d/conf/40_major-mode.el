@@ -139,16 +139,19 @@
         org-latex-default-class "org-jsarticle"
         org-latex-default-figure-position "H")
   (add-to-list 'org-latex-classes
-               '("org-jsarticle" "\\documentclass{jsarticle}
-\\usepackage[top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot]{geometry}
+               '("org-jsarticle"
+                 "\\documentclass[uplatex]{jsarticle}
 [NO-PACKAGES]
 [NO-DEFAULT-PACKAGES]
+\\usepackage[dvipdfmx,bookmarks=true,bookmarksnumbered=true]{hyperref}
+\\usepackage[top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot]{geometry}
 \\usepackage[dvipdfmx]{graphicx,xcolor}
 \\usepackage{fancyhdr}
 \\usepackage{here}
 \\usepackage{lscape}
 \\usepackage{amsmath,amssymb}
 \\pagestyle{fancy}
+\\usepackage{pxjahyper}
 \\rhead{\\thepage{}}"
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")
@@ -158,11 +161,11 @@
 
              ;; LaTeX 形式のファイル PDF に変換するためのコマンド
              (setq org-latex-pdf-process
-                       '("platex %f"
-                         "platex %f"
+                       '("uplatex %f"
+                         "uplatex %f"
                          "bibtex %b"
-                         "platex %f"
-                         "platex %f"
+                         "uplatex %f"
+                         "uplatex %f"
                          "dvipdfmx %b.dvi"
                          "rm %b.bbl %b.dvi"
                          ;; "find . -type f -name '*.xbb' -print0 | xargs -0 rm"
