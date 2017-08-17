@@ -35,8 +35,13 @@ case "$(uname)" in
     *)                  alias ls='ls -a --color=auto'
 esac
 
+function cdls {
+    \cd "$@" && ls
+}
+
 alias la='ls'
 alias ll='ls -l'
+alias cd="cdls"
 
 ## prompt overwrite files
 alias mv='mv -i'
