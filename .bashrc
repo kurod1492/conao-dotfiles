@@ -64,7 +64,7 @@ alias p="pwd"
 ###
 ### git
 ###
-git config --global user.name 'conao3'
+git config --global user.name 'conao'
 git config --global user.email 'conao3@gmail.com'
 git config --global core.editor emacs
 git config --global core.quotepath false
