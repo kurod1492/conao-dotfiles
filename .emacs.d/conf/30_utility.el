@@ -279,6 +279,8 @@ Also turns off numbering in starred modes like *scratch*"
   :bind* (("C-t"   . other-window-or-split)
           ("C-S-t" . previous-other-window-or-split)
           ("M-t"   . split-window-dwim)
-          ("C-c j" . adjust-windows-size)))
+          ("C-c j" . adjust-windows-size))
+  :config
+  (setq split-window-width-with-em 100))
 (provide '30_utility)
 ;;; 30_utility.el ends here
