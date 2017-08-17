@@ -29,7 +29,7 @@ function cdl {
 }
 
 ## highlight ls
-case "$(uname)$" in
+case "$(uname)" in
     'Darwin'|'FreeBSD') alias ls='ls -aG'
                         ;;
     *)                  alias ls='ls -a --color=auto'
