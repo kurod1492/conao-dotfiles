@@ -227,7 +227,10 @@
     (navbar-mode)
     (display-time-mode)
     (navbar-revive-workaround))
-  (use-package elscreen-persist :ensure t ;; :disabled t
+  (use-package elscreen-persist ;; :disabled t
+    :init
+    (el-get-bundle conao/revive)
+    (el-get-bundle robario/elscreen-persist)
     :config
     (elscreen-persist-mode 1)
 
