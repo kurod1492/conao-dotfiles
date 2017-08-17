@@ -152,6 +152,7 @@
 \\usepackage{amsmath,amssymb}
 \\pagestyle{fancy}
 \\usepackage{pxjahyper}
+\\usepackage{phisics}
 \\rhead{\\thepage{}}"
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")
