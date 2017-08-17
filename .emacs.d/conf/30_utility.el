@@ -84,12 +84,18 @@
          ("C-c n D" . org2blog/wp-post-buffer-as-page)           ;; post as draft
          ("C-c n l" . org2blog/wp-insert-post-or-page-link))
   :config
-  ;; (org2blog/wp-reload-entry-mode-map)
   (org2blog/wp-reload-entry-mode-map)
-  (setq org2blog/wp-show-post-in-browser 'show
-        org2blog/wp-blog-alist '(("today-note"
+  
+  (use-package netrc
+    :config
+    (setq cotoday (netrc-machine (netrc-parse "~/.netrc") "conao3" t)))
+  
+  (setq org2blog/wp-show-post-in-browser     'show
+        org2blog/wp-use-sourcecode-shortcode t
+        org2blog/wp-blog-alist `(("today-note"
                                   :url "http://conao3.com/xmlrpc.php"
-                                  :username "conao"
+                                  :username ,(netrc-get cotoday "login")
+                                  :password ,(netrc-get cotoday "password")
                                   ;; :wp-code t
                                   )))
 
@@ -274,6 +280,5 @@ Also turns off numbering in starred modes like *scratch*"
           ("C-S-t" . previous-other-window-or-split)
           ("M-t"   . split-window-dwim)
           ("C-c j" . adjust-windows-size)))
-
 (provide '30_utility)
 ;;; 30_utility.el ends here
