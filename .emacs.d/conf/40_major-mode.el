@@ -39,7 +39,11 @@
          ("C-c o b" . org-iswitchb))
 
   :config
-  (setq org-startup-indented                  t
+  (setq org-directory                         "~/Documents/org/"
+        org-default-notes-file                "~/Documents/org/notes.org"
+        org-agenda-files                      (list org-directory org-agenda-files)
+        org-return-follows-link               t
+        org-startup-indented                  t
         org-indent-mode-turns-on-hiding-stars t
         org-indent-indentation-per-level      2)
   ;; org default package
