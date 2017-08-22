@@ -33,6 +33,7 @@
   (setq plantuml-jar-path "/Users/conao/local/homebrew//opt/plantuml/libexec/plantuml.jar"))
 
 (use-package org :ensure t :defer t
+  :mode (("\\.txt$" . org-mode))
   :bind (("C-c o l" . org-store-link)
          ("C-c o a" . org-agenda)
          ("C-c o c" . org-capture)
