@@ -200,7 +200,7 @@
 (use-package elscreen :demand t
   :init
   (el-get-bundle conao/elscreen)
-  (el-get-bundle emacsmirror/revive)
+  (el-get-bundle conao/revive)
   :bind* (("C-c e k"       . elscreen-kill-screen-and-buffers)
           ;; confrict with org-mode
           ;; ("C-M-<right>" . elscreen-swap-next)
