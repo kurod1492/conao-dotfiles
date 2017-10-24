@@ -33,13 +33,18 @@
   (setq plantuml-jar-path "/Users/conao/local/homebrew//opt/plantuml/libexec/plantuml.jar"))
 
 (use-package org :ensure t :defer t
+  :mode (("\\.txt$" . org-mode))
   :bind (("C-c o l" . org-store-link)
          ("C-c o a" . org-agenda)
          ("C-c o c" . org-capture)
          ("C-c o b" . org-iswitchb))
 
   :config
-  (setq org-startup-indented                  t
+  (setq org-directory                         "~/Documents/org/"
+        org-default-notes-file                "~/Documents/org/notes.org"
+        org-agenda-files                      (list org-directory org-agenda-files)
+        org-return-follows-link               t
+        org-startup-indented                  t
         org-indent-mode-turns-on-hiding-stars t
         org-indent-indentation-per-level      2)
   ;; org default package
@@ -139,16 +144,20 @@
         org-latex-default-class "org-jsarticle"
         org-latex-default-figure-position "H")
   (add-to-list 'org-latex-classes
-               '("org-jsarticle" "\\documentclass{jsarticle}
-\\usepackage[top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot]{geometry}
+               '("org-jsarticle"
+                 "\\documentclass[uplatex]{jsarticle}
 [NO-PACKAGES]
 [NO-DEFAULT-PACKAGES]
+\\usepackage[dvipdfmx,bookmarks=true,bookmarksnumbered=true]{hyperref}
+\\usepackage[top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot]{geometry}
 \\usepackage[dvipdfmx]{graphicx,xcolor}
 \\usepackage{fancyhdr}
 \\usepackage{here}
 \\usepackage{lscape}
 \\usepackage{amsmath,amssymb}
 \\pagestyle{fancy}
+\\usepackage{pxjahyper}
+\\usepackage{phisics}
 \\rhead{\\thepage{}}"
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")
@@ -158,11 +167,11 @@
 
              ;; LaTeX 形式のファイル PDF に変換するためのコマンド
              (setq org-latex-pdf-process
-                       '("platex %f"
-                         "platex %f"
+                       '("uplatex %f"
+                         "uplatex %f"
                          "bibtex %b"
-                         "platex %f"
-                         "platex %f"
+                         "uplatex %f"
+                         "uplatex %f"
                          "dvipdfmx %b.dvi"
                          "rm %b.bbl %b.dvi"
                          ;; "find . -type f -name '*.xbb' -print0 | xargs -0 rm"
