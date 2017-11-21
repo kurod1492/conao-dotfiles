@@ -129,7 +129,10 @@
   (use-package ox-latex)
   (use-package ox-novel
     :init (el-get-bundle conao/ox-novel :branch "del-export-block"))
-
+  (use-package ox-reveal :ensure t
+    :init
+    (el-get-bundle hakimel/reveal.js)
+    (setq my-reveal-src-dir "~/.emacs.d/el-get/reveal.js"))
   (use-package org-install)
   (use-package org-bibtex)
   

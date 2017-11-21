@@ -262,7 +262,8 @@
                             (string-equal (file-name-extension buffer-file-name) "TXT")
                             (string-equal (file-name-extension buffer-file-name) "pdf")
                             (string-equal (file-name-extension buffer-file-name) "PDF"))
-                  (hs-minor-mode 1))))))
+                                        ;(hs-minor-mode 1)
+                  )))))
 
 (use-package undo-tree :ensure t :diminish ""
   :config
