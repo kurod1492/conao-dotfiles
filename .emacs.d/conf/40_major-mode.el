@@ -42,7 +42,7 @@
   :config
   (setq org-directory                         "~/Documents/org/"
         org-default-notes-file                "~/Documents/org/notes.org"
-        org-agenda-files                      (list org-directory org-agenda-files)
+        org-agenda-files                      "~/Documents/org/notes.org"
         org-return-follows-link               t
         org-startup-indented                  t
         org-indent-mode-turns-on-hiding-stars t
@@ -145,7 +145,7 @@
         org-latex-default-figure-position "H")
   (add-to-list 'org-latex-classes
                '("org-jsarticle"
-                 "\\documentclass[uplatex]{jsarticle}
+                 "\\documentclass[platex]{jsarticle}
 [NO-PACKAGES]
 [NO-DEFAULT-PACKAGES]
 \\usepackage[dvipdfmx,bookmarks=true,bookmarksnumbered=true]{hyperref}
@@ -157,7 +157,11 @@
 \\usepackage{amsmath,amssymb}
 \\pagestyle{fancy}
 \\usepackage{pxjahyper}
-\\usepackage{phisics}
+\\usepackage{physics}
+\\usepackage{framed, color}
+\\usepackage{multicol}
+\\usepackage{ulem}
+\\newcommand{\\up}{\\uparrow}
 \\rhead{\\thepage{}}"
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")
@@ -167,11 +171,11 @@
 
              ;; LaTeX 形式のファイル PDF に変換するためのコマンド
              (setq org-latex-pdf-process
-                       '("uplatex %f"
-                         "uplatex %f"
+                       '("platex %f"
+                         "platex %f"
                          "bibtex %b"
-                         "uplatex %f"
-                         "uplatex %f"
+                         "platex %f"
+                         "platex %f"
                          "dvipdfmx %b.dvi"
                          "rm %b.bbl %b.dvi"
                          ;; "find . -type f -name '*.xbb' -print0 | xargs -0 rm"
