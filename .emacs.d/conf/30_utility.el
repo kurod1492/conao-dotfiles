@@ -258,6 +258,7 @@ Also turns off numbering in starred modes like *scratch*"
 \\usepackage[dvips]{color}
 \\usepackage{physics}
 \\newcommand{\\rot}{{\\nabla\\times}}
+\\newcommand{\\up}{\\uparrow}
 \\color{white}"
         latex-math-preview-initial-page-of-symbol-list '((math . nil) (text . nil)))
   (add-to-list 'latex-math-preview-command-option-alist
