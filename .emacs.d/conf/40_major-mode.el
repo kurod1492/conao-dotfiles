@@ -164,6 +164,7 @@
 \\usepackage{framed, color}
 \\usepackage{multicol}
 \\usepackage{ulem}
+\\usepackage{mdframed}
 \\newcommand{\\up}{\\uparrow}
 \\rhead{\\thepage{}}"
              ("\\section{%s}" . "\\section*{%s}")
