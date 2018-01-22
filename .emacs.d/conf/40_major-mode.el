@@ -46,7 +46,8 @@
         org-return-follows-link               t
         org-startup-indented                  t
         org-indent-mode-turns-on-hiding-stars t
-        org-indent-indentation-per-level      2)
+        org-indent-indentation-per-level      2
+        org-src-window-setup 'other-window)
   ;; org default package
   ;; (require 'org-macro)
   ;; (require 'org-element)
