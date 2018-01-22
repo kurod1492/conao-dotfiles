@@ -138,7 +138,17 @@
   (use-package org-bibtex)
   
   (prog1 "disable auto-save-buffer when src block editing"
-    ())
+    (defun disable-auto-save-when-enter-edit-special (&rest args)
+      (progn
+        (setq auto-save-buffers-active-p nil)
+        (message "auto-save-buffers off")))
+    (defun enable-auto-save-when-exit-edit-special (&rest args)
+      (progn
+        (setq auto-save-buffers-active-p t)
+        (message "auto-save-buffers on")))
+    
+    (advice-add 'org-edit-special :before #'disable-auto-save-when-enter-edit-special)
+    (advice-add 'org-edit-src-exit :after #'enable-auto-save-when-exit-edit-special))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; - latex export
