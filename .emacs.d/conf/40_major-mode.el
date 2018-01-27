@@ -47,7 +47,9 @@
         org-startup-indented                  t
         org-indent-mode-turns-on-hiding-stars t
         org-indent-indentation-per-level      2
-        org-src-window-setup 'other-window)
+        org-src-window-setup 'other-window
+        org-highlight-latex-and-related '(latex script entities))
+  (custom-set-faces '(org-latex-and-related ((t (:foreground "DeepSkyBlue2")))))
   ;; org default package
   ;; (require 'org-macro)
   ;; (require 'org-element)
