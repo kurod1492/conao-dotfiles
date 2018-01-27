@@ -113,20 +113,6 @@
                                  ))
   
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; misc tools
-
-  (use-package org-present :ensure t :disabled t)
-  
-  (prog1 "org-sparse-tree-buffer using indirect buffer"
-    (defun org-sparse-tree-indirect-buffer (arg)
-      (interactive "P")
-      (let ((ibuf (switch-to-buffer (org-get-indirect-buffer))))
-        (condition-case _
-            (org-sparse-tree arg)
-          (quit (kill-buffer ibuf)))))
-    (bind-key "C-c /" 'org-sparse-tree-indirect-buffer org-mode-map))
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; org exporting
   
   (use-package ox-latex)
@@ -152,14 +138,31 @@
     (advice-add 'org-edit-special :before #'disable-auto-save-when-enter-edit-special)
     (advice-add 'org-edit-src-exit :after #'enable-auto-save-when-exit-edit-special))
 
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; misc tools
+
+  (use-package org-present :ensure t :disabled t)
+
+  (prog1 "org-sparse-tree-buffer using indirect buffer"
+    (defun org-sparse-tree-indirect-buffer (arg)
+      (interactive "P")
+      (let ((ibuf (switch-to-buffer (org-get-indirect-buffer))))
+        (condition-case _
+            (org-sparse-tree arg)
+          (quit (kill-buffer ibuf)))))
+    (bind-key "C-c /" 'org-sparse-tree-indirect-buffer org-mode-map))
+
+  (use-package cdlatex :ensure t :defer t
+    :init (use-package auctex :ensure t :defer t)
+    :hook (org-mode . turn-on-org-cdlatex))
+
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; - latex export
   
   (setq org-html-htmlize-output-type 'css
         org-src-fontify-natively t
         org-latex-default-class "org-jsarticle"
-        ;;org-use-sub-superscripts nil
-        ;;org-export-with-sub-superscripts t
+        org-export-with-sub-superscripts '{}
         ;; org-latex-default-figure-position "H"
         )
   (setq org-export-in-background nil)
