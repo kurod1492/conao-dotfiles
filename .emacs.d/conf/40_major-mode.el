@@ -24,6 +24,10 @@
 
 ;;; Code:
 
+(use-package php-mode :ensure t :defer t
+  :config
+  (use-package web-mode :ensure t :defer t))
+
 (use-package matlab-mode :ensure t :defer t)
 
 (use-package plantuml-mode :ensure t :defer t
@@ -50,6 +54,43 @@
         org-src-window-setup 'other-window
         org-highlight-latex-and-related '(latex script entities))
   (custom-set-faces '(org-latex-and-related ((t (:foreground "DeepSkyBlue2")))))
+
+  (prog1 "setting src block faces"
+    (defun modify-color (raw-color raw-shift)
+      "COLOR<string> is RGB color like \"#999999\"
+SHIFT<integer> or <list<integer>> is color shift num (r g b)"
+      (let ((color '(0 0 0)) (shift '(0 0 0)))
+        (if (listp raw-shift)
+            (progn
+              (setq shift (make-list 3 (first raw-shift)))
+              (dotimes (i (if (<= (length raw-shift) 3) (length raw-shift) 3))
+                (setf (nth i shift) (nth i raw-shift))))
+          (setq shift (make-list 3 raw-shift)))
+        (dotimes (i 3)
+          (setf (nth i color) (string-to-number (substring raw-color
+                                                           (+ 1 (* i 2))
+                                                           (+ 1 (* (+ i 1) 2)))
+                                                16))
+          (setf (nth i color) (+ (nth i color) (nth i shift)))
+          (setf (nth i color) (let ((x (nth i color)))
+                                (cond ((< x 0) 0)
+                                      ((> x 255) 255)
+                                      (t x))))
+          (setf (nth i color) (format "%02X" (nth i color))))
+        (concat "#" (mapconcat #'identity color ""))))
+    
+    ;; foregroundをdefault（普通の色）と同じにする。
+    ;; backgroundをdefault（普通の色）より少し暗くする。
+    (set-face-foreground 'org-block (face-foreground 'default))
+    (set-face-background 'org-block (modify-color (face-background 'default) -5))
+    
+    ;; 言語ごとに切り替えたい場合はこの変数で設定する。
+    ;; org-src-block-facesが優先されるので、org-blockで設定した上で特に区別したい言語をこちらで設定するといい。
+    ;; (setq org-src-block-faces `(("emacs-lisp" ((:background ,(modify-color (face-background 'default) -5))
+    ;;                                            (:foreground ,(face-foreground 'default))))
+    ;;                             ("python" (:background "#002030")))))
+    )
+
   ;; org default package
   ;; (require 'org-macro)
   ;; (require 'org-element)
@@ -186,6 +227,10 @@
 \\usepackage{ulem}
 \\usepackage{mdframed}
 \\newcommand{\\up}{\\uparrow}
+\\newcommand{\\rot}{\\nabla\\times}
+\\newcommand{\\ee}{\\mathrm{e}}
+\\newcommand{\\ii}{\\mathrm{i}}
+\\newcommand{\\jj}{\\mathrm{j}}
 \\rhead{\\thepage{}}"
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")

@@ -257,6 +257,9 @@ Also turns off numbering in starred modes like *scratch*"
 \\pagestyle{empty}
 \\usepackage[dvips]{color}
 \\usepackage{physics}
+\\newcommand{\\ee}{\\mathrm{e}}
+\\newcommand{\\jj}{\\mathrm{j}}
+\\newcommand{\\ii}{\\mathrm{i}}
 \\newcommand{\\rot}{{\\nabla\\times}}
 \\newcommand{\\up}{\\uparrow}
 \\color{white}"
