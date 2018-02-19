@@ -47,17 +47,22 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-;; org-mode
-(use-package org :ensure t
+;; el-get
+(use-package el-get :ensure t)
+
+;; babel-loader
+(use-package babel-loader
+  :init
+  (el-get-bundle takaishi/babel-loader.el)
+  (use-package org :ensure t
+    :config
+    (setq org-src-preserve-indentation t))
+  (use-package init-loader :ensure t
+    :config
+    (setq init-loader-show-log-after-init 'error-only
+          init-loader-byte-compile        t))
   :config
-  (setq org-src-preserve-indentation t)
-  
-  (defvar org-startup-dir (user-setting-directory "conf/"))
-  (defun load-org-file (file)
-    "load org file"
-    (org-babel-load-file (expand-file-name file org-startup-dir)))
-  
-  (org-babel-load-file "init.org"))
+  (bl:load-dir (user-setting-directory "conf/")))
 
 (provide 'init)
 ;;; init.el ends here
