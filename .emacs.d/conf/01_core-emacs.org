@@ -127,9 +127,6 @@ Emacsのコア部分(Cによる実装)の設定。
 
 ;; delete region, when yank
 (delete-selection-mode t)
-
-;; comment style
-(setq comment-style 'multi-line)
 #+END_SRC
 
 * shortcut settings
