@@ -1,5 +1,61 @@
-comment
+#+title: 00_use-package
+#+author: Naoya Yamashita
+
+* about
+use-packageに関するパッケージのインストール
+(use-packageとel-getのインストールはinit.elで行っている)
+
+* use-package
 #+BEGIN_SRC emacs-lisp
-  (message "00_use-pacakge!!!!!")
+(use-package key-chord
+  :init (el-get-bundle zk-phi/key-chord)
+  :config
+  (setq key-chord-two-keys-delay 0.15
+        key-chord-safety-interval-backward 0.1
+        key-chord-safety-interval-forward  0.25)
+  (key-chord-mode 1))
+(use-package use-package-chords :ensure t)
 #+END_SRC
+
+** comment
+- [[https://github.com/zk-phi/key-chord][zk-phi/key-chord]] : 同時押しにコマンドをバインドする
+  zk-phi氏によるkey-chordのfork。同時押し前後の待ち時間も考慮することで、誤爆を避けている。
+  詳細は[[https://qiita.com/zk_phi/items/e70bc4c69b5a4755edd6][Qiita]]の記事を参照。
+
+  #+BEGIN_QUOTE
+しばらく key-chord.el を使っていて気づいたことは、「同時押しは想像よりは大変」ということです。
+
+２つのキーを同時に押すために、その２つのキーの位置に２本の指を移動して、いっぺんに押すので、
+単語を入力するときのように流れで１つづつキーを押すのに比べるとけっこう大変です。
+少なくとも、同じスピードではそうそう押せません。
+
+そこで自分が考えたのは、今まで key-chord.el が「２つのキー入力の間が十分短いこと」だけで
+同時押しを判定していたのを、「ほかのキー入力からワンテンポ遅れていること」も条件に加えることで
+誤入力を減らすことです。
+  #+END_QUOTE
+
+  - 従来のkey-chord
+    #+BEGIN_EXAMPLE
+ \ カタカタ /      \ バン /     \ カタカタ /
+h o g e h o g e      hj       h o g e h o g e . . .
+----------------------------------------------------
+                  |< 0.1s|
+    #+END_EXAMPLE
+
+  - 改良後のkey-chord
+    #+BEGIN_EXAMPLE
+ \ カタカタ /      \ バン /     \ カタカタ /
+h o g e h o g e      hj       h o g e h o g e . . .
+----------------------------------------------------
+                 |< 0.15s|
+              |> 0.1s||> 0.25s|
+    #+END_EXAMPLE
+- [[https://github.com/waymondo/use-package-chords][use-pacakge-chords]] : use-package用に:chordsキーワードを提供する
+  use-packageに:chordsキーワードを追加し、:bindキーワードと同様の記法をサポートする。
+  #+BEGIN_EXAMPLE
+(use-package ace-jump-mode
+  :chords (("jj" . ace-jump-char-mode)
+           ("jk" . ace-jump-word-mode)
+           ("jl" . ace-jump-line-mode)))
+  #+END_EXAMPLE
 
