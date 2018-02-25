@@ -7,8 +7,8 @@ use-packageに関するパッケージのインストール
 
 * use-package
 #+BEGIN_SRC emacs-lisp
-(use-package key-chord
-  :init (el-get-bundle zk-phi/key-chord)
+(use-package key-chord :ensure t
+  :init ;; (el-get-bundle zk-phi/key-chord)
   :config
   (setq key-chord-two-keys-delay 0.15
         key-chord-safety-interval-backward 0.1

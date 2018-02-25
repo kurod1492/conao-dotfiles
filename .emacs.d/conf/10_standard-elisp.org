@@ -136,8 +136,9 @@
            (progn
              (hl-line-mode 0)
              ad-do-it))))
-    (do-not-exit-view-mode-unless-writable-advice view-mode-exit)
-    (do-not-exit-view-mode-unless-writable-advice view-mode-disable))
+;;    (do-not-exit-view-mode-unless-writable-advice view-mode-exit)
+;;    (do-not-exit-view-mode-unless-writable-advice view-mode-disable)
+)
   
   (setcar (cdr (assq 'view-mode minor-mode-alist))
           (if (fboundp 'propertize)

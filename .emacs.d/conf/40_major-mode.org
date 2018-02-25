@@ -8,9 +8,9 @@ Major-modeの設定
 #+BEGIN_SRC emacs-lisp
 (use-package php-mode :ensure t :defer t
   :config
-  (use-package web-mode :ensure t :defer t))
+  (use-package web-mode :ensure t :defer t :disabled t))
 
-(use-package matlab-mode :ensure t :defer t)
+(use-package matlab-mode :ensure t :defer t :disabled t)
 
 (use-package plantuml-mode :ensure t :defer t
   :if (executable-find "plantuml")
@@ -39,8 +39,14 @@ Major-modeの設定
 
   (prog1 "setting src block faces"
     (defun modify-color (raw-color raw-shift)
-      "COLOR<string> is RGB color like \"#999999\"
+      "COLOR<string> is RGB color like \"#999999\" or string like \"white\"
 SHIFT<integer> or <list<integer>> is color shift num (r g b)"
+      (let ((color (color-name-to-rgb raw-color)
+             (r 0.0) (g 0.0) (b 0.0)))
+        (setq r (car color))
+        (setq g (cadr color))
+        (setq b (caddr color))
+        (setq raw-color (color-rgb-to-hex r g b)))
       (let ((color '(0 0 0)) (shift '(0 0 0)))
         (if (listp raw-shift)
             (progn
@@ -139,7 +145,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   ;; org exporting
   
   (use-package ox-latex)
-  (use-package ox-novel
+  (use-package ox-novel :disabled t
     :init (el-get-bundle conao/ox-novel :branch "del-export-block"))
   (use-package ox-reveal :ensure t
     :init
