@@ -49,7 +49,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; big utilities
-(use-package auto-install :ensure t :defer t
+(use-package auto-install :ensure t :defer t :disabled t
   :commands (auto-install-from-buffer
              auto-install-from-url
              auto-install-from-emacswiki
