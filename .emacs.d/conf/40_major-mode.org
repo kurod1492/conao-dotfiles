@@ -41,13 +41,8 @@ Major-modeの設定
     (defun modify-color (raw-color raw-shift)
       "COLOR<string> is RGB color like \"#999999\" or string like \"white\"
 SHIFT<integer> or <list<integer>> is color shift num (r g b)"
-      (let ((color (color-name-to-rgb raw-color)
-             (r 0.0) (g 0.0) (b 0.0)))
-        (setq r (car color))
-        (setq g (cadr color))
-        (setq b (caddr color))
-        (setq raw-color (color-rgb-to-hex r g b)))
       (let ((color '(0 0 0)) (shift '(0 0 0)))
+        (setq raw-color (apply #'color-rgb-to-hex (color-name-to-rgb raw-color)))
         (if (listp raw-shift)
             (progn
               (setq shift (make-list 3 (first raw-shift)))
