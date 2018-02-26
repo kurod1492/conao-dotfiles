@@ -35,13 +35,13 @@
     (setq user-emacs-directory (file-name-directory load-file-name))
   (setq user-emacs-directory "~/.emacs.d/"))
 
-(defmacro user-setting-directory (directory)
+(defun user-setting-directory (directory)
   "Return user-emacs-directory/DIRECTORY to setting Emacs."
   (concat user-emacs-directory directory))
 
 (defun add-to-load-path (&rest paths)
   "Add load path recursive in PATHS."
-  (dolist (path paths paths)
+  (dolist (path paths)
     (let ((default-directory
             (expand-file-name (concat user-emacs-directory path))))
       (add-to-list 'load-path default-directory)
@@ -50,7 +50,13 @@
 
 (defvar load-path-folder-list '("site-lisp" "conf" "elpa" "elpa-23" "el-get" "auto-install"))
 
-(dolist (folder load-path-folder-list)
+(defun add-user-setting-directory-to-load-path (&rest dnames)
+  "Add load path recursive in $user-setting-directory/FNAMES
+DNAMES is directory name list in user-setting-directory"
+  
+  (dolist (directory dnames)
+  (let ((paths (mapcar '#user-setting-directory (dnames))))
+    )
   (unless (file-directory-p (concat user-emacs-directory folder))
     (mkdir (concat user-emacs-directory folder))
     (message "mkdir: %s%s" user-emacs-directory folder))
