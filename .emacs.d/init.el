@@ -41,14 +41,14 @@
 
 (defun add-to-load-path (&rest paths)
   "Add load path recursive in PATHS."
-	(dolist (path paths paths)
-	  (let ((default-directory
-			  (expand-file-name (concat user-emacs-directory path))))
-		(add-to-list 'load-path default-directory)
-		(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-			(normal-top-level-add-subdirs-to-load-path)))))
+  (dolist (path paths paths)
+    (let ((default-directory
+            (expand-file-name (concat user-emacs-directory path))))
+      (add-to-list 'load-path default-directory)
+      (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
+          (normal-top-level-add-subdirs-to-load-path)))))
 
-(defvar load-path-folder-list '("site-lisp" "conf" "elpa" "el-get" "auto-install"))
+(defvar load-path-folder-list '("site-lisp" "conf" "elpa" "elpa-23" "el-get" "auto-install"))
 
 (dolist (folder load-path-folder-list)
   (unless (file-directory-p (concat user-emacs-directory folder))
@@ -56,34 +56,48 @@
     (message "mkdir: %s%s" user-emacs-directory folder))
   (add-to-load-path folder))
 
-;; package
-(require 'package)
-(add-to-list 'package-archives '("melpa"     . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("org"       . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
+(cond ((= emacs-major-version 23)
+      (progn
+        (require 'auto-install)
+        (unless (require 'package nil t)
+	    (auto-install-from-url "https://raw.githubusercontent.com/conao/package-23/master/package.el")
+	    (require 'package))
+        (add-to-list 'package-archives '("melpa"     . "http://melpa.org/packages/"))
+        (add-to-list 'package-archives '("org"       . "http://orgmode.org/elpa/"))
+        (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+	(setq package-user-dir (user-setting-directory "elpa-23"))
+        (package-initialize)
+	))
+      ((>= emacs-major-version 24)
+      (progn
+        ;; package
+        (require 'package)
+        (add-to-list 'package-archives '("melpa"     . "http://melpa.org/packages/"))
+        (add-to-list 'package-archives '("org"       . "http://orgmode.org/elpa/"))
+        (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+        (package-initialize)
 
-;; use-package
-(when (not (package-installed-p 'use-package))
-  (package-refresh-contents)
-  (package-install 'use-package))
+        ;; use-package
+        (when (not (package-installed-p 'use-package))
+          (package-refresh-contents)
+          (package-install 'use-package))
 
-;; el-get
-(use-package el-get :ensure t)
+        ;; el-get
+        (use-package el-get :ensure t)
 
-;; babel-loader
-(use-package babel-loader
-  :init
-  (el-get-bundle takaishi/babel-loader.el)
-  (use-package org :ensure t
-    :config
-    (setq org-src-preserve-indentation t))
-  (use-package init-loader :ensure t
-    :config
-    (setq init-loader-show-log-after-init 'error-only
-          init-loader-byte-compile        t))
-  :config
-  (bl:load-dir (user-setting-directory "conf/")))
+        ;; babel-loader
+        (use-package babel-loader
+          :init
+          (el-get-bundle takaishi/babel-loader.el)
+          (use-package org :ensure t
+            :config
+            (setq org-src-preserve-indentation t))
+          (use-package init-loader :ensure t
+            :config
+            (setq init-loader-show-log-after-init 'error-only
+                  init-loader-byte-compile        t))
+          :config
+          (bl:load-dir (user-setting-directory "conf/"))))))
 
 (provide 'init)
 ;;; init.el ends here
