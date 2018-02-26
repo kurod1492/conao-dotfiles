@@ -24,6 +24,11 @@
 
 ;;; Code:
 
+;; enable debug
+(setq debug-on-error t
+      debug-on-signal nil
+      debug-on-quit nil)
+
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
 ;; load settings in ~/hoge/
 (if load-file-name
@@ -33,6 +38,23 @@
 (defmacro user-setting-directory (directory)
   "Return user-emacs-directory/DIRECTORY to setting Emacs."
   (concat user-emacs-directory directory))
+
+(defun add-to-load-path (&rest paths)
+  "Add load path recursive in PATHS."
+	(dolist (path paths paths)
+	  (let ((default-directory
+			  (expand-file-name (concat user-emacs-directory path))))
+		(add-to-list 'load-path default-directory)
+		(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
+			(normal-top-level-add-subdirs-to-load-path)))))
+
+(defvar load-path-folder-list '("site-lisp" "conf" "elpa" "el-get" "auto-install"))
+
+(dolist (folder load-path-folder-list)
+  (unless (file-directory-p (concat user-emacs-directory folder))
+    (mkdir (concat user-emacs-directory folder))
+    (message "mkdir: %s%s" user-emacs-directory folder))
+  (add-to-load-path folder))
 
 ;; package
 (require 'package)
