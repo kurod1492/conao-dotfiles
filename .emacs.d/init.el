@@ -68,11 +68,6 @@
   (package-install 'solarized-theme))
 (load-theme 'solarized-dark t)
 
-;; (unless (package-installed-p 'dracula-theme)
-;;   (package-refresh-contents)
-;;   (package-install 'dracula-theme))
-;; (load-theme 'dracula t)
-
 ;; init-loader
 (unless (package-installed-p 'init-loader)
   (package-refresh-contents)
