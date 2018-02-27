@@ -35,7 +35,7 @@
     (setq user-emacs-directory (file-name-directory load-file-name))
   (setq user-emacs-directory "~/.emacs.d/"))
 
-(defmacro user-setting-directory (directory)
+(defun user-setting-directory (directory)
   "Return user-emacs-directory/DIRECTORY to setting Emacs."
   (concat user-emacs-directory directory))
 
