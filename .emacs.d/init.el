@@ -31,9 +31,11 @@
 
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
 ;; load settings in ~/hoge/
-(if load-file-name
-    (setq user-emacs-directory (file-name-directory load-file-name))
-  (setq user-emacs-directory "~/.emacs.d/"))
+
+(setq user-emacs-directory
+      (expand-file-name
+       (file-name-directory
+        (if load-file-name load-file-name "~/.emacs.d/init.el"))))
 
 (defun user-setting-directory (directory)
   "Return user-emacs-directory/DIRECTORY to setting Emacs."
@@ -53,15 +55,16 @@
 (defun add-user-setting-directory-to-load-path (&rest dnames)
   "Add load path recursive in $user-setting-directory/FNAMES
 DNAMES is directory name list in user-setting-directory"
+  (add-to-load-path
+   (mapcar #'(lambda (x)
+               (let ((path))
+                 (setq path (expand-file-name (user-setting-directory x)))
+                 (unless (file-directory-p path)
+                   (message "mkdir: %s" path)
+                   (mkdir path))
+                 path))
+           dnames)))
   
-  (dolist (directory dnames)
-  (let ((paths (mapcar '#user-setting-directory (dnames))))
-    )
-  (unless (file-directory-p (concat user-emacs-directory folder))
-    (mkdir (concat user-emacs-directory folder))
-    (message "mkdir: %s%s" user-emacs-directory folder))
-  (add-to-load-path folder))
-
 (cond ((= emacs-major-version 23)
       (progn
         (require 'auto-install)
