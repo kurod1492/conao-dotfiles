@@ -104,7 +104,7 @@ DNAMES is directory name list in user-setting-directory"
           (use-package init-loader :ensure t
             :config
             (setq init-loader-show-log-after-init 'error-only
-                  init-loader-byte-compile        t))
+                  init-loader-byte-compile        nil))
           :config
           (bl:load-dir (user-setting-directory "conf/"))))))
 
