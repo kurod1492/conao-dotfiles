@@ -342,14 +342,7 @@
 
   (use-package rainbow-mode :ensure t :defer t :diminish (rainbow-mode . "")
     :commands rainbow-mode
-    :init
-    (hook-into-modes #'rainbow-mode
-                     'emacs-lisp-mode-hook
-                     'lisp-mode-hook
-                     'css-mode-hook
-                     'less-mode-hook
-                     'web-mode-hook
-                     'html-mode-hook))
+    :hook (emacs-lisp-mode lisp-mode css-mode less-mode web-mode html-mode))
 
   (use-package google-translate :ensure t :defer t
     :init
@@ -363,11 +356,8 @@
     :bind* (("C-x t"   . google-translate-at-point)
             ("C-x S-t" . google-translate-query-translate)))
 
-  (use-package elisp-slime-nav :ensure t :diminish (elisp-slime-nav-mode . "")
-    :config
-    (hook-into-modes 'elisp-slime-nav-mode
-                     'emacs-lisp-mode-hook
-                     'lisp-interaction-mode-hook))
+  (use-package elisp-slime-nav :ensure t :diminish (elisp-slime-nav-mode . "") :disabled t
+    :hook (emacs-lisp-mode lisp-interaction-mode))
 
   (use-package latex-math-preview :ensure t
     :if (executable-find "platex")
