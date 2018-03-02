@@ -66,47 +66,49 @@ DNAMES is directory name list in user-setting-directory"
            dnames)))
   
 (cond ((= emacs-major-version 23)
-      (progn
-        (require 'auto-install)
-        (unless (require 'package nil t)
-	    (auto-install-from-url "https://raw.githubusercontent.com/conao/package-23/master/package.el")
-	    (require 'package))
-        (add-to-list 'package-archives '("melpa"     . "http://melpa.org/packages/"))
-        (add-to-list 'package-archives '("org"       . "http://orgmode.org/elpa/"))
-        (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-	(setq package-user-dir (user-setting-directory "elpa-23"))
-        (package-initialize)
-	))
+       (progn
+         (require 'auto-install)
+         (unless (require 'package nil t)
+           (auto-install-from-url "https://raw.githubusercontent.com/conao/package-23/master/package.el")
+           (require 'package))
+         (add-to-list 'package-archives '("melpa"     . "http://melpa.org/packages/"))
+         (add-to-list 'package-archives '("org"       . "http://orgmode.org/elpa/"))
+         (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+         (setq package-user-dir (user-setting-directory "elpa-23"))
+         (package-initialize)
+         ))
       ((>= emacs-major-version 24)
-      (progn
-        ;; package
-        (require 'package)
-        (add-to-list 'package-archives '("melpa"     . "http://melpa.org/packages/"))
-        (add-to-list 'package-archives '("org"       . "http://orgmode.org/elpa/"))
-        (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-        (package-initialize)
+       (progn
+         ;; package
+         (require 'package)
+         (add-to-list 'package-archives '("melpa"     . "http://melpa.org/packages/"))
+         (add-to-list 'package-archives '("org"       . "http://orgmode.org/elpa/"))
+         (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+         (let ((dir (concat (user-setting-directory "elpa/") "latex-math-preview-20170522.1455")))
+           (if (file-directory-p dir)
+               (delete-directory dir t)))
+         (package-initialize)
 
-        ;; use-package
-        (when (not (package-installed-p 'use-package))
-          (package-refresh-contents)
-          (package-install 'use-package))
+         ;; use-package
+         (when (not (package-installed-p 'use-package))
+           (package-refresh-contents)
+           (package-install 'use-package))
 
-        ;; el-get
-        (use-package el-get :ensure t)
+         ;; el-get
+         (use-package el-get :ensure t)
 
-        ;; babel-loader
-        (use-package babel-loader
-          :init
-          (el-get-bundle takaishi/babel-loader.el)
-          (use-package org :ensure t
-            :config
-            (setq org-src-preserve-indentation t))
-          (use-package init-loader :ensure t
-            :config
-            (setq init-loader-show-log-after-init 'error-only
-                  init-loader-byte-compile        nil))
-          :config
-          (bl:load-dir (user-setting-directory "conf/"))))))
-
+         ;; babel-loader
+         (use-package babel-loader
+           :init
+           (el-get-bundle takaishi/babel-loader.el)
+           (use-package org :ensure t
+             :config
+             (setq org-src-preserve-indentation t))
+           (use-package init-loader :ensure t
+             :config
+             (setq init-loader-show-log-after-init 'error-only
+                   init-loader-byte-compile        nil))
+           :config
+           (bl:load-dir (user-setting-directory "conf/"))))))
 (provide 'init)
 ;;; init.el ends here
