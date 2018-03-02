@@ -97,6 +97,11 @@ DNAMES is directory name list in user-setting-directory"
          ;; el-get
          (use-package el-get :ensure t)
 
+         ;; theme settings
+         (use-package solarized-theme :ensure t
+           :init
+           (load-theme 'solarized-dark t))
+         
          ;; babel-loader
          (use-package babel-loader
            :init
