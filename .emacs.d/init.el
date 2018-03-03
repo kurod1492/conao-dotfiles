@@ -41,18 +41,16 @@
   "Return user-emacs-directory/DIRECTORY to setting Emacs."
   (concat user-emacs-directory directory))
 
-(defun add-to-load-path (&rest paths)
+(defun add-to-load-path (paths)
   "Add load path recursive in PATHS."
   (dolist (path paths)
-    (let ((default-directory
-            (expand-file-name (concat user-emacs-directory path))))
+    (let ((default-directory path))
       (add-to-list 'load-path default-directory)
-      (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-          (normal-top-level-add-subdirs-to-load-path)))))
+      (normal-top-level-add-subdirs-to-load-path))))
 
 (defvar load-path-folder-list '("site-lisp" "conf" "elpa" "elpa-23" "el-get" "auto-install"))
 
-(defun add-user-setting-directory-to-load-path (&rest dnames)
+(defun add-user-setting-directory-to-load-path (dnames)
   "Add load path recursive in $user-setting-directory/FNAMES
 DNAMES is directory name list in user-setting-directory"
   (add-to-load-path
@@ -64,9 +62,12 @@ DNAMES is directory name list in user-setting-directory"
                    (mkdir path))
                  path))
            dnames)))
-  
+
 (cond ((= emacs-major-version 23)
        (progn
+         (add-to-list 'load-path-folder-list "elpa-23")
+         (add-user-setting-directory-to-load-path load-path-folder-list)
+         
          (require 'auto-install)
          (unless (require 'package nil t)
            (auto-install-from-url "https://raw.githubusercontent.com/conao/package-23/master/package.el")
@@ -75,10 +76,12 @@ DNAMES is directory name list in user-setting-directory"
          (add-to-list 'package-archives '("org"       . "http://orgmode.org/elpa/"))
          (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
          (setq package-user-dir (user-setting-directory "elpa-23"))
-         (package-initialize)
-         ))
+         (package-initialize)))
       ((>= emacs-major-version 24)
        (progn
+         (add-to-list 'load-path-folder-list "elpa")
+         (add-user-setting-directory-to-load-path load-path-folder-list)
+         
          ;; package
          (require 'package)
          (add-to-list 'package-archives '("melpa"     . "http://melpa.org/packages/"))
