@@ -48,8 +48,6 @@
       (add-to-list 'load-path default-directory)
       (normal-top-level-add-subdirs-to-load-path))))
 
-(defvar load-path-folder-list '("site-lisp" "conf" "elpa" "elpa-23" "el-get" "auto-install"))
-
 (defun add-user-setting-directory-to-load-path (dnames)
   "Add load path recursive in $user-setting-directory/FNAMES
 DNAMES is directory name list in user-setting-directory"
@@ -63,23 +61,33 @@ DNAMES is directory name list in user-setting-directory"
                  path))
            dnames)))
 
+(defmacro add-list-to-list (added-lst lst)
+  "minor change from add-to-list.
+add LST to ADDED-LST in a destructive"
+  `(progn
+     (mapc (lambda (x)
+             (add-to-list ,added-lst x))
+           ,lst)
+     ,added-lst))
+
+(defvar load-path-folder-list '("conf" "el-get")
+  "folder-list add to load-path recursive. `user-setting-directory'/`load-path-folder-list'")
+
 (cond ((= emacs-major-version 23)
        (progn
-         (add-to-list 'load-path-folder-list "elpa-23")
+         (add-list-to-list 'load-path-folder-list '("_elpa-23" "_site-lisp-23"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
-         
-         (require 'auto-install)
-         (unless (require 'package nil t)
-           (auto-install-from-url "https://raw.githubusercontent.com/conao/package-23/master/package.el")
-           (require 'package))
-         (add-to-list 'package-archives '("melpa"     . "http://melpa.org/packages/"))
-         (add-to-list 'package-archives '("org"       . "http://orgmode.org/elpa/"))
-         (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-         (setq package-user-dir (user-setting-directory "elpa-23"))
+
+         ;; package
+         (require 'package)
+         (add-list-to-list 'package-archives '(("melpa"     . "http://melpa.org/packages/")
+                                               ("org"       . "http://orgmode.org/elpa/")
+                                               ("marmalade" . "http://marmalade-repo.org/packages/")))
+         (setq package-user-dir (user-setting-directory "_elpa-23"))
          (package-initialize)))
       ((>= emacs-major-version 24)
        (progn
-         (add-to-list 'load-path-folder-list "elpa")
+         (add-list-to-list 'load-path-folder-list '("elpa" "site-lisp"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          ;; package
