@@ -12,6 +12,7 @@ places
 ac-comphist.dat
 srecode-map.el
 bookmarks
+network-security.data
 
 # download packages
 elpa/
