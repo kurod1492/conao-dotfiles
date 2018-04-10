@@ -105,9 +105,6 @@ add LST to ADDED-LST in a destructive"
            (package-refresh-contents)
            (package-install 'use-package))
 
-         ;; el-get
-         (use-package el-get :ensure t)
-
          ;; theme settings
          (use-package solarized-theme :ensure t
            :init
@@ -116,7 +113,9 @@ add LST to ADDED-LST in a destructive"
          ;; babel-loader
          (use-package babel-loader
            :init
-           (el-get-bundle takaishi/babel-loader.el)
+           (use-package el-get :ensure t
+             :config
+             (el-get-bundle takaishi/babel-loader.el))
            (use-package org :ensure t
              :config
              (setq org-src-preserve-indentation t))
