@@ -92,9 +92,9 @@ add LST to ADDED-LST in a destructive"
          
          ;; package
          (require 'package)
-         (add-to-list 'package-archives '("melpa"     . "http://melpa.org/packages/"))
-         (add-to-list 'package-archives '("org"       . "http://orgmode.org/elpa/"))
-         (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+         (add-list-to-list 'package-archives '(("melpa"     . "http://melpa.org/packages/")
+                                               ("org"       . "http://orgmode.org/elpa/")
+                                               ("marmalade" . "http://marmalade-repo.org/packages/")))
          (let ((dir (concat (user-setting-directory "elpa/") "latex-math-preview-20170522.1455")))
            (if (file-directory-p dir)
                (delete-directory dir t)))
