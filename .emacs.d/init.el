@@ -79,7 +79,7 @@ add LST to ADDED-LST in a destructive"
          (add-user-setting-directory-to-load-path load-path-folder-list)
 
          ;; package
-         (require 'package)
+         (require 'package-23)
          (add-list-to-list 'package-archives '(("melpa"     . "http://melpa.org/packages/")
                                                ("org"       . "http://orgmode.org/elpa/")
                                                ("marmalade" . "http://marmalade-repo.org/packages/")))
