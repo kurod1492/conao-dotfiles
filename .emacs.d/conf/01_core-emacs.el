@@ -25,7 +25,7 @@
 ;;; Code:
 
 ;; use C-h as DEL
-(keyboard-translate ?\C-h ?\C-?)
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
 (provide '01_core-emacs)
 ;;; 01_core-emacs.el ends here
