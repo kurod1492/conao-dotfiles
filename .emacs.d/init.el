@@ -42,26 +42,26 @@
 
 (when emacs22-l-p (error "unsupport version prior to emacs22"))
 
-(defvar load-path-folder-list '("el-get" "backup")
+(defvar load-path-folder-list '("backup")
   "folder-list add to load-path recursive. `user-setting-directory'/`load-path-folder-list'")
 
 (cond (emacs23-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("_elpa-23" "_site-lisp-23" "_conf-23"))
+         (add-list-to-list 'load-path-folder-list '("el-get-23" "site-lisp-23" "conf-23"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package-23)
-         (setq package-user-dir (user-setting-directory "_elpa-23"))))
+         (setq package-user-dir (user-setting-directory "elpa-23"))))
       (emacs24-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("elpa" "site-lisp" "conf"))
+         (add-list-to-list 'load-path-folder-list '("el-get" "elpa" "site-lisp" "conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)
          (setq package-user-dir (user-setting-directory "elpa"))))
       (emacs25-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("_elpa-25" "site-lisp" "conf"))
+         (add-list-to-list 'load-path-folder-list '("el-get" "elpa-25" "site-lisp" "conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)

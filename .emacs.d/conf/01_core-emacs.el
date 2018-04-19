@@ -49,6 +49,8 @@
       create-lockfiles           nil) ;; .#aaa.txt@ -> conao@Macbook-Air.local
 (setq backup-directory-alist         `((".*" . ,(user-setting-directory "backup/")))
       auto-save-file-name-transforms `((".*" ,(user-setting-directory "backup/") t)))
+(setq auto-save-timeout 15
+      auto-save-interval 30)
 
 ;; don't show splash screen
 (setq inhibit-splash-screen t)
