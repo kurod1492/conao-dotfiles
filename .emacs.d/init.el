@@ -49,9 +49,10 @@
        (progn
          (add-list-to-list 'load-path-folder-list '("el-get-23" "site-lisp-23" "conf-23"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
-         
-         (require 'package-23)
-         (setq package-user-dir (user-setting-directory "elpa-23"))))
+
+         (require 'el-get)
+         (setq el-get-git-shallow-clone t)
+         (setq el-get-dir (user-setting-directory "el-get-23"))))
       (emacs24-p
        (progn
          (add-list-to-list 'load-path-folder-list '("el-get" "elpa-24" "site-lisp" "conf"))
@@ -66,17 +67,21 @@
          
          (require 'package)
          (setq package-user-dir (user-setting-directory "_elpa-25")))))
-(add-list-to-list 'package-archives '(("melpa"     . "http://melpa.org/packages/")
-                                      ("org"       . "http://orgmode.org/elpa/")
-                                      ("marmalade" . "http://marmalade-repo.org/packages/")))
-(package-initialize)
 
-(let ((dir (concat (user-setting-directory "elpa/") "latex-math-preview-20170522.1455")))
-  (if (file-directory-p dir)
-      (delete-directory dir t)))
-
-(cond (emacs23-g-p
+(cond (emacs23-p
        (progn
+         (el-get-bundle emacs-jp/init-loader)))
+      (emacs24-g-p
+       (progn
+         (add-list-to-list 'package-archives '(("melpa"     . "http://melpa.org/packages/")
+                                               ("org"       . "http://orgmode.org/elpa/")
+                                               ("marmalade" . "http://marmalade-repo.org/packages/")))
+         (package-initialize)
+
+         (let ((dir (concat (user-setting-directory "elpa/") "latex-math-preview-20170522.1455")))
+           (if (file-directory-p dir)
+               (delete-directory dir t)))
+
          ;; use-package
          (when (not (package-installed-p 'use-package))
            (package-refresh-contents)
