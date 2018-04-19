@@ -42,11 +42,13 @@
   (setq file-name-coding-system 'cp932
         locale-coding-system    'cp932))
 
-(setq make-backup-files          nil  ;; *.~
-      auto-save-default          nil  ;; .#*
+(setq make-backup-files          t    ;; *.~
+      auto-save-default          t    ;; .#*
       vc-make-backup-files       nil  ;; backup file
       auto-save-list-file-prefix nil  ;; .saves-Macbook-Air.local~
       create-lockfiles           nil) ;; .#aaa.txt@ -> conao@Macbook-Air.local
+(setq backup-directory-alist         `((".*" . ,(user-setting-directory "backup/")))
+      auto-save-file-name-transforms `((".*" ,(user-setting-directory "backup/") t)))
 
 ;; don't show splash screen
 (setq inhibit-splash-screen t)

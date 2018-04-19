@@ -42,7 +42,7 @@
 
 (when emacs22-l-p (error "unsupport version prior to emacs22"))
 
-(defvar load-path-folder-list '("el-get")
+(defvar load-path-folder-list '("el-get" "backup")
   "folder-list add to load-path recursive. `user-setting-directory'/`load-path-folder-list'")
 
 (cond (emacs23-p
