@@ -30,6 +30,10 @@
   (when (file-exists-p custom-file)
     (load custom-file)))
 
+(use-package battery
+  :config
+  (display-battery-mode t))
+
 (use-package generic-x
   :config
   (global-font-lock-mode t)
