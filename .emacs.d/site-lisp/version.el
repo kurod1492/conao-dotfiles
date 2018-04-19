@@ -35,10 +35,10 @@
 (defvar emacs25-p (= 25 emacs-major-version))
 
 ;; less than ~
-(defvar emacs22-l-p (<= 22 emacs-major-version))
-(defvar emacs23-l-p (<= 23 emacs-major-version))
-(defvar emacs24-l-p (<= 24 emacs-major-version))
-(defvar emacs25-l-p (<= 25 emacs-major-version))
+(defvar emacs22-l-p (>= 22 emacs-major-version))
+(defvar emacs23-l-p (>= 23 emacs-major-version))
+(defvar emacs24-l-p (>= 24 emacs-major-version))
+(defvar emacs25-l-p (>= 25 emacs-major-version))
 
 ;; greater than ~
 (defvar emacs22-g-p (<= 22 emacs-major-version))

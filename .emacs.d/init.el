@@ -37,8 +37,8 @@
        (file-name-directory
         (if load-file-name load-file-name "~/.emacs.d/init.el"))))
 
-(load-file (concat user-emacs-directory "sitelisp/loadpath.el"))
-(load-file (concat user-emacs-directory "sitelisp/version.el"))
+(load-file (concat user-emacs-directory "site-lisp/loadpath.el"))
+(load-file (concat user-emacs-directory "site-lisp/version.el"))
 
 (when emacs22-l-p (error "unsupport version prior to emacs22"))
 
@@ -80,15 +80,11 @@
            :init
            (load-theme 'solarized-dark t))
 
-         ;; babel-loader
-         (use-package babel-loader
-           :init
-           (use-package init-loader :ensure t
-             :config
-             (setq init-loader-show-log-after-init 'error-only
-                   init-loader-byte-compile        nil))
+         ;; init-loader
+         (use-package init-laoder :ensure t
            :config
-           (bl:load-dir (user-setting-directory "conf/"))))))
+           (init-loader-load (user-setting-directory "conf"))))))
+
 (provide 'init)
 ;;; init.el ends here
 
