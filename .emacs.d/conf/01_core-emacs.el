@@ -26,23 +26,27 @@
 
 ;; locale settings
 (set-language-environment "Japanese")
-(set-default-coding-systems   'utf-8-unix)
 (prefer-coding-system         'utf-8-unix)
+(set-default-coding-systems   'utf-8-unix)
 (set-file-name-coding-system  'utf-8-unix)
 (set-keyboard-coding-system   'utf-8-unix)
 (setq locale-coding-system    'utf-8-unix)
 (setq default-process-coding-system '(undecided-dos . utf-8-unix))
 
-;; don't create file like *.~
-(setq make-backup-files nil)
-;; don't create file like .#*
-(setq auto-save-default nil)
-;; don't create backup file
-(setq vc-make-backup-files nil)
-;; don't create .saves-Macbook-Air.local~
-(setq auto-save-list-file-prefix nil)
-;; don't create .#aaa.txt@ -> conao@Macbook-Air.local
-(setq create-lockfiles nil)
+;; file-name coding
+(when darwin-p
+  (use-package ucs-normalize)
+  (setq file-name-coding-system 'utf-8-hfs
+        locale-coding-system    'utf-8-hfs))
+(when windows-p
+  (setq file-name-coding-system 'cp932
+        locale-coding-system    'cp932))
+
+(setq make-backup-files          nil  ;; *.~
+      auto-save-default          nil  ;; .#*
+      vc-make-backup-files       nil  ;; backup file
+      auto-save-list-file-prefix nil  ;; .saves-Macbook-Air.local~
+      create-lockfiles           nil) ;; .#aaa.txt@ -> conao@Macbook-Air.local
 
 ;; don't show splash screen
 (setq inhibit-splash-screen t)
