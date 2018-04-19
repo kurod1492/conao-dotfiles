@@ -47,14 +47,14 @@
 
 (cond (emacs23-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("_elpa-23" "_site-lisp-23"))
+         (add-list-to-list 'load-path-folder-list '("_elpa-23" "_site-lisp-23" "_conf-23"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package-23)
          (setq package-user-dir (user-setting-directory "_elpa-23"))))
       (emacs24-g-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("elpa" "site-lisp"))
+         (add-list-to-list 'load-path-folder-list '("elpa" "site-lisp" "conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)
@@ -68,7 +68,7 @@
   (if (file-directory-p dir)
       (delete-directory dir t)))
 
-(cond (emacs24-g-p
+(cond (emacs23-g-p
        (progn
          ;; use-package
          (when (not (package-installed-p 'use-package))
