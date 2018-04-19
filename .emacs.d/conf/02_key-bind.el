@@ -24,7 +24,14 @@
 
 ;;; Code:
 
-(bind-key "C-c l" 'toggle-truncate-lines)
+(bind-keys ("C-c a"   . align)
+           ("C-c S-a" . align-regexp)
+           ("C-c d"   . delete-trailing-whitespace)
+           ("C-c b"   . battery)
+           ("C-c l"   . toggle-truncate-lines)
+           ("C-x e"   . eval-last-sexp)
+           ("M-r"     . query-replace)
+           ("M-c"     . c-mode))
 
 (provide '02_key-bind)
 ;;; 02_key-bind.el ends here
