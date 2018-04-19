@@ -1,7 +1,0 @@
-# key: align
-# name: align
-# expand-env: ((yas/indent-line (quote fixed)) (yas/wrap-around-region (quote nil)))
-# --
-\begin{align*}
-$0
-\end{align*}

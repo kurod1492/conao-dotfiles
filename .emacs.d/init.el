@@ -1,9 +1,9 @@
-;;; init.el ---                                -*- lexical-binding: t; -*-
+;;; init.el ---                                      -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017  Naoya Yamashita
+;; Copyright (C) 2018  Naoya Yamashita
 
-;; Author: Naoya Yamashita <conao@Naoya-MacBook-Air.local>
-;; Keywords:
+;; Author: Naoya Yamashita <conao@184-187.cup.hiroshima-u.ac.jp>
+;; Keywords: .emacs
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -25,56 +25,76 @@
 ;;; Code:
 
 ;; enable debug
-(setq debug-on-error t
+(setq debug-on-error  t
       debug-on-signal nil
-      debug-on-quit nil)
+      debug-on-quit   nil)
 
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
 ;; load settings in ~/hoge/
-(if load-file-name
-    (setq user-emacs-directory (file-name-directory load-file-name))
-  (setq user-emacs-directory "~/.emacs.d/"))
+(setq user-emacs-directory
+      (expand-file-name
+       (file-name-directory
+        (if load-file-name load-file-name "~/.emacs.d/init.el"))))
 
-(defmacro user-setting-directory (directory)
-  "Return user-emacs-directory/DIRECTORY to setting Emacs."
-  (concat user-emacs-directory directory))
+(load-file (concat user-emacs-directory "site-lisp/loadpath.el"))
+(load-file (concat user-emacs-directory "site-lisp/version.el"))
 
-(defun add-to-load-path (&rest paths)
-  "Add load path recursive in PATHS."
-	(dolist (path paths paths)
-	  (let ((default-directory
-			  (expand-file-name (concat user-emacs-directory path))))
-		(add-to-list 'load-path default-directory)
-		(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-			(normal-top-level-add-subdirs-to-load-path)))))
+(when emacs22-l-p (error "unsupport version prior to emacs22"))
 
-(defvar load-path-folder-list '("site-lisp" "conf" "elpa" "el-get" "auto-install"))
+(defvar load-path-folder-list '("backup")
+  "folder-list add to load-path recursive. `user-setting-directory'/`load-path-folder-list'")
 
-(dolist (folder load-path-folder-list)
-  (unless (file-directory-p (concat user-emacs-directory folder))
-    (mkdir (concat user-emacs-directory folder))
-    (message "mkdir: %s%s" user-emacs-directory folder))
-  (add-to-load-path folder))
+(cond (emacs23-p
+       (progn
+         (add-list-to-list 'load-path-folder-list '("el-get-23" "site-lisp-23" "conf-23"))
+         (add-user-setting-directory-to-load-path load-path-folder-list)
 
-(require 'package)
-(add-to-list 'package-archives '("melpa"     . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("org"       . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
+         (require 'el-get)
+         (setq el-get-git-shallow-clone t)
+         (setq el-get-dir (user-setting-directory "el-get-23"))))
+      (emacs24-p
+       (progn
+         (add-list-to-list 'load-path-folder-list '("el-get" "elpa-24" "site-lisp" "conf"))
+         (add-user-setting-directory-to-load-path load-path-folder-list)
+         
+         (require 'package)
+         (setq package-user-dir (user-setting-directory "elpa"))))
+      (emacs25-p
+       (progn
+         (add-list-to-list 'load-path-folder-list '("el-get" "elpa-25" "site-lisp" "conf"))
+         (add-user-setting-directory-to-load-path load-path-folder-list)
+         
+         (require 'package)
+         (setq package-user-dir (user-setting-directory "_elpa-25")))))
 
-;; theme settings
-(unless (package-installed-p 'solarized-theme)
-  (package-refresh-contents)
-  (package-install 'solarized-theme))
-(load-theme 'solarized-dark t)
+(cond (emacs23-p
+       (progn
+         (el-get-bundle emacs-jp/init-loader)))
+      (emacs24-g-p
+       (progn
+         (add-list-to-list 'package-archives '(("melpa"     . "http://melpa.org/packages/")
+                                               ("org"       . "http://orgmode.org/elpa/")
+                                               ("marmalade" . "http://marmalade-repo.org/packages/")))
+         (package-initialize)
 
-;; init-loader
-(unless (package-installed-p 'init-loader)
-  (package-refresh-contents)
-  (package-install 'init-loader))
-(require 'init-loader)
+         (let ((dir (concat (user-setting-directory "elpa/") "latex-math-preview-20170522.1455")))
+           (if (file-directory-p dir)
+               (delete-directory dir t)))
 
-(init-loader-load (user-setting-directory "conf"))
+         ;; use-package
+         (when (not (package-installed-p 'use-package))
+           (package-refresh-contents)
+           (package-install 'use-package))
+
+         ;; theme settings
+         (use-package solarized-theme :ensure t
+           :init
+           (load-theme 'solarized-dark t))
+
+         ;; init-loader
+         (use-package init-loader :ensure t
+           :config
+           (init-loader-load (user-setting-directory "conf"))))))
 
 (provide 'init)
 ;;; init.el ends here

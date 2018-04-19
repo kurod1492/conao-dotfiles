@@ -1,8 +1,8 @@
-;;; init.el ---                                      -*- lexical-binding: t; -*-
+;;; 02_key-bind.el ---                               -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2018  Naoya Yamashita
 
-;; Author: Naoya Yamashita <conao@184-187.cup.hiroshima-u.ac.jp>
+;; Author: Naoya Yamashita <conao@naoya-imac.local>
 ;; Keywords: .emacs
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,16 +24,15 @@
 
 ;;; Code:
 
-(use-package el-get :ensure t)
+(bind-keys ("C-c a"   . align)
+           ("C-c S-a" . align-regexp)
+           ("C-c d"   . delete-trailing-whitespace)
+           ("C-c b"   . battery)
+           ("C-c l"   . toggle-truncate-lines)
+           ("C-x e"   . eval-last-sexp)
+           ("M-r"     . query-replace)
+           ("M-c"     . c-mode))
 
-(use-package key-chord :ensure t
-  :init ;; (el-get-bundle zk-phi/key-chord)
-  :config
-  (setq key-chord-two-keys-delay 0.15
-        key-chord-safety-interval-backward 0.1
-        key-chord-safety-interval-forward  0.25)
-  (key-chord-mode 1))
-(use-package use-package-chords :ensure t)
+(provide '02_key-bind)
+;;; 02_key-bind.el ends here
 
-(provide '00_use-package)
-;;; 00_use-package.el ends here

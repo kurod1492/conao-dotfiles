@@ -1,9 +1,9 @@
-;;; 40_major-mode.el --- config                      -*- lexical-binding: t; -*-
+;;; 40_major-mode.el ---                                 -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017 conao
+;; Copyright (C) 2018  Naoya Yamashita
 
-;; Author: conao
-;; Keywords:
+;; Author: Naoya Yamashita <conao@naoya-imac.local>
+;; Keywords: .emacs
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -57,9 +57,10 @@
 
   (prog1 "setting src block faces"
     (defun modify-color (raw-color raw-shift)
-      "COLOR<string> is RGB color like \"#999999\"
+      "COLOR<string> is RGB color like \"#999999\" or string like \"white\"
 SHIFT<integer> or <list<integer>> is color shift num (r g b)"
       (let ((color '(0 0 0)) (shift '(0 0 0)))
+        (setq raw-color (apply #'color-rgb-to-hex (color-name-to-rgb raw-color)))
         (if (listp raw-shift)
             (progn
               (setq shift (make-list 3 (first raw-shift)))
@@ -157,7 +158,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   ;; org exporting
   
   (use-package ox-latex)
-  (use-package ox-novel
+  (use-package ox-novel :disabled t
     :init (el-get-bundle conao/ox-novel :branch "del-export-block"))
   (use-package ox-reveal :ensure t
     :init
@@ -255,4 +256,3 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
-

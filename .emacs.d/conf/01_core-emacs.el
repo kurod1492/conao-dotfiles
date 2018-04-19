@@ -1,9 +1,9 @@
-;;; 01_core-emacs.el ---                                -*- lexical-binding: t; -*-
+;;; 01_core-emacs.el ---                             -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017  Naoya Yamashita
+;; Copyright (C) 2018  Naoya Yamashita
 
-;; Author: Naoya Yamashita <conao@Naoya-MacBook-Air.local>
-;; Keywords:
+;; Author: Naoya Yamashita <conao@245-073.vpn.hiroshima-u.ac.jp>
+;; Keywords: .emacs
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -24,26 +24,33 @@
 
 ;;; Code:
 
-;;;;; core-emacs-settings
-;; coding system
+;; locale settings
 (set-language-environment "Japanese")
-(set-default-coding-systems   'utf-8-unix)
 (prefer-coding-system         'utf-8-unix)
+(set-default-coding-systems   'utf-8-unix)
 (set-file-name-coding-system  'utf-8-unix)
 (set-keyboard-coding-system   'utf-8-unix)
 (setq locale-coding-system    'utf-8-unix)
 (setq default-process-coding-system '(undecided-dos . utf-8-unix))
 
-;; don't create file like *.~
-(setq make-backup-files nil)
-;; don't create file like .#*
-(setq auto-save-default nil)
-;; don't create backup file
-(setq vc-make-backup-files nil)
-;; don't create .saves-Macbook-Air.local~
-(setq auto-save-list-file-prefix nil)
-;; don't create .#aaa.txt@ -> conao@Macbook-Air.local
-(setq create-lockfiles nil)
+;; file-name coding
+(when darwin-p
+  (use-package ucs-normalize)
+  (setq file-name-coding-system 'utf-8-hfs
+        locale-coding-system    'utf-8-hfs))
+(when windows-p
+  (setq file-name-coding-system 'cp932
+        locale-coding-system    'cp932))
+
+(setq make-backup-files          t    ;; *.~
+      auto-save-default          t    ;; .#*
+      vc-make-backup-files       nil  ;; backup file
+      auto-save-list-file-prefix nil  ;; .saves-Macbook-Air.local~
+      create-lockfiles           nil) ;; .#aaa.txt@ -> conao@Macbook-Air.local
+(setq backup-directory-alist         `((".*" . ,(user-setting-directory "backup/")))
+      auto-save-file-name-transforms `((".*" ,(user-setting-directory "backup/") t)))
+(setq auto-save-timeout 15
+      auto-save-interval 30)
 
 ;; don't show splash screen
 (setq inhibit-splash-screen t)
@@ -73,10 +80,8 @@
 (when (fboundp 'mac-auto-ascii-mode)
   (mac-auto-ascii-mode 1))
 
-;;;;; frame-settings
 ;; frame title
-(setq frame-title-format
-      '("emacs " emacs-version (buffer-file-name " - %f")))
+(setq frame-title-format '("emacs " emacs-version))
 
 ;;; window setting
 ;; hide toolbar, scroll-bar
@@ -91,17 +96,6 @@
 ;; show battery force
 (display-battery-mode t)
 
-;; display line and char count
-(defun count-lines-and-chars ()
-  "Count line and chars, use in mode line."
-  (if mark-active
-      (format "%d lines, %d chars "
-              (count-lines (region-beginning) (region-end))
-              (- (region-end) (region-beginning)))))
-(add-to-list 'default-mode-line-format
-             '(:eval (count-lines-and-chars)))
-
-;;;;; window-settings
 ;; truncate
 (setq-default truncate-lines t)
 
@@ -133,7 +127,6 @@
 ;; open with drag file
 (define-key global-map [ns-drag-file] 'ns-find-file)
 
-;;;;; buffer-settings
 ;; insert "\", instead "¥"
 (define-key global-map [?¥] [?\\])
 
@@ -144,18 +137,6 @@
 
 ;; delete region, when yank
 (delete-selection-mode t)
-
-;; comment style
-(setq comment-style 'multi-line)
-
-;;;;; shortcut-settings
-(bind-keys ("C-c a"   . align)
-           ("C-c S-a" . align-regexp)
-           ("C-c d"   . delete-trailing-whitespace)
-           ("C-c b"   . battery)
-           ("C-x e"   . eval-last-sexp)
-           ("M-r"     . query-replace)
-           ("M-c"     . c-mode))
 
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
@@ -171,11 +152,11 @@
 (add-to-list 'face-font-rescale-alist
              '(".*Hiragino Kaku Gothic ProN.*" . 1.2))
 
-(setq custom-file (locate-user-emacs-file "custom.el"))
-
 ;; not worn these commands
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region   'disabled nil)
+;; use C-h as DEL
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
 (provide '01_core-emacs)
 ;;; 01_core-emacs.el ends here

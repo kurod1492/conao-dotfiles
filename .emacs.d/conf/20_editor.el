@@ -1,9 +1,9 @@
 ;;; 20_editor.el ---                                 -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017  Naoya Yamashita
+;; Copyright (C) 2018  Naoya Yamashita
 
-;; Author: Conao
-;; Keywords:
+;; Author: Naoya Yamashita <conao@naoya-imac.local>
+;; Keywords: .emacs
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,8 +23,10 @@
 ;; 
 
 ;;; Code:
+
 (use-package helm :ensure t :diminish ""
   :bind (("M-x"     . helm-M-x)
+         ("M-X"     . execute-extended-command)
          ("C-x b"   . helm-mini)
          ("C-x C-f" . helm-find-files)
          ("C-x C-r" . helm-recentf)
@@ -78,34 +80,7 @@
   ;; use man in helm (C-c h m)
   (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
   
-  (helm-mode 1)
-
-  ;; "M-a" to select(mark) all
-  ;; "C-c C-i" to insert file path to current buffer
-
-  ;; "C-w" to yank words after cursor
-  ;; "M-n" to yank symbol at cursor
-
-  ;; "TAB" to disp command help in "Helm-M-x" buffer
-
-  ;; helm-mini
-  ;; pattern "*<major-mode>" to match that major-mode
-  ;; pattern "*!<major-made>" to not match that major-mode
-  ;; pattern "/directory" to match that directory
-  ;; pattern "!/directory" to not match that directory
-  ;; pattern "@hoge" to search hoge in all buffer
-  ;; then type "C-s" to disp line num (switch helm-moccur)
-
-  ;; helm-find-files
-  ;; "C-l" to find above directory
-  ;; "C-r" to find previous directory
-  ;; "C-s" to do grep at current directory
-  ;; "C-u C-s" to do recursive grep at current directory
-  ;; add "~/" to home directory
-  ;; add "/"  to root directory
-  ;; add "./" to current directory
-  ;; "C-c h" to disp file history
-  )
+  (helm-mode 1))
 
 (use-package smartparens :ensure t :diminish ""
   :init (use-package markdown-mode :ensure t)
@@ -117,27 +92,6 @@
   (smartparens-global-strict-mode t)
   (show-smartparens-global-mode t)
   (smartparens-global-mode t))
-
-(use-package paredit :ensure t :diminish "" :disabled t
-  :config
-  (hook-into-modes 'paredit-mode
-                   'lisp-mode-hook
-                   'emacs-lisp-mode-hook
-                   'lisp-interaction-mode-hook)
-  ;; M-( to include S function in ()
-  ;; ( to make empty S function
-  ;; C-) to slurp S function
-  ;; C-} to barf S function
-
-  ;; M-s to reduce ()
-  ;; M-<up> to raise list to line end (pointer at |)
-  ;; (list (list |"Okabe" "Shiina") "Hashida")  ;; type M-s
-  ;; (list "Okabe" "Shiina" "Hashida")
-
-  ;; M-r to raise
-  ;; (when mac |(setq okebe "okabe"))    ;; type M-r
-  ;; (setq okebe "okabe")
-  )
 
 (use-package auto-complete :ensure t :demand t :diminish ""
   :bind (:map ac-menu-map
@@ -186,21 +140,21 @@
     (auto-insert-mode 1))
   
   (prog1 "yas-desable-flymake-when-expanding"
-         (defvar flymake-is-active-flag nil)
+    (defvar flymake-is-active-flag nil)
 
-         (defadvice yas-expand-snippet
-             (before inhibit-flymake-syntax-checking-while-expanding-snippet activate)
-           (setq flymake-is-active-flag
-                 (or flymake-is-active-flag
-                     (assoc-default 'flymake-mode (buffer-local-variables))))
-           (when flymake-is-active-flag
-             (flymake-mode-off)))
+    (defadvice yas-expand-snippet
+        (before inhibit-flymake-syntax-checking-while-expanding-snippet activate)
+      (setq flymake-is-active-flag
+            (or flymake-is-active-flag
+                (assoc-default 'flymake-mode (buffer-local-variables))))
+      (when flymake-is-active-flag
+        (flymake-mode-off)))
 
-         (add-hook 'yas/after-exit-snippet-hook
-                   '(lambda ()
-                      (when flymake-is-active-flag
-                        (flymake-mode-on)
-                        (setq flymake-is-active-flag nil)))))
+    (add-hook 'yas/after-exit-snippet-hook
+              '(lambda ()
+                 (when flymake-is-active-flag
+                   (flymake-mode-on)
+                   (setq flymake-is-active-flag nil)))))
   (yas-global-mode 1))
 
 (use-package elscreen :demand t
@@ -215,7 +169,7 @@
           ("C-S-<tab>"   . elscreen-previous)
           ("C-c e d"       . elscreen-dired)
           ("C-c e r"       . elscreen-screen-nickname))
-;;  :init (el-get-bundle conao/elscreen-swap)
+  ;;  :init (el-get-bundle conao/elscreen-swap)
   :config
   (use-package session
     :init (el-get-bundle emacsorphanage/session)
@@ -230,7 +184,7 @@
     (add-hook 'after-init-hook 'session-initialize))
   (use-package navbar
     :init (el-get-bundle papaeye/emacs-navbar
-      :features (navbarx-elscreen navbarx-version navbarx-time))
+            :features (navbarx-elscreen navbarx-version navbarx-time))
     :config
     (setq navbar-item-list '(navbarx-version navbarx-time navbarx-elscreen))
     (navbar-mode)
@@ -334,8 +288,8 @@
               ;; misc
               ("w" . count-words-region)
               ("q" . selected-off)
-         :map selected-org-mode-map
-         ("t" . org-table-convert-region))
+              :map selected-org-mode-map
+              ("t" . org-table-convert-region))
   :config
   (selected-global-mode t))
 

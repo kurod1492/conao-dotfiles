@@ -1,9 +1,9 @@
-;;; 10_standard-elisp.el ---                                -*- lexical-binding: t; -*-
+;;; 10_standard-elisp.el ---                         -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017  Naoya Yamashita
+;; Copyright (C) 2018  Naoya Yamashita
 
-;; Author: Naoya Yamashita <conao@Naoya-MacBook-Air.local>
-;; Keywords:
+;; Author: Naoya Yamashita <conao@naoya-imac.local>
+;; Keywords: .emacs
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,6 +23,16 @@
 ;; 
 
 ;;; Code:
+
+(use-package cus-edit :defer t
+  :config
+  (setq custom-file (user-setting-directory "custom.el"))
+  (when (file-exists-p custom-file)
+    (load custom-file)))
+
+(use-package battery
+  :config
+  (display-battery-mode t))
 
 (use-package generic-x
   :config
@@ -116,7 +126,6 @@
 
 (use-package view
   :config
-
   (prog1 "unwritable file, open in view-mode"
     ;; unwritable file, open in view mode
     (defadvice find-file
@@ -137,8 +146,9 @@
            (progn
              (hl-line-mode 0)
              ad-do-it))))
-    (do-not-exit-view-mode-unless-writable-advice view-mode-exit)
-    (do-not-exit-view-mode-unless-writable-advice view-mode-disable))
+;;    (do-not-exit-view-mode-unless-writable-advice view-mode-exit)
+;;    (do-not-exit-view-mode-unless-writable-advice view-mode-disable)
+)
   
   (setcar (cdr (assq 'view-mode minor-mode-alist))
           (if (fboundp 'propertize)
@@ -209,22 +219,19 @@ and the `*Messages*' buffer while BODY is evaluated."
   :config
   ;; disp current func name in modeline
   (which-function-mode 1))
-
 (use-package simple
   :config
   ;; show all output of eval
   (setq eval-expression-print-length nil))
-
 (use-package paren
   :config
   ;; bright parent
   (show-paren-mode t)
   ;; bright region when ending paren not displaying
   (setq show-paren-style 'mixed))
-
 (use-package saveplace
   :config
   (setq-default save-place t))
 
-(provide '10_starndard-elisp)
+(provide '10_standard-elisp)
 ;;; 10_standard-elisp.el ends here

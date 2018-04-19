@@ -1,4 +1,5 @@
 # backupfiles
+backup/
 history/
 undohist/
 
@@ -12,10 +13,11 @@ places
 ac-comphist.dat
 srecode-map.el
 bookmarks
+network-security.data
 
 # download packages
-elpa/
-el-get/
+elpa*/
+el-get*/
 auto-install/
 
 # cookie files
