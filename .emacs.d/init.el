@@ -54,7 +54,7 @@
          (setq package-user-dir (user-setting-directory "elpa-23"))))
       (emacs24-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("el-get" "elpa" "site-lisp" "conf"))
+         (add-list-to-list 'load-path-folder-list '("el-get" "elpa-24" "site-lisp" "conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)
