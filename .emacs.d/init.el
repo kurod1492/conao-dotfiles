@@ -1,0 +1,94 @@
+;;; init.el ---                                      -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2018  Naoya Yamashita
+
+;; Author: Naoya Yamashita <conao@184-187.cup.hiroshima-u.ac.jp>
+;; Keywords: .emacs
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; 
+
+;;; Code:
+
+;; enable debug
+(setq debug-on-error  t
+      debug-on-signal nil
+      debug-on-quit   nil)
+
+;; if you run like 'emacs -q -l ~/hoge/init.el'
+;; load settings in ~/hoge/
+
+(setq user-emacs-directory
+      (expand-file-name
+       (file-name-directory
+        (if load-file-name load-file-name "~/.emacs.d/init.el"))))
+
+(load-file (concat user-emacs-directory "sitelisp/loadpath.el"))
+(load-file (concat user-emacs-directory "sitelisp/version.el"))
+
+(when emacs22-l-p (error "unsupport version prior to emacs22"))
+
+(defvar load-path-folder-list '("conf" "el-get")
+  "folder-list add to load-path recursive. `user-setting-directory'/`load-path-folder-list'")
+
+(cond (emacs23-p
+       (progn
+         (add-list-to-list 'load-path-folder-list '("_elpa-23" "_site-lisp-23"))
+         (add-user-setting-directory-to-load-path load-path-folder-list)
+         
+         (require 'package-23)
+         (setq package-user-dir (user-setting-directory "_elpa-23"))))
+      (emacs24-g-p
+       (progn
+         (add-list-to-list 'load-path-folder-list '("elpa" "site-lisp"))
+         (add-user-setting-directory-to-load-path load-path-folder-list)
+         
+         (require 'package)
+         (setq package-user-dir (user-setting-directory "elpa")))))
+(add-list-to-list 'package-archives '(("melpa"     . "http://melpa.org/packages/")
+                                      ("org"       . "http://orgmode.org/elpa/")
+                                      ("marmalade" . "http://marmalade-repo.org/packages/")))
+(package-initialize)
+
+(let ((dir (concat (user-setting-directory "elpa/") "latex-math-preview-20170522.1455")))
+  (if (file-directory-p dir)
+      (delete-directory dir t)))
+
+(cond (emacs24-g-p
+       (progn
+         ;; use-package
+         (when (not (package-installed-p 'use-package))
+           (package-refresh-contents)
+           (package-install 'use-package))
+
+         ;; theme settings
+         (use-package solarized-theme :ensure t
+           :init
+           (load-theme 'solarized-dark t))
+
+         ;; babel-loader
+         (use-package babel-loader
+           :init
+           (use-package init-loader :ensure t
+             :config
+             (setq init-loader-show-log-after-init 'error-only
+                   init-loader-byte-compile        nil))
+           :config
+           (bl:load-dir (user-setting-directory "conf/"))))))
+(provide 'init)
+;;; init.el ends here
+
