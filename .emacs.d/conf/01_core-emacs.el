@@ -148,8 +148,6 @@
 (add-to-list 'face-font-rescale-alist
              '(".*Hiragino Kaku Gothic ProN.*" . 1.2))
 
-(setq custom-file (locate-user-emacs-file "custom.el"))
-
 ;; not worn these commands
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region   'disabled nil)
