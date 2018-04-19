@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(use-package el-get :ensure t)
+
 (use-package key-chord :ensure t
   :init ;; (el-get-bundle zk-phi/key-chord)
   :config
