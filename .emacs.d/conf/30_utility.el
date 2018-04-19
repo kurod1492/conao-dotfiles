@@ -47,6 +47,15 @@
 (use-package gitignore-mode     :ensure t :defer t)
 (use-package gitattributes-mode :ensure t :defer t)
 
+(use-package clang-format :ensure t
+  :bind (("C-c r" . clang-format-buffer))
+  :config
+  ;; install clang-format
+  ;; > brew update
+  ;; > brew install clang-format
+  (global-set-key [C-M-tab] 'clang-format-region)
+  (message ""))
+  
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; big utilities
 (use-package auto-install :ensure t :defer t :disabled t
