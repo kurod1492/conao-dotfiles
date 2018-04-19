@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-()
+(bind-key "C-c l" 'toggle-truncate-lines)
 
 (provide '02_key-bind)
 ;;; 02_key-bind.el ends here
