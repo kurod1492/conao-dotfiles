@@ -24,6 +24,74 @@
 
 ;;; Code:
 
+(use-package helm :ensure t :diminish ""
+  :bind (("M-x"     . helm-M-x)
+         ("M-X"     . execute-extended-command)
+         ("C-x b"   . helm-mini)
+         ("C-x C-f" . helm-find-files)
+         ("C-x C-r" . helm-recentf)
+         ("C-x b"   . helm-buffers-list)
+         ("C-x C-b" . helm-buffers-list)
+         ("C-s"     . helm-occur)
+         ("C-x g"   . helm-google-suggest)
+         ("C-R"     . helm-regexp)
+         ("M-y"     . helm-show-kill-ring)
+         ("C-c h"   . helm-command-prefix)
+         :map helm-command-map
+         ("o"       . helm-occur)
+         :map helm-map
+         ("<tab>"   . helm-execute-persistent-action)
+         ("C-i"     . helm-execute-persistent-action)
+         ("C-z"   . helm-select-action))
+  :config
+  (use-package helm-config)
+  
+  ;; Change helm-command-prefix "C-x c" to "c-c h"
+  ;; default "C-x c" is quite close to "C-x C-c" which quits Emacs
+  ;;  (global-set-key (kbd "C-c h") helm-command-map)
+  (global-unset-key (kbd "C-x c"))
+  
+  (when (executable-find "curl")
+    (setq helm-google-suggest-use-curl-p t))
+  
+  (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+        helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+        helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+        helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+        helm-ff-file-name-history-use-recentf t
+        helm-echo-input-in-header-line nil)
+  
+  ;; helm window setting
+  (setq helm-autoresize-max-height 0)
+  (setq helm-autoresize-min-height 40)
+  (helm-autoresize-mode t)
+  
+  ;; enable fuzzy seach in helm-mini, semantic
+  (setq helm-M-x-fuzzy-match        t
+        helm-buffers-fuzzy-matching t
+        helm-recentf-fuzzy-match    t
+        helm-semantic-fuzzy-match   t
+        helm-imenu-fuzzy-match      t
+        helm-apropos-fuzzy-match    t)
+  
+  (setq helm-input-idle-delay 0.0) ; 文字列を入力してから検索するまでのタイムラグ。デフォルトで 0
+  (setq helm-candidate-number-limit 100) ; 表示する最大候補数。デフォルトで 50
+
+  ;; use man in helm (C-c h m)
+  (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
+  
+  (helm-mode 1))
+
+(use-package smartparens :ensure t :diminish ""
+  :init (use-package markdown-mode :ensure t)
+  :config
+  (use-package smartparens-config)
+  (sp-pair "$" "$")
+
+  (sp-use-smartparens-bindings)
+  (smartparens-global-strict-mode t)
+  (show-smartparens-global-mode t)
+  (smartparens-global-mode t))
 
 
 (provide '20_editor)
