@@ -42,7 +42,7 @@
 
 (when emacs22-l-p (error "unsupport version prior to emacs22"))
 
-(defvar load-path-folder-list '("conf" "el-get")
+(defvar load-path-folder-list '("el-get")
   "folder-list add to load-path recursive. `user-setting-directory'/`load-path-folder-list'")
 
 (cond (emacs23-p
@@ -81,7 +81,7 @@
            (load-theme 'solarized-dark t))
 
          ;; init-loader
-         (use-package init-laoder :ensure t
+         (use-package init-loader :ensure t
            :config
            (init-loader-load (user-setting-directory "conf"))))))
 
