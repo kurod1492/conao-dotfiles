@@ -24,5 +24,8 @@
 
 ;;; Code:
 
+;; use C-h as DEL
+(keyboard-translate ?\C-h ?\C-?)
+
 (provide '01_core-emacs)
 ;;; 01_core-emacs.el ends here
