@@ -27,7 +27,8 @@
 (use-package cus-edit :defer t
   :config
   (setq custom-file (user-setting-directory "custom.el"))
-  (load custom-file))
+  (when (file-exists-p custom-file)
+    (load custom-file)))
 
 (provide '10_standard-elisp)
 ;;; 10_standard-elisp.el ends here
