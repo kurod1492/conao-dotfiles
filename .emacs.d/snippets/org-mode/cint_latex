@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: cint_latex
-# key: cint
-# --
-\textcircled{\scriptsize $1} $2
