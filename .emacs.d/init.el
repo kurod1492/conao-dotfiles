@@ -52,13 +52,20 @@
          
          (require 'package-23)
          (setq package-user-dir (user-setting-directory "_elpa-23"))))
-      (emacs24-g-p
+      (emacs24-p
        (progn
          (add-list-to-list 'load-path-folder-list '("elpa" "site-lisp" "conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)
-         (setq package-user-dir (user-setting-directory "elpa")))))
+         (setq package-user-dir (user-setting-directory "elpa"))))
+      (emacs25-p
+       (progn
+         (add-list-to-list 'load-path-folder-list '("_elpa-25" "site-lisp" "conf"))
+         (add-user-setting-directory-to-load-path load-path-folder-list)
+         
+         (require 'package)
+         (setq package-user-dir (user-setting-directory "_elpa-25")))))
 (add-list-to-list 'package-archives '(("melpa"     . "http://melpa.org/packages/")
                                       ("org"       . "http://orgmode.org/elpa/")
                                       ("marmalade" . "http://marmalade-repo.org/packages/")))
