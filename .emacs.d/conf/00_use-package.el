@@ -37,5 +37,7 @@
   (key-chord-mode 1))
 (use-package use-package-chords :ensure t)
 
+(use-package smartrep :ensure t)
+
 (provide '00_use-package)
 ;;; 00_use-package.el ends here
