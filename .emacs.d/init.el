@@ -65,7 +65,7 @@
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)
-         (setq package-user-dir (user-setting-directory "_elpa-25")))))
+         (setq package-user-dir (user-setting-directory "elpa-25")))))
 
 (cond (emacs23-p
        (progn
