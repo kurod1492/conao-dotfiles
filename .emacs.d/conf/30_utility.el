@@ -149,6 +149,11 @@
   :config
   (setq split-window-width-with-em 100))
 
+(use-package point-undo
+  :init (el-get-bundle emacswiki:point-undo)
+  :bind* (("M-i p" . point-undo)
+          ("M-i n" . point-redo)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; big utilities
 (use-package auto-install :ensure t :defer t :disabled t
