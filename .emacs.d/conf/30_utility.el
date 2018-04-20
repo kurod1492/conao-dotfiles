@@ -24,16 +24,6 @@
 
 ;;; Code:
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; small utilities
-(use-package minibuf-isearch    :ensure t :defer t)
-(use-package open-junk-file     :ensure t :defer t :bind ("C-x C-x" . open-junk-file))
-(use-package lispxmp            :ensure t :defer t :bind ("C-c C-e" . lispxmp))
-(use-package htmlize            :ensure t :defer t)
-(use-package ctable             :ensure t :defer t)
-(use-package free-keys          :ensure t :defer t
-  :commands (free-keys free-keys-set-prefix))
-
 ;;;;;;;;;;;;;;;;;;
 ;; API's
 (use-package dash :ensure t)
@@ -46,6 +36,16 @@
 (use-package gitconfig-mode     :ensure t :defer t)
 (use-package gitignore-mode     :ensure t :defer t)
 (use-package gitattributes-mode :ensure t :defer t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; small utilities
+(use-package minibuf-isearch    :ensure t :defer t)
+(use-package open-junk-file     :ensure t :defer t :bind ("C-x C-x" . open-junk-file))
+(use-package lispxmp            :ensure t :defer t :bind ("C-c C-e" . lispxmp))
+(use-package htmlize            :ensure t :defer t)
+(use-package ctable             :ensure t :defer t)
+(use-package free-keys          :ensure t :defer t
+  :commands (free-keys free-keys-set-prefix))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; big utilities
