@@ -222,7 +222,9 @@ and the `*Messages*' buffer while BODY is evaluated."
 (use-package simple
   :config
   ;; show all output of eval
-  (setq eval-expression-print-length nil))
+  (setq eval-expression-print-length nil
+        ;; C-u C-SPC C-SPC to pop mark
+        set-mark-command-repeat-pop  t))
 (use-package paren
   :config
   ;; bright parent
