@@ -24,7 +24,9 @@
 
 ;;; Code:
 
-(use-package el-get :ensure t)
+(use-package el-get :ensure t
+  :config
+  (setq el-get-git-shallow-clone t))
 
 (use-package key-chord :ensure t
   :init ;; (el-get-bundle zk-phi/key-chord)
