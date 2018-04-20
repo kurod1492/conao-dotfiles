@@ -52,13 +52,9 @@
   :config
   (use-package mode-compile-kill
     :bind* (("C-c k" . mode-compile-kill)))
-  ;; 全てバッファを自動的にセーブする
   (setq mode-compile-always-save-buffer-p t
-        ;; コマンドをいちいち確認しない
         mode-compile-never-edit-command-p t
-        ;; メッセージ出力を抑制
         mode-compile-expert-p t
-        ;; メッセージを読み終わるまで待つ時間
         mode-compile-reading-time 0))
 
 (use-package rainbow-mode :ensure t :defer t :diminish (rainbow-mode . "")
@@ -66,16 +62,15 @@
   :hook (emacs-lisp-mode lisp-mode css-mode less-mode web-mode html-mode))
 
 (use-package google-translate :ensure t :defer t
-  :init
+  :bind* (("C-x t"   . google-translate-at-point)
+          ("C-x S-t" . google-translate-query-translate))
   :config  ;; 翻訳のデフォルト値を設定(ja -> en)（無効化は C-u する）
   (custom-set-variables
    '(google-translate-default-source-language "ja")
-   '(google-translate-default-target-language "en"))
+   '(google-translate-default-target-language "en")))
 
   ;; google-translate.elの翻訳バッファをポップアップで表示させる
   (push '("*Google Translate*") popwin:special-display-config)
-  :bind* (("C-x t"   . google-translate-at-point)
-          ("C-x S-t" . google-translate-query-translate)))
 
 (use-package elisp-slime-nav :ensure t :diminish (elisp-slime-nav-mode . "") :disabled t
   :hook (emacs-lisp-mode lisp-interaction-mode))
