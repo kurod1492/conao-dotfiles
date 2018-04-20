@@ -17,7 +17,7 @@ network-security.data
 
 # download packages
 elpa*/
-el-get*/
+/el-get*/
 auto-install/
 
 # cookie files

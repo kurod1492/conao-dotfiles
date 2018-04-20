@@ -75,11 +75,15 @@
          (add-list-to-list 'package-archives '(("melpa"     . "http://melpa.org/packages/")
                                                ("org"       . "http://orgmode.org/elpa/")
                                                ("marmalade" . "http://marmalade-repo.org/packages/")))
-         (package-initialize)
-
-         (let ((dir (concat (user-setting-directory "elpa/") "latex-math-preview-20170522.1455")))
+         (let ((dir (concat (user-setting-directory "elpa-24/") "latex-math-preview-20170522.1455")))
            (if (file-directory-p dir)
                (delete-directory dir t)))
+	 (let ((dir (concat (user-setting-directory "elpa-25/") "latex-math-preview-20170522.1455")))
+           (if (file-directory-p dir)
+               (delete-directory dir t)))
+
+         (package-initialize)
+
 
          ;; use-package
          (when (not (package-installed-p 'use-package))
