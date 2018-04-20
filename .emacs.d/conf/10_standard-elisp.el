@@ -233,7 +233,8 @@ and the `*Messages*' buffer while BODY is evaluated."
   (setq show-paren-style 'mixed))
 (use-package saveplace
   :config
-  (setq-default save-place t))
+  (setq-default save-place t)
+  (setq save-place-file (user-setting-directory "places")))
 
 (provide '10_standard-elisp)
 ;;; 10_standard-elisp.el ends here

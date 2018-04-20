@@ -423,6 +423,11 @@
   :config
   ;; (setq multi-term-program (executable-find "fish")))
   )
+(use-package wgrep :ensure t
+  :bind (("M-s g" . grep))
+  :config
+  (setq wgrep-change-readonly-file t
+        wgrep-enable-key "e"))
 ;; el-get packages
 (use-package other-window-or-split
   :init (el-get-bundle conao/other-window-or-split)
