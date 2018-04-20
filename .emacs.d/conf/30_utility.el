@@ -161,25 +161,20 @@
         auto-install-from-dired-confirm nil))
 
 (use-package org2blog :ensure t :defer t
-  :init (setq org2blog/wp-keymap-prefix "C-c n")
-  :bind (
-         ;;         ("C-c n n" . org2blog/wp-mode)
-         ;;          :map org2blog/wp-map
-         ;;          ("n" . org2blog/wp-new-entry)
-         ;;          ("i" . org2blog/wp-login)
-         ;;          ("o" . org2blog/wp-logout)
-         ;;          ("p" . org2blog/wp-post-buffer-as-page-and-publish)
-         ;;          ("d" . org2blog/wp-post-buffer)           ;; draft
-         ;;          ("D" . org2blog/wp-post-buffer-as-page)   ;; draft
-         ;;          ("l" . org2blog/wp-insert-post-or-page-link))
-         ("C-c n n" . org2blog/wp-new-entry)
+  :init
+  (defvar org2blog-map nil "org2blog-prefix-map")
+  (define-prefix-command 'org2blog-map)
+  
+  :bind (("C-c n n" . org2blog/wp-new-entry)
          :map org-mode-map
-         ("C-c n i" . org2blog/wp-login)
-         ("C-c n o" . org2blog/wp-logout)
-         ("C-c n p" . org2blog/wp-post-buffer-and-publish)
-         ("C-c n d" . org2blog/wp-post-buffer)                   ;; post as draft
-         ("C-c n D" . org2blog/wp-post-buffer-as-page)           ;; post as draft
-         ("C-c n l" . org2blog/wp-insert-post-or-page-link))
+         ("C-c n" . org2blog-map)
+         :map org2blog-map
+         ("i" . org2blog/wp-login)
+         ("o" . org2blog/wp-logout)
+         ("p" . org2blog/wp-post-buffer-and-publish)
+         ("d" . org2blog/wp-post-buffer)                   ;; post as draft
+         ("D" . org2blog/wp-post-buffer-as-page)           ;; post as draft
+         ("l" . org2blog/wp-insert-post-or-page-link))
   :config
   (org2blog/wp-reload-entry-mode-map)
   
