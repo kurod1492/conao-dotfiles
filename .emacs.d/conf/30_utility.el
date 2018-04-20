@@ -301,6 +301,7 @@
 
 (use-package dired :defer t
   :config
+  (setq dired-dwim-target t)
   (use-package dired-rainbow :ensure t :defer t)
   (use-package dired-filter  :ensure t :defer t
     :config
