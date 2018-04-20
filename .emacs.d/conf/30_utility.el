@@ -47,6 +47,108 @@
 (use-package free-keys          :ensure t :defer t
   :commands (free-keys free-keys-set-prefix))
 
+(use-package mode-compile  :ensure t :defer t
+  :bind* (("C-c c" . mode-compile))
+  :config
+  (use-package mode-compile-kill
+    :bind* (("C-c k" . mode-compile-kill)))
+  ;; 全てバッファを自動的にセーブする
+  (setq mode-compile-always-save-buffer-p t
+        ;; コマンドをいちいち確認しない
+        mode-compile-never-edit-command-p t
+        ;; メッセージ出力を抑制
+        mode-compile-expert-p t
+        ;; メッセージを読み終わるまで待つ時間
+        mode-compile-reading-time 0))
+
+(use-package rainbow-mode :ensure t :defer t :diminish (rainbow-mode . "")
+  :commands rainbow-mode
+  :hook (emacs-lisp-mode lisp-mode css-mode less-mode web-mode html-mode))
+
+(use-package google-translate :ensure t :defer t
+  :init
+  :config  ;; 翻訳のデフォルト値を設定(ja -> en)（無効化は C-u する）
+  (custom-set-variables
+   '(google-translate-default-source-language "ja")
+   '(google-translate-default-target-language "en"))
+
+  ;; google-translate.elの翻訳バッファをポップアップで表示させる
+  (push '("*Google Translate*") popwin:special-display-config)
+  :bind* (("C-x t"   . google-translate-at-point)
+          ("C-x S-t" . google-translate-query-translate)))
+
+(use-package elisp-slime-nav :ensure t :diminish (elisp-slime-nav-mode . "") :disabled t
+  :hook (emacs-lisp-mode lisp-interaction-mode))
+
+(use-package latex-math-preview :ensure t
+  :if (executable-find "platex")
+  :bind (("C-c l l" . latex-math-preview-expression)
+         ("C-c l s" . latex-math-preview-insert-mathematical-symbol))
+  :config
+  (setq-default latex-math-preview-tex-to-png-for-preview '(platex dvips-to-eps gs-to-png)
+                latex-math-preview-tex-to-png-for-save    '(platex dvipng)
+                latex-math-preview-tex-to-eps-for-save    '(platex dvips-to-eps)
+                latex-math-preview-tex-to-ps-for-save     '(platex dvips-to-ps)
+                latex-math-preview-beamer-to-png          '(platex dvipdfmx gs-to-png))
+  (setq latex-math-preview-latex-template-header
+"\\documentclass{jsarticle}
+\\pagestyle{empty}
+\\usepackage[dvips]{color}
+\\usepackage{physics}
+\\newcommand{\\ee}{\\mathrm{e}}
+\\newcommand{\\jj}{\\mathrm{j}}
+\\newcommand{\\ii}{\\mathrm{i}}
+\\newcommand{\\rot}{{\\nabla\\times}}
+\\newcommand{\\up}{\\uparrow}
+\\color{white}"
+        latex-math-preview-initial-page-of-symbol-list '((math . nil) (text . nil)))
+  (add-to-list 'latex-math-preview-command-option-alist
+               '(gs-to-png "-q" "-dSAFER" "-dNOPAUSE" "-dBATCH" "-sDEVICE=pngalpha"
+                           "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
+                           "-dGraphicsAlphaBits=4" "-dQUIET")))
+
+(use-package clang-format :ensure t
+  :bind (("C-c f f" . clang-format-buffer)
+         ("C-c f r" . clang-format-region)))
+  ;; install clang-format
+  ;; > brew update
+  ;; > brew install clang-format)
+
+(use-package shell-pop :ensure t :defer t
+  :bind ("C-o" . shell-pop)
+  :config
+  ;; (setq shell-pop-shell-type (executable-find "fish")
+  ;;       shell-pop-shell-type '("term" "*terminal<1>*" (lambda () (multi-term)))))
+  )
+
+(use-package multi-term :ensure t
+  :config
+  ;; (setq multi-term-program (executable-find "fish")))
+  )
+
+(use-package wgrep :ensure t
+  :bind (("M-s g" . grep))
+  :config
+  (setq wgrep-change-readonly-file t
+        wgrep-enable-key "e"))
+
+(use-package auto-async-byte-compile :ensure t :defer t :disabled t
+  :config
+  (setq auto-async-byte-compile-exclude-files-regexp "/junk/"
+        eldoc-idle-delay 0.2
+        eldoc-minor-mode-string "")  ;; dont show ElDoc in mode line
+  (find-function-setup-keys))
+
+;; el-get packages
+(use-package other-window-or-split
+  :init (el-get-bundle conao/other-window-or-split)
+  :bind* (("C-t"   . other-window-or-split)
+          ("C-S-t" . previous-other-window-or-split)
+          ("M-t"   . split-window-dwim)
+          ("C-c j" . adjust-windows-size))
+  :config
+  (setq split-window-width-with-em 100))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; big utilities
 (use-package auto-install :ensure t :defer t :disabled t
@@ -292,13 +394,6 @@
                   (and linum-disable-starred-buffers (string-match "*" (buffer-name))))
         (linum-mode 1)))))
 
-(use-package auto-async-byte-compile :ensure t :defer t :disabled t
-  :config
-  (setq auto-async-byte-compile-exclude-files-regexp "/junk/"
-        eldoc-idle-delay 0.2
-        eldoc-minor-mode-string "")  ;; dont show ElDoc in mode line
-  (find-function-setup-keys))
-
 (use-package dired :defer t
   :config
   (setq dired-dwim-target t
@@ -352,96 +447,5 @@
           (dired-up-directory)))
     (define-key dired-mode-map (kbd "^") 'dired-subtree-up-dwim)))
 
-(use-package mode-compile  :ensure t :defer t
-  :bind* (("C-c c" . mode-compile))
-  :config
-  (use-package mode-compile-kill
-    :bind* (("C-c k" . mode-compile-kill)))
-  ;; 全てバッファを自動的にセーブする
-  (setq mode-compile-always-save-buffer-p t
-        ;; コマンドをいちいち確認しない
-        mode-compile-never-edit-command-p t
-        ;; メッセージ出力を抑制
-        mode-compile-expert-p t
-        ;; メッセージを読み終わるまで待つ時間
-        mode-compile-reading-time 0))
-
-(use-package rainbow-mode :ensure t :defer t :diminish (rainbow-mode . "")
-  :commands rainbow-mode
-  :hook (emacs-lisp-mode lisp-mode css-mode less-mode web-mode html-mode))
-
-(use-package google-translate :ensure t :defer t
-  :init
-  :config  ;; 翻訳のデフォルト値を設定(ja -> en)（無効化は C-u する）
-  (custom-set-variables
-   '(google-translate-default-source-language "ja")
-   '(google-translate-default-target-language "en"))
-
-  ;; google-translate.elの翻訳バッファをポップアップで表示させる
-  (push '("*Google Translate*") popwin:special-display-config)
-  :bind* (("C-x t"   . google-translate-at-point)
-          ("C-x S-t" . google-translate-query-translate)))
-
-(use-package elisp-slime-nav :ensure t :diminish (elisp-slime-nav-mode . "") :disabled t
-  :hook (emacs-lisp-mode lisp-interaction-mode))
-
-(use-package latex-math-preview :ensure t
-  :if (executable-find "platex")
-  :bind (("C-c l l" . latex-math-preview-expression)
-         ("C-c l s" . latex-math-preview-insert-mathematical-symbol))
-  :config
-  (setq-default latex-math-preview-tex-to-png-for-preview '(platex dvips-to-eps gs-to-png)
-                latex-math-preview-tex-to-png-for-save    '(platex dvipng)
-                latex-math-preview-tex-to-eps-for-save    '(platex dvips-to-eps)
-                latex-math-preview-tex-to-ps-for-save     '(platex dvips-to-ps)
-                latex-math-preview-beamer-to-png          '(platex dvipdfmx gs-to-png))
-  (setq latex-math-preview-latex-template-header
-"\\documentclass{jsarticle}
-\\pagestyle{empty}
-\\usepackage[dvips]{color}
-\\usepackage{physics}
-\\newcommand{\\ee}{\\mathrm{e}}
-\\newcommand{\\jj}{\\mathrm{j}}
-\\newcommand{\\ii}{\\mathrm{i}}
-\\newcommand{\\rot}{{\\nabla\\times}}
-\\newcommand{\\up}{\\uparrow}
-\\color{white}"
-        latex-math-preview-initial-page-of-symbol-list '((math . nil) (text . nil)))
-  (add-to-list 'latex-math-preview-command-option-alist
-               '(gs-to-png "-q" "-dSAFER" "-dNOPAUSE" "-dBATCH" "-sDEVICE=pngalpha"
-                           "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
-                           "-dGraphicsAlphaBits=4" "-dQUIET")))
-
-(use-package clang-format :ensure t
-  :bind (("C-c f f" . clang-format-buffer)
-         ("C-c f r" . clang-format-region)))
-  ;; install clang-format
-  ;; > brew update
-  ;; > brew install clang-format)
-
-(use-package shell-pop :ensure t :defer t
-  :bind ("C-o" . shell-pop)
-  :config
-  ;; (setq shell-pop-shell-type (executable-find "fish")
-  ;;       shell-pop-shell-type '("term" "*terminal<1>*" (lambda () (multi-term)))))
-  )
-(use-package multi-term :ensure t
-  :config
-  ;; (setq multi-term-program (executable-find "fish")))
-  )
-(use-package wgrep :ensure t
-  :bind (("M-s g" . grep))
-  :config
-  (setq wgrep-change-readonly-file t
-        wgrep-enable-key "e"))
-;; el-get packages
-(use-package other-window-or-split
-  :init (el-get-bundle conao/other-window-or-split)
-  :bind* (("C-t"   . other-window-or-split)
-          ("C-S-t" . previous-other-window-or-split)
-          ("M-t"   . split-window-dwim)
-          ("C-c j" . adjust-windows-size))
-  :config
-  (setq split-window-width-with-em 100))
 (provide '30_utility)
 ;;; 30_utility.el ends here
