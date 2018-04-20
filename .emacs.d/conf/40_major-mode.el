@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(use-package php-mode :ensure t :defer t
+(use-package php-mode :ensure t :defer t :disabled t
   :config
   (use-package web-mode :ensure t :defer t))
 
