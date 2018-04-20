@@ -301,7 +301,12 @@
 
 (use-package dired :defer t
   :config
-  (setq dired-dwim-target t)
+  (setq dired-dwim-target t
+        delete-by-moving-to-trash t)
+  
+  (use-package wdired :defer t
+    :bind (:map dired-mode-map
+                ("r" . wdired-change-to-wdired-mode)))
   (use-package dired-rainbow :ensure t :defer t)
   (use-package dired-filter  :ensure t :defer t
     :config

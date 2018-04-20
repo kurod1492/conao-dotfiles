@@ -119,11 +119,6 @@
      ))
   (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
 
-(use-package wdired
-  :config
-  (setq delete-by-moving-to-trash t)
-  (bind-key "r" 'wdired-change-to-wdired-mode dired-mode-map))
-
 (use-package view
   :config
   (prog1 "unwritable file, open in view-mode"
