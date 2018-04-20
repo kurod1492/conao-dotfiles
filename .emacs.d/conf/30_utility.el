@@ -307,21 +307,23 @@
     :config
     (add-hook 'dired-mode-hook 'dired-filter-mode))
   (use-package dired-subtree :ensure t :defer t
+    :bind (:map dired-mode-map
+                ("<tab>"   . dired-subtree-remove)   ;; folding with tab
+                ("C-x n n" . dired-subtree-narrow))  ;; narrowing subtree
     :init
-    (use-package dired-details :ensure t)
-    (bind-keys :map dired-mode-map
-               ("i" . dired-subtree-insert))
+    (use-package dired-details :ensure t
+      :bind (:map dired-mode-map
+                  ("i" . dired-subtree-insert))
+      :config
+      (setq dired-details-hidden-string ""
+            dired-details-hide-link-targets nil))
     :config
-    ;; org-modeのようにTABで折り畳む
-    (define-key dired-mode-map (kbd "<tab>") 'dired-subtree-remove)
-    ;; C-x n nでsubtreeにナローイング
-    (define-key dired-mode-map (kbd "C-x n n") 'dired-subtree-narrow)
 
     ;; ファイル名以外の情報を(と)で隠したり表示したり
     (dired-details-install)
-    (setq dired-details-hidden-string "")
-    (setq dired-details-hide-link-targets nil)
-    (setq dired-details-initially-hide nil)
+    (setq dired-details-hidden-string     ""
+          dired-details-hide-link-targets nil
+          dired-details-initially-hide    nil)
 
     ;; dired-subtreeをdired-detailsに対応させる
     (defun dired-subtree-after-insert-hook--dired-details ()
