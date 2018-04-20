@@ -28,7 +28,7 @@
            ("C-c S-a" . align-regexp)
            ("C-c d"   . delete-trailing-whitespace)
            ("C-c b"   . battery)
-           ("C-c l"   . toggle-truncate-lines)
+           ("C-c l o" . toggle-truncate-lines)
            ("C-x e"   . eval-last-sexp)
            ("M-r"     . query-replace)
            ("M-c"     . c-mode))
