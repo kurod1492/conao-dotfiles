@@ -26,7 +26,8 @@
 
 (use-package el-get :ensure t
   :config
-  (setq el-get-git-shallow-clone t))
+  (setq el-get-git-shallow-clone  t
+        el-get-emacswiki-base-url "http://www.emacswiki.org/emacs/download/"))
 
 (use-package key-chord :ensure t
   :init ;; (el-get-bundle zk-phi/key-chord)
