@@ -121,11 +121,16 @@
   ;; (setq multi-term-program (executable-find "fish")))
   )
 
-(use-package wgrep :ensure t
+(use-package grep
   :bind (("M-s g" . grep))
   :config
-  (setq wgrep-change-readonly-file t
-        wgrep-enable-key "e"))
+  (grep-apply-setting 'grep-command "grep -inH ")
+  
+  (use-package wgrep :ensure t
+    :bind (("M-s g" . grep))
+    :config
+    (setq wgrep-change-readonly-file t
+          wgrep-enable-key "e")))
 
 (use-package auto-async-byte-compile :ensure t :defer t :disabled t
   :config
