@@ -58,8 +58,8 @@
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)
-         (setq package-user-dir (user-setting-directory "elpa"))))
-      (emacs25-p
+         (setq package-user-dir (user-setting-directory "elpa-24"))))
+      (emacs25-g-p
        (progn
          (add-list-to-list 'load-path-folder-list '("el-get" "elpa-25" "site-lisp" "conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
