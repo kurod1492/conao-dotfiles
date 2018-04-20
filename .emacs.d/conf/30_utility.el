@@ -405,13 +405,11 @@
                            "-dGraphicsAlphaBits=4" "-dQUIET")))
 
 (use-package clang-format :ensure t
-  :bind (("C-c r" . clang-format-buffer))
-  :config
+  :bind (("C-c f f" . clang-format-buffer)
+         ("C-c f r" . clang-format-region)))
   ;; install clang-format
   ;; > brew update
-  ;; > brew install clang-format
-  (global-set-key [C-M-tab] 'clang-format-region)
-  (message ""))  
+  ;; > brew install clang-format)
 
 (use-package shell-pop :ensure t :defer t
   :bind ("C-o" . shell-pop)
