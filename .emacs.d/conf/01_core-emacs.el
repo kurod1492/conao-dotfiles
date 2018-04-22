@@ -57,6 +57,7 @@
 
 ;; question from emacs
 (fset 'yes-or-no-p 'y-or-n-p)
+(setq use-dialog-box nil)
 
 ;; reload file after renew
 (global-auto-revert-mode 1)

@@ -24,6 +24,12 @@
 
 ;;; Code:
 
+(use-package windmove
+  :bind (("C-c <left>" . windmove-left)
+         ("C-c <down>"  . windmove-down)
+         ("C-c <up>"    . windmove-up)
+         ("C-c <right>" . windmove-right)))
+
 (use-package cus-edit :defer t
   :config
   (setq custom-file (user-setting-directory "custom.el"))
