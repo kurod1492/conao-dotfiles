@@ -33,6 +33,9 @@
       (set (make-local-variable 'eldoc-idle-delay) 0.20)
       (c-turn-on-eldoc-mode))))
 
+(use-package csharp-mode :ensure t :defer t
+  :mode "\\.cs\\'")
+
 (use-package cperl-mode :defer t
   :config
   ;; cperl-mode is preferred to perl-mode
