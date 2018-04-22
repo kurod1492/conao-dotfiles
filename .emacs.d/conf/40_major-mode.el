@@ -33,6 +33,11 @@
       (set (make-local-variable 'eldoc-idle-delay) 0.20)
       (c-turn-on-eldoc-mode))))
 
+(use-package cperl-mode :defer t
+  :config
+  ;; cperl-mode is preferred to perl-mode
+  (defalias 'perl-mode 'cperl-mode))
+
 (use-package php-mode :ensure t :defer t :disabled t
   :config
   (use-package web-mode :ensure t :defer t))
