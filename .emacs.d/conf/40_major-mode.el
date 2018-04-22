@@ -24,6 +24,15 @@
 
 ;;; Code:
 
+(use-package cc-mode :defer t
+  :config
+  (use-package c-eldoc :ensure t
+    :hook ((c-mode . c-eldoc-settings))
+    :config
+    (defun c-eldoc-settings ()
+      (set (make-local-variable 'eldoc-idle-delay) 0.20)
+      (c-turn-on-eldoc-mode))))
+
 (use-package php-mode :ensure t :defer t :disabled t
   :config
   (use-package web-mode :ensure t :defer t))
