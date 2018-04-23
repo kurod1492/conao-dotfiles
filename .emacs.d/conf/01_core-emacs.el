@@ -141,6 +141,15 @@
 
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
+(bind-keys ("C-c a"   . align)
+           ("C-c S-a" . align-regexp)
+           ("C-c d"   . delete-trailing-whitespace)
+           ("C-c b"   . battery)
+           ("C-c l o" . toggle-truncate-lines)
+           ("C-x e"   . eval-last-sexp)
+           ("M-r"     . query-replace)
+           ("M-c"     . c-mode))
+
 ;; C-x r f r : save frame configuration
 ;; C-x r j r : restore frame configuration
 
@@ -156,8 +165,6 @@
 ;; not worn these commands
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region   'disabled nil)
-;; use C-h as DEL
-(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
 (provide '01_core-emacs)
 ;;; 01_core-emacs.el ends here
