@@ -46,26 +46,26 @@
 
 (cond (emacs23-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("el-get-23" "site-lisp-23" "conf-23"))
+         (add-list-to-list 'load-path-folder-list '("v23/el-get" "v23/site-lisp" "v23/conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
 
          (require 'el-get)
          (setq el-get-git-shallow-clone t)
-         (setq el-get-dir (user-setting-directory "el-get-23"))))
+         (setq el-get-dir (user-setting-directory "v23/el-get"))))
       (emacs24-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("el-get" "elpa-24" "site-lisp" "conf"))
+         (add-list-to-list 'load-path-folder-list '("v24/el-get" "v24/elpa" "v24/site-lisp" "v24/conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)
-         (setq package-user-dir (user-setting-directory "elpa-24"))))
+         (setq package-user-dir (user-setting-directory "v24/elpa"))))
       (emacs25-g-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("el-get" "elpa-25" "site-lisp" "conf"))
+         (add-list-to-list 'load-path-folder-list '("v25/el-get" "v25/elpa-25" "v25/site-lisp" "v25/conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)
-         (setq package-user-dir (user-setting-directory "elpa-25")))))
+         (setq package-user-dir (user-setting-directory "v25/elpa")))))
 
 (cond (emacs23-p
        (progn
@@ -75,10 +75,10 @@
          (add-list-to-list 'package-archives '(("melpa"     . "http://melpa.org/packages/")
                                                ("org"       . "http://orgmode.org/elpa/")
                                                ("marmalade" . "http://marmalade-repo.org/packages/")))
-         (let ((dir (concat (user-setting-directory "elpa-24/") "latex-math-preview-20170522.1455")))
+         (let ((dir (concat (user-setting-directory "v24/elpa/") "latex-math-preview-20170522.1455")))
            (if (file-directory-p dir)
                (delete-directory dir t)))
-	 (let ((dir (concat (user-setting-directory "elpa-25/") "latex-math-preview-20170522.1455")))
+         (let ((dir (concat (user-setting-directory "v25/elpa/") "latex-math-preview-20170522.1455")))
            (if (file-directory-p dir)
                (delete-directory dir t)))
 
