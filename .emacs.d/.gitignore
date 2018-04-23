@@ -16,6 +16,8 @@ bookmarks
 network-security.data
 
 # download packages
+/elpa*/
+/el-get/
 /*/elpa/
 /*/el-get/
 auto-install/
