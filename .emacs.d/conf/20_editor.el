@@ -45,6 +45,9 @@
          ("C-z"     . helm-select-action))
   :config
   (use-package helm-config)
+  (use-package helm-descbinds :ensure t :defet t
+    :config
+    (helm-descbinds-install))
   
   ;; Change helm-command-prefix "C-x c" to "c-c h"
   ;; default "C-x c" is quite close to "C-x C-c" which quits Emacs
