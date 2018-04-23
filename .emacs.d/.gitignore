@@ -4,6 +4,7 @@ history/
 undohist/
 
 # unnesesary files
+flycheck_*
 .emacs.desktop*
 .session
 .recentf
