@@ -47,7 +47,9 @@
 (use-package free-keys          :ensure t :defer t
   :commands (free-keys free-keys-set-prefix))
 
-(use-package howm :ensure t :defer t)
+(use-package howm :ensure t :defer t
+  ;; https://howm.osdn.jp/index-j.html
+  )
 
 (use-package mode-compile  :ensure t :defer t
   :bind* (("C-c c" . mode-compile))
