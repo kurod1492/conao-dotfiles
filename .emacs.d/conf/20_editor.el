@@ -45,7 +45,7 @@
          ("C-z"     . helm-select-action))
   :config
   (use-package helm-config)
-  (use-package helm-descbinds :ensure t :defet t
+  (use-package helm-descbinds :ensure t :defer t
     :config
     (helm-descbinds-install))
   
