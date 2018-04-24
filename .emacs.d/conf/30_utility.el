@@ -107,6 +107,7 @@
                            "-dGraphicsAlphaBits=4" "-dQUIET")))
 
 (use-package clang-format :ensure t
+  :if (executable-find "clang-format")
   :bind (("C-c f f" . clang-format-buffer)
          ("C-c f r" . clang-format-region)))
   ;; install clang-format
