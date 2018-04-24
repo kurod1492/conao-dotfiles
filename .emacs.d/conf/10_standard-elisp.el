@@ -133,7 +133,7 @@
         (around find-file-switch-to-view-file (file &optional wild) activate)
       (if (and (not (file-writable-p file))
                (not (file-directory-p file)))
-          (view-(format "message" format-args)ile file)
+          (view-file file)
         ad-do-it))
 
     ;; unwritable file, don't quit view mode
