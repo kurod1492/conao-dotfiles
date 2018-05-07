@@ -3,6 +3,20 @@ backup/
 history/
 undohist/
 
+# setting files
+timelog
+vip
+viper
+ido.last
+kkcrc
+quickurls
+places
+shadows
+shadow_todo
+strokes
+notes
+type-break
+
 # unnesesary files
 flycheck_*
 .emacs.desktop*
@@ -10,7 +24,6 @@ flycheck_*
 .recentf
 recentf
 elscreen
-places
 ac-comphist.dat
 srecode-map.el
 bookmarks
