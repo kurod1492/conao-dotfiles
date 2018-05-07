@@ -175,6 +175,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   ;; org exporting
   
   (use-package ox-latex)
+  (use-package ox-odt)
   (use-package ox-novel :disabled t
     :init (el-get-bundle conao/ox-novel :branch "del-export-block"))
   (use-package ox-reveal :ensure t
