@@ -262,20 +262,21 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "framed")             ;; framing
                         ("" "xcolor")             ;; pick color
                         ("" "multicol")           ;; multi columns
-                        ("" "geometry")           ;; page layout
                         ("" "newtxtext")          ;; tx font
                         ("" "newtxmath")          ;; tx math font
-                        ))
+                        ("" "geometry")           ;; page layout
+                        "\\geometry{
+top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"))
     
     (when (executable-find "kpsewhich")
       ;; unicode code include
       (unless (string= (shell-command-to-string "kpsewhich plistings.sty") "")
-        (add-list-to-list 'org-latex-packages-alist '(("" "plistings")
-                                                      "
-\\lstset{%
-basicstyle={\small\tt},%
-commentstyle={\small\itshape},%
-keywordstyle={\small\bfseries},%
+        (add-list-to-list 'org-latex-packages-alist
+                          '(("" "plistings")
+                            "\\lstset{%
+basicstyle={\\small\\tt},%
+commentstyle={\\small\\itshape},%
+keywordstyle={\\small\\bfseries},%
 showstringspaces=false,%
 %
 frame={shadowbox},%
@@ -286,10 +287,10 @@ xrightmargin=2zw,%
 xleftmargin=3zw,%
 framesep=0.5zw,%
 %
-numberstyle={\footnotesize},%
+numberstyle={\\footnotesize},%
 stepnumber=1,%
 numbersep=1zw,%
-lineskip=-0.5ex%}
+lineskip=-0.5ex}
 \\def\\lstlistingname{コード}
 \\def\\lstlistlistingname{コード目次}") t)
         (setq org-latex-listings         'listings
