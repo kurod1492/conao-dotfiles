@@ -303,7 +303,7 @@ lineskip=-0.5ex}
     
     (add-list-to-list 'org-latex-classes
                       '(("org-jsarticle"
-                         "\\documentclass[uplatex]{jsarticle}"
+                         "\\documentclass[uplatex, dvipdfmx]{jsarticle}"
                          ("\\section{%s}" . "\\section*{%s}")
                          ("\\subsection{%s}" . "\\subsection*{%s}")
                          ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
