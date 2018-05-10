@@ -228,6 +228,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
     (setq org-export-in-background nil)
     (add-list-to-list 'org-latex-packages-alist
                       '(
+                        ;;;;;;;;;;;;;;;;;;;;
                         ;; org depends packeages
                         ("utf8" "inputenc")
                         ("T1" "fontenc")
@@ -243,6 +244,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "amsmath")
                         ("" "amssymb")
 
+                        ;;;;;;;;;;;;;;;;;;;;
                         ;; my optionnal packages
                         ("" "pxjahyper")
                         ("" "listings")
