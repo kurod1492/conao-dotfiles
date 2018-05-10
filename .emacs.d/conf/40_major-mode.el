@@ -256,7 +256,9 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "xcolor")
                         ("" "multicol")
                         ("" "ulem")
-                        ("" "geometry")))
+                        ("" "geometry")
+                        ("" "newtxtext")
+                        ("" "newtxmath")))
     (add-to-list 'org-latex-classes
                  '("org-jsarticle"
                    "\\documentclass[uplatex]{jsarticle}
