@@ -48,10 +48,16 @@
 (use-package matlab-mode :ensure t :defer t)
 
 (use-package plantuml-mode :ensure t :defer t
+  ;; depend on graphviz, plantuml
+  ;; $ brew install graphviz plantuml
+  ;; add 'export GRAPHVIZ_DOT=/Users/conao/local/homebrew/bin/dot' in .bashrc
+  
   :if (executable-find "plantuml")
   :config
-  (setq plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
-  (setq plantuml-jar-path "/Users/conao/local/homebrew//opt/plantuml/libexec/plantuml.jar"))
+  (cond ((file-exists-p "/usr/local/opt/plantuml/libexec/plantuml.jar")
+           (setq plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar"))
+          ((file-exists-p "/Users/conao/local/homebrew/opt/plantuml/libexec/plantuml.jar")
+           (setq plantuml-jar-path "/Users/conao/local/homebrew/opt/plantuml/libexec/plantuml.jar"))))
 
 (use-package org :ensure t :defer t
   :mode (("\\.txt$" . org-mode))
@@ -155,14 +161,11 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
     :config
     ;; depend of jypyter, ipython
     (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
-
-  ;; plantuml
-  ;; depend on graphviz, plantuml
-  ;; $ brew install graphviz plantuml
-  ;; add 'export GRAPHVIZ_DOT=/Users/conao/local/homebrew/bin/dot' in .bashrc
-  (if (file-exists-p "/usr/local/opt/plantuml/libexec/plantuml.jar")
-      (setq org-plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
-    (setq org-plantuml-jar-path "/Users/conao/local/homebrew//opt/plantuml/libexec/plantuml.jar"))
+  (use-package ob-plantuml :ensure t
+    :if (command-execute "plantuml")
+    :config
+    (use-package plantuml-mode)
+    (setq org-plantuml-jar-path plantuml-jar-path))
 
   ;; general settings
   (setq org-confirm-babel-evaluate nil)
