@@ -161,7 +161,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
     :config
     ;; depend of jypyter, ipython
     (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
-  (use-package ob-plantuml :ensure t
+  (use-package ob-plantuml
     :if (command-execute "plantuml")
     :config
     (use-package plantuml-mode)
