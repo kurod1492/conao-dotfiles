@@ -174,7 +174,6 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; org exporting
   
-  (use-package ox-latex)
   (use-package ox-odt)
   (use-package ox-novel :disabled t
     :init (el-get-bundle conao/ox-novel :branch "del-export-block"))
@@ -218,17 +217,18 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; - latex export
-  
-  (setq org-html-htmlize-output-type 'css
-        org-src-fontify-natively t
-        org-latex-default-class "org-jsarticle"
-        org-export-with-sub-superscripts '{}
-        ;; org-latex-default-figure-position "H"
-        )
-  (setq org-export-in-background nil)
-  (add-to-list 'org-latex-classes
-               '("org-jsarticle"
-                 "\\documentclass[platex]{jsarticle}
+  (use-package ox-latex
+    :config
+    (setq org-html-htmlize-output-type 'css
+          org-src-fontify-natively t
+          org-latex-default-class "org-jsarticle"
+          org-export-with-sub-superscripts '{}
+          ;; org-latex-default-figure-position "H"
+          )
+    (setq org-export-in-background nil)
+    (add-to-list 'org-latex-classes
+                 '("org-jsarticle"
+                   "\\documentclass[platex]{jsarticle}
 [NO-PACKAGES]
 [NO-DEFAULT-PACKAGES]
 \\usepackage[dvipdfmx,bookmarks=true,bookmarksnumbered=true]{hyperref}
@@ -270,7 +270,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ))
 
              ;; \hypersetup{...} を出力しない
-             (setq org-latex-with-hyperref nil))
+             (setq org-latex-with-hyperref nil)))
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
