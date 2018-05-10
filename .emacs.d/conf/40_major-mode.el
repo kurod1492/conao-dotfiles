@@ -270,7 +270,30 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
     (when (executable-find "kpsewhich")
       ;; unicode code include
       (unless (string= (shell-command-to-string "kpsewhich plistings.sty") "")
-        (add-to-list 'org-latex-packages-alist '("" "plistings") t)))
+        (add-list-to-list 'org-latex-packages-alist '(("" "plistings")
+                                                      "
+\\lstset{%
+basicstyle={\small\tt},%
+commentstyle={\small\itshape},%
+keywordstyle={\small\bfseries},%
+showstringspaces=false,%
+%
+frame={shadowbox},%
+breaklines=true,%
+breakindent=2.4em,%
+numbers=left,%
+xrightmargin=2zw,%
+xleftmargin=3zw,%
+framesep=0.5zw,%
+%
+numberstyle={\footnotesize},%
+stepnumber=1,%
+numbersep=1zw,%
+lineskip=-0.5ex%}
+\\def\\lstlistingname{コード}
+\\def\\lstlistlistingname{コード目次}") t)
+        (setq org-latex-listings         'listings
+              org-latex-listings-options nil)))
     
     (add-list-to-list 'org-latex-classes
                       '(("org-jsarticle"
