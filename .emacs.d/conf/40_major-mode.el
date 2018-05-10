@@ -227,7 +227,24 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
           )
     (setq org-export-in-background nil)
     (add-list-to-list 'org-latex-packages-alist
-                      '(("" "pxjahyper")
+                      '(
+                        ;; org depends packeages
+                        ("utf8" "inputenc")
+                        ("T1" "fontenc")
+                        ("" "graphicx")
+                        ("" "griffile")
+                        ("" "longtable")
+                        ("" "wrapfig")
+                        ("" "rotating")
+                        ("normalem" "ulem")
+                        ("" "amsmath")
+                        ("" "textcomp")
+                        ("" "amssymb")
+                        ("" "capt-of")
+                        ("" "hyperref")
+
+                        ;; my optionnal packages
+                        ("" "pxjahyper")
                         ("" "listings")
                         ("" "fancyhdr")
                         ("" "mdframed")
@@ -239,10 +256,11 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "xcolor")
                         ("" "multicol")
                         ("" "ulem")
-                        ("" "graphicx")))
+                        ("" "geometry")))
     (add-to-list 'org-latex-classes
                  '("org-jsarticle"
-                   "\\documentclass[platex]{jsarticle}"
+                   "\\documentclass[platex]{jsarticle}
+[NO-DEFAULT-PACKAGES]"
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")
              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
