@@ -232,7 +232,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("utf8" "inputenc")
                         ("T1" "fontenc")
                         ("" "graphicx")
-                        ("" "griffile")
+                        ("" "grffile")
                         ("" "longtable")
                         ("" "wrapfig")
                         ("" "rotating")
