@@ -48,14 +48,14 @@ DNAMES is directory name list in user-setting-directory"
                  path))
            dnames)))
 
-(defmacro add-list-to-list (added-lst lst)
-  "minor change from add-to-list.
-add LST to ADDED-LST in a destructive"
+(defmacro add-list-to-list (dest-lst source-lst)
+  "Add to DEST-LST for SOURCE-LST in a destructive.
+minor change from `add-to-list'."
   `(progn
      (mapc (lambda (x)
-             (add-to-list ,added-lst x))
-           ,lst)
-     ,added-lst))
+             (add-to-list ,dest-lst x))
+           ,source-lst)
+     ,dest-lst))
 
 (provide 'loadpath)
 ;;; loadpath.el ends here
