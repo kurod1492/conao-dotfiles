@@ -75,6 +75,7 @@
         org-indent-mode-turns-on-hiding-stars t
         org-indent-indentation-per-level      2
         org-src-window-setup                  'other-window
+        org-use-sub-superscripts              nil
         org-highlight-latex-and-related '(latex script entities))
   (custom-set-faces '(org-latex-and-related ((t (:foreground "DeepSkyBlue2")))))
 
@@ -269,7 +270,8 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         "\\geometry{
 top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
                         "\\pagestyle{fancy}"
-                        "\\rhead{\\thepage{}}"))
+                        "\\rhead{\\thepage{}}"
+                        "\\hypersetup{colorlinks=true, linkcolor=blue}"))
     
     (when (executable-find "kpsewhich")
       ;; unicode code include
@@ -329,7 +331,7 @@ lineskip=-0.5ex}
                         ))
 
              ;; \hypersetup{...} を出力しない
-             (setq org-latex-with-hyperref nil)))
+             (setq org-latex-hyperref-template t)))
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
