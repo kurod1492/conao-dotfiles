@@ -266,14 +266,22 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "newtxtex")           ;; tx font
                         ("" "newtxmath")          ;; tx math font
                         ))
-    (add-to-list 'org-latex-classes
-                 '("org-jsarticle"
-                   "\\documentclass[uplatex]{jsarticle}"
-                   ("\\section{%s}" . "\\section*{%s}")
-                   ("\\subsection{%s}" . "\\subsection*{%s}")
-                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+    (add-list-to-list 'org-latex-classes
+                      '(("org-jsarticle"
+                         "\\documentclass[uplatex]{jsarticle}"
+                         ("\\section{%s}" . "\\section*{%s}")
+                         ("\\subsection{%s}" . "\\subsection*{%s}")
+                         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                         ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                         ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+                        
+                        ("org-beamer"
+                         "\\documentclass[dvipdfmx,12pt]{beamer}"
+                         ("\\section{%s}" . "\\section*{%s}")
+                         ("\\subsection{%s}" . "\\subsection*{%s}")
+                         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                         ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                         ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
              ;; LaTeX 形式のファイル PDF に変換するためのコマンド
              (setq org-latex-pdf-process
