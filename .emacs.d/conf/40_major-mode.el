@@ -226,31 +226,23 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
           ;; org-latex-default-figure-position "H"
           )
     (setq org-export-in-background nil)
+    (add-list-to-list 'org-latex-packages-alist
+                      '(("" "pxjahyper")
+                        ("" "listings")
+                        ("" "fancyhdr")
+                        ("" "mdframed")
+                        ("" "here")
+                        ("" "lscape")
+                        ("" "physics")
+                        ("" "framed")
+                        ("" "color")
+                        ("" "xcolor")
+                        ("" "multicol")
+                        ("" "ulem")
+                        ("" "graphicx")))
     (add-to-list 'org-latex-classes
                  '("org-jsarticle"
-                   "\\documentclass[platex]{jsarticle}
-[NO-PACKAGES]
-[NO-DEFAULT-PACKAGES]
-\\usepackage[dvipdfmx,bookmarks=true,bookmarksnumbered=true]{hyperref}
-\\usepackage[top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot]{geometry}
-\\usepackage[dvipdfmx]{graphicx,xcolor}
-\\usepackage{fancyhdr}
-\\usepackage{here}
-\\usepackage{lscape}
-\\usepackage{amsmath,amssymb}
-\\pagestyle{fancy}
-\\usepackage{pxjahyper}
-\\usepackage{physics}
-\\usepackage{framed, color}
-\\usepackage{multicol}
-\\usepackage{ulem}
-\\usepackage{mdframed}
-\\newcommand{\\up}{\\uparrow}
-\\newcommand{\\rot}{\\nabla\\times}
-\\newcommand{\\ee}{\\mathrm{e}}
-\\newcommand{\\ii}{\\mathrm{i}}
-\\newcommand{\\jj}{\\mathrm{j}}
-\\rhead{\\thepage{}}"
+                   "\\documentclass[platex]{jsarticle}"
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")
              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
