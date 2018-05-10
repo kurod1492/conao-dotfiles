@@ -266,7 +266,9 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "newtxmath")          ;; tx math font
                         ("" "geometry")           ;; page layout
                         "\\geometry{
-top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"))
+top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
+                        "\\pagestyle{fancy}"
+                        "\\rhead{\\thepage{}}"))
     
     (when (executable-find "kpsewhich")
       ;; unicode code include
