@@ -237,11 +237,11 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "wrapfig")
                         ("" "rotating")
                         ("normalem" "ulem")
-                        ("" "amsmath")
                         ("" "textcomp")
-                        ("" "amssymb")
                         ("" "capt-of")
                         ("" "hyperref")
+                        ("" "amsmath")
+                        ("" "amssymb")
 
                         ;; my optionnal packages
                         ("" "pxjahyper")
