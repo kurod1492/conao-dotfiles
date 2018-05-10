@@ -259,7 +259,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "geometry")))
     (add-to-list 'org-latex-classes
                  '("org-jsarticle"
-                   "\\documentclass[platex]{jsarticle}
+                   "\\documentclass[uplatex]{jsarticle}
 [NO-DEFAULT-PACKAGES]"
              ("\\section{%s}" . "\\section*{%s}")
              ("\\subsection{%s}" . "\\subsection*{%s}")
@@ -269,11 +269,11 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
 
              ;; LaTeX 形式のファイル PDF に変換するためのコマンド
              (setq org-latex-pdf-process
-                       '("platex %f"
-                         "platex %f"
+                       '("uplatex %f"
+                         "uplatex %f"
                          "bibtex %b"
-                         "platex %f"
-                         "platex %f"
+                         "uplatex %f"
+                         "uplatex %f"
                          "dvipdfmx %b.dvi"
                          "rm %b.bbl %b.dvi"
                          ;; "find . -type f -name '*.xbb' -print0 | xargs -0 rm"
