@@ -230,37 +230,37 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                       '(
                         ;;;;;;;;;;;;;;;;;;;;
                         ;; org depends packeages
-                        ("utf8" "inputenc")
-                        ("T1" "fontenc")
-                        ("" "graphicx")
-                        ("" "grffile")
-                        ("" "longtable")
-                        ("" "wrapfig")
-                        ("" "rotating")
-                        ("normalem" "ulem")
-                        ("" "textcomp")
-                        ("" "capt-of")
-                        ("" "hyperref")
-                        ("" "amsmath")
-                        ("" "amssymb")
+                        
+                        ("utf8" "inputenc")       ;; enable unicode input
+                        ("T1" "fontenc")          ;; enable unicode output
+                        ("" "graphicx")           ;; insert figures
+                        ("" "grffile")            ;; enable strange filenames
+                        ("" "longtable")          ;; long table with page break
+                        ("" "wrapfig")            ;; text wrap figure
+                        ("" "rotating")           ;; text rotate
+                        ("normalem" "ulem")       ;; text decoration
+                        ("" "textcomp")           ;; symbol font
+                        ("" "capt-of")            ;; add caption at not float env
+                        ("" "hyperref")           ;; hyperlink
+                        ("" "amsmath, amssymb")   ;; math packages
 
                         ;;;;;;;;;;;;;;;;;;;;
                         ;; my optionnal packages
-                        ("" "pxjahyper")
-                        ("" "listings")
-                        ("" "fancyhdr")
-                        ("" "mdframed")
-                        ("" "here")
-                        ("" "lscape")
-                        ("" "physics")
-                        ("" "framed")
-                        ("" "color")
-                        ("" "xcolor")
-                        ("" "multicol")
-                        ("" "ulem")
-                        ("" "geometry")
-                        ("" "newtxtext")
-                        ("" "newtxmath")))
+                        
+                        ("" "pxjahyper")          ;; pdf bookmark label
+                        ("" "listings, jlisting") ;; code include
+                        ("" "fancyhdr")           ;; header, footer editing
+                        ("" "mdframed")           ;; framing
+                        ("" "here")               ;; figure put here
+                        ("" "lscape")             ;; landscape text, portrait page
+                        ("" "physics")            ;; math useful macros
+                        ("" "framed")             ;; framing
+                        ("" "xcolor")             ;; pick color
+                        ("" "multicol")           ;; multi columns
+                        ("" "geometry")           ;; page layout
+                        ("" "newtxtex")           ;; tx font
+                        ("" "newtxmath")          ;; tx math font
+                        ))
     (add-to-list 'org-latex-classes
                  '("org-jsarticle"
                    "\\documentclass[uplatex]{jsarticle}
