@@ -263,7 +263,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "xcolor")             ;; pick color
                         ("" "multicol")           ;; multi columns
                         ("" "geometry")           ;; page layout
-                        ("" "newtxtex")           ;; tx font
+                        ("" "newtxtext")          ;; tx font
                         ("" "newtxmath")          ;; tx math font
                         ))
     (add-list-to-list 'org-latex-classes
