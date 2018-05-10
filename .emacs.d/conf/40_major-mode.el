@@ -259,6 +259,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "here")               ;; figure put here
                         ("" "lscape")             ;; landscape text, portrait page
                         ("" "physics")            ;; math useful macros
+                        ("" "okumacro")           ;; useful macros by Dr.okumura
                         ("" "framed")             ;; framing
                         ("" "xcolor")             ;; pick color
                         ("" "multicol")           ;; multi columns
