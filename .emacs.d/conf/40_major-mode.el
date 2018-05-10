@@ -253,7 +253,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ;; my optionnal packages
                         
                         ("" "pxjahyper")          ;; pdf bookmark label
-                        ("" "listings, jlisting") ;; code include
+                        ("" "listings")           ;; code include
                         ("" "fancyhdr")           ;; header, footer editing
                         ("" "mdframed")           ;; framing
                         ("" "here")               ;; figure put here
@@ -266,6 +266,12 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "newtxtext")          ;; tx font
                         ("" "newtxmath")          ;; tx math font
                         ))
+    
+    (when (executable-find "kpsewhich")
+      ;; unicode code include
+      (unless (string= (shell-command-to-string "kpsewhich plistings.sty") "")
+        (add-to-list 'org-latex-packages-alist '("" "plistings") t)))
+    
     (add-list-to-list 'org-latex-classes
                       '(("org-jsarticle"
                          "\\documentclass[uplatex]{jsarticle}"
