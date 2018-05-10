@@ -36,7 +36,7 @@
       (normal-top-level-add-subdirs-to-load-path))))
 
 (defun add-user-setting-directory-to-load-path (dnames)
-  "Add load path recursive in $user-setting-directory/FNAMES
+  "Add load path recursive in $user-setting-directory/DNAMES.
 DNAMES is directory name list in user-setting-directory"
   (add-to-load-path
    (mapcar #'(lambda (x)
