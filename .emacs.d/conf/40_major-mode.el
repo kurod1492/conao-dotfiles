@@ -229,10 +229,12 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
           ;; org-latex-default-figure-position "H"
           )
     (setq org-export-in-background nil)
+    (setq org-latex-default-packages-alist nil)
+    
     (add-list-to-list 'org-latex-packages-alist
                       '(
                         ;;;;;;;;;;;;;;;;;;;;
-                        ;; org depends packeages
+                        ;; org depends default packeages
                         
                         ("utf8" "inputenc")       ;; enable unicode input
                         ("T1" "fontenc")          ;; enable unicode output
@@ -266,13 +268,12 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ))
     (add-to-list 'org-latex-classes
                  '("org-jsarticle"
-                   "\\documentclass[uplatex]{jsarticle}
-[NO-DEFAULT-PACKAGES]"
-             ("\\section{%s}" . "\\section*{%s}")
-             ("\\subsection{%s}" . "\\subsection*{%s}")
-             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-             ("\\paragraph{%s}" . "\\paragraph*{%s}")
-             ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+                   "\\documentclass[uplatex]{jsarticle}"
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
              ;; LaTeX 形式のファイル PDF に変換するためのコマンド
              (setq org-latex-pdf-process
