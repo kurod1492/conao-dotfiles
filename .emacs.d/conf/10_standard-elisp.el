@@ -25,7 +25,7 @@
 ;;; Code:
 
 (use-package windmove
-  :bind (("C-c <left>" . windmove-left)
+  :bind (("C-c <left>"  . windmove-left)
          ("C-c <down>"  . windmove-down)
          ("C-c <up>"    . windmove-up)
          ("C-c <right>" . windmove-right)))
