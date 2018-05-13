@@ -277,30 +277,14 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
       ;; unicode code include
       (unless (string= (shell-command-to-string "kpsewhich plistings.sty") "")
         (add-list-to-list 'org-latex-packages-alist
-                          '(("" "plistings")
-                            "\\lstset{%
-  basicstyle={\\small\\tt},%
-  commentstyle={\\small\\itshape},%
-  keywordstyle={\\small\\bfseries},%
-  showstringspaces=false,%
-  %
-  frame={shadowbox},%
-  breaklines=true,%
-  breakindent=2.4em,%
-  numbers=left,%
-  xrightmargin=2zw,%
-  xleftmargin=3zw,%
-  framesep=0.5zw,%
-  %
-  numberstyle={\\footnotesize},%
-  stepnumber=1,%
-  numbersep=1zw,%
-  lineskip=-0.5ex
-}
-\\def\\lstlistingname{コード}
-\\def\\lstlistlistingname{コード目次}") t)
+                          '(("" "plistings")) t)
         (setq org-latex-listings         'listings
-              org-latex-listings-options nil)))
+              org-latex-listings-options nil))
+      (unless (string= (shell-command-to-string "kpsewhich listingsextra.sty") "")
+        (add-list-to-list '(("" "listingsextra")) t))
+      (unless (string= (shell-command-to-string "kpsewhich listingssetup.sty") "")
+        (add-list-to-list 'org-latex-packages-alist
+                          '(("" "listingssetup")) t)))
     
     (add-list-to-list 'org-latex-classes
                       '(("org-jsarticle"
