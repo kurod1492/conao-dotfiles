@@ -271,7 +271,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
 top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
                         "\\pagestyle{fancy}"
                         "\\rhead{\\thepage{}}"
-                        "\\hypersetup{colorlinks=true, linkcolor=blue}"))
+                        ))
     
     (when (executable-find "kpsewhich")
       ;; unicode code include
@@ -279,23 +279,24 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
         (add-list-to-list 'org-latex-packages-alist
                           '(("" "plistings")
                             "\\lstset{%
-basicstyle={\\small\\tt},%
-commentstyle={\\small\\itshape},%
-keywordstyle={\\small\\bfseries},%
-showstringspaces=false,%
-%
-frame={shadowbox},%
-breaklines=true,%
-breakindent=2.4em,%
-numbers=left,%
-xrightmargin=2zw,%
-xleftmargin=3zw,%
-framesep=0.5zw,%
-%
-numberstyle={\\footnotesize},%
-stepnumber=1,%
-numbersep=1zw,%
-lineskip=-0.5ex}
+  basicstyle={\\small\\tt},%
+  commentstyle={\\small\\itshape},%
+  keywordstyle={\\small\\bfseries},%
+  showstringspaces=false,%
+  %
+  frame={shadowbox},%
+  breaklines=true,%
+  breakindent=2.4em,%
+  numbers=left,%
+  xrightmargin=2zw,%
+  xleftmargin=3zw,%
+  framesep=0.5zw,%
+  %
+  numberstyle={\\footnotesize},%
+  stepnumber=1,%
+  numbersep=1zw,%
+  lineskip=-0.5ex
+}
 \\def\\lstlistingname{コード}
 \\def\\lstlistlistingname{コード目次}") t)
         (setq org-latex-listings         'listings
@@ -330,8 +331,18 @@ lineskip=-0.5ex}
                          ;; "find . -type f -name '*.xbb' -print0 | xargs -0 rm"
                         ))
 
-             ;; \hypersetup{...} を出力しない
-             (setq org-latex-hyperref-template t)))
+             (setq org-latex-hyperref-template
+  "\\hypersetup{
+  pdfauthor={%a},
+  pdftitle={%t},
+  pdfkeywords={%k},
+  pdfsubject={%d},
+  pdfcreator={%c},
+  pdflang={%L},
+  colorlinks=true,
+  linkcolor=blue
+}
+")))
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
