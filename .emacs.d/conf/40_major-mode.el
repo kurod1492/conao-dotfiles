@@ -285,7 +285,8 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
         (setq org-latex-listings         'listings
               org-latex-listings-options nil))
       (unless (string= (shell-command-to-string "kpsewhich listingsextra.sty") "")
-        (add-list-to-list '(("" "listingsextra")) t))
+        (add-list-to-list 'org-latex-packages-alist
+                          '(("" "listingsextra")) t))
       (unless (string= (shell-command-to-string "kpsewhich listingssetup.sty") "")
         (add-list-to-list 'org-latex-packages-alist
                           '(("" "listingssetup")) t)))
