@@ -318,7 +318,6 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
                          "uplatex %f"
                          "uplatex %f"
                          "dvipdfmx %b.dvi"
-                         "rm %b.bbl %b.dvi"
                          ;; "find . -type f -name '*.xbb' -print0 | xargs -0 rm"
                         ))
 
@@ -336,7 +335,7 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
 ")
              (add-list-to-list 'org-latex-listings-langs '((shell "bash")
                                                            ))
-             (add-list-to-list 'org-latex-logfiles-extensions '(("dvi" "bbl")))
+             (add-list-to-list 'org-latex-logfiles-extensions '("dvi" "bbl"))
              ))
 
 (provide '40_major-mode)
