@@ -271,6 +271,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "newtxtext")          ;; tx font
                         ("" "newtxmath")          ;; tx math font
                         ("" "geometry")           ;; page layout
+                        ("" "mathtools")          ;; enhance the appearance for amsmath
                         "\\geometry{
 top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
                         "\\pagestyle{fancy}"
