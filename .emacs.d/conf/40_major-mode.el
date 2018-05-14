@@ -334,30 +334,8 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
   linkcolor=blue
 }
 ")
-             (setq org-latex-listings-langs
-                   '(
-                     ;;;;;;;;;;;;;;;;;;;;
-                     ;; default settings
-                                 
-                     (emacs-lisp "Lisp") (lisp "Lisp") (clojure "Lisp")
-                     (c "C") (cc "C++")
-                     (fortran "fortran")
-                     (perl "Perl") (cperl "Perl")
-                     (python "Python")
-                     (ruby "Ruby")
-                     (html "HTML")
-                     (xml "XML")
-                     (tex "TeX") (latex "[LaTeX]TeX")
-                     (shell-script "bash")
-                     (gnuplot "Gnuplot")
-                     (ocaml "Caml") (caml "Caml")
-                     (sql "SQL") (sqlite "sql")
-
-                     ;;;;;;;;;;;;;;;;;;;;
-                     ;; my optional settingss
-
-                     (shell "bash")
-                     ))
+             (add-list-to-list org-latex-listings-langs '((shell "bash")
+                                                          ))
              ))
 
 (provide '40_major-mode)
