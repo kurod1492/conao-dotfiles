@@ -334,9 +334,9 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
   linkcolor=blue
 }
 ")
-             (add-list-to-list org-latex-listings-langs '((shell "bash")
-                                                          ))
-             (add-list-to-list org-latex-logfiles-extensions '(("dvi" "bbl")))
+             (add-list-to-list 'org-latex-listings-langs '((shell "bash")
+                                                           ))
+             (add-list-to-list 'org-latex-logfiles-extensions '(("dvi" "bbl")))
              ))
 
 (provide '40_major-mode)
