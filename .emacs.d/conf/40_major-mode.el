@@ -48,6 +48,8 @@
 (use-package matlab-mode :ensure t :defer t)
 
 (use-package plantuml-mode :ensure t :defer t
+  :commands (load-plantuml-mode)
+  :init (defun load-plantuml-mode () t)
   ;; depend on graphviz, plantuml
   ;; $ brew install graphviz plantuml
   ;; add 'export GRAPHVIZ_DOT=/Users/conao/local/homebrew/bin/dot' in .bashrc
@@ -60,6 +62,8 @@
            (setq plantuml-jar-path "/Users/conao/local/homebrew/opt/plantuml/libexec/plantuml.jar"))))
 
 (use-package org :ensure t :defer t
+  :after (plantuml-mode)
+  :demand t
   :mode (("\\.txt$" . org-mode))
   :bind (("C-c o l" . org-store-link)
          ("C-c o a" . org-agenda)
@@ -163,7 +167,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
     ;; depend of jypyter, ipython
     (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
   (use-package ob-plantuml
-    :if (command-execute "plantuml")
+    :if (executable-find "plantuml")
     :config
     (use-package plantuml-mode)
     (setq org-plantuml-jar-path plantuml-jar-path))
@@ -275,9 +279,9 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
     
     (when (executable-find "kpsewhich")
       ;; unicode code include
-      (unless (string= (shell-command-to-string "kpsewhich plistings.sty") "")
+      (unless (string= (shell-command-to-string "kpsewhich jlisting.sty") "")
         (add-list-to-list 'org-latex-packages-alist
-                          '(("" "plistings")) t)
+                          '(("" "jlisting")) t)
         (setq org-latex-listings         'listings
               org-latex-listings-options nil))
       (unless (string= (shell-command-to-string "kpsewhich listingsextra.sty") "")
