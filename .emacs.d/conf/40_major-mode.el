@@ -48,6 +48,8 @@
 (use-package matlab-mode :ensure t :defer t)
 
 (use-package plantuml-mode :ensure t :defer t
+  :commands (load-plantuml-mode)
+  :init (defun load-plantuml-mode () t)
   ;; depend on graphviz, plantuml
   ;; $ brew install graphviz plantuml
   ;; add 'export GRAPHVIZ_DOT=/Users/conao/local/homebrew/bin/dot' in .bashrc
@@ -60,6 +62,8 @@
            (setq plantuml-jar-path "/Users/conao/local/homebrew/opt/plantuml/libexec/plantuml.jar"))))
 
 (use-package org :ensure t :defer t
+  :after (plantuml-mode)
+  :demand t
   :mode (("\\.txt$" . org-mode))
   :bind (("C-c o l" . org-store-link)
          ("C-c o a" . org-agenda)
@@ -163,7 +167,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
     ;; depend of jypyter, ipython
     (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
   (use-package ob-plantuml
-    :if (command-execute "plantuml")
+    :if (executable-find "plantuml")
     :config
     (use-package plantuml-mode)
     (setq org-plantuml-jar-path plantuml-jar-path))
@@ -271,35 +275,21 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
 top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
                         "\\pagestyle{fancy}"
                         "\\rhead{\\thepage{}}"
-                        "\\hypersetup{colorlinks=true, linkcolor=blue}"))
+                        ))
     
     (when (executable-find "kpsewhich")
       ;; unicode code include
-      (unless (string= (shell-command-to-string "kpsewhich plistings.sty") "")
+      (unless (string= (shell-command-to-string "kpsewhich jlisting.sty") "")
         (add-list-to-list 'org-latex-packages-alist
-                          '(("" "plistings")
-                            "\\lstset{%
-basicstyle={\\small\\tt},%
-commentstyle={\\small\\itshape},%
-keywordstyle={\\small\\bfseries},%
-showstringspaces=false,%
-%
-frame={shadowbox},%
-breaklines=true,%
-breakindent=2.4em,%
-numbers=left,%
-xrightmargin=2zw,%
-xleftmargin=3zw,%
-framesep=0.5zw,%
-%
-numberstyle={\\footnotesize},%
-stepnumber=1,%
-numbersep=1zw,%
-lineskip=-0.5ex}
-\\def\\lstlistingname{コード}
-\\def\\lstlistlistingname{コード目次}") t)
+                          '(("" "jlisting")) t)
         (setq org-latex-listings         'listings
-              org-latex-listings-options nil)))
+              org-latex-listings-options nil))
+      (unless (string= (shell-command-to-string "kpsewhich listingsextra.sty") "")
+        (add-list-to-list 'org-latex-packages-alist
+                          '(("" "listingsextra")) t))
+      (unless (string= (shell-command-to-string "kpsewhich listingssetup.sty") "")
+        (add-list-to-list 'org-latex-packages-alist
+                          '(("" "listingssetup")) t)))
     
     (add-list-to-list 'org-latex-classes
                       '(("org-jsarticle"
@@ -330,8 +320,18 @@ lineskip=-0.5ex}
                          ;; "find . -type f -name '*.xbb' -print0 | xargs -0 rm"
                         ))
 
-             ;; \hypersetup{...} を出力しない
-             (setq org-latex-hyperref-template t)))
+             (setq org-latex-hyperref-template
+  "\\hypersetup{
+  pdfauthor={%a},
+  pdftitle={%t},
+  pdfkeywords={%k},
+  pdfsubject={%d},
+  pdfcreator={%c},
+  pdflang={%L},
+  colorlinks=true,
+  linkcolor=blue
+}
+")))
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
