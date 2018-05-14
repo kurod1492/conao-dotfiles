@@ -352,6 +352,11 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
                      (gnuplot "Gnuplot")
                      (ocaml "Caml") (caml "Caml")
                      (sql "SQL") (sqlite "sql")
+
+                     ;;;;;;;;;;;;;;;;;;;;
+                     ;; my optional settingss
+
+                     (shell "bash")
                      ))
              ))
 
