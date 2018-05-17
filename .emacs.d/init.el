@@ -29,6 +29,9 @@
       debug-on-signal nil
       debug-on-quit   nil)
 
+;; use cl macros
+(eval-when-compile (require 'cl-lib))
+
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
 ;; load settings in ~/hoge/
 (setq user-emacs-directory
