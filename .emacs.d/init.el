@@ -52,13 +52,20 @@
          (require 'el-get)
          (setq el-get-git-shallow-clone t)
          (setq el-get-dir (user-setting-directory "v23/el-get"))))
-      (emacs24-g-p
+      (emacs24-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("el-get" "elpa" "site-lisp" "conf"))
+         (add-list-to-list 'load-path-folder-list '("v24/el-get" "v24/elpa" "site-lisp" "conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)
-         (setq package-user-dir (user-setting-directory "elpa")))))
+         (setq package-user-dir (user-setting-directory "v24/elpa"))))
+      (emacs25-p
+       (progn
+         (add-list-to-list 'load-path-folder-list '("v25/el-get" "v25/elpa" "site-lisp" "conf"))
+         (add-user-setting-directory-to-load-path load-path-folder-list)
+         
+         (require 'package)
+         (setq package-user-dir (user-setting-directory "v25/elpa")))))
 
 (cond (emacs23-p
        (progn
