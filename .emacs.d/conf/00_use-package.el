@@ -24,6 +24,12 @@
 
 ;;; Code:
 
+(use-package auto-package-update :ensure t
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+
 (use-package el-get :ensure t
   :config
   (setq el-get-git-shallow-clone  t
