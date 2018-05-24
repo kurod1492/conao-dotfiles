@@ -29,6 +29,9 @@ srecode-map.el
 bookmarks
 network-security.data
 
+# use-package-update
+.last-package-update-day
+
 # download packages
 /elpa*/
 /el-get/
