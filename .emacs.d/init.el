@@ -57,14 +57,14 @@
          (setq el-get-dir (user-setting-directory "v23/el-get"))))
       (emacs24-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("v24/el-get" "v24/elpa" "site-lisp" "conf"))
+         (add-list-to-list 'load-path-folder-list '("v24/el-get" "v24/elpa" "v24/site-lisp" "v24/conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)
          (setq package-user-dir (user-setting-directory "v24/elpa"))))
       (emacs25-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("v25/el-get" "v25/elpa" "site-lisp" "conf"))
+         (add-list-to-list 'load-path-folder-list '("v25/el-get" "v25/elpa" "v25/site-lisp" "v25/conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)
