@@ -24,6 +24,13 @@
 
 ;;; Code:
 
+(defmacro defmacro_nil (name arglist &optional docstring &rest body)
+  "Defmacro, return nil.
+NAME, ARGLIST, DOCSTRING, BODY"
+  `(progn
+    (defmacro ,name ,arglist
+      ,body)
+    nil))
 
 (use-package use-package
   :config
@@ -35,6 +42,9 @@
     (auto-package-update-maybe)))
 
 (use-package el-get :ensure t
+  :if (or (executable-find "git")
+          (message "'git' couldn't found. el-get can't download any packages")
+          (defmacro el-get(&rest arg) nil))
   :config
   (setq el-get-git-shallow-clone  t
         el-get-emacswiki-base-url "http://www.emacswiki.org/emacs/download/"))

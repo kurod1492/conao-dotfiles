@@ -29,9 +29,6 @@
       debug-on-signal nil
       debug-on-quit   nil)
 
-;; use cl macros
-(eval-when-compile (require 'cl-lib))
-
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
 ;; load settings in ~/hoge/
 (setq user-emacs-directory
@@ -43,6 +40,9 @@
 (load-file (concat user-emacs-directory "site-lisp/version.el"))
 
 (when emacs22-l-p (error "unsupport version prior to emacs22"))
+
+;; use cl macros
+(when emacs24-g-p (eval-when-compile (require 'cl-lib)))
 
 (defvar load-path-folder-list '("backup")
   "folder-list add to load-path recursive. `user-setting-directory'/`load-path-folder-list'")
