@@ -30,6 +30,9 @@ bookmarks
 network-security.data
 tramp
 
+# use-package-update
+.last-package-update-day
+
 # download packages
 /elpa*/
 /el-get/

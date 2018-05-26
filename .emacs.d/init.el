@@ -41,6 +41,9 @@
 
 (when emacs22-l-p (error "unsupport version prior to emacs22"))
 
+;; use cl macros
+(when emacs24-g-p (eval-when-compile (require 'cl-lib)))
+
 (defvar load-path-folder-list '("backup")
   "folder-list add to load-path recursive. `user-setting-directory'/`load-path-folder-list'")
 
@@ -52,13 +55,20 @@
          (require 'el-get)
          (setq el-get-git-shallow-clone t)
          (setq el-get-dir (user-setting-directory "v23/el-get"))))
-      (emacs24-g-p
+      (emacs24-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("el-get" "elpa" "site-lisp" "conf"))
+         (add-list-to-list 'load-path-folder-list '("v24/el-get" "v24/elpa" "v24/site-lisp" "v24/conf"))
          (add-user-setting-directory-to-load-path load-path-folder-list)
          
          (require 'package)
-         (setq package-user-dir (user-setting-directory "elpa")))))
+         (setq package-user-dir (user-setting-directory "v24/elpa"))))
+      (emacs25-p
+       (progn
+         (add-list-to-list 'load-path-folder-list '("v25/el-get" "v25/elpa" "v25/site-lisp" "v25/conf"))
+         (add-user-setting-directory-to-load-path load-path-folder-list)
+         
+         (require 'package)
+         (setq package-user-dir (user-setting-directory "v25/elpa")))))
 
 (cond (emacs23-p
        (progn
