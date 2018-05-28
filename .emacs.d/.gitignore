@@ -28,6 +28,7 @@ ac-comphist.dat
 srecode-map.el
 bookmarks
 network-security.data
+tramp
 
 # use-package-update
 .last-package-update-day
