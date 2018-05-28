@@ -165,7 +165,8 @@
                      (delete (assq 'view-mode minor-mode-map-alist)
                              minor-mode-map-alist)
                      minor-mode-map-alist
-                     (cons (cons 'view-mode view-mode-map) minor-mode-map-alist)))))
+                     (cons (cons 'view-mode view-mode-map) minor-mode-map-alist))))
+  (prog1 ""))
 
 (use-package autoinsert
   :config
