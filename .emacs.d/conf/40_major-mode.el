@@ -41,9 +41,7 @@
   ;; cperl-mode is preferred to perl-mode
   (defalias 'perl-mode 'cperl-mode))
 
-(use-package php-mode :ensure t :defer t :disabled t
-  :config
-  (use-package web-mode :ensure t :defer t))
+(use-package web-mode :ensure t :defer t)
 
 (use-package matlab-mode :ensure t :defer t)
 
