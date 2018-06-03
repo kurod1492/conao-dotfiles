@@ -230,7 +230,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
     (setq org-html-htmlize-output-type 'css
           org-src-fontify-natively t
           org-latex-default-class "org-jsarticle"
-          org-export-with-sub-superscripts nil
+          org-export-with-sub-superscripts '{}
           ;; org-latex-default-figure-position "H"
           )
     (setq org-export-in-background nil)
