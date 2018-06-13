@@ -331,6 +331,9 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
   pdfsubject={%d},
   pdfcreator={%c},
   pdflang={%L},
+  pdfborder={0 0 0},
+  colorlinks=false,
+  linkcolor=blue
 }
 ")
              (add-list-to-list 'org-latex-listings-langs '((shell "bash")
