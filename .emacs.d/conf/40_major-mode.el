@@ -225,6 +225,9 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   ;; - latex export
   (use-package ox-latex
     :config
+    (use-package ox-latex-subfigure
+      :init (el-get-bundle linktohack/ox-latex-subfigure))
+    
     (setq org-html-htmlize-output-type 'css
           org-src-fontify-natively t
           org-latex-default-class "org-jsarticle"
@@ -233,7 +236,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
           )
     (setq org-export-in-background nil)
     (setq org-latex-default-packages-alist nil)
-    
+
     (add-list-to-list 'org-latex-packages-alist
                       '(
                         ;;;;;;;;;;;;;;;;;;;;
@@ -270,6 +273,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                         ("" "newtxmath")          ;; tx math font
                         ("" "geometry")           ;; page layout
                         ("" "mathtools")          ;; enhance the appearance for amsmath
+                        ("" "subcaption")         ;; multiple figures
                         "\\geometry{
 top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
                         "\\pagestyle{fancy}"
@@ -326,7 +330,7 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
   pdfkeywords={%k},
   pdfsubject={%d},
   pdfcreator={%c},
-  pdflang={%L}
+  pdflang={%L},
 }
 ")
              (add-list-to-list 'org-latex-listings-langs '((shell "bash")
