@@ -84,7 +84,6 @@
 
          (package-initialize)
 
-
          ;; use-package
          (when (not (package-installed-p 'use-package))
            (package-refresh-contents)
