@@ -405,14 +405,14 @@
   (setq dired-dwim-target t
         delete-by-moving-to-trash t)
   
-  (use-package wdired :defer t
+  (use-package wdired
     :bind (:map dired-mode-map
                 ("r" . wdired-change-to-wdired-mode)))
-  (use-package dired-rainbow :ensure t :defer t)
-  (use-package dired-filter  :ensure t :defer t
+  (use-package dired-rainbow :ensure t)
+  (use-package dired-filter  :ensure t
     :config
     (add-hook 'dired-mode-hook 'dired-filter-mode))
-  (use-package dired-subtree :ensure t :defer t
+  (use-package dired-subtree :ensure t
     :bind (:map dired-mode-map
                 ("<tab>"   . dired-subtree-remove)   ;; folding with tab
                 ("C-x n n" . dired-subtree-narrow))  ;; narrowing subtree
