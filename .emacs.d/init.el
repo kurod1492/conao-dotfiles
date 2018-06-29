@@ -30,11 +30,12 @@
       debug-on-quit   nil)
 
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
-;; load settings in ~/hoge/
-(setq user-emacs-directory
-      (expand-file-name
-       (file-name-directory
-        (if load-file-name load-file-name "~/.emacs.d/init.el"))))
+(progn
+  (when load-file-name
+    (setq user-emacs-directory
+          (expand-file-name (file-name-directory load-file-name))))
+  (setq user-emacs-directory
+        (concat user-emacs-directory "v" emacs-major-version "/")))
 
 (load-file (concat user-emacs-directory "site-lisp/loadpath.el"))
 (load-file (concat user-emacs-directory "site-lisp/version.el"))
