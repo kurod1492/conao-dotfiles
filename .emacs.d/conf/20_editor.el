@@ -322,12 +322,13 @@
   (push '("*magit*" :noselect t :height 40 :width 80 :stick t) popwin:special-display-config))
 
 ;;; el-get packages
-(use-package auto-save-buffers :demand t
-  :init (el-get-bundle conao/auto-save-buffers)
-  :bind ("C-x a s" . auto-save-buffers-toggle)
+(use-package auto-save-buffers-enhanced :demand t
+  :init (el-get-bundle kentaro/auto-save-buffers-enhanced)
+  :bind ("C-x a s" . auto-save-buffers-enhanced-toggle-activity)
   :config
-  ;; save buffer 0.5s each
-  (run-with-idle-timer 0.5 t 'auto-save-buffers))
+  (auto-save-buffers-enhanced t)
+  (setq auto-save-buffers-enhanced-interval        0.5
+        auto-save-buffers-enhanced-exclude-regexps '("^/ssh:" "^/scp:" "^/rcync:" "\\.ignore$")))
 
 (provide '20_editor)
 ;;; 20_editor.el ends here

@@ -1,0 +1,11 @@
+[user]
+	name = conao
+	email = conao3@gmail.com
+[push]
+	default = simple
+[color]
+	ui = always
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
