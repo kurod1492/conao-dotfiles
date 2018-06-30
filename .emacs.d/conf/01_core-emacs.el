@@ -86,8 +86,9 @@
 
 ;;; window setting
 ;; hide toolbar, scroll-bar
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
+(unless ns-p
+  (tool-bar-mode 0)
+  (scroll-bar-mode 0))
 
 ;;; mode-line setting
 ;; show line number
