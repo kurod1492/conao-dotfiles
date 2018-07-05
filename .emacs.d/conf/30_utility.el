@@ -32,7 +32,9 @@
 
 ;;;;;;;;;;;;;;;;;;
 ;; git modes
-(use-package magit              :ensure t :defer t :bind ("C-x v"   . magit-status))
+(use-package magit :ensure t :defer t
+  :if emacs25-g-p
+  :bind (("C-x v" . magit-status)))
 (use-package gitconfig-mode     :ensure t :defer t)
 (use-package gitignore-mode     :ensure t :defer t)
 (use-package gitattributes-mode :ensure t :defer t)
