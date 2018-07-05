@@ -34,7 +34,18 @@ NAME, ARGLIST, DOCSTRING, BODY"
 
 (use-package use-package
   :config
-  (setq use-package-compute-statistics t)
+  (setq use-package-expand-minimally   t
+        use-package-compute-statistics nil)
+  (prog1 "add :doc keyword"
+    (add-to-list 'use-package-keywords :doc)
+    (defun use-package-normalize/:doc (name keyword args)
+      "Do nothing"
+      nil)
+    (defun use-package-handler/:doc (name keyword arg rest state)
+      "Do nothing"
+      (let ((body (use-package-process-keywords name rest state)))
+        body)))
+  
   (use-package auto-package-update :ensure t
     :config
     (setq auto-package-update-delete-old-versions t)
