@@ -162,6 +162,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   
   ;; ipython
   (use-package ob-ipython :ensure t
+    :if (executable-find "jupyter")
     :config
     ;; depend of jypyter, ipython
     (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
