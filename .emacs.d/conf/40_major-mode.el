@@ -225,6 +225,12 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
     :init (use-package auctex :ensure t :defer t)
     :hook (org-mode . turn-on-org-cdlatex))
 
+  
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; - html export
+
+  (use-package orglyth-html)
+  
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; - latex export
   (use-package ox-latex
