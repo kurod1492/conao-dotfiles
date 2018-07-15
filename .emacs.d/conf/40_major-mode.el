@@ -229,7 +229,10 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; - html export
 
-  (use-package orglyth-html)
+  (use-package orglyth :no-require t
+    :config
+    (add-to-list 'load-path (concat el-get-dir "/orglyth/"))
+    (use-package orglyth-html))
   
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; - latex export
