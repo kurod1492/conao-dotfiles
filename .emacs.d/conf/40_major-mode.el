@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(use-package generic-x :defer t
+  :mode (("\\.htaccess\\'" . apache-conf-generic-mode)))
+
 (use-package cc-mode :defer t
   :config
   (use-package c-eldoc :ensure t
