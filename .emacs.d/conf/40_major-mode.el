@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(use-package generic-x :defer t
+  :mode (("\\.htaccess\\'" . apache-conf-generic-mode)))
+
 (use-package cc-mode :defer t
   :config
   (use-package c-eldoc :ensure t
@@ -162,6 +165,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   
   ;; ipython
   (use-package ob-ipython :ensure t
+    :if (executable-find "jupyter")
     :config
     ;; depend of jypyter, ipython
     (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
@@ -228,6 +232,15 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
     :init (use-package auctex :ensure t :defer t)
     :hook (org-mode . turn-on-org-cdlatex))
 
+  
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; - html export
+
+  (use-package orglyth :no-require t
+    :config
+    (add-to-list 'load-path (concat el-get-dir "/orglyth/"))
+    (use-package orglyth-html))
+  
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; - latex export
   (use-package ox-latex
