@@ -49,6 +49,8 @@
 
 (use-package matlab-mode :ensure t :defer t)
 
+(use-package ess :ensure t)
+
 (use-package plantuml-mode :ensure t :defer t
   :commands (load-plantuml-mode)
   :init (defun load-plantuml-mode () t)
