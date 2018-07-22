@@ -85,6 +85,9 @@
         org-src-window-setup                  'other-window
         org-use-sub-superscripts              nil
         org-highlight-latex-and-related '(latex script entities))
+  (let ((user-emacs-directory (file-name-directory (directory-file-name user-emacs-directory))))
+    (setq org-export-async-init-file (user-setting-directory "init_orgexport.el")))
+  
   (custom-set-faces '(org-latex-and-related ((t (:foreground "DeepSkyBlue2")))))
 
   (prog1 "setting src block faces"
