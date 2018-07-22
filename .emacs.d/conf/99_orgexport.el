@@ -24,10 +24,23 @@
 
 ;;; Code:
 
+(progn
+  (when load-file-name
+    (setq user-emacs-directory
+          (expand-file-name (file-name-directory load-file-name))))
+  (setq user-emacs-directory
+        (concat user-emacs-directory "v" (int-to-string emacs-major-version) "/")))
+
+(load-file (concat user-emacs-directory "site-lisp/loadpath.el"))
+(load-file (concat user-emacs-directory "site-lisp/version.el"))
+
+(eval-when-compile (require 'cl-lib))
+
 (require 'package)
+(setq package-user-dir (user-setting-directory "elpa"))
 (package-initialize)
 
-(require 'org) 
+(require 'org)
 (require 'ox)
 (require 'cl)  
 (setq org-export-async-debug nil)
