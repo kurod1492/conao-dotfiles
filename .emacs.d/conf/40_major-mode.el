@@ -187,7 +187,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; org exporting
 
-  (use-package orglyth :no-require t
+  (use-package orglyth :disabled t
     :init (el-get-bundle conao/orglyth)
     :config
     (use-package orglyth-html))
