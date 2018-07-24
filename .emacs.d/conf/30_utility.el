@@ -53,6 +53,16 @@
   ;; https://howm.osdn.jp/index-j.html
   )
 
+(use-package visual-regexp-steroids :ensure t :defer t
+  :doc (ffap "http://nekonenene.hatenablog.com/entry/2015/09/11/231757")
+  :bind (("C-c m" . vr/mc-mark)
+         ("C-M-r" . vr/isearch-backward)
+         ("C-M-s" . vr/isearch-forward)
+         ("M-%"   . vr/query-replace))
+  :init (use-package pcre2el :ensure t)
+  :config
+  (setq vr/engine (if (executable-find "python") 'python 'pcre2el)))
+
 (use-package mode-compile  :ensure t :defer t
   :bind* (("C-c c" . mode-compile))
   :config
