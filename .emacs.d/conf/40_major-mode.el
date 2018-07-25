@@ -191,7 +191,8 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   ;; org exporting
 
   (use-package orglyth
-    :init (el-get-bundle conao/orglyth)
+    ;; :init (el-get-bundle conao/orglyth)
+    :init (add-to-list 'load-path "~/.emacs.d/el-get/orglyth")
     :config
     (use-package orglyth-html
       :config
