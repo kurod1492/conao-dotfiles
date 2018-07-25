@@ -193,7 +193,15 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   (use-package orglyth :disabled t
     :init (el-get-bundle conao/orglyth)
     :config
-    (use-package orglyth-html))
+    (use-package orglyth-html
+      :config
+      (setq orglyth-html-enable-opiton    t
+            orglyth-html-use-ftp          nil
+            orglyth-html-local-root-path  "~/public_html/orglyth/"
+            orglyth-html-remote-root-path "~/public_html/remote/"
+            orglyth-html-ftp-root-path    "/ftp:conao3@conao3.com:~/www/orglyth/")
+      (orglyth-html-reset-variables)))
+  
   (use-package ox-odt)
   (use-package ox-md)
   (use-package ox-org)
