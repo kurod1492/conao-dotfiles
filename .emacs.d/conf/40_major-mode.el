@@ -244,7 +244,11 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   (use-package orglyth
     :init (add-to-list 'load-path (concat el-get-dir "/orglyth/"))
     :config
-    (use-package orglyth-html))
+    (use-package orglyth-html
+      :config
+      (setq orglyth-html-local-root-path  "~/public_html/orglyth/"
+            orglyth-html-remote-root-path "~/public_html/remote/"
+            orglyth-html-ftp-root-path    "/ftp:conao3@conao3.com:~/www/orglyth/")))
   
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; - latex export
