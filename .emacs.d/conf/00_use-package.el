@@ -55,7 +55,7 @@ NAME, ARGLIST, DOCSTRING, BODY"
 (use-package el-get :ensure t
   :if (or (executable-find "git")
           (message "'git' couldn't found. el-get can't download any packages")
-          (defmacro el-get(&rest arg) nil))
+          (defmacro el-get (&rest arg) nil))
   :config
   (setq el-get-git-shallow-clone  t
         el-get-emacswiki-base-url "http://www.emacswiki.org/emacs/download/"))
