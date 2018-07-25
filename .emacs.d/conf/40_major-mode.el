@@ -241,9 +241,9 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; - html export
 
-  (use-package orglyth :no-require t
+  (use-package orglyth
+    :init (add-to-list 'load-path (concat el-get-dir "/orglyth/"))
     :config
-    (add-to-list 'load-path (concat el-get-dir "/orglyth/"))
     (use-package orglyth-html))
   
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
