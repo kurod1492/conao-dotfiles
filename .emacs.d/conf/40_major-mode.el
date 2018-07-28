@@ -201,7 +201,12 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
             orglyth-html-local-root-path  "~/public_html/orglyth/"
             orglyth-html-remote-root-path "~/public_html/remote/"
             orglyth-html-ftp-root-path    "/ftp:conao3@conao3.com:~/www/orglyth/")
-      (orglyth-html-reset-variables)))
+      (orglyth-html-reset-variables))
+    
+    (use-package orglyth-latex
+      :config
+      (use-package ox-latex-subfigure
+        :init (el-get-bundle linktohack/ox-latex-subfigure))))
   
   (use-package ox-odt)
   (use-package ox-md)
@@ -245,126 +250,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   (use-package cdlatex :ensure t :defer t
     :init (use-package auctex :ensure t :defer t)
     :hook (org-mode . turn-on-org-cdlatex))
-  
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; - latex export
-  (use-package ox-latex
-    :config
-    (use-package ox-latex-subfigure
-      :init (el-get-bundle linktohack/ox-latex-subfigure))
-    
-    (setq org-html-htmlize-output-type 'css
-          org-src-fontify-natively t
-          org-latex-default-class "org-jsarticle"
-          org-export-with-sub-superscripts '{}
-          ;; org-latex-default-figure-position "H"
-          )
-    (setq org-export-in-background nil)
-    (setq org-latex-default-packages-alist nil)
-
-    (add-list-to-list 'org-latex-packages-alist
-                      '(
-                        ;;;;;;;;;;;;;;;;;;;;
-                        ;; org depends default packeages
-                        
-                        ("utf8" "inputenc")       ;; enable unicode input
-                        ("T1" "fontenc")          ;; enable unicode output
-                        ("" "graphicx")           ;; insert figures
-                        ("" "grffile")            ;; enable strange filenames
-                        ("" "longtable")          ;; long table with page break
-                        ("" "wrapfig")            ;; text wrap figure
-                        ("" "rotating")           ;; text rotate
-                        ("normalem" "ulem")       ;; text decoration
-                        ("" "textcomp")           ;; symbol font
-                        ("" "capt-of")            ;; add caption at not float env
-                        ("" "hyperref")           ;; hyperlink
-                        ("" "amsmath, amssymb")   ;; math packages
-
-                        ;;;;;;;;;;;;;;;;;;;;
-                        ;; my optionnal packages
-                        
-                        ("" "pxjahyper")          ;; pdf bookmark label
-                        ("" "listings")           ;; code include
-                        ("" "fancyhdr")           ;; header, footer editing
-                        ("" "mdframed")           ;; framing
-                        ("" "here")               ;; figure put here
-                        ("" "lscape")             ;; landscape text, portrait page
-                        ("" "physics")            ;; math useful macros
-                        ("" "okumacro")           ;; useful macros by Dr.okumura
-                        ("" "framed")             ;; framing
-                        ("" "xcolor")             ;; pick color
-                        ("" "multicol")           ;; multi columns
-                        ("" "newtxtext")          ;; tx font
-                        ("" "newtxmath")          ;; tx math font
-                        ("" "geometry")           ;; page layout
-                        ("" "mathtools")          ;; enhance the appearance for amsmath
-                        ("" "subcaption")         ;; multiple figures
-                        "\\geometry{
-top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
-                        "\\pagestyle{fancy}"
-                        "\\rhead{\\thepage{}}"
-                        "\\mathtoolsset{showonlyrefs=true}"
-                        ))
-    
-    (when (executable-find "kpsewhich")
-      ;; unicode code include
-      (unless (string= (shell-command-to-string "kpsewhich jlisting.sty") "")
-        (add-list-to-list 'org-latex-packages-alist
-                          '(("" "jlisting")) t)
-        (setq org-latex-listings         'listings
-              org-latex-listings-options nil))
-      (unless (string= (shell-command-to-string "kpsewhich listingsextra.sty") "")
-        (add-list-to-list 'org-latex-packages-alist
-                          '(("" "listingsextra")) t))
-      (unless (string= (shell-command-to-string "kpsewhich listingssetup.sty") "")
-        (add-list-to-list 'org-latex-packages-alist
-                          '(("" "listingssetup")) t)))
-    
-    (add-list-to-list 'org-latex-classes
-                      '(("org-jsarticle"
-                         "\\documentclass[uplatex, dvipdfmx]{jsarticle}"
-                         ("\\section{%s}" . "\\section*{%s}")
-                         ("\\subsection{%s}" . "\\subsection*{%s}")
-                         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                         ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                         ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
-                        
-                        ("org-beamer"
-                         "\\documentclass[dvipdfmx,12pt]{beamer}"
-                         ("\\section{%s}" . "\\section*{%s}")
-                         ("\\subsection{%s}" . "\\subsection*{%s}")
-                         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                         ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                         ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
-
-             ;; LaTeX 形式のファイル PDF に変換するためのコマンド
-             (setq org-latex-pdf-process
-                       '("uplatex %f"
-                         "uplatex %f"
-                         "bibtex %b"
-                         "uplatex %f"
-                         "uplatex %f"
-                         "dvipdfmx %b.dvi"
-                         ;; "find . -type f -name '*.xbb' -print0 | xargs -0 rm"
-                        ))
-
-             (setq org-latex-hyperref-template
-  "\\hypersetup{
-  pdfauthor={%a},
-  pdftitle={%t},
-  pdfkeywords={%k},
-  pdfsubject={%d},
-  pdfcreator={%c},
-  pdflang={%L},
-  pdfborder={0 0 0},
-  colorlinks=false,
-  linkcolor=blue
-}
-")
-             (add-list-to-list 'org-latex-listings-langs '((shell "bash")
-                                                           ))
-             (add-list-to-list 'org-latex-logfiles-extensions '("dvi" "bbl"))
-             ))
+  )
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
