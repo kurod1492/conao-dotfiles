@@ -206,7 +206,9 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
     (use-package orglyth-latex
       :config
       (use-package ox-latex-subfigure
-        :init (el-get-bundle linktohack/ox-latex-subfigure))))
+        :init (el-get-bundle linktohack/ox-latex-subfigure))
+      (setq orglyth-latex-enable-option t)
+      (orglyth-latex-init)))
   
   (use-package ox-odt)
   (use-package ox-md)
