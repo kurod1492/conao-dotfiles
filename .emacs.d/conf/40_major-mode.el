@@ -196,7 +196,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
     :config
     (use-package orglyth-html
       :config
-      (setq orglyth-html-enable-opiton    t
+      (setq orglyth-html-enable-option    t
             orglyth-html-use-ftp          nil
             orglyth-html-local-root-path  "~/public_html/orglyth/"
             orglyth-html-remote-root-path "~/public_html/remote/"
