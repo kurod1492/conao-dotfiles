@@ -49,6 +49,15 @@
 (use-package free-keys          :ensure t :defer t
   :commands (free-keys free-keys-set-prefix))
 
+(use-package multifiles :ensure t :defer t
+  :bind (("C-!" . mf/mirror-region-in-multifile))
+  :config
+  (prog1 "mirror region when non region"
+    (defun mf/multifiles-no-region (beg end &optional multifile-buffer)
+      (unless (region-active-p)
+        (setq s (point-min) e (point-max))))
+    (advice-add 'mf/mirror-region-in-multifile :before #'mf/multifiles-no-region)))
+
 (use-package howm :ensure t :defer t
   ;; https://howm.osdn.jp/index-j.html
   )
