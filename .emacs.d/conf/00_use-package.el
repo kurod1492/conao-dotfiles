@@ -46,6 +46,16 @@ NAME, ARGLIST, DOCSTRING, BODY"
       (let ((body (use-package-process-keywords name rest state)))
         body)))
   
+  (prog1 "add :tag keyword"
+    (add-to-list 'use-package-keywords :tag)
+    (defun use-package-normalize/:tag (name keyword args)
+      "Do nothing"
+      nil)
+    (defun use-package-handler/:tag (name keyword arg rest state)
+      "Do nothing"
+      (let ((body (use-package-process-keywords name rest state)))
+        body)))
+  
   (use-package auto-package-update :ensure t
     :config
     (setq auto-package-update-delete-old-versions t)
