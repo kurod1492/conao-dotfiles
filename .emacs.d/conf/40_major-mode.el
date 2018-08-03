@@ -185,6 +185,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((ipython . t)
                                  (plantuml . t)
+                                 (org . t)
                                  ))
   
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
