@@ -213,8 +213,6 @@
          ("D" . org2blog/wp-post-buffer-as-page)           ;; post as draft
          ("l" . org2blog/wp-insert-post-or-page-link))
   :config
-  (org2blog/wp-reload-entry-mode-map)
-  
   (use-package netrc
     :config
     (setq cotoday (netrc-machine (netrc-parse "~/.netrc") "conao3" t)))
