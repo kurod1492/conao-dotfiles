@@ -65,7 +65,8 @@
           ((file-exists-p "/Users/conao/local/homebrew/opt/plantuml/libexec/plantuml.jar")
            (setq plantuml-jar-path "/Users/conao/local/homebrew/opt/plantuml/libexec/plantuml.jar"))))
 
-(use-package org :ensure t :defer t
+(use-package org :defer t
+  :init (use-package org-plus-contrib :ensure t :no-require t)
   :after (plantuml-mode)
   :demand t
   :mode (("\\.txt$" . org-mode))
