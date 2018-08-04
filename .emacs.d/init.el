@@ -37,10 +37,11 @@
   (setq user-emacs-directory
         (concat user-emacs-directory "v" (int-to-string emacs-major-version) "/")))
 
-(load-file (concat user-emacs-directory "site-lisp/loadpath.el"))
-(load-file (concat user-emacs-directory "site-lisp/version.el"))
+(add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
+(require 'loadpath)
+(require 'version)
 
-(when emacs22-l-p (error "unsupport version prior to emacs22"))
+(when emacs22-l-p (error "Unsupport version prior to emacs22"))
 
 ;; use cl macros
 (when emacs24-g-p (eval-when-compile (require 'cl-lib)))

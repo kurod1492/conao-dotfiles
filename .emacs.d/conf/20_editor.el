@@ -240,7 +240,7 @@
 (use-package flycheck :ensure t
   :config
   (use-package flycheck-pos-tip :ensure t)
-  
+  (setq flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc))
   (global-flycheck-mode)
   (custom-set-variables
    '(flycheck-keymap-prefix (kbd "C-c f"))
