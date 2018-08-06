@@ -85,6 +85,7 @@
         org-indent-indentation-per-level      2
         org-src-window-setup                  'other-window
         org-use-sub-superscripts              '{}
+        org-image-actual-width                nil
         org-highlight-latex-and-related '(latex script entities))
   (let ((user-emacs-directory (file-name-directory (directory-file-name user-emacs-directory))))
     (setq org-export-async-init-file (user-setting-directory "init_orgexport.el")))
