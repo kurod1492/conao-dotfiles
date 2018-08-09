@@ -1,0 +1,12 @@
+# key: <h
+# name: orglyth-header
+# --
+#+title: $1
+#+subtitle: $2
+#+date: $3
+#+author: conao
+
+# history
+# $4 first draft
+
+$0
