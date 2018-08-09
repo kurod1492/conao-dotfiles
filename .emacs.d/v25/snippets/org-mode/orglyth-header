@@ -5,8 +5,9 @@
 #+subtitle: $2
 #+date: $3
 #+author: conao
+#+orglyth-tags: $4
 
 # history
-# $4 first draft
+# $5 first draft
 
 $0
