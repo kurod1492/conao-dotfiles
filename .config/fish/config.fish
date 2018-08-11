@@ -13,6 +13,9 @@ if test -d /Applications/Emacs-25.3.app/
    set PATH /Applications/Emacs-25.3.app/Contents/MacOS/bin $PATH
 end
 
+# homebrew
+set PATH /usr/local/bin $PATH
+
 # bindings
 function fish_user_key_bindings
   bind \cr 'peco_select_history (commandline -b)'
