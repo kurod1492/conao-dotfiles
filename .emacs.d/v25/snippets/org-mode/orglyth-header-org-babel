@@ -1,0 +1,13 @@
+# key: <hob
+# name: orglyth-header-org-babel
+# --
+#+title: $1
+#+subtitle: $2
+#+date: $3
+#+author: conao
+#+orglyth-tags: emacs elisp org-mode babel
+
+# history
+# $4 first draft
+
+$0
