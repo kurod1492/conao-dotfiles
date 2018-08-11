@@ -29,6 +29,7 @@
 (use-package dash :ensure t)
 (use-package s :ensure t)
 (use-package f :ensure t)
+(use-package b :init (el-get-bundle emacs-php/b.el))
 
 ;;;;;;;;;;;;;;;;;;
 ;; git modes
