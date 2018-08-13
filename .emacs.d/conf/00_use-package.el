@@ -32,6 +32,11 @@ NAME, ARGLIST, DOCSTRING, BODY"
       ,body)
     nil))
 
+(straight-use-package 'use-package)
+(use-package straight
+  :config
+  (setq straight-use-package-by-default t))
+
 (use-package use-package
   :config
   (setq use-package-expand-minimally   t
@@ -54,15 +59,9 @@ NAME, ARGLIST, DOCSTRING, BODY"
     (defun use-package-handler/:tag (name keyword arg rest state)
       "Do nothing"
       (let ((body (use-package-process-keywords name rest state)))
-        body)))
-  
-  (use-package auto-package-update :ensure t
-    :config
-    (setq auto-package-update-delete-old-versions t)
-    (setq auto-package-update-hide-results t)
-    (auto-package-update-maybe)))
+        body))))
 
-(use-package el-get :ensure t
+(use-package el-get
   :if (or (executable-find "git")
           (message "'git' couldn't found. el-get can't download any packages")
           (defmacro el-get (&rest arg) nil))
@@ -70,16 +69,17 @@ NAME, ARGLIST, DOCSTRING, BODY"
   (setq el-get-git-shallow-clone  t
         el-get-emacswiki-base-url "http://www.emacswiki.org/emacs/download/"))
 
-(use-package key-chord :ensure t
-  :init ;; (el-get-bundle zk-phi/key-chord)
-  :config
-  (setq key-chord-two-keys-delay 0.15
-        key-chord-safety-interval-backward 0.1
-        key-chord-safety-interval-forward  0.25)
-  (key-chord-mode 1))
-(use-package use-package-chords :ensure t)
+(use-package use-package-chords
+  :init
+  (use-package key-chord
+    :init ;; (el-get-bundle zk-phi/key-chord)
+    :config
+    (setq key-chord-two-keys-delay 0.15
+          key-chord-safety-interval-backward 0.1
+          key-chord-safety-interval-forward  0.25)
+    (key-chord-mode 1)))
 
-(use-package smartrep :ensure t)
+(use-package smartrep)
 
 (provide '00_use-package)
 ;;; 00_use-package.el ends here

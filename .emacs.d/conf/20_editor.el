@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(use-package helm :ensure t :diminish ""
+(use-package helm :diminish ""
   :bind (("M-x"     . helm-M-x)
          ("M-X"     . execute-extended-command)
          ("C-x b"   . helm-mini)
@@ -85,10 +85,10 @@
   
   (helm-mode 1))
 
-(use-package smartparens :ensure t :diminish ""
-  :init (use-package markdown-mode :ensure t)
+(use-package smartparens :diminish ""
+  :init (use-package markdown-mode)
   :config
-  (use-package smartparens-config)
+  (use-package smartparens-config :straight nil)
   (sp-pair "$" "$")
 
   (sp-use-smartparens-bindings)
@@ -96,13 +96,13 @@
   (show-smartparens-global-mode t)
   (smartparens-global-mode t))
 
-(use-package auto-complete :ensure t :demand t :diminish ""
+(use-package auto-complete :demand t :diminish ""
   :bind (:map ac-menu-map
               ("C-n" . ac-next)
               ("C-p" . ac-previous))
   :init
-  (use-package fuzzy   :ensure t)
-  (use-package pos-tip :ensure t)
+  (use-package fuzzy  )
+  (use-package pos-tip)
   
   :config
   (use-package auto-complete-config)
@@ -129,14 +129,14 @@
       (setq ad-return-value
             (remove-if contain-japanese ad-return-value)))))
 
-(use-package yasnippet :ensure t
+(use-package yasnippet
   :bind (("C-c i i" . yas-insert-snippet)
          ("C-c i n" . yas-new-snippet)
          ("C-c i e" . yas-visit-snippet-file)
          ("C-c i v" . yas-describe-tables))
   :config
-  (use-package yatemplate :ensure t ;; :defer t
-    :init (use-package buttercup :ensure t :defer t)
+  (use-package yatemplate ;; :defer t
+    :init (use-package buttercup :defer t)
     :config
     (setq yatemplate-dir (user-setting-directory "template"))
     (yatemplate-fill-alist)
@@ -210,7 +210,7 @@
   (setq elscreen-display-screen-number nil)   ;; don't show screen number in mode-line
   (elscreen-start))
 
-(use-package fold-dwim :ensure t
+(use-package fold-dwim
   :bind (("<f7>"     . fold-dwim-toggle)
          ("M-<f7>"   . fold-dwim-hide-all)
          ("C-M-<f7>" . fold-dwim-show-all))
@@ -228,18 +228,18 @@
                                         ;(hs-minor-mode 1)
                   )))))
 
-(use-package undo-tree :ensure t :diminish ""
+(use-package undo-tree :diminish ""
   :config
-  (use-package undohist :ensure t
+  (use-package undohist
     :config
     (undohist-initialize)
     (setq undohist-directory (user-setting-directory "undohist")
           undohist-ignored-files '("/tmp" "/elpa" "/el-get")))
   (global-undo-tree-mode))
 
-(use-package flycheck :ensure t
+(use-package flycheck
   :config
-  (use-package flycheck-pos-tip :ensure t)
+  (use-package flycheck-pos-tip)
   (setq flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc))
   (global-flycheck-mode)
   (custom-set-variables
@@ -249,12 +249,12 @@
       global-map "M-g" '(("M-n" . 'flymake-goto-next-error)
                          ("M-p" . 'flymake-goto-prev-error))))
 
-(use-package sequential-command :ensure t
+(use-package sequential-command
   :config
   (use-package sequential-command-config)
   (sequential-command-setup-keys))
 
-(use-package anzu :ensure t :diminish "" :disabled t ;; C-s bind to helm-occur
+(use-package anzu :diminish "" :disabled t ;; C-s bind to helm-occur
   :init
   (use-package migemo
     :if (executable-find "cmigemo")
@@ -276,7 +276,7 @@
     (setq anzu-use-migemo t))
   (setq anzu-search-threshold 1000))
 
-(use-package selected :ensure t :diminish (selected-minor-mode . "") :demand t
+(use-package selected :diminish (selected-minor-mode . "") :demand t
   :init
   (setq selected-org-mode-map (make-sparse-keymap))
   :bind (:map selected-keymap
@@ -296,9 +296,9 @@
   :config
   (selected-global-mode t))
 
-(use-package multiple-cursors :ensure t
+(use-package multiple-cursors
   :init
-  (use-package expand-region :ensure t
+  (use-package expand-region
     :bind* (("C-M-SPC" . mc/mark-all-dwim-or-expand-region))
     :config
     (defun mc/mark-all-dwim-or-expand-region (arg)
@@ -308,12 +308,12 @@
         (4 (mc/mark-all-dwim nil))
         (1 (call-interactively 'er/expand-region))))))
 
-(use-package which-key :ensure t :diminish ""
+(use-package which-key :diminish ""
   :config
   (which-key-setup-side-window-right)
   (which-key-mode t))
 
-(use-package popwin :ensure t
+(use-package popwin
   :config
   (setq display-buffer-function      'popwin:display-buffer
         popwin:popup-window-position 'bottom)

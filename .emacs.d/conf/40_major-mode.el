@@ -29,14 +29,14 @@
 
 (use-package cc-mode :defer t
   :config
-  (use-package c-eldoc :ensure t
+  (use-package c-eldoc
     :hook ((c-mode . c-eldoc-settings))
     :config
     (defun c-eldoc-settings ()
       (set (make-local-variable 'eldoc-idle-delay) 0.20)
       (c-turn-on-eldoc-mode))))
 
-(use-package csharp-mode :ensure t :defer t
+(use-package csharp-mode :defer t
   :mode "\\.cs\\'")
 
 (use-package cperl-mode :defer t
@@ -44,14 +44,14 @@
   ;; cperl-mode is preferred to perl-mode
   (defalias 'perl-mode 'cperl-mode))
 
-(use-package web-mode :ensure t :defer t
+(use-package web-mode :defer t
   :mode "\\.php\\'")
 
-(use-package matlab-mode :ensure t :defer t)
+(use-package matlab-mode :defer t)
 
-(use-package ess :ensure t)
+(use-package ess)
 
-(use-package plantuml-mode :ensure t :defer t
+(use-package plantuml-mode :defer t
   :commands (load-plantuml-mode)
   :init (defun load-plantuml-mode () t)
   ;; depend on graphviz, plantuml
@@ -66,7 +66,7 @@
            (setq plantuml-jar-path "/Users/conao/local/homebrew/opt/plantuml/libexec/plantuml.jar"))))
 
 (use-package org :defer t
-  :init (use-package org-plus-contrib :ensure t :no-require t)
+  :init (use-package org-plus-contrib :no-require t)
   :after (plantuml-mode)
   :demand t
   :mode (("\\.txt$" . org-mode))
@@ -147,11 +147,11 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; table
   
-  (use-package orgtbl-aggregate :ensure t)
+  (use-package orgtbl-aggregate)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; calendar
-  (use-package japanese-holidays :ensure t :defer t
+  (use-package japanese-holidays :defer t
     :config
     (setq calendar-holidays               (append japanese-holidays
                                                   holiday-local-holidays holiday-other-holidays)
@@ -171,7 +171,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   ;; org babel
   
   ;; ipython
-  (use-package ob-ipython :ensure t
+  (use-package ob-ipython
     :if (executable-find "jupyter")
     :config
     ;; depend of jypyter, ipython
@@ -221,7 +221,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   (use-package ox-org)
   (use-package ox-novel :disabled t
     :init (el-get-bundle conao/ox-novel :branch "del-export-block"))
-  (use-package ox-reveal :ensure t
+  (use-package ox-reveal
     :init
     (el-get-bundle hakimel/reveal.js)
     (setq my-reveal-src-dir "~/.emacs.d/el-get/reveal.js"))
@@ -244,7 +244,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; misc tools
 
-  (use-package org-present :ensure t :disabled t)
+  (use-package org-present :disabled t)
 
   (prog1 "org-sparse-tree-buffer using indirect buffer"
     (defun org-sparse-tree-indirect-buffer (arg)
@@ -255,8 +255,8 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
           (quit (kill-buffer ibuf)))))
     (bind-key "C-c /" 'org-sparse-tree-indirect-buffer org-mode-map))
 
-  (use-package cdlatex :ensure t :defer t
-    :init (use-package auctex :ensure t :defer t)
+  (use-package cdlatex :defer t
+    :init (use-package auctex :defer t)
     :hook (org-mode . turn-on-org-cdlatex))
   )
 
