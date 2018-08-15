@@ -189,6 +189,7 @@ SHIFT<integer> or <list<integer>> is color shift num (r g b)"
                                  (plantuml . t)
                                  (org . t)
                                  (R . t)
+                                 (C . t)
                                  (emacs-lisp . t)))
   
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
