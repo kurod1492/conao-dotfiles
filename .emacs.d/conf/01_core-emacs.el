@@ -20,7 +20,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
@@ -35,7 +35,7 @@
 
 ;; file-name coding
 (when darwin-p
-  (use-package ucs-normalize)
+  (require 'ucs-normalize)
   (setq file-name-coding-system 'utf-8-hfs
         locale-coding-system    'utf-8-hfs))
 (when windows-p

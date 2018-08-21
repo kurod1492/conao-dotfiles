@@ -20,7 +20,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
@@ -30,7 +30,7 @@
          ("C-c <up>"    . windmove-up)
          ("C-c <right>" . windmove-right)))
 
-(use-package cus-edit :straight nil:defer t
+(use-package cus-edit :straight nil :defer t
   :config
   (setq custom-file (user-setting-directory "custom.el"))
   (when (file-exists-p custom-file)
@@ -55,10 +55,10 @@
   ;; %:a -- Monday 曜日
   ;; %#A -- MONDAY 全部大文字で曜日
   ;; %:b -- January 月
-  
+
   ;; 桁数を指定すると指定した文字だけが表示される.
   ;; "%2#A"なら MO など．
-  
+
   ;; %02H -- 15  時刻 (24 時間)
   ;; %02I -- 03  時刻 (12 時間)
   ;; %#p  -- pm  PM と AM の別
@@ -150,7 +150,7 @@
 ;;    (do-not-exit-view-mode-unless-writable-advice view-mode-exit)
 ;;    (do-not-exit-view-mode-unless-writable-advice view-mode-disable)
 )
-  
+
   (setcar (cdr (assq 'view-mode minor-mode-alist))
           (if (fboundp 'propertize)
               (list (propertize " View"
@@ -183,7 +183,7 @@ and the `*Messages*' buffer while BODY is evaluated."
     (declare (indent 0))
     (let ((message-log-max nil))
       `(with-temp-message (or (current-message) "") ,@body)))
-  
+
   (setq recentf-save-file (user-setting-directory ".recentf"))
   (setq recentf-max-saved-items 1000)            ;; recentf に保存するファイルの数
   (setq recentf-exclude '(".recentf"))           ;; .recentf自体は含まない
@@ -200,7 +200,7 @@ and the `*Messages*' buffer while BODY is evaluated."
 
   ;; M-x table-unrexognize-table to text
   ;; M-x table-rexognize-table to table
-  
+
   ;; TAB to move cell
   ;; C->, C-< to adjust column width
   ;; C-}, C-{ to adjust row hight
