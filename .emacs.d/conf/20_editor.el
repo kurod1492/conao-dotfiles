@@ -44,8 +44,8 @@
          ("C-i"     . helm-execute-persistent-action)
          ("C-z"     . helm-select-action))
   :config
-  (use-package helm-config)
-  (use-package helm-descbinds :ensure t :defer t
+  (require 'helm-config)
+  (use-package helm-descbinds :defer t
     :config
     (helm-descbinds-install))
 
@@ -88,7 +88,7 @@
 (use-package smartparens :diminish ""
   :init (use-package markdown-mode)
   :config
-  (use-package smartparens-config :straight nil)
+  (require 'smartparens-config)
   (sp-pair "$" "$")
 
   (sp-use-smartparens-bindings)
@@ -162,8 +162,6 @@
 
 (use-package elscreen :demand t
   :init
-  (el-get-bundle conao/elscreen)
-  (el-get-bundle conao/revive)
   :bind* (("C-c e k"       . elscreen-kill-screen-and-buffers)
           ;; confrict with org-mode
           ;; ("C-M-<right>" . elscreen-swap-next)
@@ -186,15 +184,16 @@
           session-undo-check -1)
     (add-hook 'after-init-hook 'session-initialize))
   (use-package navbar
-    :init (el-get-bundle papaeye/emacs-navbar
-            :features (navbarx-elscreen navbarx-version navbarx-time))
+    :straight (navbar :host github :repo "papaeye/emacs-navbar")
     :config
     (setq navbar-item-list '(navbarx-version navbarx-time navbarx-elscreen))
     (navbar-mode)
     (display-time-mode)
     (navbar-revive-workaround))
   (use-package elscreen-persist
-    :init (el-get-bundle robario/elscreen-persist)
+    :straight
+    (revive :host github :repo "conao/emacs-windows" :files ("revive.el"))
+    (elscreen-persist :host github :repo "robario/elscreen-persist")
     :config
     (elscreen-persist-mode 1)
 
@@ -237,7 +236,7 @@
           undohist-ignored-files '("/tmp" "/elpa" "/el-get")))
   (global-undo-tree-mode))
 
-(use-package flycheck
+(use-package flycheck :disabled t
   :config
   (use-package flycheck-pos-tip)
   (setq flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc))
@@ -251,7 +250,7 @@
 
 (use-package sequential-command
   :config
-  (use-package sequential-command-config)
+  (require 'sequential-command-config)
   (sequential-command-setup-keys))
 
 (use-package anzu :diminish "" :disabled t ;; C-s bind to helm-occur

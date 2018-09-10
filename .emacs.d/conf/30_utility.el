@@ -29,7 +29,7 @@
 (use-package dash)
 (use-package s)
 (use-package f)
-(use-package b :init (el-get-bundle emacs-php/b.el))
+(use-package b :straight (b :host github :repo "emacs-php/b.el"))
 
 ;;;;;;;;;;;;;;;;;;
 ;; git modes
@@ -168,7 +168,7 @@
 
 ;; el-get packages
 (use-package other-window-or-split
-  :init (el-get-bundle conao/other-window-or-split)
+  :straight (other-window-or-split :host github :repo "conao/other-window-or-split")
   :bind* (("C-t"   . ws-other-window-or-split)
           ("C-S-t" . ws-previous-other-window-or-split)
           ("M-t"   . ws-split-window-dwim)
@@ -178,7 +178,7 @@
   (setq split-window-width-with-em 100))
 
 (use-package point-undo
-  :init (el-get-bundle emacswiki:point-undo)
+  :straight (point-undo :host github :repo "emacsmirror/point-undo")
   :bind* (("M-i p" . point-undo)
           ("M-i n" . point-redo)))
 
@@ -420,7 +420,7 @@
                   (and linum-disable-starred-buffers (string-match "*" (buffer-name))))
         (linum-mode 1)))))
 
-(use-package dired :defer t
+(use-package dired :defer t :straight nil
   :config
   (setq dired-dwim-target t
         delete-by-moving-to-trash t)

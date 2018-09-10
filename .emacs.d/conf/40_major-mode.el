@@ -24,10 +24,10 @@
 
 ;;; Code:
 
-(use-package generic-x :defer t
+(use-package generic-x :defer t :straight nil
   :mode (("\\.htaccess\\'" . apache-conf-generic-mode)))
 
-(use-package cc-mode :defer t
+(use-package cc-mode :defer t :straight nil
   :config
   (use-package c-eldoc
     :hook ((c-mode . c-eldoc-settings))
@@ -44,7 +44,7 @@
   ;; cperl-mode is preferred to perl-mode
   (defalias 'perl-mode 'cperl-mode))
 
-(use-package llvm-mode)
+;; (use-package llvm-mode)
 
 (use-package web-mode :defer t
   :mode "\\.php\\'")
