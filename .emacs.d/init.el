@@ -31,7 +31,9 @@
 (progn
   (when load-file-name
     (setq user-emacs-directory
-          (expand-file-name (file-name-directory load-file-name)))))
+          (expand-file-name (file-name-directory load-file-name))))
+  (setq user-emacs-directory
+	(format "%s%s/" user-emacs-directory emacs-major-version)))
 
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
 
