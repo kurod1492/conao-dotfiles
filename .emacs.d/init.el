@@ -33,12 +33,14 @@
     (setq user-emacs-directory
           (expand-file-name (file-name-directory load-file-name))))
   (setq user-emacs-directory
-	(format "%s%s/" user-emacs-directory emacs-major-version)))
+	(format "%slocal/%s/" user-emacs-directory emacs-version)))
 
-(add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
+(defvar init-root-emacs-directory
+  (file-name-directory (directory-file-name user-emacs-directory))
+  "Example: \"Users/conao/.emacs.d/\"")
 
-(when (>= 22 emacs-major-version)
-  (error "Unsupport version prior to emacs22"))
+(ignore-errors
+  (load (format "%sinit/%s.el" init-root-emacs-directory emacs-version)))
 
 (provide 'init)
 ;;; init.el ends here
