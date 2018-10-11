@@ -22,5 +22,8 @@ function fish_user_key_bindings
   bind \c] peco_select_ghq_repository
 end
 
+# rust
+set PATH $HOME/.cargo/bin $PATH
+
 # aliases
 balias g git
