@@ -33,7 +33,7 @@
     (setq user-emacs-directory
           (expand-file-name (file-name-directory load-file-name))))
   (setq user-emacs-directory
-	(format "%slocal/%s/" user-emacs-directory emacs-version)))
+	      (format "%slocal/%s/" user-emacs-directory emacs-version)))
 
 (defvar init-root-emacs-directory
   (file-name-directory (directory-file-name user-emacs-directory))
