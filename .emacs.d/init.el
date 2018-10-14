@@ -33,14 +33,16 @@
     (setq user-emacs-directory
           (expand-file-name (file-name-directory load-file-name))))
   (setq user-emacs-directory
-	      (format "%slocal/%s/" user-emacs-directory emacs-version)))
+	      (format "%slocal/%s.%s/"
+                user-emacs-directory emacs-major-version emacs-minor-version)))
 
 (defvar init-root-emacs-directory
   (file-name-directory (directory-file-name user-emacs-directory))
   "Example: \"Users/conao/.emacs.d/\"")
 
 (ignore-errors
-  (load (format "%sinit/%s.el" init-root-emacs-directory emacs-version)))
+  (load (format "%sinit/%s.%s.el"
+                init-root-emacs-directory emacs-major-version emacs-minor-version)))
 
 (provide 'init)
 ;;; init.el ends here
