@@ -46,6 +46,7 @@ auto-install/
 url/
 
 # compiled files
+/local/
 *.elc
 
 # annoying comstom file
