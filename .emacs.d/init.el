@@ -34,7 +34,9 @@
           (expand-file-name (file-name-directory load-file-name))))
   (setq user-emacs-directory
 	      (format "%slocal/%s.%s/"
-                user-emacs-directory emacs-major-version emacs-minor-version)))
+                user-emacs-directory emacs-major-version emacs-minor-version))
+  (unless (file-directory-p user-emacs-directory)
+    (mkdir user-emacs-directory)))
 
 (defvar init-root-emacs-directory
   (file-name-directory (directory-file-name user-emacs-directory))
