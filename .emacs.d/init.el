@@ -40,9 +40,10 @@
   (file-name-directory (directory-file-name user-emacs-directory))
   "Example: \"Users/conao/.emacs.d/\"")
 
-(ignore-errors
-  (load (format "%sinit/%s.%s.el"
-                init-root-emacs-directory emacs-major-version emacs-minor-version)))
+(condition-case nil
+    (load (format "%sinit/%s.%s.el"
+                  init-root-emacs-directory emacs-major-version emacs-minor-version))
+  (error nil))
 
 (provide 'init)
 ;;; init.el ends here
