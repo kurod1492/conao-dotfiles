@@ -1,4 +1,5 @@
 # backupfiles
+.cache/
 backup/
 history/
 undohist/
