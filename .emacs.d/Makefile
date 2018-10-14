@@ -1,5 +1,5 @@
 all: initfile
 	@echo a
 
-initfile:
+initfile: init.el
 	@echo b
