@@ -36,6 +36,7 @@ tramp
 .last-package-update-day
 
 # download packages
+/site-lisp/
 /elpa*/
 /el-get/
 /*/elpa/
