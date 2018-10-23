@@ -23,7 +23,8 @@ build:
 		echo \\n; \
 		echo compile by emacs-$$ver...; \
 		emacs-$$ver -batch -f batch-byte-compile $(COMBINE).el; \
-		mv $(COMBINE).elc $(COMBINE)-$$ver.elc; \
+		mkdir -p $$ver; \
+		mv $(COMBINE).elc $$ver/; \
 	done
 
 clean:
