@@ -25,5 +25,8 @@ end
 # rust
 set PATH $HOME/.cargo/bin $PATH
 
+# go
+set PATH /usr/local/opt/go/libexec/bin $PATH
+
 # aliases
 balias g git
