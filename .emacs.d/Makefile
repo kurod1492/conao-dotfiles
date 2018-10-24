@@ -15,8 +15,8 @@ mkdir:
 	mkdir -p $(SITE_LISP_DIR)
 
 pull:
-	git clone $(GITHUB)/leaf.el $(SITE_LISP_DIR)/leaf.el
-	git clone $(GITHUB)/orglyth.el $(SITE_LISP_DIR)/orglyth.el
+	-git clone $(GITHUB)/leaf.el $(SITE_LISP_DIR)/leaf.el
+	-git clone $(GITHUB)/orglyth.el $(SITE_LISP_DIR)/orglyth.el
 
 build:
 # target Emacs(s)
