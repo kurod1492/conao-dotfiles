@@ -2,6 +2,9 @@ LOCALDIR           := local
 SITE_LISP_DIR      := site-lisp
 CONFDIR            := conf
 COMBINE            := combine
+
+GITHUB             := https://github.com/conao3
+
 ALL_EMACS_VERS     := $(shell compgen -c emacs- | grep -oP '(?<=emacs-)([0-9]|\.)+' | sort | uniq)
 
 all: mkdir build
@@ -12,7 +15,8 @@ mkdir:
 	mkdir -p $(SITE_LISP_DIR)
 
 pull:
-	git clone https://github.com/conao3/leaf.el $(SITE_LISP_DIR)/leaf.el
+	git clone $(GITHUB)/leaf.el $(SITE_LISP_DIR)/leaf.el
+	git clone $(GITHUB)/orglyth.el $(SITE_LISP_DIR)/orglyth.el
 
 build:
 # target Emacs(s)
