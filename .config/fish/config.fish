@@ -27,6 +27,7 @@ set PATH $HOME/.cargo/bin $PATH
 
 # go
 set PATH /usr/local/opt/go/libexec/bin $PATH
+set PATH (go env GOPATH)/bin $PATH
 
 # aliases
 balias g git
