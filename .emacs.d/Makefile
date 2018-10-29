@@ -33,11 +33,11 @@ build:
 	for ver in $(ALL_EMACS_VERS); do \
 		echo \\n; \
 		tput setaf 5; \
-		echo "===  compile by emacs-$$ver...  ==="; \
+		echo "===  compile by emacs-$${ver}...  ==="; \
 		tput sgr0; \
-		emacs-$$ver -batch -f batch-byte-compile $(COMBINE).el; \
-		mkdir -p $$ver; \
-		mv $(COMBINE).elc $$ver/; \
+		emacs-$${ver} -batch -f batch-byte-compile $(COMBINE).el; \
+		mkdir -p $${ver}; \
+		mv $(COMBINE).elc $${ver}/; \
 	done
 
 clean:
