@@ -31,3 +31,4 @@ set PATH (go env GOPATH)/bin $PATH
 
 # aliases
 balias g git
+alias xmlxpath="xmllint --html --xpath 2>/dev/null"
