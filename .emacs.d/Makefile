@@ -9,13 +9,20 @@ PULL               := pull
 ALL_EMACS_VERS     := $(shell compgen -c emacs- | grep -oP '(?<=emacs-)([0-9]|\.)+' | sort | uniq)
 
 all: pull build
-	$(warning finish)
+	$(call ECHO_YELLOW, "make all is finish")
 
 $(PULL):
 	mkdir -p $(SITE_LISP_DIR)
-	for repo in $(REPOS); do \
+	@for repo in $(REPOS); do \
+	  echo "\n"; \
+	  $(COLOR_MAGENTA); \
+	  echo "===  git clone $(GITHUB)/$${repo}  ==="; \
+	  $(COLOR_DEFAULT); \
 	  git clone $(GITHUB)/$${repo} $(SITE_LISP_DIR)/$${repo} >> $(PULL); \
 	done
+	@echo "\n"
+	$(call ECHO_CYAN, "clone completed!!")
+	@echo "\n"
 
 build:
 # make working directory
@@ -29,16 +36,19 @@ build:
 	sed -e 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d' -i $(LOCALDIR)/$(COMBINE).el
 
 # byte compile by all Emacs(s)
-	cd $(LOCALDIR); \
+	@cd $(LOCALDIR); \
 	for ver in $(ALL_EMACS_VERS); do \
 		echo \\n; \
-		tput setaf $(COLOR_MAGENTA); \
+		$(COLOR_MAGENTA); \
 		echo "===  compile by emacs-$${ver}...  ==="; \
-		tput sgr0; \
+		$(COLOR_DEFAULT); \
 		emacs-$${ver} -batch -f batch-byte-compile $(COMBINE).el; \
 		mkdir -p $${ver}; \
 		mv $(COMBINE).elc $${ver}/; \
 	done
+	@echo "\n"
+	$(call ECHO_CYAN, "compile completed!!")
+	@echo "\n"
 
 clean:
 	-rm -rf $(LOCALDIR)
