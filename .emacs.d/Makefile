@@ -32,7 +32,7 @@ build:
 	cd $(LOCALDIR); \
 	for ver in $(ALL_EMACS_VERS); do \
 		echo \\n; \
-		tput setaf 5; \
+		tput setaf $(COLOR_MAGENTA); \
 		echo "===  compile by emacs-$${ver}...  ==="; \
 		tput sgr0; \
 		emacs-$${ver} -batch -f batch-byte-compile $(COMBINE).el; \
