@@ -52,3 +52,6 @@ url/
 
 # annoying comstom file
 custom.el
+
+# Makefile dummy file
+pull
