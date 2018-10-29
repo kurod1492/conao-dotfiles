@@ -1,4 +1,4 @@
-set SHELL /Users/conao/local/homebrew/bin/fish
+set SHELL /usr/local/bin/fish
 
 # anyenv
 set PATH $HOME/.anyenv/bin $PATH
@@ -31,3 +31,4 @@ set PATH (go env GOPATH)/bin $PATH
 
 # aliases
 balias g git
+alias xmlxpath="xmllint --html --xpath 2>/dev/null"
