@@ -7,7 +7,7 @@ GITHUB             := https://github.com/conao3
 
 ALL_EMACS_VERS     := $(shell compgen -c emacs- | grep -oP '(?<=emacs-)([0-9]|\.)+' | sort | uniq)
 
-all: mkdir build
+all: clean pull mkdir build
 	$(warning finish)
 
 mkdir:
