@@ -1,4 +1,4 @@
-set SHELL /Users/conao/local/homebrew/bin/fish
+set SHELL /usr/local/bin/fish
 
 # anyenv
 set PATH $HOME/.anyenv/bin $PATH
