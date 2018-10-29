@@ -32,7 +32,9 @@ build:
 	cd $(LOCALDIR); \
 	for ver in $(ALL_EMACS_VERS); do \
 		echo \\n; \
-		echo compile by emacs-$$ver...; \
+		tput setaf 5; \
+		echo "===  compile by emacs-$$ver...  ==="; \
+		tput sgr0; \
 		emacs-$$ver -batch -f batch-byte-compile $(COMBINE).el; \
 		mkdir -p $$ver; \
 		mv $(COMBINE).elc $$ver/; \
@@ -44,4 +46,4 @@ clean:
 	-rm $(PULL)
 
 # load common my local func
-include Makefunk.mk
+include Makefunc.mk
