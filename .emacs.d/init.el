@@ -43,20 +43,16 @@ Parent folder also create if no exist."
   (setq user-emacs-directory
 	(format "%slocal/%s.%s/"
                 user-emacs-directory emacs-major-version emacs-minor-version))
-  
-  (mkdir-add-loadpath user-emacs-directory)))
+
+  (mkdir-add-loadpath user-emacs-directory))
 
 (defvar init-root-emacs-directory
   (file-name-directory (directory-file-name user-emacs-directory))
   "Example: \"Users/conao/.emacs.d/\"")
 
-(let ((init-file (format "%s%s.%s/combine.el"
-			 init-root-emacs-directory
-			 emacs-major-version
-			 emacs-minor-version)))
-  (condition-case err
-      (load init-file)
-    (error (format "missing file... path:%s" init-file))))
+(if (require 'combine nil t)
+    (message "load combine.el")
+  (message "missing combine.el..."))
 
 (provide 'init)
 ;;; init.el ends here
