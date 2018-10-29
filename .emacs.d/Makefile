@@ -4,21 +4,26 @@ CONFDIR            := conf
 COMBINE            := combine
 
 GITHUB             := https://github.com/conao3
-
+REPOS              := leaf.el orglyth.el
+PULL               := pull
 ALL_EMACS_VERS     := $(shell compgen -c emacs- | grep -oP '(?<=emacs-)([0-9]|\.)+' | sort | uniq)
 
-all: clean pull mkdir build
+all: pull build
 	$(warning finish)
 
 mkdir:
-	mkdir -p $(LOCALDIR)
-	mkdir -p $(SITE_LISP_DIR)
 
-pull:
-	-git clone $(GITHUB)/leaf.el $(SITE_LISP_DIR)/leaf.el
-	-git clone $(GITHUB)/orglyth.el $(SITE_LISP_DIR)/orglyth.el
+
+$(PULL):
+	mkdir -p $(SITE_LISP_DIR)
+	for repo in $(REPOS); do \
+	  git clone $(GITHUB)/$${repo} $(SITE_LISP_DIR)/$${repo} >> $(PULL); \
+	done
 
 build:
+# make working directory
+	mkdir -p $(LOCALDIR)
+
 # target Emacs(s)
 	$(info Emacs versions... $(ALL_EMACS_VERS))
 
@@ -39,3 +44,4 @@ build:
 clean:
 	-rm -rf $(LOCALDIR)
 	-rm -rf $(SITE_LISP_DIR)
+	-rm $(PULL)
