@@ -36,16 +36,20 @@
 	      (format "%slocal/%s.%s/"
                 user-emacs-directory emacs-major-version emacs-minor-version))
   (unless (file-directory-p user-emacs-directory)
-    (mkdir user-emacs-directory)))
+    (mkdir user-emacs-directory))
+  (add-to-list 'load-path user-emacs-directory))
 
 (defvar init-root-emacs-directory
   (file-name-directory (directory-file-name user-emacs-directory))
   "Example: \"Users/conao/.emacs.d/\"")
 
-(condition-case nil
-    (load (format "%sinit/%s.%s.el"
-                  init-root-emacs-directory emacs-major-version emacs-minor-version))
-  (error nil))
+(let ((init-file (format "%s%s.%s/combine.el"
+			 init-root-emacs-directory
+			 emacs-major-version
+			 emacs-minor-version)))
+  (condition-case err
+      (load init-file)
+    (error (format "missing file... path:%s" init-file))))
 
 (provide 'init)
 ;;; init.el ends here
