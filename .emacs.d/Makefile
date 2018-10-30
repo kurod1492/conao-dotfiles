@@ -34,6 +34,7 @@ build:
 # combine conf/*.el files
 	find $(CONFDIR) -type f -name "*.el"| xargs cat > $(LOCALDIR)/$(COMBINE).el
 	sed -e 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d' -i $(LOCALDIR)/$(COMBINE).el
+	echo "(provide 'combine)" >> $(LOCALDIR)/$(COMBINE).el
 
 # byte compile by all Emacs(s)
 	@cd $(LOCALDIR); \

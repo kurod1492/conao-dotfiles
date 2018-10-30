@@ -25,15 +25,21 @@
 ;;; Code:
 
 ;; enable debug
-(setq debug-on-error t)
+(setq debug-on-error  t
+      init-file-debug t)
 
-(defmacro mkdir-add-loadpath (path)
+(defmacro mkdir-if-missing (path &optional add-loadpath-p)
   "Missing folder, create PATH and add PATH to load-path.
-Parent folder also create if no exist."
+Parent folder also create if no exist.
+If ADD-LOADPATH-P is non-nil, add maked directory to loadpath."
   `(progn
      (unless (file-directory-p ,path)
        (mkdir ,path t))
-     (add-to-list 'load-path ,path)))
+     (when ,add-loadpath-p (add-to-list 'load-path ,path))))
+
+(defsubst user-setting-directory (directory)
+  "Return user-emacs-directory/DIRECTORY/"
+  (format "%s%s/" user-emacs-directory directory))
 
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
 (progn
@@ -44,7 +50,8 @@ Parent folder also create if no exist."
 	(format "%slocal/%s.%s/"
                 user-emacs-directory emacs-major-version emacs-minor-version))
 
-  (mkdir-add-loadpath user-emacs-directory))
+  (mkdir-if-missing user-emacs-directory)
+  (mkdir-if-missing (user-setting-directory "build") t))
 
 (defvar init-root-emacs-directory
   (file-name-directory (directory-file-name user-emacs-directory))
