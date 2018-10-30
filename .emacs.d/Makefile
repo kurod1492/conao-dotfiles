@@ -8,10 +8,11 @@ REPOS              := leaf.el orglyth.el
 PULL               := pull
 ALL_EMACS_VERS     := $(shell compgen -c emacs- | grep -oP '(?<=emacs-)([0-9]|\.)+' | sort | uniq)
 
-all: pull build
+all: mkdir pull build
 	$(call ECHO_YELLOW, "make all is finish")
 
 mkdir:
+	mkdir -p $(SITE_LISP_DIR)
 	mkdir -p $(LOCALDIR)
 	cd $(LOCALDIR); mkdir -p $(ALL_EMACS_VERS)
 	find local -type d -depth 1 | sed 's/$$/\/Makefile/g' | \
@@ -20,17 +21,17 @@ mkdir:
 	  xargs -n1 cp -r $(SITE_LISP_DIR)
 
 $(PULL):
-	mkdir -p $(SITE_LISP_DIR)
 	@for repo in $(REPOS); do \
 	  echo "\n"; \
 	  $(COLOR_MAGENTA); \
 	  echo "===  git clone $(GITHUB)/$${repo}  ==="; \
 	  $(COLOR_DEFAULT); \
-	  git clone $(GITHUB)/$${repo} $(SITE_LISP_DIR)/$${repo} >> $(PULL); \
+	  git clone $(GITHUB)/$${repo} $(SITE_LISP_DIR)/$${repo}; \
 	done
 	@echo "\n"
 	$(call ECHO_CYAN, "clone completed!!")
 	@echo "\n"
+	@touch $(PULL)
 
 build:
 # make working directory
