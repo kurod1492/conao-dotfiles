@@ -12,7 +12,8 @@ all: pull build
 	$(call ECHO_YELLOW, "make all is finish")
 
 mkdir:
-	cd $(LOCALDIR); mkdir $(ALL_EMACS_VERS)
+	mkdir -p $(LOCALDIR)
+	cd $(LOCALDIR); mkdir -p $(ALL_EMACS_VERS)
 
 $(PULL):
 	mkdir -p $(SITE_LISP_DIR)
