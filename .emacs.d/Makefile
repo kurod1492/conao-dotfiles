@@ -34,9 +34,6 @@ $(PULL):
 	@touch $(PULL)
 
 build:
-# make working directory
-	mkdir -p $(LOCALDIR)
-
 # target Emacs(s)
 	$(info Emacs versions... $(ALL_EMACS_VERS))
 
