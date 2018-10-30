@@ -5,13 +5,8 @@ set PATH $HOME/.anyenv/bin $PATH
 anyenv init - | source
 
 # emacs
-if test -d /Applications/Emacs-25.app
-  set PATH /Applications/Emacs-25.app/Contents/MacOS/bin/ $PATH
-end
-
-if test -d /Applications/Emacs-25.3.app/
-   set PATH /Applications/Emacs-25.3.app/Contents/MacOS/bin $PATH
-end
+set PATH /Applications/Emacs-23.4.app/Contents/MacOS/ $PATH
+set PATH /Applications/Emacs-26.1.app/Contents/MacOS/bin $PATH
 
 # homebrew
 set PATH /usr/local/bin $PATH
