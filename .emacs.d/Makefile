@@ -5,20 +5,20 @@ COMBINE            := combine
 
 GITHUB             := https://github.com/conao3
 REPOS              := leaf.el orglyth.el
+
+MAKE_DUMMEY_DIR    := make-runed
 PULL               := pull
+DEPLOY             := deploy
+
 ALL_EMACS_VERS     := $(shell compgen -c emacs- | grep -oP '(?<=emacs-)([0-9]|\.)+' | sort | uniq)
 
-all: mkdir pull build
+all: mkdir $(PULL) $(DEPLOY) build
 	$(call ECHO_YELLOW, "make all is finish")
 
 mkdir:
 	mkdir -p $(SITE_LISP_DIR)
 	mkdir -p $(LOCALDIR)
 	cd $(LOCALDIR); mkdir -p $(ALL_EMACS_VERS)
-	find local -type d -depth 1 | sed 's/$$/\/Makefile/g' | \
-	  xargs -n1 cp Makefile-local.mk
-	find local -type d -depth 1 | sed 's/$$/\//g' | \
-	  xargs -n1 cp -r $(SITE_LISP_DIR)
 
 $(PULL):
 	@for repo in $(REPOS); do \
@@ -32,6 +32,12 @@ $(PULL):
 	$(call ECHO_CYAN, "clone completed!!")
 	@echo "\n"
 	@touch $(PULL)
+
+$(DEPLOY):
+	find local -type d -depth 1 | sed 's/$$/\/Makefile/g' | \
+	  xargs -n1 cp Makefile-local.mk
+	find local -type d -depth 1 | sed 's/$$/\//g' | \
+	  xargs -n1 cp -r $(SITE_LISP_DIR)
 
 build:
 # target Emacs(s)
