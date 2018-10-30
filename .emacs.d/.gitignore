@@ -54,4 +54,4 @@ url/
 custom.el
 
 # Makefile dummy file
-pull
+/make-dummyfile/

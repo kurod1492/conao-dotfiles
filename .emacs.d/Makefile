@@ -6,7 +6,7 @@ COMBINE            := combine
 GITHUB             := https://github.com/conao3
 REPOS              := leaf.el orglyth.el
 
-MAKE_DUMMEY_DIR    := make-runed
+DUMMY_FILE_DIR     := make-dummyfile
 PULL               := pull
 DEPLOY             := deploy
 
@@ -18,6 +18,7 @@ all: mkdir $(PULL) $(DEPLOY) build
 mkdir:
 	mkdir -p $(SITE_LISP_DIR)
 	mkdir -p $(LOCALDIR)
+	mkdir -p $(DUMMY_FILE_DIR)
 	cd $(LOCALDIR); mkdir -p $(ALL_EMACS_VERS)
 
 $(PULL):
@@ -31,13 +32,14 @@ $(PULL):
 	@echo "\n"
 	$(call ECHO_CYAN, "clone completed!!")
 	@echo "\n"
-	@touch $(PULL)
+	@touch $(DUMMY_FILE_DIR)/$(PULL)
 
 $(DEPLOY):
 	find local -type d -depth 1 | sed 's/$$/\/Makefile/g' | \
 	  xargs -n1 cp Makefile-local.mk
 	find local -type d -depth 1 | sed 's/$$/\//g' | \
 	  xargs -n1 cp -r $(SITE_LISP_DIR)
+	@touch $(DUMMY_FILE_DIR)/$(DEPLOY)
 
 build:
 # target Emacs(s)
@@ -65,7 +67,7 @@ build:
 
 clean:
 	-rm -rf $(LOCALDIR)
-	-rm $(PULL)
+	-rm -rf $(DUMMY_FILE_DIR)
 
 # load common my local func
 include Makefunc.mk
