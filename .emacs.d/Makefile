@@ -16,6 +16,8 @@ mkdir:
 	cd $(LOCALDIR); mkdir -p $(ALL_EMACS_VERS)
 	find local -type d -depth 1 | sed 's/$$/\/Makefile/g' | \
 	  xargs -n1 cp Makefile-local.mk
+	find local -type d -depth 1 | sed 's/$$/\//g' | \
+	  xargs -n1 cp -r $(SITE_LISP_DIR)
 
 $(PULL):
 	mkdir -p $(SITE_LISP_DIR)
