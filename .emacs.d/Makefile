@@ -11,6 +11,9 @@ ALL_EMACS_VERS     := $(shell compgen -c emacs- | grep -oP '(?<=emacs-)([0-9]|\.
 all: pull build
 	$(call ECHO_YELLOW, "make all is finish")
 
+mkdir:
+	cd $(LOCALDIR); mkdir $(ALL_EMACS_VERS)
+
 $(PULL):
 	mkdir -p $(SITE_LISP_DIR)
 	@for repo in $(REPOS); do \
@@ -53,7 +56,6 @@ build:
 
 clean:
 	-rm -rf $(LOCALDIR)
-	-rm -rf $(SITE_LISP_DIR)
 	-rm $(PULL)
 
 # load common my local func
