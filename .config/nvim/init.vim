@@ -24,3 +24,5 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+
+inoremap <silent> jj <ESC>:<C-u>w<CR>
