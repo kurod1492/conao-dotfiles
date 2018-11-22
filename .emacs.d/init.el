@@ -34,7 +34,7 @@ Parent folder also create if no exist.
 If ADD-LOADPATH-P is non-nil, add maked directory to loadpath."
   `(progn
      (unless (file-directory-p ,path)
-       (mkdir ,path t))
+       (make-directory ,path t))
      (when ,add-loadpath-p (add-to-list 'load-path ,path))))
 
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
