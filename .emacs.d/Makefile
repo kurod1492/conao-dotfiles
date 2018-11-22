@@ -6,9 +6,9 @@ COMBINE            := combine
 GITHUB             := https://github.com/conao3
 REPOS              := leaf.el orglyth.el cort.el
 
-DUMMY_FILE_DIR     := make-dummyfile
-PULL               := pull
-DEPLOY             := deploy
+DUMMY_FILE_DIR     := .make
+PULL               := $(DUMMY_FILE_DIR)/pull
+DEPLOY             := $(DUMMY_FILE_DIR)/deploy
 
 ALL_EMACS_VERS     := $(shell compgen -c emacs- | grep -oP '(?<=emacs-)([0-9]|\.)+' | sort | uniq)
 
@@ -32,14 +32,14 @@ $(PULL):
 	@echo "\n"
 	$(call ECHO_CYAN, "clone completed!!")
 	@echo "\n"
-	@touch $(DUMMY_FILE_DIR)/$(PULL)
+	@touch $(PULL)
 
 $(DEPLOY):
 	find local -type d -depth 1 | sed 's/$$/\/Makefile/g' | \
 	  xargs -n1 cp Makefile-local.mk
 	find local -type d -depth 1 | sed 's/$$/\//g' | \
 	  xargs -n1 cp -rf $(SITE_LISP_DIR)
-	@touch $(DUMMY_FILE_DIR)/$(DEPLOY)
+	@touch $(DEPLOY)
 
 build:
 # target Emacs(s)
