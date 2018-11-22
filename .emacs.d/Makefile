@@ -9,10 +9,11 @@ REPOS              := leaf.el orglyth.el cort.el
 DUMMY_FILE_DIR     := .make
 PULL               := $(DUMMY_FILE_DIR)/pull
 DEPLOY             := $(DUMMY_FILE_DIR)/deploy
+INIT               := $(PULL) $(DEPLOY)
 
 ALL_EMACS_VERS     := $(shell compgen -c emacs- | grep -oP '(?<=emacs-)([0-9]|\.)+' | sort | uniq)
 
-all: mkdir $(PULL) $(DEPLOY) build
+all: mkdir $(INIT) build
 	$(call ECHO_YELLOW, "make all is finish")
 
 mkdir:
