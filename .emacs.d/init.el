@@ -28,14 +28,12 @@
 (setq debug-on-error  t
       init-file-debug t)
 
-(defmacro mkdir-if-missing (path &optional add-loadpath-p)
+(defun mkdir-if-missing (path &optional add-loadpath-p)
   "Missing folder, create PATH and add PATH to load-path.
 Parent folder also create if no exist.
 If ADD-LOADPATH-P is non-nil, add maked directory to loadpath."
-  `(progn
-     (unless (file-directory-p ,path)
-       (make-directory ,path t))
-     (when ,add-loadpath-p (add-to-list 'load-path ,path))))
+  (unless (file-directory-p path) (make-directory path t))
+  (when add-loadpath-p (add-to-list 'load-path path)))
 
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
 (progn
