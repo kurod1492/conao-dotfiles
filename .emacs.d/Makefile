@@ -22,7 +22,7 @@ mkdir:
 	cd $(LOCALDIR); mkdir -p $(ALL_EMACS_VERS)
 
 $(PULL):
-	@for repo in $(REPOS); do \
+	-@for repo in $(REPOS); do \
 	  echo "\n"; \
 	  $(COLOR_MAGENTA); \
 	  echo "===  git clone $(GITHUB)/$${repo}  ==="; \
@@ -38,7 +38,7 @@ $(DEPLOY):
 	find local -type d -depth 1 | sed 's/$$/\/Makefile/g' | \
 	  xargs -n1 cp Makefile-local.mk
 	find local -type d -depth 1 | sed 's/$$/\//g' | \
-	  xargs -n1 cp -r $(SITE_LISP_DIR)
+	  xargs -n1 cp -rf $(SITE_LISP_DIR)
 	@touch $(DUMMY_FILE_DIR)/$(DEPLOY)
 
 build:
