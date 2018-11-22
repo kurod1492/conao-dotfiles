@@ -1,12 +1,12 @@
 #
 # Makefunk.mk
 #
-# version: v1.1
+# version: v1.2
 # last update: 2018/10/29
 #
 # echo with color
 
-ECHO_COLOR   = @tput setaf $1; echo "=== " $2 " ==="; tput sgr0
+ECHO_COLOR   = tput setaf $1; echo "=== " $2 " ==="; tput sgr0
 ECHO_BLACK   = $(call ECHO_COLOR, 0, $1)
 ECHO_RED     = $(call ECHO_COLOR, 1, $1)
 ECHO_GREEN   = $(call ECHO_COLOR, 2, $1)
@@ -27,11 +27,11 @@ COLOR_WHITE   = tput setaf 7
 COLOR_DEFAULT = tput sgr0
 
 colortest:
-	$(call ECHO_BLACK, black)
-	$(call ECHO_RED, red)
-	$(call ECHO_GREEN, green)
-	$(call ECHO_YELLOW, yellow)
-	$(call ECHO_BLUE, blue)
-	$(call ECHO_MAGENTA, magenta)
-	$(call ECHO_CYAN, cyan)
-	$(call ECHO_WHOTE, white)
+	@$(call ECHO_BLACK, black)
+	@$(call ECHO_RED, red)
+	@$(call ECHO_GREEN, green)
+	@$(call ECHO_YELLOW, yellow)
+	@$(call ECHO_BLUE, blue)
+	@$(call ECHO_MAGENTA, magenta)
+	@$(call ECHO_CYAN, cyan)
+	@$(call ECHO_WHOTE, white)
