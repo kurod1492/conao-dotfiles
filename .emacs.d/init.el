@@ -37,10 +37,6 @@ If ADD-LOADPATH-P is non-nil, add maked directory to loadpath."
        (mkdir ,path t))
      (when ,add-loadpath-p (add-to-list 'load-path ,path))))
 
-(defsubst user-setting-directory (directory)
-  "Return user-emacs-directory/DIRECTORY/"
-  (format "%s%s/" user-emacs-directory directory))
-
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
 (progn
   (when load-file-name
@@ -51,7 +47,7 @@ If ADD-LOADPATH-P is non-nil, add maked directory to loadpath."
                 user-emacs-directory emacs-version))
 
   (mkdir-if-missing user-emacs-directory)
-  (mkdir-if-missing (user-setting-directory "build") t))
+  (mkdir-if-missing (locate-user-emacs-file "build/") t))
 
 (defvar init-root-emacs-directory
   (file-name-directory (directory-file-name user-emacs-directory))
