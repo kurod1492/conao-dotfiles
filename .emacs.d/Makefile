@@ -27,12 +27,12 @@ $(MKDIR):
 	@touch $(MKDIR)
 
 $(PULL):
-	@$(foreach repo, $(REPOS), \
+	@$(foreach repo,$(REPOS), \
 	  echo "\n"; \
-	  $(call ECHO_MAGENTA, "git clone $(GITHUB)/${repo}"); \
+	  $(call ECHO_MAGENTA,"git clone $(GITHUB)/${repo}"); \
 	  git clone $(GITHUB)/${repo} $(SITE_LISP_DIR)/${repo}; \
 	)
-	@$(call ECHO_CYAN, "clone completed!!", "\n", "\n")
+	@$(call ECHO_CYAN,"clone completed!!","\n","\n")
 	@touch $(PULL)
 
 $(DEPLOY):
