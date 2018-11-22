@@ -7,29 +7,31 @@ GITHUB             := https://github.com/conao3
 REPOS              := leaf.el orglyth.el cort.el
 
 DUMMY_FILE_DIR     := .make
+MKDIR              := $(DUMMY_FILE_DIR)/mkdir
 PULL               := $(DUMMY_FILE_DIR)/pull
 DEPLOY             := $(DUMMY_FILE_DIR)/deploy
-INIT               := $(PULL) $(DEPLOY)
+INIT               := $(MKDIR) $(PULL) $(DEPLOY)
 
 ALL_EMACS_VERS     := $(shell compgen -c emacs- | grep -oP '(?<=emacs-)([0-9]|\.)+' | sort | uniq)
 
-all: mkdir $(INIT) build
+all: $(INIT) build
 	$(call ECHO_YELLOW, "make all is finish")
 
-mkdir:
+$(MKDIR):
 	mkdir -p $(SITE_LISP_DIR)
 	mkdir -p $(LOCALDIR)
 	mkdir -p $(DUMMY_FILE_DIR)
 	cd $(LOCALDIR); mkdir -p $(ALL_EMACS_VERS)
+	@touch $(MKDIR)
 
 $(PULL):
-	-@for repo in $(REPOS); do \
+	@$(foreach repo, $(REPOS), \
 	  echo "\n"; \
 	  $(COLOR_MAGENTA); \
-	  echo "===  git clone $(GITHUB)/$${repo}  ==="; \
+	  echo "===  git clone $(GITHUB)/${repo}  ==="; \
 	  $(COLOR_DEFAULT); \
-	  git clone $(GITHUB)/$${repo} $(SITE_LISP_DIR)/$${repo}; \
-	done
+	  git clone $(GITHUB)/${repo} $(SITE_LISP_DIR)/${repo}; \
+	)
 	@echo "\n"
 	$(call ECHO_CYAN, "clone completed!!")
 	@echo "\n"
@@ -68,6 +70,7 @@ build:
 
 clean:
 	-rm -rf $(LOCALDIR)
+	-rm -rf $(SITE_LISP_DIR)
 	-rm -rf $(DUMMY_FILE_DIR)
 
 # load common my local func
