@@ -16,6 +16,8 @@ ALL_EMACS_VERS     := $(shell compgen -c emacs- | grep -oP '(?<=emacs-)([0-9]|\.
 
 all: $(INIT) build
 	$(call ECHO_YELLOW, "make all is finish")
+test:
+	printf "\a"
 
 $(MKDIR):
 	mkdir -p $(SITE_LISP_DIR)
@@ -30,7 +32,7 @@ $(PULL):
 	  $(call ECHO_MAGENTA, "git clone $(GITHUB)/${repo}"); \
 	  git clone $(GITHUB)/${repo} $(SITE_LISP_DIR)/${repo}; \
 	)
-	@$(call ECHO_CYAN, "\nclone completed!!\n")
+	@$(call ECHO_CYAN, "clone completed!!", "\n", "\n")
 	@touch $(PULL)
 
 $(DEPLOY):
