@@ -27,14 +27,10 @@ $(MKDIR):
 $(PULL):
 	@$(foreach repo, $(REPOS), \
 	  echo "\n"; \
-	  $(COLOR_MAGENTA); \
-	  echo "===  git clone $(GITHUB)/${repo}  ==="; \
-	  $(COLOR_DEFAULT); \
+	  $(call ECHO_MAGENTA, "git clone $(GITHUB)/${repo}"); \
 	  git clone $(GITHUB)/${repo} $(SITE_LISP_DIR)/${repo}; \
 	)
-	@echo "\n"
-	$(call ECHO_CYAN, "clone completed!!")
-	@echo "\n"
+	@$(call ECHO_CYAN, "\nclone completed!!\n")
 	@touch $(PULL)
 
 $(DEPLOY):
