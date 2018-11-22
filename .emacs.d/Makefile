@@ -4,7 +4,7 @@ CONFDIR            := conf
 COMBINE            := combine
 
 GITHUB             := https://github.com/conao3
-REPOS              := leaf.el orglyth.el
+REPOS              := leaf.el orglyth.el cort.el
 
 DUMMY_FILE_DIR     := make-dummyfile
 PULL               := pull
