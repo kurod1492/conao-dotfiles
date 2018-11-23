@@ -26,31 +26,31 @@
 
 ;;;;;;;;;;;;;;;;;;
 ;; API's
-(use-package dash)
-(use-package s)
-(use-package f)
+(use-package dash :ensure t)
+(use-package s :ensure t)
+(use-package f :ensure t)
 (use-package b :init (el-get-bundle emacs-php/b.el))
 
 ;;;;;;;;;;;;;;;;;;
 ;; git modes
-(use-package magit :defer t
+(use-package magit :ensure t :defer t
   :if emacs25-g-p
   :bind (("C-x v" . magit-status)))
-(use-package gitconfig-mode     :defer t)
-(use-package gitignore-mode     :defer t)
-(use-package gitattributes-mode :defer t)
+(use-package gitconfig-mode     :ensure t :defer t)
+(use-package gitignore-mode     :ensure t :defer t)
+(use-package gitattributes-mode :ensure t :defer t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; small utilities
-(use-package minibuf-isearch    :defer t)
-(use-package open-junk-file     :defer t :bind ("C-x C-x" . open-junk-file))
-(use-package lispxmp            :defer t :bind ("C-c C-x C-e" . lispxmp) ("C-c C-e" . lispxmp))
-(use-package htmlize            :defer t)
-(use-package ctable             :defer t)
-(use-package free-keys          :defer t
+(use-package minibuf-isearch    :ensure t :defer t)
+(use-package open-junk-file     :ensure t :defer t :bind ("C-x C-x" . open-junk-file))
+(use-package lispxmp            :ensure t :defer t :bind ("C-c C-x C-e" . lispxmp) ("C-c C-e" . lispxmp))
+(use-package htmlize            :ensure t :defer t)
+(use-package ctable             :ensure t :defer t)
+(use-package free-keys          :ensure t :defer t
   :commands (free-keys free-keys-set-prefix))
 
-(use-package multifiles :defer t
+(use-package multifiles :ensure t :defer t
   :bind (("C-!" . mf/mirror-region-in-multifile))
   :config
   (prog1 "mirror region when non region"
@@ -59,21 +59,21 @@
         (setq s (point-min) e (point-max))))
     (advice-add 'mf/mirror-region-in-multifile :before #'mf/multifiles-no-region)))
 
-(use-package howm :defer t
+(use-package howm :ensure t :defer t
   ;; https://howm.osdn.jp/index-j.html
   )
 
-(use-package visual-regexp-steroids :defer t
+(use-package visual-regexp-steroids :ensure t :defer t
   :doc (ffap "http://nekonenene.hatenablog.com/entry/2015/09/11/231757")
   :bind (("C-c m" . vr/mc-mark)
          ("C-M-r" . vr/isearch-backward)
          ("C-M-s" . vr/isearch-forward)
          ("M-%"   . vr/query-replace))
-  :init (use-package pcre2el)
+  :init (use-package pcre2el :ensure t)
   :config
   (setq vr/engine (if (executable-find "python") 'python 'pcre2el)))
 
-(use-package mode-compile  :defer t
+(use-package mode-compile  :ensure t :defer t
   :bind* (("C-c c" . mode-compile))
   :config
   (use-package mode-compile-kill
@@ -83,11 +83,11 @@
         mode-compile-expert-p t
         mode-compile-reading-time 0))
 
-(use-package rainbow-mode :defer t :diminish (rainbow-mode . "")
+(use-package rainbow-mode :ensure t :defer t :diminish (rainbow-mode . "")
   :commands rainbow-mode
   :hook (emacs-lisp-mode lisp-mode css-mode less-mode web-mode html-mode))
 
-(use-package google-translate :defer t
+(use-package google-translate :ensure t :defer t
   :bind* (("C-x t"   . google-translate-at-point)
           ("C-x S-t" . google-translate-query-translate))
   :config  ;; 翻訳のデフォルト値を設定(ja -> en)（無効化は C-u する）
@@ -98,10 +98,10 @@
   ;; google-translate.elの翻訳バッファをポップアップで表示させる
   (push '("*Google Translate*") popwin:special-display-config)
 
-(use-package elisp-slime-nav :diminish (elisp-slime-nav-mode . "") :disabled t
+(use-package elisp-slime-nav :ensure t :diminish (elisp-slime-nav-mode . "") :disabled t
   :hook (emacs-lisp-mode lisp-interaction-mode))
 
-(use-package latex-math-preview
+(use-package latex-math-preview :ensure t
   :if (executable-find "platex")
   :bind (("C-c l l" . latex-math-preview-expression)
          ("C-c l s" . latex-math-preview-insert-mathematical-symbol))
@@ -128,7 +128,7 @@
                            "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
                            "-dGraphicsAlphaBits=4" "-dQUIET")))
 
-(use-package clang-format
+(use-package clang-format :ensure t
   :if (executable-find "clang-format")
   :bind (("C-c f f" . clang-format-buffer)
          ("C-c f r" . clang-format-region)))
@@ -136,14 +136,14 @@
   ;; > brew update
   ;; > brew install clang-format)
 
-(use-package shell-pop :defer t
+(use-package shell-pop :ensure t :defer t
   :bind ("C-o" . shell-pop)
   :config
   ;; (setq shell-pop-shell-type (executable-find "fish")
   ;;       shell-pop-shell-type '("term" "*terminal<1>*" (lambda () (multi-term)))))
   )
 
-(use-package multi-term
+(use-package multi-term :ensure t
   :config
   ;; (setq multi-term-program (executable-find "fish")))
   )
@@ -153,13 +153,13 @@
   :config
   (grep-apply-setting 'grep-command "grep -inH ")
   
-  (use-package wgrep
+  (use-package wgrep :ensure t
     :bind (("M-s g" . grep))
     :config
     (setq wgrep-change-readonly-file t
           wgrep-enable-key "e")))
 
-(use-package auto-async-byte-compile :defer t :disabled t
+(use-package auto-async-byte-compile :ensure t :defer t :disabled t
   :config
   (setq auto-async-byte-compile-exclude-files-regexp "/junk/"
         eldoc-idle-delay 0.2
@@ -184,7 +184,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; big utilities
-(use-package auto-install :defer t :disabled t
+(use-package auto-install :ensure t :defer t :disabled t
   :commands (auto-install-from-buffer
              auto-install-from-url
              auto-install-from-emacswiki
@@ -198,7 +198,7 @@
         auto-install-install-confirm nil
         auto-install-from-dired-confirm nil))
 
-(use-package org2blog :defer t
+(use-package org2blog :ensure t :defer t
   :init
   (defvar org2blog-map nil "org2blog-prefix-map")
   (define-prefix-command 'org2blog-map)
@@ -393,7 +393,7 @@
         (url-http-debug "Request is: \n%s" request)
         request))))
 
-(use-package pdf-tools :defer t
+(use-package pdf-tools :ensure t :defer t
   :config
   ;; depend on glib, poppler, ghostscript, imagemagick
   ;; $ brew install glib poppler ghostscript imagemagick
@@ -428,16 +428,16 @@
   (use-package wdired
     :bind (:map dired-mode-map
                 ("r" . wdired-change-to-wdired-mode)))
-  (use-package dired-rainbow)
-  (use-package dired-filter 
+  (use-package dired-rainbow :ensure t)
+  (use-package dired-filter  :ensure t
     :config
     (add-hook 'dired-mode-hook 'dired-filter-mode))
-  (use-package dired-subtree
+  (use-package dired-subtree :ensure t
     :bind (:map dired-mode-map
                 ("<tab>"   . dired-subtree-remove)   ;; folding with tab
                 ("C-x n n" . dired-subtree-narrow))  ;; narrowing subtree
     :init
-    (use-package dired-details
+    (use-package dired-details :ensure t
       :bind (:map dired-mode-map
                   ("i" . dired-subtree-insert))
       :config

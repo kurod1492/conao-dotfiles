@@ -35,7 +35,6 @@ tramp
 .last-package-update-day
 
 # download packages
-/*/straight/
 /elpa*/
 /el-get/
 /*/elpa/

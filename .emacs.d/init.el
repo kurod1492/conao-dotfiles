@@ -59,28 +59,40 @@
          (setq el-get-dir (user-setting-directory "el-get"))))
       (emacs24-g-p
        (progn
-         (add-list-to-list 'load-path-folder-list '("el-get" "site-lisp" "conf"))
-         (add-user-setting-directory-to-load-path load-path-folder-list))))
+         (add-list-to-list 'load-path-folder-list '("el-get" "elpa" "site-lisp" "conf"))
+         (add-user-setting-directory-to-load-path load-path-folder-list)
+         
+         (require 'package)
+         (setq package-user-dir (user-setting-directory "elpa")))))
 
 (cond (emacs23-p
        (progn
          (el-get-bundle emacs-jp/init-loader)))
       (emacs24-g-p
        (progn
-         (let ((bootstrap-file
-                (user-setting-directory "straight/repos/straight.el/bootstrap.el"))
-               (bootstrap-version 5))
-           (unless (file-exists-p bootstrap-file)
-             (with-current-buffer
-                 (url-retrieve-synchronously
-                  "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-                  'silent 'inhibit-cookies)
-               (goto-char (point-max))
-               (eval-print-last-sexp)))
-           (load bootstrap-file nil 'nomessage))
+         (add-list-to-list 'package-archives '(("melpa"     . "http://melpa.org/packages/")
+                                               ("org"       . "http://orgmode.org/elpa/")
+                                               ("marmalade" . "http://marmalade-repo.org/packages/")))
+         ;; (let ((dir (concat (user-setting-directory "/elpa/") "latex-math-preview-20170522.1455")))
+         ;;   (if (file-directory-p dir)
+         ;;       (delete-directory dir t)))
 
-         (straight-use-package 'init-loader)
-         (init-loader-load (user-setting-directory "conf")))))
+         (package-initialize)
+
+         ;; use-package
+         (when (not (package-installed-p 'use-package))
+           (package-refresh-contents)
+           (package-install 'use-package))
+
+         ;; theme settings
+         (use-package solarized-theme :ensure t
+           :init
+           (load-theme 'solarized-dark t))
+
+         ;; init-loader
+         (use-package init-loader :ensure t
+           :config
+           (init-loader-load (user-setting-directory "conf"))))))
 
 (provide 'init)
 ;;; init.el ends here

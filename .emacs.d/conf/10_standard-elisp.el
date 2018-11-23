@@ -24,23 +24,23 @@
 
 ;;; Code:
 
-(use-package windmove :straight nil
+(use-package windmove
   :bind (("C-c <left>"  . windmove-left)
          ("C-c <down>"  . windmove-down)
          ("C-c <up>"    . windmove-up)
          ("C-c <right>" . windmove-right)))
 
-(use-package cus-edit :straight nil:defer t
+(use-package cus-edit :defer t
   :config
   (setq custom-file (user-setting-directory "custom.el"))
   (when (file-exists-p custom-file)
     (load custom-file)))
 
-(use-package battery :straight nil
+(use-package battery
   :config
   (display-battery-mode t))
 
-(use-package generic-x :straight nil
+(use-package generic-x
   :config
   (global-font-lock-mode t)
   ;; hi-light 'FIXME:' in c-source file
@@ -51,7 +51,7 @@
                '(("\\<\\(FIXME\\):" 1
                   font-lock-warning-face t))))))
 
-(use-package time-stamp :straight nil
+(use-package time-stamp
   ;; %:a -- Monday 曜日
   ;; %#A -- MONDAY 全部大文字で曜日
   ;; %:b -- January 月
@@ -81,22 +81,22 @@
         time-stamp-end ">"
         time-stamp-line-limit 20))
 
-(use-package uniquify :straight nil
+(use-package uniquify
   :config
   (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
 
-(use-package linum :straight nil
+(use-package linum
   :config
   (global-linum-mode t)
   (setq linum-format "%5d")
   (set-face-attribute 'linum nil :height 120))
 
-(use-package newcomment :straight nil
+(use-package newcomment
   :config
   (setq-default transient-mark-mode t)
   (setq comment-style 'multiline))
 
-(use-package Flyspell :straight nil
+(use-package Flyspell
   :bind* (("<f12>" . flyspell-mode)
           ("<f10>" . flyspell-buffer)
           ("<f9>"  . ispell-word))
@@ -125,7 +125,7 @@
      ))
   (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
 
-(use-package view :straight nil
+(use-package view
   :config
   (prog1 "unwritable file, open in view-mode"
     ;; unwritable file, open in view mode
@@ -168,14 +168,14 @@
                      (cons (cons 'view-mode view-mode-map) minor-mode-map-alist))))
   (prog1 ""))
 
-(use-package autoinsert :straight nil
+(use-package autoinsert
   :config
   (setq ;; auto-insert-query nil
    ;; auto-insert-alist nil
    auto-insert-directory "~/.emacs.d/template/")
   (auto-insert-mode 1))
 
-(use-package recentf :straight nil
+(use-package recentf
   :config
   (defmacro with-suppressed-message (&rest body)
     "Suppress new messages temporarily in the echo area
@@ -190,9 +190,9 @@ and the `*Messages*' buffer while BODY is evaluated."
   (setq recentf-auto-cleanup 'never)             ;; 保存する内容を整理
   (run-with-idle-timer 30 t '(lambda ()          ;; 30秒ごとに .recentf を保存
                                (with-suppressed-message (recentf-save-list))))
-  (use-package recentf-ext))
+  (use-package recentf-ext :ensure t))
 
-(use-package table :straight nil
+(use-package table
   ;; make table
   ;; M-x table-insert to make table with size
   ;; M-x table-capture to make table with csv like text
@@ -217,23 +217,23 @@ and the `*Messages*' buffer while BODY is evaluated."
   ;; in org's table, C-c ' to edit table
   )
 
-(use-package which-func :straight nil
+(use-package which-func
   :config
   ;; disp current func name in modeline
   (which-function-mode 1))
-(use-package simple :straight nil
+(use-package simple
   :config
   ;; show all output of eval
   (setq eval-expression-print-length nil
         ;; C-u C-SPC C-SPC to pop mark
         set-mark-command-repeat-pop  t))
-(use-package paren :straight nil
+(use-package paren
   :config
   ;; bright parent
   (show-paren-mode t)
   ;; bright region when ending paren not displaying
   (setq show-paren-style 'mixed))
-(use-package saveplace :straight nil
+(use-package saveplace
   :config
   (setq-default save-place t)
   (setq save-place-file (user-setting-directory "places")))
