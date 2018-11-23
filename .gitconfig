@@ -4,10 +4,11 @@
 [push]
 	default = simple
 [color]
-	ui = always
-[pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
+	ui = auto
 [core]
-	editor = emacs -nw
+	editor = emacs
+	quotepath = false
+	precomposeunicode = true
+	pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -r
+[alias]
+	ch = checkout

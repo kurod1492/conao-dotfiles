@@ -1,4 +1,5 @@
 # backupfiles
+.cache/
 backup/
 history/
 undohist/
@@ -35,6 +36,7 @@ tramp
 .last-package-update-day
 
 # download packages
+/site-lisp/
 /elpa*/
 /el-get/
 /*/elpa/
@@ -45,7 +47,11 @@ auto-install/
 url/
 
 # compiled files
+/local/
 *.elc
 
 # annoying comstom file
 custom.el
+
+# Makefile dummy file
+/.make/

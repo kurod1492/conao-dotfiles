@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2018  Naoya Yamashita
 
-;; Author: Naoya Yamashita <conao@184-187.cup.hiroshima-u.ac.jp>
+;; Author: Naoya Yamashita
 ;; Keywords: .emacs
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -20,14 +20,20 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
 ;; enable debug
 (setq debug-on-error  t
-      debug-on-signal nil
-      debug-on-quit   nil)
+      init-file-debug t)
+
+(defun mkdir-if-missing (path &optional add-loadpath-p)
+  "Missing folder, create PATH and add PATH to load-path.
+Parent folder also create if no exist.
+If ADD-LOADPATH-P is non-nil, add maked directory to loadpath."
+  (unless (file-directory-p path) (make-directory path t))
+  (when add-loadpath-p (add-to-list 'load-path path)))
 
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
 (progn
@@ -35,64 +41,19 @@
     (setq user-emacs-directory
           (expand-file-name (file-name-directory load-file-name))))
   (setq user-emacs-directory
-        (concat user-emacs-directory "v" (int-to-string emacs-major-version) "/")))
+	(format "%slocal/%s/"
+                user-emacs-directory emacs-version))
 
-(add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
-(require 'loadpath)
-(require 'version)
+  (mkdir-if-missing user-emacs-directory)
+  (mkdir-if-missing (locate-user-emacs-file "build/") t))
 
-(when emacs22-l-p (error "Unsupport version prior to emacs22"))
+(defvar init-root-emacs-directory
+  (file-name-directory (directory-file-name user-emacs-directory))
+  "Example: \"Users/conao/.emacs.d/\"")
 
-;; use cl macros
-(when emacs24-g-p (eval-when-compile (require 'cl-lib)))
-
-(defvar load-path-folder-list '("backup")
-  "folder-list add to load-path recursive. `user-setting-directory'/`load-path-folder-list'")
-
-(cond (emacs23-p
-       (progn
-         (add-list-to-list 'load-path-folder-list '("el-get" "site-lisp" "conf"))
-         (add-user-setting-directory-to-load-path load-path-folder-list)
-
-         (require 'el-get)
-         (setq el-get-git-shallow-clone t)
-         (setq el-get-dir (user-setting-directory "el-get"))))
-      (emacs24-g-p
-       (progn
-         (add-list-to-list 'load-path-folder-list '("el-get" "elpa" "site-lisp" "conf"))
-         (add-user-setting-directory-to-load-path load-path-folder-list)
-         
-         (require 'package)
-         (setq package-user-dir (user-setting-directory "elpa")))))
-
-(cond (emacs23-p
-       (progn
-         (el-get-bundle emacs-jp/init-loader)))
-      (emacs24-g-p
-       (progn
-         (add-list-to-list 'package-archives '(("melpa"     . "http://melpa.org/packages/")
-                                               ("org"       . "http://orgmode.org/elpa/")
-                                               ("marmalade" . "http://marmalade-repo.org/packages/")))
-         ;; (let ((dir (concat (user-setting-directory "/elpa/") "latex-math-preview-20170522.1455")))
-         ;;   (if (file-directory-p dir)
-         ;;       (delete-directory dir t)))
-
-         (package-initialize)
-
-         ;; use-package
-         (when (not (package-installed-p 'use-package))
-           (package-refresh-contents)
-           (package-install 'use-package))
-
-         ;; theme settings
-         (use-package solarized-theme :ensure t
-           :init
-           (load-theme 'solarized-dark t))
-
-         ;; init-loader
-         (use-package init-loader :ensure t
-           :config
-           (init-loader-load (user-setting-directory "conf"))))))
+(if (require 'combine nil t)
+    (message "load combine.el")
+  (message "missing combine.el..."))
 
 (provide 'init)
 ;;; init.el ends here
