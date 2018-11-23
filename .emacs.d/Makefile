@@ -33,7 +33,7 @@ LOCAL_REPOS       := $(foreach repo, $(REPOS), $(addsuffix /$(repo), $(LOCAL_LIS
 
 ##################################################
 
-.PHONY: all test deploy build clean
+.PHONY: all test build clean
 all: $(DIRS) build
 	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
 
