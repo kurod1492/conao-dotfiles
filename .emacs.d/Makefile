@@ -24,7 +24,7 @@ CREATEDIRS  := $(MAKEDIR) $(LOCALDIR) $(LISPDIR) $(LOCALDIRS)
 
 .PHONY: all test build clean
 all: $(INIT) build
-	@$(call ECHO_YELLOW, "make all is finish", "", "\n")
+	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
 
 test:
 	echo "$(CREATE_DIRS)"
@@ -32,9 +32,14 @@ test:
 	echo $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
 	$(foreach ver, $(EMACS_VERS), echo "$(ver)";)
 	$(foreach local, $(LOCALDIRS), echo "$(local)";)
+	@$(foreach local, $(LOCALDIRS), \
+	  echo "ln -s ../../Makefile-local.mk $(local)/Makefile"; \
+	  echo "cp -rf $(LISPDIR) $(local)/"; \
+	)
 
 $(MKDIR):
 	mkdir -p $(CREATEDIRS)
+	@$(call ECHO_CYAN, "make job:mkdir completed!!", "\n", "\n")
 	@touch $(MKDIR)
 
 $(CLONE):
@@ -42,14 +47,15 @@ $(CLONE):
 	  $(call ECHO_MAGENTA, "git clone $(REMOTE)/$(repo)", "\n", ""); \
 	  git clone $(REMOTE)/${repo} $(LISPDIR)/${repo}; \
 	)
-	@$(call ECHO_CYAN, "clone completed!!", "\n", "\n")
+	@$(call ECHO_CYAN, "make job:clone completed!!", "\n", "\n")
 	@touch $(CLONE)
 
 $(DEPLOY):
-	find local -type d -depth 1 | sed 's/$$/\/Makefile/g' | \
-	  xargs -n1 cp Makefile-local.mk
-	find local -type d -depth 1 | sed 's/$$/\//g' | \
-	  xargs -n1 cp -rf $(LISPDIR)
+	$(foreach local, $(LOCALDIRS), \
+	  ln -s ../../Makefile-local.mk $(local)/Makefile; \
+	  cp -rf $(LISPDIR) $(local)/; \
+	)
+	@$(call ECHO_CYAN, "make job:deploy completed!!", "\n", "\n")
 	@touch $(DEPLOY)
 
 build:
