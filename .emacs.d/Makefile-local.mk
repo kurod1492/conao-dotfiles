@@ -8,3 +8,6 @@ all: build
 
 build:
 	$(EMACS) -batch -f batch-byte-compile $(MIXFILE)
+
+clean:
+	-rm rf $(MIXFILE)
