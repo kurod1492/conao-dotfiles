@@ -15,7 +15,7 @@ DEPLOY     := $(MAKEDIR)/deploy
 INIT       := $(MKDIR) $(CLONE) $(DEPLOY)
 
 EMACS_RAW  := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
-ALL_EMACS  := $(sort $(EMACS_RAW) $(EMACS_RAW))
+ALL_EMACS  := $(sort $(EMACS_RAW) $(EMACS_RAW))  # delete duplicate element
 EMACS_VERS := $(subst emacs-,,$(ALL_EMACS))
 
 
