@@ -16,13 +16,8 @@ end
 # homebrew
 set PATH /usr/local/bin $PATH
 
-## llvm
-if test -d "/Users/conao/local/homebrew/opt/llvm/bin"
-   set -g fish_user_paths "/Users/conao/local/homebrew/opt/llvm/bin" $fish_user_paths
-end
-if test -d "/usr/local/opt/llvm/bin"
-   set -g fish_user_paths "/usr/local/opt/llvm/bin" $fish_user_paths
-end
+## llvm 
+set -g fish_user_paths "/usr/local/opt/llvm/bin" $fish_user_paths
 
 # bindings
 function fish_user_key_bindings
