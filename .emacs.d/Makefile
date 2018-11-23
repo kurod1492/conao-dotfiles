@@ -41,7 +41,7 @@ $(DEPLOY):
 
 build:
 # target Emacs(s)
-	$(info Emacs versions... $(ALL_EMACS_VERS))
+	@$(call ECHO_YELLOW, "Emacs versions... $(ALL_EMACS_VERS)", "", "")
 
 # combine conf/*.el files
 	find $(CONFDIR) -type f -name "*.el"| xargs cat > $(LOCALDIR)/$(COMBINE).el
