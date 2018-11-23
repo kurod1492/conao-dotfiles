@@ -1,5 +1,5 @@
 #+author: conao
-$+date: <2018-11-24 Sat>
+#+date: <2018-11-24 Sat>
 
 * Conao's dotfiles
 [[https://github.com/conao3/dotfiles.el][https://img.shields.io/github/license/conao3/dotfiles.svg?style=flat-square]]
