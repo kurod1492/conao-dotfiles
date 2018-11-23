@@ -18,6 +18,7 @@ ALL_EMACS  := $(sort $(EMACS_RAW) $(EMACS_RAW))
 EMACS_VERS := $(subst emacs-,,$(ALL_EMACS))
 
 
+.PHONY: all test build clean
 all: $(INIT) build
 	@$(call ECHO_YELLOW, "make all is finish", "", "\n")
 
@@ -27,7 +28,7 @@ test:
 
 $(MKDIR):
 	mkdir -p $(LISPDIR) $(LOCALDIR) $(MAKEDIR)
-
+	mkdir -p $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
 	@touch $(MKDIR)
 
 $(PULL):
