@@ -55,7 +55,7 @@ $(CLONE):
 	@touch $(CLONE)
 
 $(DEPLOY):
-# conao-mix conf/*.el files
+# mix conf/*.el files
 	find $(CONFDIR) -type f -name "*.el"| xargs cat > $(MIXRAWFILE)
 	cat $(MIXRAWFILE) | \
 	  sed -e 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d' > $(MIXFILE)
