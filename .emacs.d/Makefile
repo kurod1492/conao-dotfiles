@@ -81,6 +81,7 @@ build:
 
 clean:
 	-rm -rf $(CREATEDIRS)
+	@$(call ECHO_CYAN, "make job:clean completed!!", "\n", "\n")
 
 # load common my local func
 include Makefunc.mk
