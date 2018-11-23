@@ -1,4 +1,3 @@
-MAKEDIR     := .make
 LOCALDIR    := local
 LISPDIR     := site-lisp
 CONFDIR     := conf
@@ -14,22 +13,17 @@ GITHUB      := https://github.com
 REMOTE      := $(GITHUB)/conao3
 REPOS       := leaf.el orglyth.el cort.el
 
-MKDIR       := $(MAKEDIR)/mkdir
-CLONE       := $(MAKEDIR)/clone
-DEPLOY      := $(MAKEDIR)/deploy
-INIT        := $(MKDIR) $(CLONE) $(DEPLOY)
-
 EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
 ALL_EMACS   := $(sort $(EMACS_RAW) $(EMACS_RAW))  # delete duplicate element
 EMACS_VERS  := $(subst emacs-,,$(ALL_EMACS))
 
 LOCALDIRS   := $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
-DIRS        := $(MAKEDIR) $(LOCALDIR) $(LISPDIR) $(LOCALDIRS)
+DIRS        := $(LOCALDIR) $(LISPDIR) $(LOCALDIRS)
 
 CONFFILES   := $(CONFDIR)/*.el
 
-.PHONY: all test build clean
-all: $(DIRS) $(INIT) build 
+.PHONY: all test deploy build clean
+all: $(DIRS) deploy build 
 	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
 
 test:
@@ -46,25 +40,19 @@ test:
 
 $(DIRS):
 	mkdir -p $(DIRS)
-	@$(call ECHO_CYAN, "make job:mkdir completed!!", "\n", "\n")
-	@touch $(MKDIR)
 
-$(CLONE):
 	@$(foreach repo, $(REPOS), \
 	  $(call ECHO_MAGENTA, "git clone $(REMOTE)/$(repo)", "\n", ""); \
 	  git clone $(REMOTE)/${repo} $(LISPDIR)/${repo}; \
 	)
-	@$(call ECHO_CYAN, "make job:clone completed!!", "\n", "\n")
-	@touch $(CLONE)
 
-$(DEPLOY): $(MIXFILE)
-	$(foreach local, $(LOCALDIRS), \
+deploy: $(MIXFILE)
+	@$(foreach local, $(LOCALDIRS), \
 	  ln -s ../../Makefile-local.mk $(local)/Makefile; \
 	  ln -s ../$(MIXFILENAME) $(local)/; \
 	  cp -rf $(LISPDIR) $(local)/; \
 	)
 	@$(call ECHO_CYAN, "make job:deploy completed!!", "\n", "\n")
-	@touch $(DEPLOY)
 
 build:
 	@$(call ECHO_YELLOW, "Emacs versions... $(EMACS_VERS)", "", "")
