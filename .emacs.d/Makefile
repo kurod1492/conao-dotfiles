@@ -3,7 +3,10 @@ LOCALDIR    := local
 LISPDIR     := site-lisp
 CONFDIR     := conf
 
-COMBINE     := combine
+MIXRAW      := mixed-raw
+MIX         := mixed
+MIXRAWFILE  := $(LOCALDIR)/$(MIXRAW).el
+MIXFILE     := $(LOCALDIR)/$(MIX).el
 
 GITHUB      := https://github.com
 REMOTE      := $(GITHUB)/conao3
@@ -52,9 +55,17 @@ $(CLONE):
 	@touch $(CLONE)
 
 $(DEPLOY):
+# conao-mix conf/*.el files
+	find $(CONFDIR) -type f -name "*.el"| xargs cat > $(MIXRAWFILE)
+	cat $(MIXRAWFILE) | \
+	  sed -e 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d' > $(MIXFILE)
+	echo "(provide 'conao-mix)" >> $(MIXFILE)
+
+# deploy files
 	$(foreach local, $(LOCALDIRS), \
 	  ln -s ../../Makefile-local.mk $(local)/Makefile; \
 	  cp -rf $(LISPDIR) $(local)/; \
+	  cp $(MIXFILE) $(local)/; \
 	)
 	@$(call ECHO_CYAN, "make job:deploy completed!!", "\n", "\n")
 	@touch $(DEPLOY)
@@ -65,20 +76,6 @@ build:
 	@$(foreach local, $(LOCALDIRS), \
 	  $(call ECHO_MAGENTA, "compile on $(local)...", "\n", ""); \
 	  $(MAKE) -C $(local); \
-	)
-
-# combine conf/*.el files
-	find $(CONFDIR) -type f -name "*.el"| xargs cat > $(LOCALDIR)/$(COMBINE).el
-	sed -e 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d' -i $(LOCALDIR)/$(COMBINE).el
-	echo "(provide 'combine)" >> $(LOCALDIR)/$(COMBINE).el
-
-# byte compile by all Emacs(s)
-	@cd $(LOCALDIR); \
-	@$(foreach ver, $(EMACS_VERS), \
-	  $(call ECHO_MAGENTA, "compile by emacs-${ver}...", "\n", ""); \
-	  emacs-${ver} -batch -f batch-byte-compile $(COMBINE).el; \
-	  mkdir -p ${ver}; \
-	  mv $(COMBINE).elc ${ver}/; \
 	)
 	@$(call ECHO_CYAN, "make job:build completed!!", "\n", "\n")
 
