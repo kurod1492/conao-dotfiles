@@ -5,15 +5,16 @@ CONFDIR    := conf
 
 COMBINE    := combine
 
-GITHUB     := https://github.com/conao3
+GITHUB     := https://github.com
+REMOTE     := $(GITHUB)/conao3
 REPOS      := leaf.el orglyth.el cort.el
 
 MKDIR      := $(MAKEDIR)/mkdir
-PULL       := $(MAKEDIR)/pull
+CLONE      := $(MAKEDIR)/clone
 DEPLOY     := $(MAKEDIR)/deploy
-INIT       := $(MKDIR) $(PULL) $(DEPLOY)
+INIT       := $(MKDIR) $(CLONE) $(DEPLOY)
 
-EMACS_RAW  := $(shell compgen -c emacs- | xargs)
+EMACS_RAW  := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
 ALL_EMACS  := $(sort $(EMACS_RAW) $(EMACS_RAW))
 EMACS_VERS := $(subst emacs-,,$(ALL_EMACS))
 
@@ -31,13 +32,13 @@ $(MKDIR):
 	mkdir -p $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
 	@touch $(MKDIR)
 
-$(PULL):
-	@$(foreach repo,$(REPOS), \
-	  $(call ECHO_MAGENTA, "git clone $(GITHUB)/${repo}", "\n", ""); \
-	  git clone $(GITHUB)/${repo} $(LISPDIR)/${repo}; \
+$(CLONE):
+	@$(foreach repo, $(REPOS), \
+	  $(call ECHO_MAGENTA, "git clone $(REMOTE)/$(repo)", "\n", ""); \
+	  git clone $(REMOTE)/${repo} $(LISPDIR)/${repo}; \
 	)
 	@$(call ECHO_CYAN, "clone completed!!", "\n", "\n")
-	@touch $(PULL)
+	@touch $(CLONE)
 
 $(DEPLOY):
 	find local -type d -depth 1 | sed 's/$$/\/Makefile/g' | \
