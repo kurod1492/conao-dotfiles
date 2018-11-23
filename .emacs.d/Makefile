@@ -58,26 +58,18 @@ $(LOCAL_MIXFILES): $(MIXFILE)
 	ln -s ../$(<F) $@
 
 ##########
-$(addsuffix /leaf.el, $(LOCAL_LISPDIRS)): $(LISPDIR)/leaf.el
-	@$(call ECHO_MAGENTA, "compile $@...", "\n", "")
-	rm -rf $@
-	mkdir -p $(@D)
-	cp -rf $(LISPDIR)/$(@F) $@
-	$(MAKE) --no-print-directory -C $(dir $(@D)) .make-repo-$(@F)
+define build_repo
+$1: $2;
+	rm -rf $$@
+	mkdir -p $$(@D)
+	cp -rf site-lisp/$$(@F) $$@
+	$$(MAKE) --no-print-directory -C $$(dir $$(@D)) .make-repo-$$(@F)
+endef
 
-$(addsuffix /orglyth.el, $(LOCAL_LISPDIRS)): $(LISPDIR)/orglyth.el
-	@$(call ECHO_MAGENTA, "compile $@...", "\n", "")
-	rm -rf $@
-	mkdir -p $(@D)
-	cp -rf $(LISPDIR)/$(@F) $@
-	$(MAKE) --no-print-directory -C $(dir $(@D)) .make-repo-$(@F)
+$(call build_repo, $(addsuffix /leaf.el,$(LOCAL_LISPDIRS)), site-lisp/leaf.el)
+$(call build_repo, $(addsuffix /orglyth.el,$(LOCAL_LISPDIRS)), site-lisp/orglyth.el)
+$(call build_repo, $(addsuffix /cort.el,$(LOCAL_LISPDIRS)), site-lisp/cort.el)
 
-$(addsuffix /cort.el, $(LOCAL_LISPDIRS)): $(LISPDIR)/cort.el
-	@$(call ECHO_MAGENTA, "compile $@...", "\n", "")
-	rm -rf $@
-	mkdir -p $(@D)
-	cp -rf $(LISPDIR)/$(@F) $@
-	$(MAKE) --no-print-directory -C $(dir $(@D)) .make-repo-$(@F)
 
 #################### support jobs
 ##########
