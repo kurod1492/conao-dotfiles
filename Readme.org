@@ -9,12 +9,11 @@ If you just try my .emacs, clone this repository,
 copy ~.emacs.d~ to arbitrary path such as home folder.
 
 #+BEGIN_SRC bash
-  git clone https://github.com/conao/dotfiles.git ~/.dotfiles
-  cp -r ~/.dotfiles/.emacs.d ~/.emacs.d.conao
+  git clone https://github.com/conao/dotfiles.git ~/.dotfiles-conao
 
-  cd ~/.emacs.d.conao
+  cd ~/.dotfiles-conao
   make
-  emacs -q -l ~/.emacs.d.conao/init.el
+  emacs -q -l ~/.dotfiles-conao/init.el
 #+END_SRC
 
 * <DENGER> Installation
