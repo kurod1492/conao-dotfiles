@@ -38,7 +38,7 @@ all: $(DIRS) build
 	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
 
 test:
-	echo "build_repo,$(addsuffix /leaf.el,$(LOCAL_LISPDIRS)),$(LISPDIR)/leaf.el)"
+	echo $(patsubst %,local/%/site-lisp,$(EMACS_VERS))
 
 $(DIRS):
 	mkdir -p $@

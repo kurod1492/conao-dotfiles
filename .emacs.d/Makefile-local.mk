@@ -14,5 +14,3 @@ all: #build
 	$(if $(wildcard $(LISPDIR)/$(subst .make-repo-,,$@)/Makefile), \
 	  EMACS=$(EMACS) $(MAKE) -C $(LISPDIR)/$(subst .make-repo-,,$@))
 
-clean:
-	-rm rf $(MIXFILE)
