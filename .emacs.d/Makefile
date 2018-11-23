@@ -24,12 +24,12 @@ ALL_EMACS   := $(sort $(EMACS_RAW) $(EMACS_RAW))  # delete duplicate element
 EMACS_VERS  := $(subst emacs-,,$(ALL_EMACS))
 
 LOCALDIRS   := $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
-CREATEDIRS  := $(MAKEDIR) $(LOCALDIR) $(LISPDIR) $(LOCALDIRS)
+DIRS        := $(MAKEDIR) $(LOCALDIR) $(LISPDIR) $(LOCALDIRS)
 
 CONFFILES   := $(CONFDIR)/*.el
 
 .PHONY: all test build clean
-all: $(INIT) build
+all: $(DIRS) $(INIT) build 
 	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
 
 test:
@@ -44,8 +44,8 @@ test:
 	  $(MAKE) -C $(local); \
 	)
 
-$(MKDIR):
-	mkdir -p $(CREATEDIRS)
+$(DIRS):
+	mkdir -p $(DIRS)
 	@$(call ECHO_CYAN, "make job:mkdir completed!!", "\n", "\n")
 	@touch $(MKDIR)
 
@@ -81,7 +81,7 @@ $(MIXFILE): $(CONFFILES)
 	echo "(provide 'conao-mix)" >> $(MIXFILE)
 
 clean:
-	-rm -rf $(CREATEDIRS)
+	-rm -rf $(DIRS)
 	@$(call ECHO_CYAN, "make job:clean completed!!", "\n", "\n")
 
 # load common my local func
