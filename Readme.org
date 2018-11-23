@@ -13,7 +13,7 @@ Start Emacs with explicitly specify ~init.el~'s path.
 
   cd ~/.dotfiles-conao
   make
-  emacs -q -l ~/.dotfiles-conao/init.el
+  emacs -q -l ~/.dotfiles-conao/.emacs.d/init.el
 #+END_SRC
 
 * <DENGER> Installation
