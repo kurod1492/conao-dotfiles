@@ -8,9 +8,9 @@ all: #build
 	echo $(REPOS)
 
 .make-elc-%:
-	$(EMACS) -batch -f batch-byte-compile $(patsubst .make-elc-%.elc,%.el,$@)
+	$(EMACS) -batch -f batch-byte-compile $(*:.elc=.el)
 
 .make-repo-%:
-	$(if $(wildcard $(LISPDIR)/$(subst .make-repo-,,$@)/Makefile), \
-	  EMACS=$(EMACS) $(MAKE) -C $(LISPDIR)/$(subst .make-repo-,,$@))
+	$(if $(realpath $(LISPDIR)/$*/Makefile), \
+	  EMACS=$(EMACS) $(MAKE) -C $(LISPDIR)/$*)
 
