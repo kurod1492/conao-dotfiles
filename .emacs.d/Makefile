@@ -5,8 +5,10 @@ CONFDIR     := conf
 
 MIXRAW      := mixed-raw
 MIX         := mixed
-MIXRAWFILE  := $(LOCALDIR)/$(MIXRAW).el
-MIXFILE     := $(LOCALDIR)/$(MIX).el
+MIXRAWNAME  := $(MIXRAW).el
+MIXFILENAME := $(MIX).el
+MIXRAWFILE  := $(LOCALDIR)/$(MIXRAWNAME)
+MIXFILE     := $(LOCALDIR)/$(MIXFILENAME)
 
 GITHUB      := https://github.com
 REMOTE      := $(GITHUB)/conao3
@@ -54,18 +56,11 @@ $(CLONE):
 	@$(call ECHO_CYAN, "make job:clone completed!!", "\n", "\n")
 	@touch $(CLONE)
 
-$(DEPLOY):
-# mix conf/*.el files
-	find $(CONFDIR) -type f -name "*.el"| xargs cat > $(MIXRAWFILE)
-	cat $(MIXRAWFILE) | \
-	  sed -e 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d' > $(MIXFILE)
-	echo "(provide 'conao-mix)" >> $(MIXFILE)
-
-# deploy files
+$(DEPLOY): $(MIXFILE)
 	$(foreach local, $(LOCALDIRS), \
 	  ln -s ../../Makefile-local.mk $(local)/Makefile; \
+	  ln -s ../$(MIXFILENAME) $(local)/; \
 	  cp -rf $(LISPDIR) $(local)/; \
-	  cp $(MIXFILE) $(local)/; \
 	)
 	@$(call ECHO_CYAN, "make job:deploy completed!!", "\n", "\n")
 	@touch $(DEPLOY)
@@ -78,6 +73,12 @@ build:
 	  $(MAKE) -C $(local); \
 	)
 	@$(call ECHO_CYAN, "make job:build completed!!", "\n", "\n")
+
+$(MIXFILE):
+	find $(CONFDIR) -type f -name "*.el"| xargs cat > $(MIXRAWFILE)
+	cat $(MIXRAWFILE) | \
+	  sed -e 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d' > $(MIXFILE)
+	echo "(provide 'conao-mix)" >> $(MIXFILE)
 
 clean:
 	-rm -rf $(CREATEDIRS)
