@@ -20,7 +20,7 @@
 
 ;;; Commentary:
 
-;;
+;; 
 
 ;;; Code:
 
@@ -48,27 +48,27 @@
   (use-package helm-descbinds :ensure t :defer t
     :config
     (helm-descbinds-install))
-
+  
   ;; Change helm-command-prefix "C-x c" to "c-c h"
   ;; default "C-x c" is quite close to "C-x C-c" which quits Emacs
   ;;  (global-set-key (kbd "C-c h") helm-command-map)
   (global-unset-key (kbd "C-x c"))
-
+  
   (when (executable-find "curl")
     (setq helm-net-prefer-curl t))
-
+  
   (setq helm-split-window-inside-p            t ; open helm buffer inside current window, not occupy whole other window
         helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
         helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
         helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
         helm-ff-file-name-history-use-recentf t
         helm-echo-input-in-header-line nil)
-
+  
   ;; helm window setting
   (setq helm-autoresize-max-height 0)
   (setq helm-autoresize-min-height 40)
   (helm-autoresize-mode t)
-
+  
   ;; enable fuzzy seach in helm-mini, semantic
   (setq helm-M-x-fuzzy-match        t
         helm-buffers-fuzzy-matching t
@@ -76,13 +76,13 @@
         helm-semantic-fuzzy-match   t
         helm-imenu-fuzzy-match      t
         helm-apropos-fuzzy-match    t)
-
+  
   (setq helm-input-idle-delay 0.0) ; 文字列を入力してから検索するまでのタイムラグ。デフォルトで 0
   (setq helm-candidate-number-limit 100) ; 表示する最大候補数。デフォルトで 50
 
   ;; use man in helm (C-c h m)
   (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
-
+  
   (helm-mode 1))
 
 (use-package smartparens :diminish ""
@@ -101,11 +101,11 @@
               ("C-n" . ac-next)
               ("C-p" . ac-previous))
   :init
-  (use-package fuzzy)
+  (use-package fuzzy  )
   (use-package pos-tip)
-
+  
   :config
-  (require 'auto-complete-config)
+  (use-package auto-complete-config)
   (ac-config-default)
   (setq ac-auto-show-menu   0
         ac-delay            0
@@ -114,13 +114,13 @@
         ac-auto-start       1
         ac-use-menu-map     t)
   (push 'ac-source-filename ac-sources)
-
+  
   (ac-flyspell-workaround)
   (add-to-list 'ac-modes 'text-mode)
   (add-to-list 'ac-modes 'fundamental-mode)
   (add-to-list 'ac-modes 'org-mode)
   (add-to-list 'ac-modes 'yatex-mode)
-
+  
   (push 'ac-source-filename ac-sources)
   ;; auto-complete の候補に日本語を含む単語が含まれないようにする
   ;; http://d.hatena.ne.jp/IMAKADO/20090813/1250130343
@@ -141,7 +141,7 @@
     (setq yatemplate-dir (user-setting-directory "template"))
     (yatemplate-fill-alist)
     (auto-insert-mode 1))
-
+  
   (prog1 "yas-desable-flymake-when-expanding"
     (defvar flymake-is-active-flag nil)
 
@@ -265,7 +265,7 @@
     (setq migemo-command "cmigemo")
     (setq migemo-options '("-q" "--emacs"))
     (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
-
+    
     (setq migemo-user-dictionary nil)
     (setq migemo-regex-dictionary nil)
     (setq migemo-coding-system 'utf-8-unix)
@@ -284,7 +284,7 @@
               ("u" . upcase-region)
               ("d" . downcase-region)
               ("c" . capitalize-region)
-
+              
               ("k" . kill-region)
               ("m" . apply-macro-to-region-lines)
 
