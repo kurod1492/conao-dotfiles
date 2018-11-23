@@ -11,7 +11,7 @@ Start Emacs with explicitly specify ~init.el~'s path.
 #+BEGIN_SRC bash
   git clone https://github.com/conao/dotfiles.git ~/.dotfiles-conao
 
-  cd ~/.dotfiles-conao
+  cd ~/.dotfiles-conao/.emacs.d
   make
   emacs -q -l ~/.dotfiles-conao/.emacs.d/init.el
 #+END_SRC
