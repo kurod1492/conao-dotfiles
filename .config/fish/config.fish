@@ -16,9 +16,6 @@ end
 # homebrew
 set PATH /usr/local/bin $PATH
 
-## llvm 
-set -g fish_user_paths "/usr/local/opt/llvm/bin" $fish_user_paths
-
 # bindings
 function fish_user_key_bindings
   bind \cr 'peco_select_history (commandline -b)'
