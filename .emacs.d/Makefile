@@ -1,35 +1,38 @@
-MAKEDIR    := .make
-LOCALDIR   := local
-LISPDIR    := site-lisp
-CONFDIR    := conf
+MAKEDIR     := .make
+LOCALDIR    := local
+LISPDIR     := site-lisp
+CONFDIR     := conf
 
-COMBINE    := combine
+COMBINE     := combine
 
-GITHUB     := https://github.com
-REMOTE     := $(GITHUB)/conao3
-REPOS      := leaf.el orglyth.el cort.el
+GITHUB      := https://github.com
+REMOTE      := $(GITHUB)/conao3
+REPOS       := leaf.el orglyth.el cort.el
 
-MKDIR      := $(MAKEDIR)/mkdir
-CLONE      := $(MAKEDIR)/clone
-DEPLOY     := $(MAKEDIR)/deploy
-INIT       := $(MKDIR) $(CLONE) $(DEPLOY)
+MKDIR       := $(MAKEDIR)/mkdir
+CLONE       := $(MAKEDIR)/clone
+DEPLOY      := $(MAKEDIR)/deploy
+INIT        := $(MKDIR) $(CLONE) $(DEPLOY)
 
-EMACS_RAW  := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
-ALL_EMACS  := $(sort $(EMACS_RAW) $(EMACS_RAW))  # delete duplicate element
-EMACS_VERS := $(subst emacs-,,$(ALL_EMACS))
+EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
+ALL_EMACS   := $(sort $(EMACS_RAW) $(EMACS_RAW))  # delete duplicate element
+EMACS_VERS  := $(subst emacs-,,$(ALL_EMACS))
 
+CREATE_DIRS := $(MAKEDIR) $(LOCALDIR) $(LISPDIR) \
+               $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
 
 .PHONY: all test build clean
 all: $(INIT) build
 	@$(call ECHO_YELLOW, "make all is finish", "", "\n")
 
 test:
-	echo $(EMACS_VERS)
+	echo "$(CREATE_DIRS)"
+	echo "$(EMACS_VERS)"
 	echo $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
+	$(foreach ver, $(EMACS_VERS), echo "$(ver)";)
 
 $(MKDIR):
-	mkdir -p $(LISPDIR) $(LOCALDIR) $(MAKEDIR)
-	mkdir -p $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
+	mkdir -p $(CREATE_DIRS)
 	@touch $(MKDIR)
 
 $(CLONE):
@@ -67,9 +70,7 @@ build:
 	@$(call ECHO_CYAN, "compile completed!!", "\n", "\n")
 
 clean:
-	-rm -rf $(LOCALDIR)
-	-rm -rf $(LISPDIR)
-	-rm -rf $(MAKEDIR)
+	-rm -rf $(CREATE_DIRS)
 
 # load common my local func
 include Makefunc.mk
