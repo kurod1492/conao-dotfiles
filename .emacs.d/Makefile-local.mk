@@ -1,5 +1,5 @@
-EMACS := emacs
+EMACS ?= emacs-$(shell basename `pwd`)
 
 all:
-	basename `pwd`
+	echo $(EMACS)
 	echo $(REPOS)
