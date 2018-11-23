@@ -35,6 +35,7 @@ test:
 	@$(foreach local, $(LOCALDIRS), \
 	  echo "ln -s ../../Makefile-local.mk $(local)/Makefile"; \
 	  echo "cp -rf $(LISPDIR) $(local)/"; \
+	  $(MAKE) -C $(local); \
 	)
 
 $(MKDIR):
@@ -61,6 +62,10 @@ $(DEPLOY):
 build:
 # target Emacs(s)
 	@$(call ECHO_YELLOW, "Emacs versions... $(EMACS_VERS)", "", "")
+	@$(foreach local, $(LOCALDIRS), \
+	  $(call ECHO_MAGENTA, "compile on $(local)...", "\n", ""); \
+	  $(MAKE) -C $(local); \
+	)
 
 # combine conf/*.el files
 	find $(CONFDIR) -type f -name "*.el"| xargs cat > $(LOCALDIR)/$(COMBINE).el
@@ -75,7 +80,7 @@ build:
 	  mkdir -p ${ver}; \
 	  mv $(COMBINE).elc ${ver}/; \
 	)
-	@$(call ECHO_CYAN, "compile completed!!", "\n", "\n")
+	@$(call ECHO_CYAN, "make job:build completed!!", "\n", "\n")
 
 clean:
 	-rm -rf $(CREATEDIRS)
