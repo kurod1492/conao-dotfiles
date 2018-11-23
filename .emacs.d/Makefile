@@ -2,10 +2,8 @@ LOCALDIR    := local
 LISPDIR     := site-lisp
 CONFDIR     := conf
 
-MIXRAW      := mixed-raw
-MIX         := mixed
-MIXRAWNAME  := $(MIXRAW).el
-MIXFILENAME := $(MIX).el
+MIXRAWNAME  := mixed-raw.el
+MIXFILENAME := mixed.el
 MIXRAWFILE  := $(LOCALDIR)/$(MIXRAWNAME)
 MIXFILE     := $(LOCALDIR)/$(MIXFILENAME)
 
