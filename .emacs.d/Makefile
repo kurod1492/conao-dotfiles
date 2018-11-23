@@ -39,6 +39,8 @@ all: $(DIRS) build
 
 test:
 	echo $(MAKEFILE_LIST)
+	$(foreach repo, $(REPOS), \
+	  $(call test-,$(repo),$(addsuffix $(LISPDIR)/$(repo),$(LOCALDIRS))))
 
 $(DIRS):
 	mkdir -p $@
@@ -59,15 +61,13 @@ $(LOCAL_MIXFILES): $(MIXFILE)
 
 ##########
 define build_repo
-$(LOCALDIR)/$(2)/$(LISPDIR)/$(1): $(LISPDIR)/$(1)
+$(addsuffix /$(LISPDIR)/$(1), $(LOCALDIRS)): $(LISPDIR)/$(1)
 	@$$(call ECHO_MAGENTA, "compile $$@...", "\n", "")
 	mkdir -p $$(@D)
 	cp -rf $(LISPDIR)/$$(@F) $$@
 	$$(MAKE) --no-print-directory -C $$(dir $$(@D)) .make-repo-$$(@F)
 endef
-$(foreach repo, $(REPOS), \
-  $(foreach ver, $(EMACS_VERS), \
-    $(eval $(call build_repo,$(repo),$(ver)))))
+$(foreach repo, $(REPOS), $(eval $(call build_repo,$(repo))))
 
 #################### support jobs
 ##########
