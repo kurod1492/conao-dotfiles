@@ -1,10 +1,11 @@
+#+author: conao
+$+date: <2018-11-24 Sat>
+
 * Conao's dotfiles
-** Installation
+[[https://github.com/conao3/dotfiles.el][https://img.shields.io/github/license/conao3/dotfiles.svg?style=flat-square]]
+* Installation
 #+BEGIN_SRC bash
-  cd
-  git clone https://github.com/conao/dotfiles.git .dotfiles
-  ln -s .dotfiles/.emacs.d .emacs.d
-  ln -s .dotfiles/.bashrc .bashrc
-  ln -s .dotfiles/.bash_profile .bash_profile
+  git clone https://github.com/conao/dotfiles.git ~/.dotfiles
+  cd ~/.dotfiles; make
 #+END_SRC
 
