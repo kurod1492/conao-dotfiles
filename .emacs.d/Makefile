@@ -18,8 +18,9 @@ EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
 ALL_EMACS   := $(sort $(EMACS_RAW) $(EMACS_RAW))  # delete duplicate element
 EMACS_VERS  := $(subst emacs-,,$(ALL_EMACS))
 
-CREATE_DIRS := $(MAKEDIR) $(LOCALDIR) $(LISPDIR) \
-               $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
+LOCALDIRS   := $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
+CREATEDIRS  := $(MAKEDIR) $(LOCALDIR) $(LISPDIR) $(LOCALDIRS)
+
 
 .PHONY: all test build clean
 all: $(INIT) build
@@ -30,9 +31,10 @@ test:
 	echo "$(EMACS_VERS)"
 	echo $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
 	$(foreach ver, $(EMACS_VERS), echo "$(ver)";)
+	$(foreach local, $(LOCALDIRS), echo "$(local)";)
 
 $(MKDIR):
-	mkdir -p $(CREATE_DIRS)
+	mkdir -p $(CREATEDIRS)
 	@touch $(MKDIR)
 
 $(CLONE):
@@ -70,7 +72,7 @@ build:
 	@$(call ECHO_CYAN, "compile completed!!", "\n", "\n")
 
 clean:
-	-rm -rf $(CREATE_DIRS)
+	-rm -rf $(CREATEDIRS)
 
 # load common my local func
 include Makefunc.mk
