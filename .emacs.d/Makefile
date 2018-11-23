@@ -4,67 +4,91 @@ CONFDIR     := conf
 
 MIXRAWNAME  := mixed-raw.el
 MIXFILENAME := mixed.el
+MIXELCNAME  := mixed.elc
 MIXRAWFILE  := $(LOCALDIR)/$(MIXRAWNAME)
 MIXFILE     := $(LOCALDIR)/$(MIXFILENAME)
 
 GITHUB      := https://github.com
 REMOTE      := $(GITHUB)/conao3
 REPOS       := leaf.el orglyth.el cort.el
+REPODIRS    := $(addprefix $(LISPDIR)/, $(REPOS))
 
 EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
-ALL_EMACS   := $(sort $(EMACS_RAW) $(EMACS_RAW))  # delete duplicate element
+ALL_EMACS   := $(strip $(sort $(EMACS_RAW)))
 EMACS_VERS  := $(subst emacs-,,$(ALL_EMACS))
 
-LOCALDIRS   := $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
+CONFFILES   := $(CONFDIR)/*.el
+MAKEFILE    := Makefile-local.mk
+
+LOCALDIRS   := $(addprefix $(LOCALDIR)/, $(EMACS_VERS))
 DIRS        := $(LOCALDIR) $(LISPDIR) $(LOCALDIRS)
 
-CONFFILES   := $(CONFDIR)/*.el
+SED_MIXFILE := 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d'
+
+LOCAL_MAKEFILES   := $(addsuffix /Makefile, $(LOCALDIRS))
+LOCAL_MIXFILES    := $(addsuffix /$(MIXFILENAME), $(LOCALDIRS))
+LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME), $(LOCALDIRS))
+LOCAL_LISPDIRS    := $(addsuffix /$(LISPDIR), $(LOCALDIRS))
+LOCAL_REPOS       := $(foreach repo, $(REPOS), $(addsuffix /$(repo), $(LOCAL_LISPDIRS)))
+
+##################################################
 
 .PHONY: all test deploy build clean
-all: $(DIRS) deploy build 
+all: $(DIRS) build
 	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
 
 test:
-	echo "$(CREATE_DIRS)"
-	echo "$(EMACS_VERS)"
-	echo $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
-	$(foreach ver, $(EMACS_VERS), echo "$(ver)";)
-	$(foreach local, $(LOCALDIRS), echo "$(local)";)
-	@$(foreach local, $(LOCALDIRS), \
-	  echo "ln -s ../../Makefile-local.mk $(local)/Makefile"; \
-	  echo "cp -rf $(LISPDIR) $(local)/"; \
-	  $(MAKE) -C $(local); \
-	)
+	echo "build_repo,$(addsuffix /leaf.el,$(LOCAL_LISPDIRS)),$(LISPDIR)/leaf.el)"
 
 $(DIRS):
-	mkdir -p $(DIRS)
+	mkdir -p $@
 
-	@$(foreach repo, $(REPOS), \
-	  $(call ECHO_MAGENTA, "git clone $(REMOTE)/$(repo)", "\n", ""); \
-	  git clone $(REMOTE)/${repo} $(LISPDIR)/${repo}; \
-	)
+build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS)
 
-deploy: $(MIXFILE)
-	@$(foreach local, $(LOCALDIRS), \
-	  ln -s ../../Makefile-local.mk $(local)/Makefile; \
-	  ln -s ../$(MIXFILENAME) $(local)/; \
-	  cp -rf $(LISPDIR) $(local)/; \
-	)
-	@$(call ECHO_CYAN, "make job:deploy completed!!", "\n", "\n")
+#################### main jobs
+##########
+$(LOCAL_MIXELCFILES): $(LOCAL_MAKEFILES) $(LOCAL_MIXFILES)
+	@$(call ECHO_MAGENTA, "compile $@...", "\n", "")
+	$(MAKE) --no-print-directory -C $(@D) .make-elc-$(@F)
 
-build:
-	@$(call ECHO_YELLOW, "Emacs versions... $(EMACS_VERS)", "", "")
-	@$(foreach local, $(LOCALDIRS), \
-	  $(call ECHO_MAGENTA, "compile on $(local)...", "\n", ""); \
-	  $(MAKE) -C $(local); \
-	)
-	@$(call ECHO_CYAN, "make job:build completed!!", "\n", "\n")
+$(LOCAL_MAKEFILES): $(MAKEFILE)
+	ln -s ../../$< $@
 
+$(LOCAL_MIXFILES): $(MIXFILE)
+	ln -s ../$(<F) $@
+
+##########
+$(addsuffix /leaf.el, $(LOCAL_LISPDIRS)): $(LISPDIR)/leaf.el
+	@$(call ECHO_MAGENTA, "compile $@...", "\n", "")
+	rm -rf $@
+	mkdir -p $(@D)
+	cp -rf $(LISPDIR)/$(@F) $@
+	$(MAKE) --no-print-directory -C $(dir $(@D)) .make-repo-$(@F)
+
+$(addsuffix /orglyth.el, $(LOCAL_LISPDIRS)): $(LISPDIR)/orglyth.el
+	@$(call ECHO_MAGENTA, "compile $@...", "\n", "")
+	rm -rf $@
+	mkdir -p $(@D)
+	cp -rf $(LISPDIR)/$(@F) $@
+	$(MAKE) --no-print-directory -C $(dir $(@D)) .make-repo-$(@F)
+
+$(addsuffix /cort.el, $(LOCAL_LISPDIRS)): $(LISPDIR)/cort.el
+	@$(call ECHO_MAGENTA, "compile $@...", "\n", "")
+	rm -rf $@
+	mkdir -p $(@D)
+	cp -rf $(LISPDIR)/$(@F) $@
+	$(MAKE) --no-print-directory -C $(dir $(@D)) .make-repo-$(@F)
+
+#################### support jobs
+##########
 $(MIXFILE): $(CONFFILES)
-	find $(CONFDIR) -type f -name "*.el"| xargs cat > $(MIXRAWFILE)
-	cat $(MIXRAWFILE) | \
-	  sed -e 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d' > $(MIXFILE)
+	cat $^ > $(MIXRAWFILE)
+	cat $(MIXRAWFILE) | sed -e $(SED_MIXFILE) > $(MIXFILE)
 	echo "(provide 'conao-mix)" >> $(MIXFILE)
+
+$(REPODIRS):
+	@$(call ECHO_MAGENTA, "git clone $(REMOTE)/$(@F)", "\n", "")
+	git clone $(REMOTE)/$(@F) $@
 
 clean:
 	-rm -rf $(DIRS)
