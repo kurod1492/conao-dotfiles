@@ -7,7 +7,7 @@
 * Try .emacs
 If you just try my .emacs, clone this repository, 
 copy ~.emacs.d~ to arbitrary path such as home folder.
-
+Start Emacs with explicitly specify ~init.el~'s path.
 #+BEGIN_SRC bash
   git clone https://github.com/conao/dotfiles.git ~/.dotfiles-conao
 
