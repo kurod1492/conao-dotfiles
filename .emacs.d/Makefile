@@ -15,9 +15,7 @@ INIT               := $(MKDIR) $(PULL) $(DEPLOY)
 ALL_EMACS_VERS     := $(shell compgen -c emacs- | grep -oP '(?<=emacs-)([0-9]|\.)+' | sort | uniq)
 
 all: $(INIT) build
-	$(call ECHO_YELLOW, "make all is finish")
-test:
-	printf "\a"
+	@$(call ECHO_YELLOW, "make all is finish", "", "\n")
 
 $(MKDIR):
 	mkdir -p $(SITE_LISP_DIR)
@@ -28,11 +26,10 @@ $(MKDIR):
 
 $(PULL):
 	@$(foreach repo,$(REPOS), \
-	  echo "\n"; \
-	  $(call ECHO_MAGENTA,"git clone $(GITHUB)/${repo}"); \
+	  $(call ECHO_MAGENTA, "git clone $(GITHUB)/${repo}", "\n", ""); \
 	  git clone $(GITHUB)/${repo} $(SITE_LISP_DIR)/${repo}; \
 	)
-	@$(call ECHO_CYAN,"clone completed!!","\n","\n")
+	@$(call ECHO_CYAN, "clone completed!!", "\n", "\n")
 	@touch $(PULL)
 
 $(DEPLOY):
@@ -53,18 +50,13 @@ build:
 
 # byte compile by all Emacs(s)
 	@cd $(LOCALDIR); \
-	for ver in $(ALL_EMACS_VERS); do \
-		echo \\n; \
-		$(COLOR_MAGENTA); \
-		echo "===  compile by emacs-$${ver}...  ==="; \
-		$(COLOR_DEFAULT); \
-		emacs-$${ver} -batch -f batch-byte-compile $(COMBINE).el; \
-		mkdir -p $${ver}; \
-		mv $(COMBINE).elc $${ver}/; \
-	done
-	@echo "\n"
-	$(call ECHO_CYAN, "compile completed!!")
-	@echo "\n"
+	@$(foreach ver, $(ALL_EMACS_VERS), \
+	  $(call ECHO_MAGENTA, "compile by emacs-${ver}...", "\n", ""); \
+	  emacs-${ver} -batch -f batch-byte-compile $(COMBINE).el; \
+	  mkdir -p ${ver}; \
+	  mv $(COMBINE).elc ${ver}/; \
+	)
+	@$(call ECHO_CYAN, "compile completed!!", "\n", "\n")
 
 clean:
 	-rm -rf $(LOCALDIR)

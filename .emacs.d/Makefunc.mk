@@ -6,7 +6,7 @@
 #
 # echo with color
 
-ECHO_COLOR   = printf "%b\e[%bm%b\e[m%b\n" $3 $1 $2 $4
+ECHO_COLOR   = printf "%b\e[%bm=== %b ===\e[m%b\n" $3 $1 $2 $4
 ECHO_COLOR-  = printf "%b\e[%bm%b\e[m%b" $3 $1 $2 $4
 
 #                                 1, 2, 3,  4
