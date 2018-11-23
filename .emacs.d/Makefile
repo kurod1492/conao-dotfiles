@@ -26,6 +26,7 @@ EMACS_VERS  := $(subst emacs-,,$(ALL_EMACS))
 LOCALDIRS   := $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
 CREATEDIRS  := $(MAKEDIR) $(LOCALDIR) $(LISPDIR) $(LOCALDIRS)
 
+CONFFILES   := $(CONFDIR)/*.el
 
 .PHONY: all test build clean
 all: $(INIT) build
@@ -66,7 +67,6 @@ $(DEPLOY): $(MIXFILE)
 	@touch $(DEPLOY)
 
 build:
-# target Emacs(s)
 	@$(call ECHO_YELLOW, "Emacs versions... $(EMACS_VERS)", "", "")
 	@$(foreach local, $(LOCALDIRS), \
 	  $(call ECHO_MAGENTA, "compile on $(local)...", "\n", ""); \
@@ -74,7 +74,7 @@ build:
 	)
 	@$(call ECHO_CYAN, "make job:build completed!!", "\n", "\n")
 
-$(MIXFILE):
+$(MIXFILE): $(CONFFILES)
 	find $(CONFDIR) -type f -name "*.el"| xargs cat > $(MIXRAWFILE)
 	cat $(MIXRAWFILE) | \
 	  sed -e 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d' > $(MIXFILE)
