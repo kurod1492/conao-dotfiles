@@ -38,7 +38,7 @@ all: $(DIRS) build
 	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
 
 test:
-	echo $(patsubst %,local/%/site-lisp,$(EMACS_VERS))
+	echo $(MAKEFILE_LIST)
 
 $(DIRS):
 	mkdir -p $@
@@ -59,17 +59,15 @@ $(LOCAL_MIXFILES): $(MIXFILE)
 
 ##########
 define build_repo
-$1: $2;
-	rm -rf $$@
+$(LOCALDIR)/$(2)/$(LISPDIR)/$(1): $(LISPDIR)/$(1)
+	@$$(call ECHO_MAGENTA, "compile $$@...", "\n", "")
 	mkdir -p $$(@D)
-	cp -rf site-lisp/$$(@F) $$@
+	cp -rf $(LISPDIR)/$$(@F) $$@
 	$$(MAKE) --no-print-directory -C $$(dir $$(@D)) .make-repo-$$(@F)
 endef
-
-$(call build_repo, $(addsuffix /leaf.el,$(LOCAL_LISPDIRS)), site-lisp/leaf.el)
-$(call build_repo, $(addsuffix /orglyth.el,$(LOCAL_LISPDIRS)), site-lisp/orglyth.el)
-$(call build_repo, $(addsuffix /cort.el,$(LOCAL_LISPDIRS)), site-lisp/cort.el)
-
+$(foreach repo, $(REPOS), \
+  $(foreach ver, $(EMACS_VERS), \
+    $(eval $(call build_repo,$(repo),$(ver)))))
 
 #################### support jobs
 ##########
