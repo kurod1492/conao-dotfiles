@@ -51,7 +51,7 @@ build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS)
 ##########
 $(LOCAL_MIXELCFILES): $(LOCAL_MAKEFILES) $(LOCAL_MIXFILES)
 	@$(call ECHO_MAGENTA, "compile $@...", "\n", "")
-	$(MAKE) --no-print-directory -C $(@D) .make-elc-$(@F)
+	$(MAKE) --no-print-directory -C $(@D) .make-elc-$(@F) 2>/dev/null
 
 $(LOCAL_MAKEFILES): $(MAKEFILE)
 	ln -s ../../$< $@
@@ -65,7 +65,7 @@ $(addsuffix /$(LISPDIR)/$(1), $(LOCALDIRS)): $(LISPDIR)/$(1)
 	@$$(call ECHO_MAGENTA, "compile $$@...", "\n", "")
 	mkdir -p $$(@D)
 	cp -rf $(LISPDIR)/$$(@F) $$@
-	$$(MAKE) --no-print-directory -C $$(dir $$(@D)) .make-repo-$$(@F)
+	$$(MAKE) --no-print-directory -C $$(dir $$(@D)) .make-repo-$$(@F) 2>/dev/null
 endef
 $(foreach repo, $(REPOS), $(eval $(call build_repo,$(repo))))
 
