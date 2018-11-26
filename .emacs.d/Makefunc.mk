@@ -6,18 +6,17 @@
 #
 # echo with color
 
-ECHO_COLOR   = printf "%b\e[%bm=== %b ===\e[m%b\n" $3 $1 $2 $4
-ECHO_COLOR-  = printf "%b\e[%bm%b\e[m%b" $3 $1 $2 $4
+ECHO_COLOR    = printf "%b\e[%bm=== %b ===\e[m%b\n" $3 $1 $2 $4
+ECHO_COLOR-   = printf "%b\e[%bm%b\e[m%b" $3 $1 $2 $4
 
-#                                 1, 2, 3,  4
-ECHO_BLACK   = $(call ECHO_COLOR, "30", $1, $2, $3)
-ECHO_RED     = $(call ECHO_COLOR, "31", $1, $2, $3)
-ECHO_GREEN   = $(call ECHO_COLOR, "32", $1, $2, $3)
-ECHO_YELLOW  = $(call ECHO_COLOR, "33", $1, $2, $3)
-ECHO_BLUE    = $(call ECHO_COLOR, "34", $1, $2, $3)
-ECHO_MAGENTA = $(call ECHO_COLOR, "35", $1, $2, $3)
-ECHO_CYAN    = $(call ECHO_COLOR, "36", $1, $2, $3)
-ECHO_WHITE   = $(call ECHO_COLOR, "37", $1, $2, $3)
+ECHO_BLACK    = $(call ECHO_COLOR, "30", $1, $2, $3)
+ECHO_RED      = $(call ECHO_COLOR, "31", $1, $2, $3)
+ECHO_GREEN    = $(call ECHO_COLOR, "32", $1, $2, $3)
+ECHO_YELLOW   = $(call ECHO_COLOR, "33", $1, $2, $3)
+ECHO_BLUE     = $(call ECHO_COLOR, "34", $1, $2, $3)
+ECHO_MAGENTA  = $(call ECHO_COLOR, "35", $1, $2, $3)
+ECHO_CYAN     = $(call ECHO_COLOR, "36", $1, $2, $3)
+ECHO_WHITE    = $(call ECHO_COLOR, "37", $1, $2, $3)
 
 ECHO_BLACK-   = $(call ECHO_COLOR-, "30", $1, $2, $3)
 ECHO_RED-     = $(call ECHO_COLOR-, "31", $1, $2, $3)
