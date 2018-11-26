@@ -31,6 +31,9 @@ LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME), $(LOCALDIRS))
 LOCAL_LISPDIRS    := $(addsuffix /$(LISPDIR), $(LOCALDIRS))
 LOCAL_REPOS       := $(foreach repo, $(REPOS), $(addsuffix /$(repo), $(LOCAL_LISPDIRS)))
 
+CURRENT_BRANCH = $(shell cd $1; test -d .git && git branch | grep \* | cut -d ' ' -f2)
+PULL_JOBS     := $(addprefix .make-pull-, $(REPOS))
+
 ##################################################
 
 .PHONY: all test build clean
@@ -38,9 +41,7 @@ all: $(DIRS) build
 	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
 
 test:
-	echo $(MAKEFILE_LIST)
-	$(foreach repo, $(REPOS), \
-	  $(call test-,$(repo),$(addsuffix $(LISPDIR)/$(repo),$(LOCALDIRS))))
+	echo $(call CURRENT_BRANCH, site-lisp/leaf.el)
 
 $(DIRS):
 	mkdir -p $@
@@ -79,6 +80,10 @@ $(MIXFILE): $(CONFFILES)
 $(REPODIRS):
 	@$(call ECHO_MAGENTA, "git clone $(REMOTE)/$(@F)", "\n", "")
 	git clone $(REMOTE)/$(@F) $@
+
+update: $(REPOS:%=.make-update-%) .make-update-.
+.make-update-%:
+	cd $(LISPDIR)/$*; git pull origin $(call CURRENT_BRANCH, $(LISPDIR)/$*)
 
 clean:
 	-rm -rf $(DIRS)
