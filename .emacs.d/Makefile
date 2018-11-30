@@ -15,7 +15,9 @@ REPODIRS    := $(addprefix $(LISPDIR)/, $(REPOS))
 
 EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
 ALL_EMACS   := $(strip $(sort $(EMACS_RAW)))
-EMACS_VERS  := $(subst emacs-,,$(ALL_EMACS))
+VERNAME_SEXP:= '(let((lst `(,@(version-to-list emacs-version)0 0 0 0)))(defun p()(pop lst)) \
+                (princ(format"%d.%d.%d.%d"(p)(p)(p)(p))))'
+EMACS_VERS  := $(foreach ver,$(ALL_EMACS),$(shell $(ver) -Q --batch --eval=$(VERNAME_SEXP)))
 
 CONFFILES   := $(CONFDIR)/*.el
 MAKEFILE    := Makefile-local.mk
@@ -38,9 +40,7 @@ all: $(DIRS) build
 	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
 
 test:
-	echo $(MAKEFILE_LIST)
-	$(foreach repo, $(REPOS), \
-	  $(call test-,$(repo),$(addsuffix $(LISPDIR)/$(repo),$(LOCALDIRS))))
+	echo $(EMACS_VERS)
 
 $(DIRS):
 	mkdir -p $@
