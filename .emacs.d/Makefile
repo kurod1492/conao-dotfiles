@@ -17,12 +17,10 @@ REMOTE      := $(GITHUB)/conao3
 REPOS       := leaf.el orglyth.el cort.el
 REPODIRS    := $(addprefix $(LISPDIR)/, $(REPOS))
 
-VERNAME_SEXP:= '(let((lst `(,@(version-to-list emacs-version)0 0 0 0)))(defun p()(pop lst)) \
-                (princ(format"%d.%d.%d.%d"(p)(p)(p)(p))))'
+VERNAME_CMD := --version | head -n 1 | cut -d ' ' -f 3 | grep -oP '^\d+\.\d+'   
 EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
 ALL_EMACS   := $(strip $(sort $(EMACS_RAW)))
-# EMACS_VERS  := $(foreach ver,$(ALL_EMACS),$(shell $(ver) -Q --batch --eval=$(VERNAME_SEXP)))
-EMACS_VERS := $(foreach ver, $(ALL_EMACS), $(shell $(ver) --version | head -n 1 | cut -d ' ' -f 3))
+EMACS_VERS  := $(foreach ver, $(ALL_EMACS), $(shell $(ver) $(VERNAME_CMD)))
 EMACS_DIC   := $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
 
 CONFFILES   := $(CONFDIR)/*.el
@@ -48,7 +46,7 @@ all: $(DIRS) build
 test:
 	echo $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
 	@echo $(EMACS_DIC)
-	@echo $(call VAL2KEY,$(EMACS_DIC),22.1.1.0)
+	@echo $(call VAL2KEY,$(EMACS_DIC),22.1)
 
 $(DIRS):
 	mkdir -p $@
