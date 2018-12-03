@@ -13,11 +13,12 @@ REMOTE      := $(GITHUB)/conao3
 REPOS       := leaf.el orglyth.el cort.el
 REPODIRS    := $(addprefix $(LISPDIR)/, $(REPOS))
 
-EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
-ALL_EMACS   := $(strip $(sort $(EMACS_RAW)))
 VERNAME_SEXP:= '(let((lst `(,@(version-to-list emacs-version)0 0 0 0)))(defun p()(pop lst)) \
                 (princ(format"%d.%d.%d.%d"(p)(p)(p)(p))))'
+EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
+ALL_EMACS   := $(strip $(sort $(EMACS_RAW)))
 EMACS_VERS  := $(foreach ver,$(ALL_EMACS),$(shell $(ver) -Q --batch --eval=$(VERNAME_SEXP)))
+EMACS_DIC   := $(join $(ALL_EMACS:%=%/), $(EMACS_VERS))
 
 CONFFILES   := $(CONFDIR)/*.el
 MAKEFILE    := Makefile-local.mk
@@ -40,7 +41,8 @@ all: $(DIRS) build
 	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
 
 test:
-	echo $(EMACS_VERS)
+	@echo $(EMACS_DIC)
+	@echo $(call VAL2KEY,$(EMACS_DIC),22.1.1.0)
 
 $(DIRS):
 	mkdir -p $@

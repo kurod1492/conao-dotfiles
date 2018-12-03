@@ -1,10 +1,24 @@
 #
 # Makefunk.mk
 #
-# version: v1.6
-# last update: 2018/11/22
+# version: v1.7
+# last update: 2018/12/03
 #
 # echo with color
+
+##################################################
+#
+#  dictionary
+#    (KEY)/(VAL) data class
+#
+
+KEY2VAL = $(shell echo $1 | grep -Po '(?<=$2/)[^\s]+')
+VAL2KEY = $(shell echo $1 | grep -Po '[^\s]+(?=/$2)')
+
+##################################################
+#
+#  color
+#
 
 ECHO_COLOR    = printf "%b\e[%bm=== %b ===\e[m%b\n" $3 $1 $2 $4
 ECHO_COLOR-   = printf "%b\e[%bm%b\e[m%b" $3 $1 $2 $4
