@@ -21,7 +21,10 @@ VERNAME_CMD := --version | head -n 1 | cut -d ' ' -f 3 | grep -oP '^\d+\.\d+'
 EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
 ALL_EMACS   := $(strip $(sort $(EMACS_RAW)))
 EMACS_VERS  := $(foreach ver, $(ALL_EMACS), $(shell $(ver) $(VERNAME_CMD)))
-EMACS_DIC   := $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
+
+EMACS_DIC    := $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
+EMACS_KEY2VAL = $(call KEY2VAL,$(EMACS_DIC),$1)
+EMACS_VAL2KEY = $(call VAL2KEY,$(EMACS_DIC),$1)
 
 CONFFILES   := $(CONFDIR)/*.el
 MAKEFILE    := Makefile-local.mk
@@ -57,7 +60,8 @@ build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS)
 ##########
 $(LOCAL_MIXELCFILES): $(LOCAL_MAKEFILES) $(LOCAL_MIXFILES)
 	@$(call ECHO_MAGENTA, "compile $@...", "\n", "")
-	$(MAKE) --no-print-directory -C $(@D) .make-elc-$(@F) 2>/dev/null
+#	$(MAKE) --no-print-directory -C $(@D) .make-elc-$(@F) 2>/dev/null
+	$(call VAL2KEY,
 
 $(LOCAL_MAKEFILES): $(MAKEFILE)
 	ln -s ../../$< $@
