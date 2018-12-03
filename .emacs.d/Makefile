@@ -18,7 +18,7 @@ VERNAME_SEXP:= '(let((lst `(,@(version-to-list emacs-version)0 0 0 0)))(defun p(
 EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
 ALL_EMACS   := $(strip $(sort $(EMACS_RAW)))
 EMACS_VERS  := $(foreach ver,$(ALL_EMACS),$(shell $(ver) -Q --batch --eval=$(VERNAME_SEXP)))
-EMACS_DIC   := $(join $(ALL_EMACS:%=%/), $(EMACS_VERS))
+EMACS_DIC   := $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
 
 CONFFILES   := $(CONFDIR)/*.el
 MAKEFILE    := Makefile-local.mk
@@ -41,6 +41,7 @@ all: $(DIRS) build
 	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
 
 test:
+	echo $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
 	@echo $(EMACS_DIC)
 	@echo $(call VAL2KEY,$(EMACS_DIC),22.1.1.0)
 

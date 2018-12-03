@@ -12,6 +12,7 @@
 #    (KEY)/(VAL) data class
 #
 
+MAKEDIC = $(join $(addsuffix /, $1), $2)
 KEY2VAL = $(shell echo $1 | grep -Po '(?<=$2/)[^\s]+')
 VAL2KEY = $(shell echo $1 | grep -Po '[^\s]+(?=/$2)')
 
