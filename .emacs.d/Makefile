@@ -1,3 +1,7 @@
+all:
+
+include Makefunc.mk
+
 LOCALDIR    := local
 LISPDIR     := site-lisp
 CONFDIR     := conf
@@ -17,7 +21,8 @@ VERNAME_SEXP:= '(let((lst `(,@(version-to-list emacs-version)0 0 0 0)))(defun p(
                 (princ(format"%d.%d.%d.%d"(p)(p)(p)(p))))'
 EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
 ALL_EMACS   := $(strip $(sort $(EMACS_RAW)))
-EMACS_VERS  := $(foreach ver,$(ALL_EMACS),$(shell $(ver) -Q --batch --eval=$(VERNAME_SEXP)))
+# EMACS_VERS  := $(foreach ver,$(ALL_EMACS),$(shell $(ver) -Q --batch --eval=$(VERNAME_SEXP)))
+EMACS_VERS := $(foreach ver, $(ALL_EMACS), $(shell $(ver) --version | head -n 1 | cut -d ' ' -f 3))
 EMACS_DIC   := $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
 
 CONFFILES   := $(CONFDIR)/*.el
@@ -87,5 +92,3 @@ clean:
 	-rm -rf $(DIRS)
 	@$(call ECHO_CYAN, "make job:clean completed!!", "\n", "\n")
 
-# load common my local func
-include Makefunc.mk
