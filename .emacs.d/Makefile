@@ -24,14 +24,12 @@ EMACS_VERS  := $(foreach ver,$(ALL_EMACS),$(shell $(ver) $(VERNAME_CMD)))
 EMACS_DIC   := $(call MAKEDIC,$(ALL_EMACS),$(EMACS_VERS))
 
 CONFFILES   := $(CONFDIR)/*.el
-MAKEFILE    := Makefile-local.mk
 
 LOCALDIRS   := $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
 DIRS        := $(LOCALDIR) $(LISPDIR) $(LOCALDIRS)
 
 SED_MIXFILE := 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d'
 
-LOCAL_MAKEFILES   := $(addsuffix /Makefile,$(LOCALDIRS))
 LOCAL_MIXFILES    := $(addsuffix /$(MIXFILENAME),$(LOCALDIRS))
 LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME),$(LOCALDIRS))
 LOCAL_LISPDIRS    := $(addsuffix /$(LISPDIR),$(LOCALDIRS))
@@ -66,9 +64,6 @@ build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS)
 $(LOCAL_MIXELCFILES): $(LOCAL_MAKEFILES) $(LOCAL_MIXFILES)
 	@$(call ECHO_MAGENTA,"compile $@...","\n","")
 	$(call LOCAL_EMACS,1) -batch -f batch-byte-compile $(@:.elc=.el)
-
-$(LOCAL_MAKEFILES): $(MAKEFILE)
-	ln -s ../../$< $@
 
 $(LOCAL_MIXFILES): $(MIXFILE)
 	ln -s ../$(<F) $@
