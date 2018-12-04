@@ -21,8 +21,7 @@ VERNAME_CMD := --version | head -n 1 | cut -d ' ' -f 3 | grep -oP '^\d+\.\d+'
 EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
 ALL_EMACS   := $(strip $(sort $(EMACS_RAW)))
 EMACS_VERS  := $(foreach ver, $(ALL_EMACS), $(shell $(ver) $(VERNAME_CMD)))
-
-EMACS_DIC    := $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
+EMACS_DIC   := $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
 
 CONFFILES   := $(CONFDIR)/*.el
 MAKEFILE    := Makefile-local.mk
@@ -38,13 +37,12 @@ LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME), $(LOCALDIRS))
 LOCAL_LISPDIRS    := $(addsuffix /$(LISPDIR), $(LOCALDIRS))
 LOCAL_REPOS       := $(foreach repo, $(REPOS), $(addsuffix /$(repo), $(LOCAL_LISPDIRS)))
 
-
 CURRENT_BRANCH = $(shell cd $1; test -d .git && git branch | grep \* | cut -d ' ' -f2)
 PULL_JOBS     := $(addprefix .make-pull-, $(REPOS))
 
 EMACS_KEY2VAL = $(call KEY2VAL,$(EMACS_DIC),$1)
 EMACS_VAL2KEY = $(call VAL2KEY,$(EMACS_DIC),$1)
-LOCAL_EMACS   = $(call EMACS_VAL2KEY,$(notdir $(@D)))
+LOCAL_EMACS   = $(call EMACS_VAL2KEY,$@))
 
 
 ##################################################
@@ -57,7 +55,6 @@ test:
 	echo $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
 	@echo $(EMACS_DIC)
 	@echo $(call VAL2KEY,$(EMACS_DIC),22.1)
-
 
 $(DIRS):
 	mkdir -p $@
