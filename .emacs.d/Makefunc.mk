@@ -12,8 +12,8 @@
 #  strings utils
 #
 
-STRCUT    = echo $1 | awk -F $2 '{print $3}'
-STRCUTREV = echo $1 | awk -F $2 '{print $(NF-$3)}'
+STRCUT    = $(shell echo $1 | awk -F $2 '{print $3}')
+STRCUTREV = $(shell echo $1 | awk -F $2 '{print $$(NF-$3)}')
 
 ##################################################
 #

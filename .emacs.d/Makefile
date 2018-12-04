@@ -42,7 +42,7 @@ PULL_JOBS     := $(addprefix .make-pull-, $(REPOS))
 
 EMACS_KEY2VAL = $(call KEY2VAL,$(EMACS_DIC),$1)
 EMACS_VAL2KEY = $(call VAL2KEY,$(EMACS_DIC),$1)
-LOCAL_EMACS   = $(call EMACS_VAL2KEY,$(dir $(@D)))
+LOCAL_EMACS   = $(call EMACS_VAL2KEY,$(call STRCUTREV,$@,'/',$1))
 
 
 ##################################################
@@ -65,7 +65,7 @@ build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS)
 ##########
 $(LOCAL_MIXELCFILES): $(LOCAL_MAKEFILES) $(LOCAL_MIXFILES)
 	@$(call ECHO_MAGENTA, "compile $@...", "\n", "")
-	$(LOCAL_EMACS) -batch -f batch-byte-compile $(@:.elc=.el)
+	$(call LOCAL_EMACS,1) -batch -f batch-byte-compile $(@:.elc=.el)
 
 $(LOCAL_MAKEFILES): $(MAKEFILE)
 	ln -s ../../$< $@
@@ -79,9 +79,7 @@ $(addsuffix /$(LISPDIR)/$1, $(LOCALDIRS)): $(LISPDIR)/$1
 	@$$(call ECHO_MAGENTA, "compile $$@...", "\n", "")
 	mkdir -p $$(@D)
 	cp -rf $$(LISPDIR)/$$(@F) $$@
-	$$(warning $$@)
-	$$(error $$(shell echo $$@ | awk -F'/' '{print $$$$(NF-2)}'))
-	-EMACS=$$(LOCAL_EMACS) $$(MAKE) -C $$@
+	-EMACS=$$(call LOCAL_EMACS,2) $$(MAKE) -C $$@
 endef
 $(foreach repo, $(REPOS), $(eval $(call build_repo,$(repo))))
 
