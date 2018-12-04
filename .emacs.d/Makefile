@@ -42,7 +42,7 @@ PULL_JOBS     := $(addprefix .make-pull-, $(REPOS))
 
 EMACS_KEY2VAL = $(call KEY2VAL,$(EMACS_DIC),$1)
 EMACS_VAL2KEY = $(call VAL2KEY,$(EMACS_DIC),$1)
-LOCAL_EMACS   = $(call EMACS_VAL2KEY,$@))
+LOCAL_EMACS   = $(call EMACS_VAL2KEY,$(dir $(@D)))
 
 
 ##################################################
@@ -79,6 +79,8 @@ $(addsuffix /$(LISPDIR)/$1, $(LOCALDIRS)): $(LISPDIR)/$1
 	@$$(call ECHO_MAGENTA, "compile $$@...", "\n", "")
 	mkdir -p $$(@D)
 	cp -rf $$(LISPDIR)/$$(@F) $$@
+	$$(warning $$@)
+	$$(error $$(shell echo $$@ | awk -F'/' '{print $$$$(NF-2)}'))
 	-EMACS=$$(LOCAL_EMACS) $$(MAKE) -C $$@
 endef
 $(foreach repo, $(REPOS), $(eval $(call build_repo,$(repo))))

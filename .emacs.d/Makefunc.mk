@@ -1,10 +1,19 @@
 #
 # Makefunk.mk
 #
-# version: v1.7
-# last update: 2018/12/03
+# version: v1.8
+# last update: 2018/12/04
 #
 # echo with color
+
+
+##################################################
+#
+#  strings utils
+#
+
+STRCUT    = echo $1 | awk -F $2 '{print $3}'
+STRCUTREV = echo $1 | awk -F $2 '{print $(NF-$3)}'
 
 ##################################################
 #
