@@ -72,11 +72,11 @@ $(LOCAL_MIXFILES): $(MIXFILE)
 
 ##########
 define build_repo
-$(addsuffix /$(LISPDIR)/$(1), $(LOCALDIRS)): $(LISPDIR)/$(1)
+$(addsuffix /$(LISPDIR)/$1, $(LOCALDIRS)): $(LISPDIR)/$1
 	@$$(call ECHO_MAGENTA, "compile $$@...", "\n", "")
 	mkdir -p $$(@D)
-	cp -rf $(LISPDIR)/$$(@F) $$@
-	$$(MAKE) --no-print-directory -C $$(dir $$(@D)) .make-repo-$$(@F) 2>/dev/null
+	cp -rf $$(LISPDIR)/$$(@F) $$@
+	-EMACS=$$(LOCAL_EMACS) $$(MAKE) -C $$@
 endef
 $(foreach repo, $(REPOS), $(eval $(call build_repo,$(repo))))
 
