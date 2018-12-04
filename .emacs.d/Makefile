@@ -1,3 +1,7 @@
+all:
+
+include Makefunc.mk
+
 LOCALDIR    := local
 LISPDIR     := site-lisp
 CONFDIR     := conf
@@ -13,9 +17,12 @@ REMOTE      := $(GITHUB)/conao3
 REPOS       := leaf.el orglyth.el cort.el
 REPODIRS    := $(addprefix $(LISPDIR)/, $(REPOS))
 
+VERNAME_CMD := --version | head -n 1 | cut -d ' ' -f 3 | grep -oP '^\d+\.\d+'   
 EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
 ALL_EMACS   := $(strip $(sort $(EMACS_RAW)))
-EMACS_VERS  := $(subst emacs-,,$(ALL_EMACS))
+EMACS_VERS  := $(foreach ver, $(ALL_EMACS), $(shell $(ver) $(VERNAME_CMD)))
+
+EMACS_DIC    := $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
 
 CONFFILES   := $(CONFDIR)/*.el
 MAKEFILE    := Makefile-local.mk
@@ -31,8 +38,14 @@ LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME), $(LOCALDIRS))
 LOCAL_LISPDIRS    := $(addsuffix /$(LISPDIR), $(LOCALDIRS))
 LOCAL_REPOS       := $(foreach repo, $(REPOS), $(addsuffix /$(repo), $(LOCAL_LISPDIRS)))
 
+
 CURRENT_BRANCH = $(shell cd $1; test -d .git && git branch | grep \* | cut -d ' ' -f2)
 PULL_JOBS     := $(addprefix .make-pull-, $(REPOS))
+
+EMACS_KEY2VAL = $(call KEY2VAL,$(EMACS_DIC),$1)
+EMACS_VAL2KEY = $(call VAL2KEY,$(EMACS_DIC),$1)
+LOCAL_EMACS   = $(call EMACS_VAL2KEY,$(notdir $(@D)))
+
 
 ##################################################
 
@@ -41,7 +54,10 @@ all: $(DIRS) build
 	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
 
 test:
-	echo $(call CURRENT_BRANCH, site-lisp/leaf.el)
+	echo $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
+	@echo $(EMACS_DIC)
+	@echo $(call VAL2KEY,$(EMACS_DIC),22.1)
+
 
 $(DIRS):
 	mkdir -p $@
@@ -52,7 +68,7 @@ build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS)
 ##########
 $(LOCAL_MIXELCFILES): $(LOCAL_MAKEFILES) $(LOCAL_MIXFILES)
 	@$(call ECHO_MAGENTA, "compile $@...", "\n", "")
-	$(MAKE) --no-print-directory -C $(@D) .make-elc-$(@F) 2>/dev/null
+	$(LOCAL_EMACS) -batch -f batch-byte-compile $(@:.elc=.el)
 
 $(LOCAL_MAKEFILES): $(MAKEFILE)
 	ln -s ../../$< $@
@@ -62,11 +78,11 @@ $(LOCAL_MIXFILES): $(MIXFILE)
 
 ##########
 define build_repo
-$(addsuffix /$(LISPDIR)/$(1), $(LOCALDIRS)): $(LISPDIR)/$(1)
+$(addsuffix /$(LISPDIR)/$1, $(LOCALDIRS)): $(LISPDIR)/$1
 	@$$(call ECHO_MAGENTA, "compile $$@...", "\n", "")
 	mkdir -p $$(@D)
-	cp -rf $(LISPDIR)/$$(@F) $$@
-	$$(MAKE) --no-print-directory -C $$(dir $$(@D)) .make-repo-$$(@F) 2>/dev/null
+	cp -rf $$(LISPDIR)/$$(@F) $$@
+	-EMACS=$$(LOCAL_EMACS) $$(MAKE) -C $$@
 endef
 $(foreach repo, $(REPOS), $(eval $(call build_repo,$(repo))))
 
@@ -89,5 +105,3 @@ clean:
 	-rm -rf $(DIRS)
 	@$(call ECHO_CYAN, "make job:clean completed!!", "\n", "\n")
 
-# load common my local func
-include Makefunc.mk
