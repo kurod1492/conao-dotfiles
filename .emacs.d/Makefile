@@ -20,25 +20,25 @@ REPODIRS    := $(addprefix $(LISPDIR)/, $(REPOS))
 VERNAME_CMD := --version | head -n 1 | cut -d ' ' -f 3 | grep -oP '^\d+\.\d+'   
 EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
 ALL_EMACS   := $(strip $(sort $(EMACS_RAW)))
-EMACS_VERS  := $(foreach ver, $(ALL_EMACS), $(shell $(ver) $(VERNAME_CMD)))
-EMACS_DIC   := $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
+EMACS_VERS  := $(foreach ver,$(ALL_EMACS),$(shell $(ver) $(VERNAME_CMD)))
+EMACS_DIC   := $(call MAKEDIC,$(ALL_EMACS),$(EMACS_VERS))
 
 CONFFILES   := $(CONFDIR)/*.el
 MAKEFILE    := Makefile-local.mk
 
-LOCALDIRS   := $(addprefix $(LOCALDIR)/, $(EMACS_VERS))
+LOCALDIRS   := $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
 DIRS        := $(LOCALDIR) $(LISPDIR) $(LOCALDIRS)
 
 SED_MIXFILE := 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d'
 
-LOCAL_MAKEFILES   := $(addsuffix /Makefile, $(LOCALDIRS))
-LOCAL_MIXFILES    := $(addsuffix /$(MIXFILENAME), $(LOCALDIRS))
-LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME), $(LOCALDIRS))
-LOCAL_LISPDIRS    := $(addsuffix /$(LISPDIR), $(LOCALDIRS))
-LOCAL_REPOS       := $(foreach repo, $(REPOS), $(addsuffix /$(repo), $(LOCAL_LISPDIRS)))
+LOCAL_MAKEFILES   := $(addsuffix /Makefile,$(LOCALDIRS))
+LOCAL_MIXFILES    := $(addsuffix /$(MIXFILENAME),$(LOCALDIRS))
+LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME),$(LOCALDIRS))
+LOCAL_LISPDIRS    := $(addsuffix /$(LISPDIR),$(LOCALDIRS))
+LOCAL_REPOS       := $(foreach repo,$(REPOS),$(addsuffix /$(repo),$(LOCAL_LISPDIRS)))
 
 CURRENT_BRANCH = $(shell cd $1; test -d .git && git branch | grep \* | cut -d ' ' -f2)
-PULL_JOBS     := $(addprefix .make-pull-, $(REPOS))
+PULL_JOBS     := $(addprefix .make-pull-,$(REPOS))
 
 EMACS_KEY2VAL = $(call KEY2VAL,$(EMACS_DIC),$1)
 EMACS_VAL2KEY = $(call VAL2KEY,$(EMACS_DIC),$1)
@@ -49,10 +49,10 @@ LOCAL_EMACS   = $(call EMACS_VAL2KEY,$(call STRCUTREV,$@,'/',$1))
 
 .PHONY: all test build clean
 all: $(DIRS) build
-	@$(call ECHO_YELLOW, "make job:all completed!!", "\n", "\n")
+	@$(call ECHO_YELLOW,"make job:all completed!!","\n","\n")
 
 test:
-	echo $(call MAKEDIC, $(ALL_EMACS), $(EMACS_VERS))
+	echo $(call MAKEDIC,$(ALL_EMACS),$(EMACS_VERS))
 	@echo $(EMACS_DIC)
 	@echo $(call VAL2KEY,$(EMACS_DIC),22.1)
 
@@ -64,7 +64,7 @@ build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS)
 #################### main jobs
 ##########
 $(LOCAL_MIXELCFILES): $(LOCAL_MAKEFILES) $(LOCAL_MIXFILES)
-	@$(call ECHO_MAGENTA, "compile $@...", "\n", "")
+	@$(call ECHO_MAGENTA,"compile $@...","\n","")
 	$(call LOCAL_EMACS,1) -batch -f batch-byte-compile $(@:.elc=.el)
 
 $(LOCAL_MAKEFILES): $(MAKEFILE)
@@ -76,12 +76,12 @@ $(LOCAL_MIXFILES): $(MIXFILE)
 ##########
 define build_repo
 $(addsuffix /$(LISPDIR)/$1, $(LOCALDIRS)): $(LISPDIR)/$1
-	@$$(call ECHO_MAGENTA, "compile $$@...", "\n", "")
+	@$$(call ECHO_MAGENTA,"compile $$@...","\n","")
 	mkdir -p $$(@D)
 	cp -rf $$(LISPDIR)/$$(@F) $$@
 	-EMACS=$$(call LOCAL_EMACS,2) $$(MAKE) -C $$@
 endef
-$(foreach repo, $(REPOS), $(eval $(call build_repo,$(repo))))
+$(foreach repo,$(REPOS),$(eval $(call build_repo,$(repo))))
 
 #################### support jobs
 ##########
@@ -91,14 +91,14 @@ $(MIXFILE): $(CONFFILES)
 	echo "(provide 'conao-mix)" >> $(MIXFILE)
 
 $(REPODIRS):
-	@$(call ECHO_MAGENTA, "git clone $(REMOTE)/$(@F)", "\n", "")
+	@$(call ECHO_MAGENTA,"git clone $(REMOTE)/$(@F)","\n","")
 	git clone $(REMOTE)/$(@F) $@
 
 update: $(REPOS:%=.make-update-%) .make-update-.
 .make-update-%:
-	cd $(LISPDIR)/$*; git pull origin $(call CURRENT_BRANCH, $(LISPDIR)/$*)
+	cd $(LISPDIR)/$*; git pull origin $(call CURRENT_BRANCH,$(LISPDIR)/$*)
 
 clean:
 	-rm -rf $(DIRS)
-	@$(call ECHO_CYAN, "make job:clean completed!!", "\n", "\n")
+	@$(call ECHO_CYAN,"make job:clean completed!!","\n","\n")
 
