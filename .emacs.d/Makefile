@@ -8,7 +8,7 @@ CONFDIR     := conf
 
 MIXRAWNAME  := mixed-raw.el
 MIXFILENAME := mixed.el
-MIXELCNAME  := mixed.elc
+MIXELCNAME  := $(MIXFILENAME:%.el=%.elc)
 MIXRAWFILE  := $(LOCALDIR)/$(MIXRAWNAME)
 MIXFILE     := $(LOCALDIR)/$(MIXFILENAME)
 
