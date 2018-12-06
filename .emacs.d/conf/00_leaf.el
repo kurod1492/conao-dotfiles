@@ -1,4 +1,4 @@
-;;; 00_use-package.el ---                            -*- lexical-binding: t; -*-
+;;; 00_leaf.el ---                                   -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2018  Naoya Yamashita
 
@@ -24,6 +24,7 @@
 
 ;;; Code:
 
+(require 'leaf)
 
-(provide '00_use-package)
-;;; init.el ends here
+(provide '00_leaf)
+;;; 00_leaf.el ends here
