@@ -29,7 +29,8 @@
          `(add-to-list
            'load-path
            ,(locate-user-emacs-file (concat "site-lisp/" x)))))
-      '("cort.el" "f.el" "feather.el" "leaf.el" "org-mode" "orglyth.el"))
+      '("cort.el" "f.el" "s.el" "dash.el"
+        "feather.el" "leaf.el" "org-mode" "orglyth.el"))
 
 (require 'leaf)
 
