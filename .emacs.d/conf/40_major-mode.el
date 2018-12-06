@@ -30,8 +30,8 @@
       :config
       (setq orglyth-html-enable-option t
             orglyth-html-use-ftp       nil
-            orglyth-html-local-root-path "~/Documents/sakura/orglyth"
-            orglyth-html-remote-root-path "~/Documents/sakura/remote"
+            orglyth-html-local-root-path "~/Documents/sakura/orglyth/"
+            orglyth-html-remote-root-path "~/Documents/sakura/remote/"
             orglyth-html-ftp-root-path    "/ftp:conao3@conao3.com:~/www/orglyth/")
       (orglyth-html-init)
       (orglyth-html-project-init))))

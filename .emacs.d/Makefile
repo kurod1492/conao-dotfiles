@@ -78,6 +78,7 @@ define build_repo
 $(addsuffix /$(LISPDIR)/$1, $(LOCALDIRS)): $(LISPDIR)/$1
 	@$$(call ECHO_MAGENTA,"compile $$@...","\n","")
 	mkdir -p $$(@D)
+	-rm -rf $$@
 	cp -rf $$(LISPDIR)/$$(@F) $$@
 	-EMACS=$$(call LOCAL_EMACS,2) $$(MAKE) -C $$@
 endef
