@@ -87,7 +87,7 @@ $(MIXFILE): $(CONFFILES)
 
 $(REPODIRS):
 	@$(call ECHO_MAGENTA,"git clone $(REMOTE)/$(@F)","\n","")
-	git clone $(REMOTE)/$(@F) $@
+	git clone --depth 1 $(REMOTE)/$(@F) $@
 
 update: $(REPOS:%=.make-update-%) .make-update-.
 .make-update-%:
