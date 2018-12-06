@@ -24,6 +24,13 @@
 
 ;;; Code:
 
+(mapc (lambda (x)
+        (eval
+         `(add-to-list
+           'load-path
+           ,(locate-user-emacs-file (concat "site-lisp/" x)))))
+      '("cort.el" "f.el" "feather.el" "leaf.el" "org-mode" "orglyth.el"))
+
 (require 'leaf)
 
 (provide '00_leaf)
