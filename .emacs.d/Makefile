@@ -28,7 +28,7 @@ CONFFILES   := $(sort $(wildcard $(CONFDIR)/*.el))
 
 LOCALDIRS   := $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
 
-SED_MIXFILE := 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d'
+SED_MIXFILE := 's/;.*//g' -e 's/(provide .*)//g' -e '/^ *$$/d'
 
 LOCAL_BUILDDIRS   := $(addsuffix /$(BUILDDIR),$(LOCALDIRS))
 LOCAL_MIXFILES    := $(addsuffix /$(MIXFILENAME),$(LOCALDIRS))
