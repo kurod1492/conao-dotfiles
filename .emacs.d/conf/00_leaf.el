@@ -30,7 +30,7 @@
            'load-path
            ,(locate-user-emacs-file (concat "site-lisp/" x)))))
       '("cort.el" "f.el" "s.el" "dash.el" "use-package"
-        "feather.el" "leaf.el" "org-mode" "orglyth.el"))
+        "feather.el" "leaf.el" "org-mode" "orglyth.el" "emacs-htmlize"))
 
 (require 'leaf)
 (require 'use-package)
