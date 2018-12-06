@@ -33,6 +33,7 @@
         "feather.el" "leaf.el" "org-mode" "orglyth.el"))
 
 (require 'leaf)
+(require 'use-package)
 
 (load-theme 'wombat)
 
