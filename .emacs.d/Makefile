@@ -64,7 +64,7 @@ build: $(LOCAL_REPOS) $(LOCAL_MIXELCFILES)
 
 #################### main jobs
 ##########
-$(LOCAL_MIXELCFILES): $(LOCAL_MIXFILES) $(LOCAL_REPOS)
+$(LOCAL_MIXELCFILES): $(LOCAL_MIXFILES) $(REPODIRS)
 	@$(call ECHO_MAGENTA,"compile $@...","\n","")
 	-$(call LOCAL_EMACS,2) -batch -f batch-byte-compile $<
 	-cp $(<:%el=%elc) $@
