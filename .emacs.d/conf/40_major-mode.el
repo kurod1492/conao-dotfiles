@@ -24,6 +24,46 @@
 
 (leaf org
   :config
+  (setq org-directory                         "~/Documents/org/"
+        org-default-notes-file                "~/Documents/org/notes.org"
+        org-agenda-files                      "~/Documents/org/notes.org"
+        org-return-follows-link               t
+        org-startup-indented                  t
+        org-indent-mode-turns-on-hiding-stars t
+        org-indent-indentation-per-level      2
+        org-src-window-setup                  'other-window
+        org-use-sub-superscripts              '{}
+        org-image-actual-width                nil
+        org-highlight-latex-and-related '(latex script entities))
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; org babel
+  
+  ;; ipython
+  ;; (use-package ob-ipython
+  ;;   :if (executable-find "jupyter")
+  ;;   :config
+  ;;   ;; depend of jypyter, ipython
+  ;;   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
+  ;; (use-package ob-plantuml
+  ;;   :if (executable-find "plantuml")
+  ;;   :config
+  ;;   (use-package plantuml-mode)
+  ;;   (setq org-plantuml-jar-path plantuml-jar-path))
+
+  ;; general settings
+  (setq org-confirm-babel-evaluate nil)
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               '(;; (ipython . t)
+                                 ;; (plantuml . t)
+                                 (org . t)
+                                 (R . t)
+                                 (C . t)
+                                 (emacs-lisp . t)))
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; org exporting
+  
   (leaf orglyth
     :config
     (leaf orglyth-html
