@@ -41,8 +41,8 @@ If ADD-LOADPATH-P is non-nil, add maked directory to loadpath."
     (setq user-emacs-directory
           (expand-file-name (file-name-directory load-file-name))))
   (setq user-emacs-directory
-	(format "%slocal/%s/"
-                user-emacs-directory emacs-version))
+	(format "%slocal/%s.%s/"
+                user-emacs-directory emacs-major-version emacs-minor-version))
 
   (mkdir-if-missing user-emacs-directory)
   (mkdir-if-missing (locate-user-emacs-file "build/") t))

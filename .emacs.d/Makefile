@@ -5,6 +5,7 @@ include Makefunc.mk
 LOCALDIR    := local
 LISPDIR     := site-lisp
 CONFDIR     := conf
+BUILDDIR    := build
 
 MIXRAWNAME  := mixed-raw.el
 MIXFILENAME := mixed.el
@@ -26,14 +27,16 @@ EMACS_DIC   := $(call MAKEDIC,$(ALL_EMACS),$(EMACS_VERS))
 CONFFILES   := $(CONFDIR)/*.el
 
 LOCALDIRS   := $(addprefix $(LOCALDIR)/,$(EMACS_VERS))
-DIRS        := $(LOCALDIR) $(LISPDIR) $(LOCALDIRS)
 
 SED_MIXFILE := 's/;.*//g' -e 's/(provide .*)//g' -e '/^$$/d'
 
+LOCAL_BUILDDIRS   := $(addsuffix /$(BUILDDIR),$(LOCALDIRS))
 LOCAL_MIXFILES    := $(addsuffix /$(MIXFILENAME),$(LOCALDIRS))
-LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME),$(LOCALDIRS))
+LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME),$(LOCAL_BUILDDIRS))
 LOCAL_LISPDIRS    := $(addsuffix /$(LISPDIR),$(LOCALDIRS))
 LOCAL_REPOS       := $(foreach repo,$(REPOS),$(addsuffix /$(repo),$(LOCAL_LISPDIRS)))
+
+DIRS          := $(LOCALDIR) $(LISPDIR) $(LOCALDIRS) $(LOCAL_BUILDDIRS)
 
 CURRENT_BRANCH = $(shell cd $1; test -d .git && git branch | grep \* | cut -d ' ' -f2)
 PULL_JOBS     := $(addprefix .make-pull-,$(REPOS))
@@ -61,9 +64,10 @@ build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS)
 
 #################### main jobs
 ##########
-$(LOCAL_MIXELCFILES): $(LOCAL_MAKEFILES) $(LOCAL_MIXFILES)
+$(LOCAL_MIXELCFILES): $(LOCAL_MIXFILES)
 	@$(call ECHO_MAGENTA,"compile $@...","\n","")
-	$(call LOCAL_EMACS,1) -batch -f batch-byte-compile $(@:.elc=.el)
+	$(call LOCAL_EMACS,2) -batch -f batch-byte-compile $<
+	cp $(<:%el=%elc) $@
 
 $(LOCAL_MIXFILES): $(MIXFILE)
 	ln -s ../$(<F) $@
