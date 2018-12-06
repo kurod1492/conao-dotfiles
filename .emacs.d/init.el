@@ -51,7 +51,7 @@ If ADD-LOADPATH-P is non-nil, add maked directory to loadpath."
   (file-name-directory (directory-file-name user-emacs-directory))
   "Example: \"Users/conao/.emacs.d/\"")
 
-(if (require 'conao-mix nil t)
+(if (require 'conao-mixed nil t)
     (message "load conao-mix.el")
   (message "missing conao-mix.el..."))
 

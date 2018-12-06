@@ -7,8 +7,8 @@ LISPDIR     := site-lisp
 CONFDIR     := conf
 BUILDDIR    := build
 
-MIXRAWNAME  := mixed-raw.el
-MIXFILENAME := mixed.el
+MIXRAWNAME  := conao-mixed-raw.el
+MIXFILENAME := conao-mixed.el
 MIXELCNAME  := $(MIXFILENAME:%.el=%.elc)
 MIXRAWFILE  := $(LOCALDIR)/$(MIXRAWNAME)
 MIXFILE     := $(LOCALDIR)/$(MIXFILENAME)
@@ -87,7 +87,7 @@ $(foreach repo,$(REPOS),$(eval $(call build_repo,$(repo))))
 $(MIXFILE): $(CONFFILES)
 	cat $^ > $(MIXRAWFILE)
 	cat $(MIXRAWFILE) | sed -e $(SED_MIXFILE) > $(MIXFILE)
-	echo "(provide 'conao-mix)" >> $(MIXFILE)
+	echo "(provide 'conao-mixed)" >> $(MIXFILE)
 
 $(REPODIRS):
 	@$(call ECHO_MAGENTA,"git clone $(REMOTE)/$(@F)","\n","")
