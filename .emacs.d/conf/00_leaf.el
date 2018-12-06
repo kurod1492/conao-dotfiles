@@ -34,5 +34,7 @@
 
 (require 'leaf)
 
+(load-theme 'wombat)
+
 (provide '00_leaf)
 ;;; 00_leaf.el ends here
