@@ -30,10 +30,9 @@
            'load-path
            ,(locate-user-emacs-file (concat "site-lisp/" x)))))
       '("cort.el" "f.el" "s.el" "dash.el" "use-package"
-        "feather.el" "leaf.el" "org-mode" "orglyth.el" "emacs-htmlize"))
+        "feather.el" "leaf.el" "org-mode" "orglyth.el" "emacs-htmlize" "ox-qmd"))
 
 (require 'leaf)
-(require 'use-package)
 
 (load-theme 'wombat)
 
