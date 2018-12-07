@@ -6,6 +6,8 @@ LOCALDIR    := local
 LISPDIR     := site-lisp
 CONFDIR     := conf
 BUILDDIR    := build
+SNIPPETDIR  := snippets
+TEMPLETEDIR := templete
 
 MIXRAWNAME  := conao-mixed-raw.el
 MIXFILENAME := conao-mixed.el
@@ -15,7 +17,8 @@ MIXFILE     := $(LOCALDIR)/$(MIXFILENAME)
 
 GITHUB      := https://github.com
 REMOTE      := $(GITHUB)/conao3
-REPOS       := leaf.el orglyth.el cort.el feather.el org-mode f.el s.el dash.el use-package emacs-htmlize
+REPOS       := leaf.el orglyth.el cort.el feather.el ox-qmd
+#org-mode f.el s.el dash.el use-package emacs-htmlize
 REPODIRS    := $(addprefix $(LISPDIR)/, $(REPOS))
 
 VERNAME_CMD := --version | head -n 1 | cut -d ' ' -f 3 | grep -oP '^\d+\.\d+'   
@@ -32,18 +35,21 @@ SED_MIXFILE := 's/;.*//g' -e 's/(provide .*)//g' -e '/^ *$$/d'
 
 LOCAL_BUILDDIRS   := $(addsuffix /$(BUILDDIR),$(LOCALDIRS))
 LOCAL_MIXFILES    := $(addsuffix /$(MIXFILENAME),$(LOCALDIRS))
-LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME),$(LOCAL_BUILDDIRS))
 LOCAL_LISPDIRS    := $(addsuffix /$(LISPDIR),$(LOCALDIRS))
+LOCAL_SNIPPETS    := $(addsuffix /$(SNIPPETDIR),$(LOCALDIRS))
+LOCAL_TEMPLETES   := $(addsuffix /$(TEMPLETEDIR),$(LOCALDIRS))
 LOCAL_REPOS       := $(foreach repo,$(REPOS),$(addsuffix /$(repo),$(LOCAL_LISPDIRS)))
 
-DIRS          := $(LOCALDIR) $(LISPDIR) $(LOCALDIRS) $(LOCAL_BUILDDIRS)
+LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME),$(LOCAL_BUILDDIRS))
+
+DIRS          := $(LOCALDIR) $(LISPDIR) $(LOCALDIRS) $(LOCAL_BUILDDIRS) $(LOCAL_LISPDIRS)
 
 CURRENT_BRANCH = $(shell cd $1; test -d .git && git branch | grep \* | cut -d ' ' -f2)
 PULL_JOBS     := $(addprefix .make-pull-,$(REPOS))
 
-EMACS_KEY2VAL = $(call KEY2VAL,$(EMACS_DIC),$1)
-EMACS_VAL2KEY = $(call VAL2KEY,$(EMACS_DIC),$1)
-LOCAL_EMACS   = $(call EMACS_VAL2KEY,$(call STRCUTREV,$@,'/',$1))
+EMACS_KEY2VAL  = $(call KEY2VAL,$(EMACS_DIC),$1)
+EMACS_VAL2KEY  = $(call VAL2KEY,$(EMACS_DIC),$1)
+LOCAL_EMACS    = $(call EMACS_VAL2KEY,$(call STRCUTREV,$@,'/',$1))
 
 
 ##################################################
@@ -60,7 +66,7 @@ test:
 $(DIRS):
 	mkdir -p $@
 
-build: $(LOCAL_REPOS) $(LOCAL_MIXELCFILES)
+build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS) $(LOCAL_SNIPPETS) $(LOCAL_TEMPLETES)
 
 #################### main jobs
 ##########
@@ -77,12 +83,18 @@ $(LOCAL_MIXFILES): $(MIXFILE)
 define build_repo
 $(addsuffix /$(LISPDIR)/$1, $(LOCALDIRS)): $(LISPDIR)/$1
 	@$$(call ECHO_MAGENTA,"compile $$@...","\n","")
-	mkdir -p $$(@D)
 	-rm -rf $$@
 	cp -rf $$(LISPDIR)/$$(@F) $$@
 	-EMACS=$$(call LOCAL_EMACS,2) $$(MAKE) -C $$@
 endef
 $(foreach repo,$(REPOS),$(eval $(call build_repo,$(repo))))
+
+##########
+$(LOCAL_SNIPPETS): $(SNIPPETDIR)
+	ln -s ../../$(@F) $(LOCALDIR)/$(call STRCUTREV,$@,'/',1)/
+
+$(LOCAL_TEMPLETES): $(TEMPLETEDIR)
+	ln -s ../../$(@F) $(LOCALDIR)/$(call STRCUTREV,$@,'/',1)/
 
 #################### support jobs
 ##########
