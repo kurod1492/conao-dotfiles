@@ -22,6 +22,10 @@
 
 ;;
 
+(leaf paren
+  :config
+  (setq show-paren-delay 0.0)
+  (show-paren-mode 1))
 
 (provide '10_standard-elisp)
 ;;; 10_standard-elisp.el ends here
