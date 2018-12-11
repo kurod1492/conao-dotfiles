@@ -27,5 +27,9 @@
   (setq show-paren-delay 0.0)
   (show-paren-mode 1))
 
+(leaf cus-edit
+  :config
+  (setq custom-file (locate-user-emacs-file "custom.el")))
+
 (provide '10_standard-elisp)
 ;;; 10_standard-elisp.el ends here
