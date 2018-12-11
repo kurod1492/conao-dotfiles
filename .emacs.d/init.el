@@ -55,5 +55,7 @@ If ADD-LOADPATH-P is non-nil, add maked directory to loadpath."
     (message "load conao-mix.el")
   (message "missing conao-mix.el..."))
 
+;; (package-initialize)
+
 (provide 'init)
 ;;; init.el ends here
