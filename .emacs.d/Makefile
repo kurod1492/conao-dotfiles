@@ -69,11 +69,12 @@ build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS) $(LOCAL_SNIPPETS) $(LOCAL_TEMPLETES)
 
 #################### main jobs
 ##########
+_TDIR = $(shell echo $@ | cut -d '/' -f 1,2)
 $(LOCAL_MIXELCFILES): $(LOCAL_MIXFILES) $(REPODIRS)
 	@$(call ECHO_MAGENTA,"compile $@...","\n","")
-	-cp $(<:%el=%elc) $@
 	-ln -sf $(shell readlink $<) $(@D)/
-	-$(call LOCAL_EMACS,2) -batch -f batch-byte-compile $<
+	-cd $(_TDIR); $(call LOCAL_EMACS,2) $(REPODIRS:%=-L %) --batch -f batch-byte-compile $(<F)
+	-cp $(<:%el=%elc) $@
 
 $(LOCAL_MIXFILES): $(MIXFILE)
 	ln -fs ../$(<F) $@
