@@ -112,6 +112,10 @@
 (leaf casetab.c
   :require nil)
 
+;; Routines to deal with category tables.
+(leaf category.c
+  :require nil)
+  
 (leaf indent.c
   :require nil
   :config
