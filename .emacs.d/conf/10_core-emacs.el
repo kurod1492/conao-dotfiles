@@ -72,8 +72,12 @@
                 cursor-type    t        ; use specified for the frame
                 line-spacing   0.0      ; line-spacing (double is relative)
                 buffer-file-coding-system 'utf-8-unix
-                )
-  
+                ))
+
+;; Execution of byte code produced by bytecomp.el.
+(leaf bytecode.c
+  :require nil)
+
 (leaf indent.c
   :require nil
   :config
