@@ -37,6 +37,10 @@
 (leaf atimer.c
   :require nil)
 
+;; Low-level bidirectional buffer/string-scanning functions.
+(leaf bidi.c
+  :require nil)
+  
 (leaf indent.c
   :require nil
   :config
