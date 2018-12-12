@@ -57,5 +57,9 @@ This function is minor change from `add-to-list'."
       ("melpa"     . "https://melpa.org/packages/")
       ("marmalade" . "https://marmalade-repo.org/packages/"))))
 
+(leaf s    :ensure t)
+(leaf f    :ensure t)
+(leaf dash :ensure t)
+
 (provide '00_leaf)
 ;;; 00_leaf.el ends here
