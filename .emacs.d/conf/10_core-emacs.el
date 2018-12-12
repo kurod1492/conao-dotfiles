@@ -128,6 +128,10 @@
   :doc "Basic character set support."
   :require nil)
 
+(leaf chartab.c
+  :doc "char-table support."
+  :require nil)
+  
 (leaf indent.c
   :require nil
   :config
