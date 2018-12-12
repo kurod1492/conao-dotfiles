@@ -31,6 +31,16 @@
   :config
   (load-theme 'wombat))
 
+(leaf dired
+  :config
+  (leaf dired-x)
+  (leaf wdired
+    :config
+    (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode))
+
+  (setq dired-recursive-copies  'always
+        dired-recursive-deletes 'always))
+
 (leaf paren
   :config
   (setq show-paren-delay 0.0)
