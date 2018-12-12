@@ -119,7 +119,11 @@
 (leaf ccl.c
   :doc "CCL (Code Conversion Language) interpreter."
   :require nil)
-  
+
+(leaf character.c
+  :doc "Basic character support."
+  :require nil)
+
 (leaf indent.c
   :require nil
   :config
