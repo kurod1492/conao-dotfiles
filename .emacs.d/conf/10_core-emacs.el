@@ -158,6 +158,10 @@
   :doc "Cygwin support routines."
   :require nil)
 
+(leaf data.c
+  :doc "Primitive operations on Lisp data types for Lisp interpreter."
+  :require nil)
+
 (leaf indent.c
   :require nil
   :config
