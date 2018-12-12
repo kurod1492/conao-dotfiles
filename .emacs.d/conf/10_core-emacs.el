@@ -115,6 +115,10 @@
 ;; Routines to deal with category tables.
 (leaf category.c
   :require nil)
+
+;; CCL (Code Conversion Language) interpreter.
+(leaf ccl.c
+  :require nil)
   
 (leaf indent.c
   :require nil
