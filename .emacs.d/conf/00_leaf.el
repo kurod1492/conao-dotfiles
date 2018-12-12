@@ -50,5 +50,12 @@ This function is minor change from `add-to-list'."
 
 (require 'leaf)
 
+(leaf package
+  :config
+  (add-list-to-list 'package-archives
+    '(("org"       . "https://orgmode.org/elpa/")
+      ("melpa"     . "https://melpa.org/packages/")
+      ("marmalade" . "https://marmalade-repo.org/packages/"))))
+
 (provide '00_leaf)
 ;;; 00_leaf.el ends here
