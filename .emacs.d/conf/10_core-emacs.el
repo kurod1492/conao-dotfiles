@@ -154,6 +154,10 @@
         ;; coding systems used for process I/O by default.
         default-process-coding-system '(utf-8-unix . utf-8-unix)))
 
+(leaf sygw32.c
+  :doc "Cygwin support routines."
+  :require nil)
+
 (leaf indent.c
   :require nil
   :config
