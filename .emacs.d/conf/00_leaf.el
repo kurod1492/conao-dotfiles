@@ -29,6 +29,19 @@
 ;;   (package-refresh-contents)
 ;;   (package-install package))
 
+;; support funcs
+(defmacro add-list-to-list (dest-lst source-lst &optional append)
+  "Add SOURCE_LST to DEST-LST in a destructive.
+Defaltly, add at the beginning of the list,
+but when APPEND is non-nil, SOURCE-LST is added at the end.
+This function is minor change from `add-to-list'."
+  `(progn
+     (mapc (lambda (x)
+             (add-to-list ,dest-lst x ,append))
+           (if ,append ,source-lst (reverse ,source-lst)))
+     ,dest-lst))
+
+;; load-path
 (mapc (lambda (x)
         (eval
          `(add-to-list
