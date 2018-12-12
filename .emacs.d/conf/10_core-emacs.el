@@ -193,6 +193,10 @@
   :doc "Output like sprintf to a buffer of specified size."
   :require nil)
 
+(leaf dosfns.c
+  :doc "MS-DOS specific Lisp utilities."
+  :require nil)
+
 (leaf indent.c
   :require nil
   :config
