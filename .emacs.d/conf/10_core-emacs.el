@@ -177,6 +177,14 @@
   ;;  => (".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ...)
   )
 
+(leaf dispnew.c
+  :doc "Updating of data structures for redisplay."
+  :require nil
+  ;; initial-window-system (window system for the first frame)
+  ;; window-system (window system for current frame (x, w32, mac, ns, pc))
+  (setq visible-bell nil                ; non-nil enable visible-bell
+        ))
+
 (leaf indent.c
   :require nil
   :config
