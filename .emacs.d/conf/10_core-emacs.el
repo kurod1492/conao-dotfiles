@@ -40,6 +40,39 @@
 ;; Low-level bidirectional buffer/string-scanning functions.
 (leaf bidi.c
   :require nil)
+
+;; Buffer manipulation primitives.
+(leaf buffer.c
+  :require nil
+  ;; header-line-format (buffer header line format, buffer local)
+  ;; mode-line-format
+  ;; major-mode => lisp-interaction-mode
+  ;; mode-name => "Lisp Interaction"
+  ;; ctl-arrow ?
+  ;; ward-wrap (non-nil meens don't chop word when wrap line)
+  ;; default-directory (default path for each buffer)
+  ;; auto-fill-function ?
+  ;; buffer-file-name (filename for each buffer)
+  ;; buffer-read-only (non-nil meens read-only buffer)
+  ;; buffer-saved-size ?
+  ;; selective-display ?
+  ;; overwrite-mode ('overwrite-mode-textual to overwrite or nil)
+  ;; buffer-display-table ?
+  ;; left-margin-width ?
+  ;; left-fringe-width ?
+  ;; fringes-outside-margins ?
+  ;; scroll-bar-width ?
+  ;; indicate-empty-lines (non-nil to display file end indicator on left fringe)
+  ;; indicate-buffer-boundaries (non-nil to display file end marker on fringe)
+  ;; fringe-indicator-alist, fringe-cursor-alist
+  ;; mark-active (non-nil active mark)
+  (setq-default tab-width      8
+                fill-column    80
+                truncate-lines t        ; don't wrap lines
+                cursor-type    t        ; use specified for the frame
+                line-spacing   0.0      ; line-spacing (double is relative)
+                buffer-file-coding-system 'utf-8-unix
+                )
   
 (leaf indent.c
   :require nil
