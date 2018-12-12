@@ -32,5 +32,22 @@
 
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action))
 
+(leaf auto-complete
+  :ensure t
+  :init
+  (leaf fuzzy :ensure t)
+  :config
+  (leaf auto-complete-config)
+  (global-auto-complete-mode t)
+  
+  (define-key ac-mode-map (kbd "TAB") 'ac-trigger-key-command)
+  (define-key ac-completing-map (kbd "C-n") 'ac-next)
+  (define-key ac-completing-map (kbd "C-p") 'ac-previous)
+  
+  (setq ac-auto-start 1                 ; min char to start
+        ac-auto-show-menu t             ; show menu immidiately
+        ac-use-fuzzy t                  ; use fuzzy
+        ))
+  
 (provide '20_editor)
 ;;; 20_editor.el ends here
