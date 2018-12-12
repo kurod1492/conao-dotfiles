@@ -24,6 +24,10 @@
 
 ;;; Code:
 
-(setq-default indent-tabs-mode nil)
+(leaf indent.c
+  :require nil
+  :config
+  (setq-default indent-tabs-mode nil))
+
 (provide '01_core-emacs)
 ;;; init.el ends here
