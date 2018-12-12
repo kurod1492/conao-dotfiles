@@ -166,6 +166,10 @@
   :doc "Elisp bindings for D-Bus. (interprocess communication)"
   :require nil)
 
+(leaf decompress.c
+  :doc "Interface to zlib."
+  :require nil)
+
 (leaf indent.c
   :require nil
   :config
