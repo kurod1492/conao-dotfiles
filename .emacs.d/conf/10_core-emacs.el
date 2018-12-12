@@ -131,7 +131,11 @@
 (leaf chartab.c
   :doc "char-table support."
   :require nil)
-  
+
+(leaf cm.c
+  :doc "Cursor motion subroutines."
+  :require nil)
+
 (leaf indent.c
   :require nil
   :config
