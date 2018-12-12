@@ -23,5 +23,14 @@
 ;;
 
 
+(leaf helm
+  :ensure t
+  :config
+  (leaf helm-config
+    :init
+    (setq helm-command-prefix-key "C-c C-h"))
+
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action))
+
 (provide '20_editor)
 ;;; 20_editor.el ends here
