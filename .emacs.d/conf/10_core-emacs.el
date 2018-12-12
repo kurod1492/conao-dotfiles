@@ -185,6 +185,10 @@
   (setq visible-bell nil                ; non-nil enable visible-bell
         ))
 
+(leaf doc.c
+  :doc "Record indices of function doc strings stored in a file."
+  :require nil)
+
 (leaf indent.c
   :require nil
   :config
