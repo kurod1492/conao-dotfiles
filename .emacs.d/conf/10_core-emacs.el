@@ -104,6 +104,11 @@
   (setq shell-file-name "/bin/bash"     ; path of default shell
         ))
 
+;; Case conversion functions.
+(leaf casefiddle.c
+  :require nil
+  )
+
 (leaf indent.c
   :require nil
   :config
