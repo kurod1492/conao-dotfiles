@@ -17,7 +17,7 @@ MIXFILE     := $(LOCALDIR)/$(MIXFILENAME)
 
 GITHUB      := https://github.com
 REMOTE      := $(GITHUB)/conao3
-REPOS       := leaf.el orglyth.el cort.el feather.el ox-qmd f.el s.el dash.el use-package emacs-htmlize
+REPOS       := leaf.el orglyth.el cort.el feather.el
 REPODIRS    := $(addprefix $(LISPDIR)/, $(REPOS))
 
 VERNAME_CMD := --version | head -n 1 | cut -d ' ' -f 3 | grep -oP '^\d+\.\d+'   
