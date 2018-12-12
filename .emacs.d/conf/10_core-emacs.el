@@ -24,6 +24,7 @@
 
 ;;; Code:
 
+;; Storage allocation and gc for GNU Emacs Lisp interpreter.
 (leaf alloc.c
   :require nil
   :config
@@ -31,6 +32,10 @@
   (setq gc-cons-threshold (* 128 1024 1024) ; memmory allocate with 128MB
         garbage-collection-messages t       ; show message when GC
         ))
+
+;; Asynchronous timers.
+(leaf atimer.c
+  :require nil)
 
 (leaf indent.c
   :require nil
