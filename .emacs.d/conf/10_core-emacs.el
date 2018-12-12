@@ -106,8 +106,11 @@
 
 ;; Case conversion functions.
 (leaf casefiddle.c
-  :require nil
-  )
+  :require nil)
+
+;; Routines to deal with case tables.
+(leaf casetab.c
+  :require nil)
 
 (leaf indent.c
   :require nil
