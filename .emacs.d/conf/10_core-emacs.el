@@ -24,6 +24,14 @@
 
 ;;; Code:
 
+(leaf alloc.c
+  :require nil
+  :config
+  ;; pure-bytes-used => using memory
+  (setq gc-cons-threshold (* 128 1024 1024) ; memmory allocate with 128MB
+        garbage-collection-messages t       ; show message when GC
+        ))
+
 (leaf indent.c
   :require nil
   :config
