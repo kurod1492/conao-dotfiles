@@ -47,10 +47,6 @@ If ADD-LOADPATH-P is non-nil, add maked directory to loadpath."
   (mkdir-if-missing user-emacs-directory)
   (mkdir-if-missing (locate-user-emacs-file "build/") t))
 
-(defvar init-root-emacs-directory
-  (file-name-directory (directory-file-name user-emacs-directory))
-  "Example: \"Users/conao/.emacs.d/\"")
-
 (package-initialize)
 
 (if (require 'conao-mixed nil t)
