@@ -124,6 +124,10 @@
   :doc "Basic character support."
   :require nil)
 
+(leaf charset.c
+  :doc "Basic character set support."
+  :require nil)
+
 (leaf indent.c
   :require nil
   :config
