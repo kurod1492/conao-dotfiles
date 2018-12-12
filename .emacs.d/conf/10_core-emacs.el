@@ -24,8 +24,8 @@
 
 ;;; Code:
 
-;; Storage allocation and gc for GNU Emacs Lisp interpreter.
 (leaf alloc.c
+  :doc "Storage allocation and gc for GNU Emacs Lisp interpreter."
   :require nil
   :config
   ;; pure-bytes-used => using memory
@@ -33,16 +33,16 @@
         garbage-collection-messages t       ; show message when GC
         ))
 
-;; Asynchronous timers.
 (leaf atimer.c
+  :doc "Asynchronous timers."
   :require nil)
 
-;; Low-level bidirectional buffer/string-scanning functions.
 (leaf bidi.c
+  :doc "Low-level bidirectional buffer/string-scanning functions."
   :require nil)
 
-;; Buffer manipulation primitives.
 (leaf buffer.c
+  :doc "Buffer manipulation primitives."
   :require nil
   ;; header-line-format (buffer header line format, buffer local)
   ;; mode-line-format
@@ -74,12 +74,12 @@
                 buffer-file-coding-system 'utf-8-unix
                 ))
 
-;; Execution of byte code produced by bytecomp.el.
 (leaf bytecode.c
+  :doc "Execution of byte code produced by bytecomp.el."
   :require nil)
 
-;; Call a Lisp function interactively.
 (leaf callint.c
+  :doc "Call a Lisp function interactively."
   :require nil
   ;; prefix-arg ?
   ;; command-history (a list of command-history)
@@ -88,8 +88,8 @@
   ;; mouse-leave-buffer-hook ?
   )
 
-;; Synchronous subprocess invocation.
 (leaf callproc.c
+  :doc "Synchronous subprocess invocation."
   :require nil
   ;; exec-path (in environment variable, $PATH)
   ;; exec-suffixes (maybe use "g" to find ggrep, gfind"
@@ -104,20 +104,20 @@
   (setq shell-file-name "/bin/bash"     ; path of default shell
         ))
 
-;; Case conversion functions.
 (leaf casefiddle.c
+  :doc "Case conversion functions."
   :require nil)
 
-;; Routines to deal with case tables.
 (leaf casetab.c
+  :doc "Routines to deal with case tables."
   :require nil)
 
-;; Routines to deal with category tables.
 (leaf category.c
+  :doc "Routines to deal with category tables."
   :require nil)
 
-;; CCL (Code Conversion Language) interpreter.
 (leaf ccl.c
+  :doc "CCL (Code Conversion Language) interpreter."
   :require nil)
   
 (leaf indent.c
