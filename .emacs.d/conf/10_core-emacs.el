@@ -170,6 +170,13 @@
   :doc "Interface to zlib."
   :require nil)
 
+(leaf dired.c
+  :doc "Lisp functions for making directory listings."
+  :require nil
+  ;; completion-ignored-extensions (not to competion file end one of.)
+  ;;  => (".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ...)
+  )
+
 (leaf indent.c
   :require nil
   :config
