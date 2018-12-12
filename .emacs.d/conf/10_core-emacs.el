@@ -78,6 +78,16 @@
 (leaf bytecode.c
   :require nil)
 
+;; Call a Lisp function interactively.
+(leaf callint.c
+  :require nil
+  ;; prefix-arg ?
+  ;; command-history (a list of command-history)
+  ;; command-debug-status (debugging status of current interactive command)
+  ;; mark-even-if-inactive ?
+  ;; mouse-leave-buffer-hook ?
+  )
+
 (leaf indent.c
   :require nil
   :config
