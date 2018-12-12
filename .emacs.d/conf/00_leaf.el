@@ -24,17 +24,19 @@
 
 ;;; Code:
 
+;; (if (assoc 'leaf package-archive-contents)
+;;     (package-install package)
+;;   (package-refresh-contents)
+;;   (package-install package))
+
 (mapc (lambda (x)
         (eval
          `(add-to-list
            'load-path
            ,(locate-user-emacs-file (concat "site-lisp/" x)))))
-      '("cort.el" "f.el" "s.el" "dash.el" "use-package"
-        "feather.el" "leaf.el" "org-mode" "orglyth.el" "emacs-htmlize" "ox-qmd"))
+      '("cort.el" "feather.el" "leaf.el" "orglyth.el"))
 
 (require 'leaf)
-
-(load-theme 'wombat)
 
 (provide '00_leaf)
 ;;; 00_leaf.el ends here
