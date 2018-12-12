@@ -22,6 +22,15 @@
 
 ;;
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;  Resorces/lisp
+;;
+
+(leaf custom
+  :config
+  (load-theme 'wombat))
+
 (leaf paren
   :config
   (setq show-paren-delay 0.0)
