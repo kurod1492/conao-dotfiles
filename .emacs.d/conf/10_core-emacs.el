@@ -88,6 +88,22 @@
   ;; mouse-leave-buffer-hook ?
   )
 
+;; Synchronous subprocess invocation.
+(leaf callproc.c
+  :require nil
+  ;; exec-path (in environment variable, $PATH)
+  ;; exec-suffixes (maybe use "g" to find ggrep, gfind"
+  ;; exec-directory
+  ;;  => "/Applications/Emacs-26.1.app/Contents/MacOS/libexec/"
+  ;; doc-directory
+  ;;  => "/Applications/Emacs-26.1.app/Contents/Resources/etc/"
+  ;; configure-info-directory
+  ;;  => "/Users/conao/Documents/emacs-26.1/emacs-mac-build/share/info"
+  ;; initial-environment (environment variable when Emacs build)
+  ;; process-environment ?
+  (setq shell-file-name "/bin/bash"     ; path of default shell
+        ))
+
 (leaf indent.c
   :require nil
   :config
