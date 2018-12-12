@@ -35,19 +35,18 @@
 Defaltly, add at the beginning of the list,
 but when APPEND is non-nil, SOURCE-LST is added at the end.
 This function is minor change from `add-to-list'."
+  (declare (indent 1))
   `(progn
      (mapc (lambda (x)
              (add-to-list ,dest-lst x ,append))
            (if ,append ,source-lst (reverse ,source-lst)))
      ,dest-lst))
 
-;; load-path
-(mapc (lambda (x)
-        (eval
-         `(add-to-list
-           'load-path
-           ,(locate-user-emacs-file (concat "site-lisp/" x)))))
-      '("cort.el" "feather.el" "leaf.el" "orglyth.el"))
+(eval
+ `(add-list-to-list 'load-path
+    ',(mapcar (lambda (x)
+                (locate-user-emacs-file (format "site-lisp/%s" x)))
+              '("cort.el" "feather.el" "leaf.el" "orglyth.el"))))
 
 (require 'leaf)
 
