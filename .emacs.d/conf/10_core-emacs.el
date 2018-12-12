@@ -142,6 +142,18 @@
   ;; post-self-insert-hook
   )
 
+(leaf coding.c
+  :doc "Coding system handler (conversion, detection, etc)."
+  :require nil
+  ;; coding-system-list (detectable coding-systems)
+  ;; coding-system-alist (alist ver, codiing-system-list)
+  ;; coding-category-list (List of coding-categories  ordered by priority)
+  ;; coding-system-for-read
+  ;; coding-system-for-write
+  (setq locale-coding-system 'utf-8-unix ; system I/O, decode keyboard input
+        ;; coding systems used for process I/O by default.
+        default-process-coding-system '(utf-8-unix . utf-8-unix)))
+
 (leaf indent.c
   :require nil
   :config
