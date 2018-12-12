@@ -22,7 +22,12 @@
 
 ;;
 
+(leaf plantuml-mode :ensure t)
+
 (leaf org
+  :init
+  (leaf org-plus-contrib :ensure t :require nil)
+  
   :config
   (setq org-directory                         "~/Documents/org/"
         org-default-notes-file                "~/Documents/org/notes.org"
@@ -35,46 +40,44 @@
         org-use-sub-superscripts              '{}
         org-image-actual-width                nil
         org-highlight-latex-and-related '(latex script entities))
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; org babel
   
-  ;; ipython
-  ;; (use-package ob-ipython
-  ;;   :if (executable-find "jupyter")
-  ;;   :config
-  ;;   ;; depend of jypyter, ipython
-  ;;   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
-  ;; (use-package ob-plantuml
-  ;;   :if (executable-find "plantuml")
-  ;;   :config
-  ;;   (use-package plantuml-mode)
-  ;;   (setq org-plantuml-jar-path plantuml-jar-path))
-
-  ;; general settings
-  (setq org-confirm-babel-evaluate nil)
-  (org-babel-do-load-languages 'org-babel-load-languages
-                               '(;; (ipython . t)
-                                 ;; (plantuml . t)
-                                 (org . t)
-                                 (R . t)
-                                 (C . t)
-                                 (emacs-lisp . t)))
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; org exporting
-  
-  (leaf orglyth
+  (leaf ob
     :config
-    (leaf orglyth-html
+    (setq org-confirm-babel-evaluate nil)
+    (org-babel-do-load-languages 'org-babel-load-languages
+                                 '((ipython . t)
+                                   (plantuml . t)
+                                   (org . t)
+                                   (R . t)
+                                   (C . t)
+                                   (emacs-lisp . t)))
+    
+    (leaf ob-ipython
+      :when (executable-find "jupyter")
+      :ensure t
       :config
-      (setq orglyth-html-enable-option t
-            orglyth-html-use-ftp       nil
-            orglyth-html-local-root-path "~/Documents/sakura/orglyth/"
-            orglyth-html-remote-root-path "~/Documents/sakura/remote/"
-            orglyth-html-ftp-root-path    "/ftp:conao3@conao3.com:~/www/orglyth/")
-      (orglyth-html-init)
-      (orglyth-html-project-init))))
+      ;; depend of jypyter, ipython
+      (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
+
+    (leaf ob-plantuml
+      :when (executable-find "plantuml")
+      :ensure t
+      :config
+      (setq org-plantuml-jar-path plantuml-jar-path)))
+
+  (leaf ox
+    :config
+    (leaf orglyth
+      :config
+      (leaf orglyth-html
+        :config
+        (setq orglyth-html-enable-option    t
+              orglyth-html-use-ftp          nil
+              orglyth-html-local-root-path  "~/Documents/sakura/orglyth/"
+              orglyth-html-remote-root-path "~/Documents/sakura/remote/"
+              orglyth-html-ftp-root-path    "/ftp:conao3@conao3.com:~/www/orglyth/")
+        (orglyth-html-init)
+        (orglyth-html-project-init)))))
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
