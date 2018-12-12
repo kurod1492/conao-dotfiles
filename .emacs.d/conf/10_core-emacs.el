@@ -197,6 +197,10 @@
   :doc "MS-DOS specific Lisp utilities."
   :require nil)
 
+(leaf dynlib.c
+  :doc "Portable API for dynamic loading."
+  :require nil)
+
 (leaf indent.c
   :require nil
   :config
