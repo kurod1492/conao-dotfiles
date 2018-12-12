@@ -136,6 +136,12 @@
   :doc "Cursor motion subroutines."
   :require nil)
 
+(leaf cmds.c
+  :doc "Simple built-in editing commands."
+  :require nil
+  ;; post-self-insert-hook
+  )
+
 (leaf indent.c
   :require nil
   :config
