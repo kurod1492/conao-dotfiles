@@ -162,6 +162,10 @@
   :doc "Primitive operations on Lisp data types for Lisp interpreter."
   :require nil)
 
+(leaf dbusbind.c
+  :doc "Elisp bindings for D-Bus. (interprocess communication)"
+  :require nil)
+
 (leaf indent.c
   :require nil
   :config
