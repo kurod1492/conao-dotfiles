@@ -189,6 +189,10 @@
   :doc "Record indices of function doc strings stored in a file."
   :require nil)
 
+(leaf doprint.c
+  :doc "Output like sprintf to a buffer of specified size."
+  :require nil)
+
 (leaf indent.c
   :require nil
   :config
