@@ -62,6 +62,7 @@ This function is minor change from `add-to-list'."
 
 (require 'leaf)
 
+(leaf bind-key :ensure t)
 (leaf package
   :config
   (add-list-to-list 'package-archives
