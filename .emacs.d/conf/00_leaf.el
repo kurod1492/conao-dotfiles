@@ -61,6 +61,7 @@ This function is minor change from `add-to-list'."
               '("cort.el" "feather.el" "leaf.el" "orglyth.el"))))
 
 (require 'leaf)
+(require 'cort)
 
 (leaf package
   :config
