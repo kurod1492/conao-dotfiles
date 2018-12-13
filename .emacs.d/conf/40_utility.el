@@ -24,5 +24,32 @@
 
 (leaf htmlize :ensure t)
 
+(leaf latex-math-preview
+  :if (executable-find "platex")
+  :bind (("C-c l l" . latex-math-preview-expression)
+         ("C-c l s" . latex-math-preview-insert-mathematical-symbol))
+  :config
+  (setq latex-math-preview-tex-to-png-for-preview '(platex dvips-to-eps gs-to-png)
+        latex-math-preview-tex-to-png-for-save    '(platex dvipng)
+        latex-math-preview-tex-to-eps-for-save    '(platex dvips-to-eps)
+        latex-math-preview-tex-to-ps-for-save     '(platex dvips-to-ps)
+        latex-math-preview-beamer-to-png          '(platex dvipdfmx gs-to-png)
+        latex-math-preview-initial-page-of-symbol-list '((math . nil) (text . nil))
+        latex-math-preview-latex-template-header
+        "\\documentclass{jsarticle}
+\\pagestyle{empty}
+\\usepackage[dvips]{color}
+\\usepackage{physics}
+\\newcommand{\\ee}{\\mathrm{e}}
+\\newcommand{\\jj}{\\mathrm{j}}
+\\newcommand{\\ii}{\\mathrm{i}}
+\\newcommand{\\rot}{{\\nabla\\times}}
+\\newcommand{\\up}{\\uparrow}
+\\color{white}"
+        )
+  (add-to-list 'latex-math-preview-command-option-alist
+               '(gs-to-png "-q" "-dSAFER" "-dNOPAUSE" "-dBATCH" "-sDEVICE=pngalpha"
+                           "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
+                           "-dGraphicsAlphaBits=4" "-dQUIET")))
 (provide '30_utility)
 ;;; 30_utility.el ends here

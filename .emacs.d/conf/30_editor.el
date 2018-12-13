@@ -65,6 +65,7 @@
       :ensure t
       :config
       (leaf package-lint-flymake
+        :disabled t
         :ensure t
         :config
         (add-hook 'emacs-lisp-mode-hook #'package-lint-setup-flymake)))
