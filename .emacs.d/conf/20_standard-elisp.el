@@ -59,7 +59,8 @@
   ;; lgrep (grep)
   )
 
-
+(leaf flymake
+  :doc "A universal on-the-fly syntax checker")
 
 (leaf paren
   :config

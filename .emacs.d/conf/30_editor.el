@@ -54,6 +54,21 @@
         ac-auto-show-menu t             ; show menu immidiately
         ac-use-fuzzy t                  ; use fuzzy
         ))
-  
+
+(leaf flycheck
+  :ensure t
+  :config
+  (leaf flycheck-package
+    :ensure t
+    :init
+    (leaf package-lint   ; provide (package-lint-current-buffer)
+      :ensure t
+      :config
+      (leaf package-lint-flymake
+        :ensure t
+        :config
+        (add-hook 'emacs-lisp-mode-hook #'package-lint-setup-flymake)))
+    :config
+    (flycheck-package-setup)))
 (provide '20_editor)
 ;;; 20_editor.el ends here
