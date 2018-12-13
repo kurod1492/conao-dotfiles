@@ -28,30 +28,22 @@
   :init
   (leaf org-plus-contrib :ensure t :require nil)
   
-  :config
-  (setq org-directory                         "~/Documents/org/"
-        org-default-notes-file                "~/Documents/org/notes.org"
-        org-agenda-files                      "~/Documents/org/notes.org"
-        org-return-follows-link               t
-        org-startup-indented                  t
-        org-indent-mode-turns-on-hiding-stars t
-        org-indent-indentation-per-level      2
-        org-src-window-setup                  'other-window
-        org-use-sub-superscripts              '{}
-        org-image-actual-width                nil
-        org-highlight-latex-and-related '(latex script entities))
-  
+  :setq
+  ((org-directory                         . "~/Documents/org/")
+   (org-default-notes-file                . "~/Documents/org/notes.org")
+   (org-agenda-files                      . "~/Documents/org/notes.org")
+   (org-return-follows-link               . t)
+   (org-startup-indented                  . t)
+   (org-indent-mode-turns-on-hiding-stars . t)
+   (org-indent-indentation-per-level      . 2)
+   (org-src-window-setup                  . 'other-window)
+   (org-use-sub-superscripts              . '{})
+   (org-image-actual-width                . nil)
+   (org-highlight-latex-and-related       . '(latex script entities)))
+
+  :config  
   (leaf ob
-    :config
-    (setq org-confirm-babel-evaluate nil)
-    (org-babel-do-load-languages 'org-babel-load-languages
-                                 '((ipython . t)
-                                   (plantuml . t)
-                                   (org . t)
-                                   (R . t)
-                                   (C . t)
-                                   (emacs-lisp . t)))
-    
+    :init
     (leaf ob-ipython
       :if (executable-find "jupyter")
       :ensure t
@@ -62,26 +54,34 @@
     (leaf ob-plantuml
       :when (executable-find "plantuml")
       :ensure t
+      :setq ((org-plantuml-jar-path . plantuml-jar-path))
+      :setq ((org-confirm-babel-evaluate . nil))
       :config
-      (setq org-plantuml-jar-path plantuml-jar-path)))
-
+      (org-babel-do-load-languages 'org-babel-load-languages
+                                   '((ipython . t)
+                                     (plantuml . t)
+                                     (org . t)
+                                     (R . t)
+                                     (C . t)
+                                     (emacs-lisp . t)))))
   (leaf ox
     :config
     (leaf orglyth
       :config
       (leaf orglyth-html
+        :setq
+        ((orglyth-html-enable-option    . t)
+         (orglyth-html-use-ftp          . nil)
+         (orglyth-html-local-root-path  . "~/Documents/sakura/orglyth/")
+         (orglyth-html-remote-root-path . "~/Documents/sakura/remote/")
+         (orglyth-html-ftp-root-path    . "/ftp:conao3@conao3.com:~/www/orglyth/"))
         :config
-        (setq orglyth-html-enable-option    t
-              orglyth-html-use-ftp          nil
-              orglyth-html-local-root-path  "~/Documents/sakura/orglyth/"
-              orglyth-html-remote-root-path "~/Documents/sakura/remote/"
-              orglyth-html-ftp-root-path    "/ftp:conao3@conao3.com:~/www/orglyth/")
         (orglyth-html-init)
         (orglyth-html-project-init))
       
       (leaf orglyth-latex
+        :setq ((orglyth-latex-enable-option . t))
         :config
-        (setq orglyth-latex-enable-option t)
         (orglyth-latex-init)))))
 
 ;; (Use-package ox-latex-subfigure
