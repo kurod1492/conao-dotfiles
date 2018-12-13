@@ -31,12 +31,58 @@
 
 (leaf helm
   :ensure t
+  :bind (("M-x"     . helm-M-x)
+         ("M-X"     . execute-extended-command)
+         ("C-x b"   . helm-mini)
+         ("C-x C-f" . helm-find-files)
+         ("C-x C-r" . helm-recentf)
+         ("C-x b"   . helm-buffers-list)
+         ("C-x C-b" . helm-buffers-list)
+         ("C-s"     . helm-occur)
+         ("C-x g"   . helm-google-suggest)
+         ("C-R"     . helm-regexp)
+         ("M-y"     . helm-show-kill-ring)
+         ("C-c h"   . helm-command-prefix)
+         :map helm-command-map
+         ("o"       . helm-occur)
+         :map helm-map
+         ("<tab>"   . helm-execute-persistent-action)
+         ("C-i"     . helm-execute-persistent-action)
+         ("C-z"     . helm-select-action))
+  :setq (;; open helm buffer inside current window, not occupy whole other window
+         (helm-split-window-inside-p            . t)
+
+         ;; move to end or beginning of source when reaching top or bottom of source.
+         (helm-move-to-line-cycle-in-source     . t)
+
+         ;; search for library in `require' and `declare-function' sexp.
+         (helm-ff-search-library-in-sexp        . t)
+
+         ;; scroll 8 lines other window using M-<next>/M-<prior>
+         (helm-scroll-amount                    . 8)
+         (helm-ff-file-name-history-use-recentf . t)
+         (helm-echo-input-in-header-line        . nil)
+         
+         (helm-autoresize-max-height . 0)
+         (helm-autoresize-min-height . 40)
+
+         ;; 文字列を入力してから検索するまでのタイムラグ。デフォルトで 0
+         (helm-input-idle-delay       . 0.0)
+         
+         ;; 表示する最大候補数。デフォルトで 100
+         (helm-candidate-number-limit . 100))
   :config
   (leaf helm-config
     :init
     (setq helm-command-prefix-key "C-c C-h"))
+  
+  (helm-autoresize-mode t)
+  (helm-mode 1)
 
-  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action))
+  ;; Change helm-command-prefix "C-x c" to "c-c h"
+  ;; default "C-x c" is quite close to "C-x C-c" which quits Emacs
+  ;;  (global-set-key (kbd "C-c h") helm-command-map)
+  (global-unset-key (kbd "C-x c")))
 
 (leaf auto-complete
   :ensure t
