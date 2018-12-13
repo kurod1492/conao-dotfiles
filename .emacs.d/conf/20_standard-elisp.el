@@ -41,6 +41,20 @@
   (setq dired-recursive-copies  'always
         dired-recursive-deletes 'always))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;  Resources/lisp/progmodes
+;;
+
+(leaf grep
+  :congig
+  ;; ==== function ====
+  ;; rgrep (grep recursive on current dir)
+  ;; lgrep (grep on current dir)
+  )
+
+
+
 (leaf paren
   :config
   (setq show-paren-delay 0.0)
