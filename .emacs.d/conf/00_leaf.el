@@ -62,13 +62,15 @@ This function is minor change from `add-to-list'."
 
 (require 'leaf)
 
-(leaf bind-key :ensure t)
 (leaf package
   :config
   (add-list-to-list 'package-archives
     '(("org"       . "https://orgmode.org/elpa/")
       ("melpa"     . "https://melpa.org/packages/")
-      ("marmalade" . "https://marmalade-repo.org/packages/"))))
+      ("marmalade" . "https://marmalade-repo.org/packages/")))
+  (package-initialize))
+
+(leaf bind-key :ensure t)
 
 (leaf s    :ensure t)
 (leaf f    :ensure t)
