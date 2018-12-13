@@ -77,7 +77,15 @@
               orglyth-html-remote-root-path "~/Documents/sakura/remote/"
               orglyth-html-ftp-root-path    "/ftp:conao3@conao3.com:~/www/orglyth/")
         (orglyth-html-init)
-        (orglyth-html-project-init)))))
+        (orglyth-html-project-init))
+      
+      (leaf orglyth-latex
+        :config
+        (setq orglyth-latex-enable-option t)
+        (orglyth-latex-init)))))
+
+;; (Use-package ox-latex-subfigure
+;;   :init (el-get-bundle linktohack/ox-latex-subfigure))
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
