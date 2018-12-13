@@ -51,7 +51,7 @@ This function is minor change from `add-to-list'."
 (defmacro po (form)
   "Output expand given FORM."
   `(progn
-     (pp ,form))
+     (pp ,form)
      nil))
 
 (eval
