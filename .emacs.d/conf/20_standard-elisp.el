@@ -41,16 +41,22 @@
   (setq dired-recursive-copies  'always
         dired-recursive-deletes 'always))
 
+(leaf find-name-dired
+  :doc "run a `find' command and dired the output"
+  ;; ==== function ====
+  ;; find-name-dired (find file recursive)
+  )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;  Resources/lisp/progmodes
 ;;
 
 (leaf grep
-  :congig
+  :doc "run `grep' and display the results"
   ;; ==== function ====
-  ;; rgrep (grep recursive on current dir)
-  ;; lgrep (grep on current dir)
+  ;; rgrep (grep recursive)
+  ;; lgrep (grep)
   )
 
 
