@@ -22,6 +22,7 @@
 
 ;;
 
+(leaf htmlize :ensure t)
 
 (provide '30_utility)
 ;;; 30_utility.el ends here
