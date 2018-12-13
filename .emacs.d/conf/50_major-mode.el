@@ -53,7 +53,7 @@
                                    (emacs-lisp . t)))
     
     (leaf ob-ipython
-      :when (executable-find "jupyter")
+      :if (executable-find "jupyter")
       :ensure t
       :config
       ;; depend of jypyter, ipython
