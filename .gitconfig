@@ -1,15 +1,37 @@
 [user]
 	name = conao3
 	email = conao3@gmail.com
-[push]
-	default = simple
 [color]
 	ui = auto
 [core]
-	editor = emacs
+	editor = "emacsclient -t" --alternate-editor emacs
 	quotepath = false
 	precomposeunicode = true
 	pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -r
 	commentchar = ";"
+[push]
+	default = simple
 [alias]
-	ch = checkout
+        # `git git status` etc.
+        git = !git
+
+        # short commands
+        st = status
+        cm = commit
+
+        br = branch
+        co = checkout
+
+        cp = cherry-pick
+
+        # show list comamnds
+        tags = tag
+        remotes = remote -v
+        branches = branch -a
+        stashes = stash list
+
+        # complex comamnds
+        alias = config --get-regexp alias.*
+        revoke = reset --soft HEAD^
+        files = !cd ${GIT_PREFIX:-.} && git ls-tree -z --name-only HEAD | xargs -0 -n1 -I@ -- git log -1 --pretty=format:'%C(green)%ai%Creset %C(yellow)%h%Creset @ %C(blue)(%ar)%Creset %C(red)<%an>%Creset' -- @
+        prune-merged-branch = !git branch --merged | grep -vE '\\*|develop|master' | xargs
