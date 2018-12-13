@@ -42,6 +42,18 @@ This function is minor change from `add-to-list'."
            (if ,append ,source-lst (reverse ,source-lst)))
      ,dest-lst))
 
+(defmacro p (form)
+  "Output expand given FORM."
+  `(progn
+     (pp (macroexpand-1 ',form))
+     nil))
+
+(defmacro po (form)
+  "Output expand given FORM."
+  `(progn
+     (pp ,form))
+     nil))
+
 (eval
  `(add-list-to-list 'load-path
     ',(mapcar (lambda (x)
