@@ -41,7 +41,7 @@
   (setq dired-recursive-copies  'always
         dired-recursive-deletes 'always))
 
-(leaf find-name-dired
+(leaf find-dired
   :doc "run a `find' command and dired the output"
   ;; ==== function ====
   ;; find-name-dired (find file recursive)
