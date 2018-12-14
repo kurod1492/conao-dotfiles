@@ -43,8 +43,8 @@
          ("C-R"     . helm-regexp)
          ("M-y"     . helm-show-kill-ring)
          ("C-c h"   . helm-command-prefix)
-         :map helm-command-map
-         ("o"       . helm-occur)
+         ;; :map helm-command-map
+         ;; ("o"       . helm-occur)
          :map helm-map
          ("<tab>"   . helm-execute-persistent-action)
          ("C-i"     . helm-execute-persistent-action)
