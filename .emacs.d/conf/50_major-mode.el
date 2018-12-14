@@ -67,6 +67,7 @@
                                    (emacs-lisp . t))))
   (leaf ox
     :config
+    (leaf ox-qmd :ensure t)
     (leaf orglyth
       :config
       (leaf orglyth-html
