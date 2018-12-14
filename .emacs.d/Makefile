@@ -8,6 +8,7 @@ CONFDIR     := conf
 BUILDDIR    := build
 SNIPPETDIR  := snippets
 TEMPLETEDIR := templete
+TEXCACHEDIR := latex-math-preview-cache
 
 MIXRAWNAME  := conao-mixed-raw.el
 MIXFILENAME := conao-mixed.el
@@ -37,6 +38,7 @@ LOCAL_MIXFILES    := $(addsuffix /$(MIXFILENAME),$(LOCALDIRS))
 LOCAL_LISPDIRS    := $(addsuffix /$(LISPDIR),$(LOCALDIRS))
 LOCAL_SNIPPETS    := $(addsuffix /$(SNIPPETDIR),$(LOCALDIRS))
 LOCAL_TEMPLETES   := $(addsuffix /$(TEMPLETEDIR),$(LOCALDIRS))
+LOCAL_TEXCACHES   := $(addsuffix /$(TEXCACHEDIR),$(LOCALDIRS))
 LOCAL_REPOS       := $(foreach repo,$(REPOS),$(addsuffix /$(repo),$(LOCAL_LISPDIRS)))
 
 LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME),$(LOCAL_BUILDDIRS))
@@ -65,7 +67,7 @@ test:
 $(DIRS):
 	mkdir -p $@
 
-build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS) $(LOCAL_SNIPPETS) $(LOCAL_TEMPLETES)
+build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS) $(LOCAL_SNIPPETS) $(LOCAL_TEMPLETES) $(LOCAL_TEXCACHES)
 
 #################### main jobs
 ##########
@@ -95,6 +97,9 @@ $(LOCAL_SNIPPETS): $(SNIPPETDIR)
 	ln -s ../../$(@F) $(LOCALDIR)/$(call STRCUTREV,$@,'/',1)/
 
 $(LOCAL_TEMPLETES): $(TEMPLETEDIR)
+	ln -s ../../$(@F) $(LOCALDIR)/$(call STRCUTREV,$@,'/',1)/
+
+$(LOCAL_TEXCACHES): $(TEXCACHEDIR)
 	ln -s ../../$(@F) $(LOCALDIR)/$(call STRCUTREV,$@,'/',1)/
 
 #################### support jobs

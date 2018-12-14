@@ -26,6 +26,7 @@
 
 (leaf latex-math-preview
   :if (executable-find "platex")
+  :ensure t
   :bind (("C-c l l" . latex-math-preview-expression)
          ("C-c l s" . latex-math-preview-insert-mathematical-symbol))
   :config
