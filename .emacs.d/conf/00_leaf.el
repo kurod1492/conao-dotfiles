@@ -74,6 +74,7 @@ This function is minor change from `add-to-list'."
       ("marmalade" . "https://marmalade-repo.org/packages/")))
   (package-initialize))
 
+(leaf use-package :ensure t)
 (leaf bind-key :ensure t)
 
 (leaf s    :ensure t)
