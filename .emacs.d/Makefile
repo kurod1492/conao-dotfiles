@@ -114,6 +114,8 @@ $(REPODIRS):
 	git clone --depth 1 $(REMOTE)/$(@F) $@
 
 update: $(REPOS:%=.make-update-%) .make-update-.
+	$(MAKE)
+
 .make-update-%:
 	cd $(LISPDIR)/$*; git pull origin $(call CURRENT_BRANCH,$(LISPDIR)/$*)
 
