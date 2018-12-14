@@ -43,9 +43,10 @@
 
   :config  
   (leaf ob
-    :init
+    :setq ((org-confirm-babel-evaluate . nil))
+    :config
     (leaf ob-ipython
-      :if (executable-find "jupyter")
+      :when (executable-find "jupyter")
       :ensure t
       :config
       ;; depend of jypyter, ipython
@@ -55,15 +56,15 @@
       :when (executable-find "plantuml")
       :ensure t
       :setq ((org-plantuml-jar-path . plantuml-jar-path))
-      :setq ((org-confirm-babel-evaluate . nil))
-      :config
-      (org-babel-do-load-languages 'org-babel-load-languages
-                                   '((ipython . t)
-                                     (plantuml . t)
-                                     (org . t)
-                                     (R . t)
-                                     (C . t)
-                                     (emacs-lisp . t)))))
+      :setq ((org-confirm-babel-evaluate . nil)))
+
+    (org-babel-do-load-languages 'org-babel-load-languages
+                                 '((ipython . t)
+                                   (plantuml . t)
+                                   (org . t)
+                                   (R . t)
+                                   (C . t)
+                                   (emacs-lisp . t))))
   (leaf ox
     :config
     (leaf orglyth
