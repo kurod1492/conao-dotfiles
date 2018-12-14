@@ -62,6 +62,9 @@ This function is minor change from `add-to-list'."
 
 (require 'leaf)
 (require 'cort)
+(leaf leaf
+  :config
+  (setq leaf-backend/:ensure 'package))
 
 (leaf package
   :config
