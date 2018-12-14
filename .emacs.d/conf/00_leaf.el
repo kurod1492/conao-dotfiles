@@ -74,12 +74,19 @@ This function is minor change from `add-to-list'."
       ("marmalade" . "https://marmalade-repo.org/packages/")))
   (package-initialize))
 
-(leaf use-package :ensure t)
 (leaf bind-key :ensure t)
 
 (leaf s    :ensure t)
 (leaf f    :ensure t)
 (leaf dash :ensure t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;  Reference packages
+;;
+
+(leaf straight)                         ; download by make
+(leaf use-package :ensure t)
 
 (provide '00_leaf)
 ;;; 00_leaf.el ends here
