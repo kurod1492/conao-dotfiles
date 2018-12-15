@@ -24,6 +24,10 @@
 
 (leaf htmlize :ensure t)
 
+(leaf shell-pop
+  :ensure t
+  :bind (("C-o" . shell-pop)))
+
 (leaf latex-math-preview
   :if (executable-find "platex")
   :ensure t
