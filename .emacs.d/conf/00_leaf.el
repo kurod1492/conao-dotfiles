@@ -58,7 +58,7 @@ This function is minor change from `add-to-list'."
  `(add-list-to-list 'load-path
     ',(mapcar (lambda (x)
                 (locate-user-emacs-file (format "site-lisp/%s" x)))
-              '("cort.el" "feather.el" "leaf.el" "orglyth.el"))))
+              '("cort.el" "feather.el" "leaf.el" "orglyth.el" "straight"))))
 
 (require 'leaf)
 (require 'cort)
