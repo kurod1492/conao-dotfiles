@@ -25,8 +25,7 @@
 (leaf shackle
   :ensure t
   :config
-  (setq shackle-rules '(("*Help*" :align below :popup t :size 0.3 :select t)
-                        ("\*helm" :regexp t :align below :popup t :size 0.4)))
+  (setq shackle-rules '(("\*helm" :regexp t :align below :popup t :size 0.4)))
   (shackle-mode 1))
 
 (leaf helm
