@@ -16,10 +16,24 @@ Start Emacs with explicitly specify ~init.el~'s path.
   emacs -q -l ~/.dotfiles-conao/.emacs.d/init.el
 #+END_SRC
 
-* <DENGER> Installation
+* Installation
 Install dotfiles in your home folder.
+
+http://dotfiles.conao3.com/ is hosting ~install.sh~.
+
+Tou type just ~curl dotfiles.conao3.com | sh~.
+
 #+BEGIN_SRC bash
-  git clone https://github.com/conao/dotfiles.git ~/.dotfiles
-  cd ~/.dotfiles; make
+  $ curl http://dotfiles.conao3.com/
+  #!/bin/sh
+  # <br />
+  # Conao3 dotfiles hosting server.<br />
+  # See <a href=https://github.com/conao3/dotfiles_server>GitHub</a> to get more information.<br />
+  # <!--
+  git clone --depth 1 https://github.com/conao/dotfiles.git ~/.dotfiles
+  make -C ~/.dotfiles
+  # -->
+
+  $ curl http://dotfiles.conao3.com/ | sh
 #+END_SRC
 
