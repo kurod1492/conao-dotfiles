@@ -113,11 +113,20 @@ $(REPODIRS):
 	@$(call ECHO_MAGENTA,"git clone $(REMOTE)/$(@F)","\n","")
 	git clone --depth 1 $(REMOTE)/$(@F) $@
 
+# .make-update-. is update dotfiles(root) repository.
 update: $(REPOS:%=.make-update-%) .make-update-.
 	$(MAKE)
 
+unshallow: $(REPOS:%=.make-unshallow-%)
+	$(MAKE)
+
 .make-update-%:
+	@$(call ECHO_BLUE,"git pull origin (on $*)","\n","")
 	cd $(LISPDIR)/$*; git pull origin $(call CURRENT_BRANCH,$(LISPDIR)/$*)
+
+.make-unshallow-%:
+	@$(call ECHO_BLUE,"git fetch --unshallow (on $*)","\n","")
+	cd $(LISPDIR)/$*; git fetch --unshallow
 
 clean:
 	-rm -rf $(DIRS)
