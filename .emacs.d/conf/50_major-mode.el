@@ -24,6 +24,8 @@
 
 (leaf plantuml-mode :ensure t)
 
+(leaf bison-mode :ensure t)
+
 (leaf org
   :init
   (leaf org-plus-contrib :ensure t :require nil)
