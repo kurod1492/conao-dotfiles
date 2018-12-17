@@ -126,7 +126,7 @@ unshallow: $(REPOS:%=.make-unshallow-%)
 
 .make-unshallow-%:
 	@$(call ECHO_BLUE,"git fetch --unshallow (on $*)","\n","")
-	cd $(LISPDIR)/$*; git fetch --unshallow
+	-cd $(LISPDIR)/$*; git fetch --unshallow
 
 clean:
 	-rm -rf $(DIRS)
