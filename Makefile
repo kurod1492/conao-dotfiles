@@ -1,10 +1,19 @@
+all:
+
+include Makefunc.mk
+
 HOMEDIR   := ~
 SOURCEDIR := .dotfiles
 MAKEDIRS  := .emacs.d
 DOTFILES  := .emacs.d .gitignore_global .gitconfig
 
-.PHONY: all
-all: $(DOTFILES:%=$(HOMEDIR)/%) $(MAKEDIRS:%=.make-make-%)
+.PHONY: all install
+all:
+	$(MAKE) install -n
+	@$(call ECHO_YELLOW,"If you really run above comamnds","\n\n","")
+	@$(call ECHO_YELLOW,"run 'make install'.","","\n")
+
+install: $(DOTFILES:%=$(HOMEDIR)/%) $(MAKEDIRS:%=.make-make-%)
 	@echo
 	@echo "==== job completed ===="
 	@echo
