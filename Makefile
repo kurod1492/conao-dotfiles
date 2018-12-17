@@ -1,7 +1,7 @@
 HOMEDIR   := ~
 SOURCEDIR := .dotfiles
 MAKEDIRS  := .emacs.d
-DOTFILES  := .emacs.d .gitignore .gitconfig
+DOTFILES  := .emacs.d .gitignore_global .gitconfig
 
 .PHONY: all
 all: $(DOTFILES:%=$(HOMEDIR)/%) $(MAKEDIRS:%=.make-make-%)
