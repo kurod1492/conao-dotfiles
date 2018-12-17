@@ -1,5 +1,14 @@
 set SHELL /usr/local/bin/fish
 
+# bindings
+function fish_user_key_bindings
+  bind \cr 'peco_select_history (commandline -b)'
+  bind \c] peco_select_ghq_repository
+end
+
+####################
+#  paths
+
 # anyenv
 set PATH $HOME/.anyenv/bin $PATH
 anyenv init - | source
@@ -11,12 +20,6 @@ set PATH /Applications/Emacs-26.1.app/Contents/MacOS/bin $PATH
 # homebrew
 set PATH /usr/local/bin $PATH
 
-# bindings
-function fish_user_key_bindings
-  bind \cr 'peco_select_history (commandline -b)'
-  bind \c] peco_select_ghq_repository
-end
-
 # rust
 set PATH $HOME/.cargo/bin $PATH
 
@@ -24,6 +27,16 @@ set PATH $HOME/.cargo/bin $PATH
 set PATH /usr/local/opt/go/libexec/bin $PATH
 set PATH (go env GOPATH)/bin $PATH
 
-# aliases
+# flex
+set -g fish_user_paths "/usr/local/opt/flex/bin" $fish_user_paths
+set -gx LDFLAGS "-L/usr/local/opt/flex/lib"
+set -gx CPPFLAGS "-I/usr/local/opt/flex/include"
+
+# bison
+set -g fish_user_paths "/usr/local/opt/bison/bin" $fish_user_paths
+set -gx LDFLAGS "-L/usr/local/opt/bison/lib"
+
+####################
+#  aliases
 balias g git
 alias xmlxpath="xmllint --html --xpath 2>/dev/null"
