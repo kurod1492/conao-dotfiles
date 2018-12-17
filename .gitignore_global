@@ -1,8 +1,3 @@
-# general backup files
-*~
-.#*
-\#*
-
 ### https://raw.github.com/github/gitignore/f2bd62d680e2c17027525caf5fd67aa1b3e8ae03/Global/macOS.gitignore
 
 # General
@@ -32,4 +27,17 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+#### Emacs temporary files
+# general backup files
+*~
+.#*
+\#*
 
+# flymake-mode
+*_flymake.*
+
+# Flycheck
+flycheck_*.el
+
+# directory configuration
+.dir-locals.el
