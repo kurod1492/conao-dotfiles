@@ -22,4 +22,8 @@ $(DOTFILES:%=$(HOMEDIR)/%):
 	ln -sf $(SOURCEDIR)/$(@F) ~/
 
 .make-make-%:
-	$(MAKE) -C $(HOMEDIR)/$*
+	$(MAKE) -C $*
+
+clean: $(MAKEDIRS:%=.make-clean-%)
+.make-clean-%:
+	$(MAKE) -C $* clean
