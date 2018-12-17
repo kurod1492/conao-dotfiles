@@ -24,7 +24,12 @@
 
 (leaf plantuml-mode :ensure t)
 
-(leaf bison-mode :ensure t)
+(leaf bison-mode
+  :ensure t
+  :setq ((bison-rule-separator-column   . 4)
+         (bison-rule-enumeration-column . 4)
+         (bison-decl-type-column        . 4)
+         (bison-decl-token-column       . 4)))
 
 (leaf org
   :init
