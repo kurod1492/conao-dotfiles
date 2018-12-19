@@ -40,4 +40,4 @@ set -gx LDFLAGS "-L/usr/local/opt/bison/lib"
 #  aliases
 balias g git
 alias xmlxpath="xmllint --html --xpath 2>/dev/null"
-alias travis=".anyenv/envs/rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/travis-1.8.9/bin/travis"
+alias travis="~/.anyenv/envs/rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/travis-1.8.9/bin/travis"
