@@ -27,6 +27,9 @@ set PATH $HOME/.cargo/bin $PATH
 set PATH /usr/local/opt/go/libexec/bin $PATH
 set PATH (go env GOPATH)/bin $PATH
 
+# ruby gem
+set PATH ~/.anyenv/envs/rbenv/versions/2.5.3/bin $PATH
+
 # flex
 set -g fish_user_paths "/usr/local/opt/flex/bin" $fish_user_paths
 set -gx LDFLAGS "-L/usr/local/opt/flex/lib"
