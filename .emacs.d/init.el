@@ -38,12 +38,8 @@
               user-emacs-directory
               emacs-major-version emacs-minor-version))
 
-(let ((fn (lambda (path)
-            (make-directory path t)
-            (add-to-list 'load-path path))))
-  (funcall fn user-emacs-directory))
-
-(package-initialize)
+(make-directory user-emacs-directory t)
+(add-to-list 'load-path (concat user-emacs-directory "build/"))
 
 (if (require 'conao-mixed nil t)
     (message "load conao-mix.el")

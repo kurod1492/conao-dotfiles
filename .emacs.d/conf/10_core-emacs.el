@@ -28,9 +28,8 @@
   :doc "Storage allocation and gc for GNU Emacs Lisp interpreter."
   :config
   ;; pure-bytes-used => using memory
-  (setq gc-cons-threshold (* 128 1024 1024) ; memmory allocate with 128MB
-        garbage-collection-messages t       ; show message when GC
-        ))
+  :setq ((gc-cons-threshold . (* 128 1024 1024)) ; memmory allocate with 128MB
+         (garbage-collection-messages . t)))     ; show message when GC
 
 (leaf atimer.c
   :doc "Asynchronous timers.")
