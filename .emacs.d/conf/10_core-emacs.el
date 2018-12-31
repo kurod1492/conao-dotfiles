@@ -26,7 +26,6 @@
 
 (leaf alloc.c
   :doc "Storage allocation and gc for GNU Emacs Lisp interpreter."
-  :require nil
   :config
   ;; pure-bytes-used => using memory
   (setq gc-cons-threshold (* 128 1024 1024) ; memmory allocate with 128MB
@@ -34,16 +33,13 @@
         ))
 
 (leaf atimer.c
-  :doc "Asynchronous timers."
-  :require nil)
+  :doc "Asynchronous timers.")
 
 (leaf bidi.c
-  :doc "Low-level bidirectional buffer/string-scanning functions."
-  :require nil)
+  :doc "Low-level bidirectional buffer/string-scanning functions.")
 
 (leaf buffer.c
   :doc "Buffer manipulation primitives."
-  :require nil
   ;; header-line-format (buffer header line format, buffer local)
   ;; mode-line-format
   ;; major-mode => lisp-interaction-mode
@@ -75,12 +71,10 @@
                 ))
 
 (leaf bytecode.c
-  :doc "Execution of byte code produced by bytecomp.el."
-  :require nil)
+  :doc "Execution of byte code produced by bytecomp.el.")
 
 (leaf callint.c
   :doc "Call a Lisp function interactively."
-  :require nil
   ;; prefix-arg ?
   ;; command-history (a list of command-history)
   ;; command-debug-status (debugging status of current interactive command)
@@ -90,7 +84,6 @@
 
 (leaf callproc.c
   :doc "Synchronous subprocess invocation."
-  :require nil
   ;; exec-path (in environment variable, $PATH)
   ;; exec-suffixes (maybe use "g" to find ggrep, gfind"
   ;; exec-directory
@@ -105,46 +98,36 @@
         ))
 
 (leaf casefiddle.c
-  :doc "Case conversion functions."
-  :require nil)
+  :doc "Case conversion functions.")
 
 (leaf casetab.c
-  :doc "Routines to deal with case tables."
-  :require nil)
+  :doc "Routines to deal with case tables.")
 
 (leaf category.c
-  :doc "Routines to deal with category tables."
-  :require nil)
+  :doc "Routines to deal with category tables.")
 
 (leaf ccl.c
-  :doc "CCL (Code Conversion Language) interpreter."
-  :require nil)
+  :doc "CCL (Code Conversion Language) interpreter.")
 
 (leaf character.c
-  :doc "Basic character support."
-  :require nil)
+  :doc "Basic character support.")
 
 (leaf charset.c
-  :doc "Basic character set support."
-  :require nil)
+  :doc "Basic character set support.")
 
 (leaf chartab.c
-  :doc "char-table support."
-  :require nil)
+  :doc "char-table support.")
 
 (leaf cm.c
-  :doc "Cursor motion subroutines."
-  :require nil)
+  :doc "Cursor motion subroutines.")
 
 (leaf cmds.c
   :doc "Simple built-in editing commands."
-  :require nil
   ;; post-self-insert-hook
   )
 
 (leaf coding.c
   :doc "Coding system handler (conversion, detection, etc)."
-  :require nil
   ;; coding-system-list (detectable coding-systems)
   ;; coding-system-alist (alist ver, codiing-system-list)
   ;; coding-category-list (List of coding-categories  ordered by priority)
@@ -155,54 +138,43 @@
         default-process-coding-system '(utf-8-unix . utf-8-unix)))
 
 (leaf sygw32.c
-  :doc "Cygwin support routines."
-  :require nil)
+  :doc "Cygwin support routines.")
 
 (leaf data.c
-  :doc "Primitive operations on Lisp data types for Lisp interpreter."
-  :require nil)
+  :doc "Primitive operations on Lisp data types for Lisp interpreter.")
 
 (leaf dbusbind.c
-  :doc "Elisp bindings for D-Bus. (interprocess communication)"
-  :require nil)
+  :doc "Elisp bindings for D-Bus. (interprocess communication)")
 
 (leaf decompress.c
-  :doc "Interface to zlib."
-  :require nil)
+  :doc "Interface to zlib.")
 
 (leaf dired.c
   :doc "Lisp functions for making directory listings."
-  :require nil
   ;; completion-ignored-extensions (not to competion file end one of.)
   ;;  => (".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ...)
   )
 
 (leaf dispnew.c
   :doc "Updating of data structures for redisplay."
-  :require nil
   ;; initial-window-system (window system for the first frame)
   ;; window-system (window system for current frame (x, w32, mac, ns, pc))
   (setq visible-bell nil                ; non-nil enable visible-bell
         ))
 
 (leaf doc.c
-  :doc "Record indices of function doc strings stored in a file."
-  :require nil)
+  :doc "Record indices of function doc strings stored in a file.")
 
 (leaf doprint.c
-  :doc "Output like sprintf to a buffer of specified size."
-  :require nil)
+  :doc "Output like sprintf to a buffer of specified size.")
 
 (leaf dosfns.c
-  :doc "MS-DOS specific Lisp utilities."
-  :require nil)
+  :doc "MS-DOS specific Lisp utilities.")
 
 (leaf dynlib.c
-  :doc "Portable API for dynamic loading."
-  :require nil)
+  :doc "Portable API for dynamic loading.")
 
 (leaf indent.c
-  :require nil
   :config
   (setq-default indent-tabs-mode nil))
 
