@@ -22,6 +22,7 @@
 
 ;;
 
+(leaf go-mode :ensure t)
 (leaf plantuml-mode :ensure t)
 
 (leaf bison-mode
