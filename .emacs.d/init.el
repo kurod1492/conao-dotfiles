@@ -28,24 +28,20 @@
 (setq debug-on-error  t
       init-file-debug t)
 
-(defun mkdir-if-missing (path &optional add-loadpath-p)
-  "Missing folder, create PATH and add PATH to load-path.
-Parent folder also create if no exist.
-If ADD-LOADPATH-P is non-nil, add maked directory to loadpath."
-  (unless (file-directory-p path) (make-directory path t))
-  (when add-loadpath-p (add-to-list 'load-path path)))
-
 ;; if you run like 'emacs -q -l ~/hoge/init.el'
-(progn
-  (when load-file-name
-    (setq user-emacs-directory
-          (expand-file-name (file-name-directory load-file-name))))
+(when load-file-name
   (setq user-emacs-directory
-	(format "%slocal/%s.%s/"
-                user-emacs-directory emacs-major-version emacs-minor-version))
+        (expand-file-name (file-name-directory load-file-name))))
 
-  (mkdir-if-missing user-emacs-directory)
-  (mkdir-if-missing (locate-user-emacs-file "build/") t))
+(setq user-emacs-directory
+      (format "%slocal/%s.%s/"
+              user-emacs-directory
+              emacs-major-version emacs-minor-version))
+
+(let ((fn (lambda (path)
+            (make-directory path t)
+            (add-to-list 'load-path path))))
+  (funcall fn user-emacs-directory))
 
 (package-initialize)
 
