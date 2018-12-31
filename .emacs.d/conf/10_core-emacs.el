@@ -61,13 +61,12 @@
   ;; indicate-buffer-boundaries (non-nil to display file end marker on fringe)
   ;; fringe-indicator-alist, fringe-cursor-alist
   ;; mark-active (non-nil active mark)
-  (setq-default tab-width      8
-                fill-column    80
-                truncate-lines t        ; don't wrap lines
-                cursor-type    t        ; use specified for the frame
-                line-spacing   0.0      ; line-spacing (double is relative)
-                buffer-file-coding-system 'utf-8-unix
-                ))
+  :setq-default ((tab-width      . 8)
+                 (fill-column    . 80)
+                 (truncate-lines . t)        ; don't wrap lines
+                 (cursor-type    . t)        ; use specified for the frame
+                 (line-spacing   . 0.0)      ; line-spacing (double is relative)
+                 (buffer-file-coding-system . 'utf-8-unix)))
 
 (leaf bytecode.c
   :doc "Execution of byte code produced by bytecomp.el.")
@@ -93,8 +92,7 @@
   ;;  => "/Users/conao/Documents/emacs-26.1/emacs-mac-build/share/info"
   ;; initial-environment (environment variable when Emacs build)
   ;; process-environment ?
-  (setq shell-file-name "/bin/bash"     ; path of default shell
-        ))
+  :setq ((shell-file-name . "/bin/bash")))        ; path of default shell
 
 (leaf casefiddle.c
   :doc "Case conversion functions.")
@@ -132,9 +130,9 @@
   ;; coding-category-list (List of coding-categories  ordered by priority)
   ;; coding-system-for-read
   ;; coding-system-for-write
-  (setq locale-coding-system 'utf-8-unix ; system I/O, decode keyboard input
-        ;; coding systems used for process I/O by default.
-        default-process-coding-system '(utf-8-unix . utf-8-unix)))
+  :setq ((locale-coding-system . 'utf-8-unix) ; system I/O, decode keyboard input
+         ;; coding systems used for process I/O by default.
+         (default-process-coding-system . '(utf-8-unix . utf-8-unix))))
 
 (leaf sygw32.c
   :doc "Cygwin support routines.")
@@ -158,8 +156,8 @@
   :doc "Updating of data structures for redisplay."
   ;; initial-window-system (window system for the first frame)
   ;; window-system (window system for current frame (x, w32, mac, ns, pc))
-  (setq visible-bell nil                ; non-nil enable visible-bell
-        ))
+  :setq ((visible-bell . nil)))         ; non-nil enable visible-bell
+
 
 (leaf doc.c
   :doc "Record indices of function doc strings stored in a file.")
@@ -174,8 +172,9 @@
   :doc "Portable API for dynamic loading.")
 
 (leaf indent.c
+  :doc "Indentation functions"
   :config
-  (setq-default indent-tabs-mode nil))
+  :setq-default ((indent-tabs-mode . nil)))
 
 (provide '01_core-emacs)
 ;;; init.el ends here
