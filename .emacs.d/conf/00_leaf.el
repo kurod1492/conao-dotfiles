@@ -27,7 +27,7 @@
 ;; (if (assoc 'leaf package-archive-contents)
 ;;     (package-install package)
 ;;   (package-refresh-contents)
-;;   (package-install package))
+;;   (package-install 'leaf))
 
 ;; support funcs
 (defmacro add-list-to-list (dest-lst source-lst &optional append)
