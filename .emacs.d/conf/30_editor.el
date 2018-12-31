@@ -30,6 +30,7 @@
 
 (leaf helm
   :ensure t
+  :require t
   :bind (("M-x"     . helm-M-x)
          ("M-X"     . execute-extended-command)
          ("C-x b"   . helm-mini)
