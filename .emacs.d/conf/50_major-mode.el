@@ -79,6 +79,7 @@
     (leaf orglyth
       :config
       (leaf orglyth-html
+        :commands orglyth-html-init orglyth-html-project-init
         :setq
         ((orglyth-html-enable-option    . t)
          (orglyth-html-use-ftp          . nil)
@@ -90,6 +91,7 @@
         (orglyth-html-project-init))
       
       (leaf orglyth-latex
+        :comamnds orglyth-latex-init
         :setq ((orglyth-latex-enable-option . t))
         :config
         (orglyth-latex-init)))))
