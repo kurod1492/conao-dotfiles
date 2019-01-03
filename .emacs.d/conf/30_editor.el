@@ -24,8 +24,8 @@
 
 (leaf shackle
   :ensure t
-  :config
-  (setq shackle-rules '(("\*helm" :regexp t :align below :popup t :size 0.4)))
+  :custom ((shackle-rules . '(("\*helm" :regexp t :align below :popup t :size 0.4))))
+  :config  
   (shackle-mode 1))
 
 (leaf helm
@@ -49,32 +49,32 @@
          ("<tab>"   . helm-execute-persistent-action)
          ("C-i"     . helm-execute-persistent-action)
          ("C-z"     . helm-select-action))
-  :setq (;; open helm buffer inside current window, not occupy whole other window
-         (helm-split-window-inside-p            . t)
+  :custom (;; open helm buffer inside current window, not occupy whole other window
+           (helm-split-window-inside-p            . t)
 
-         ;; move to end or beginning of source when reaching top or bottom of source.
-         (helm-move-to-line-cycle-in-source     . t)
+           ;; move to end or beginning of source when reaching top or bottom of source.
+           (helm-move-to-line-cycle-in-source     . t)
 
-         ;; search for library in `require' and `declare-function' sexp.
-         (helm-ff-search-library-in-sexp        . t)
+           ;; search for library in `require' and `declare-function' sexp.
+           (helm-ff-search-library-in-sexp        . t)
 
-         ;; scroll 8 lines other window using M-<next>/M-<prior>
-         (helm-scroll-amount                    . 8)
-         (helm-ff-file-name-history-use-recentf . t)
-         (helm-echo-input-in-header-line        . nil)
-         
-         (helm-autoresize-max-height . 0)
-         (helm-autoresize-min-height . 40)
+           ;; scroll 8 lines other window using M-<next>/M-<prior>
+           (helm-scroll-amount                    . 8)
+           (helm-ff-file-name-history-use-recentf . t)
+           (helm-echo-input-in-header-line        . nil)
+           
+           (helm-autoresize-max-height . 0)
+           (helm-autoresize-min-height . 40)
 
-         ;; 文字列を入力してから検索するまでのタイムラグ。デフォルトで 0
-         (helm-input-idle-delay       . 0.0)
-         
-         ;; 表示する最大候補数。デフォルトで 100
-         (helm-candidate-number-limit . 100))
+           ;; 文字列を入力してから検索するまでのタイムラグ。デフォルトで 0
+           (helm-input-idle-delay       . 0.0)
+           
+           ;; 表示する最大候補数。デフォルトで 100
+           (helm-candidate-number-limit . 100))
   :config
   (leaf helm-config
-    :init
-    (setq helm-command-prefix-key "C-c C-h"))
+    :require t
+    :custom ((helm-command-prefix-key "C-c C-h")))
   
   (helm-autoresize-mode t)
   (helm-mode 1)
@@ -96,10 +96,10 @@
   (define-key ac-completing-map (kbd "C-n") 'ac-next)
   (define-key ac-completing-map (kbd "C-p") 'ac-previous)
   
-  (setq ac-auto-start 1                 ; min char to start
-        ac-auto-show-menu t             ; show menu immidiately
-        ac-use-fuzzy t                  ; use fuzzy
-        ))
+  :custom ((ac-auto-start . 1)                 ; min char to start
+           (ac-auto-show-menu . t)             ; show menu immidiately
+           (ac-use-fuzzy t)                  ; use fuzzy
+           ))
 
 (leaf flycheck
   :ensure t
