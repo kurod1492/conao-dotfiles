@@ -35,8 +35,8 @@
   :config
   (leaf dired-x)
   (leaf wdired
-    :config
-    (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode))
+    :bind (:map dired-mode-map
+                ("r" . wdired-change-to-wdired-mode)))
 
   (setq dired-recursive-copies  'always
         dired-recursive-deletes 'always))
