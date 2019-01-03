@@ -36,7 +36,7 @@
   :init
   (leaf org-plus-contrib :ensure t :require nil)
   
-  :setq
+  :custom
   ((org-directory                         . "~/Documents/org/")
    (org-default-notes-file                . "~/Documents/org/notes.org")
    (org-agenda-files                      . "~/Documents/org/notes.org")
