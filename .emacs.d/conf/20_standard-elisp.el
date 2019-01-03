@@ -22,6 +22,10 @@
 
 ;;
 
+;; custom file (setting at top)
+(leaf cus-edit
+  :custom ((custom-file . (locate-user-emacs-file "custom.el"))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;  Resorces/lisp
@@ -37,9 +41,8 @@
   (leaf wdired
     :bind (:map dired-mode-map
                 ("r" . wdired-change-to-wdired-mode)))
-
-  (setq dired-recursive-copies  'always
-        dired-recursive-deletes 'always))
+  :custom ((dired-recursive-copies  . 'always)
+           (dired-recursive-deletes . 'always)))
 
 (leaf find-dired
   :doc "run a `find' command and dired the output"
@@ -63,13 +66,9 @@
   :doc "A universal on-the-fly syntax checker")
 
 (leaf paren
+  :custom ((show-paren-delay . 0.0))
   :config
-  (setq show-paren-delay 0.0)
   (show-paren-mode 1))
-
-(leaf cus-edit
-  :config
-  (setq custom-file (locate-user-emacs-file "custom.el")))
 
 (provide '10_standard-elisp)
 ;;; 10_standard-elisp.el ends here
