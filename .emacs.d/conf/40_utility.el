@@ -52,9 +52,10 @@
 \\newcommand{\\up}{\\uparrow}
 \\color{white}"
         )
-  (add-to-list 'latex-math-preview-command-option-alist
-               '(gs-to-png "-q" "-dSAFER" "-dNOPAUSE" "-dBATCH" "-sDEVICE=pngalpha"
-                           "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
-                           "-dGraphicsAlphaBits=4" "-dQUIET")))
+  (with-eval-after-load 'latex-math-preview
+    (add-to-list 'latex-math-preview-command-option-alist
+                 '(gs-to-png "-q" "-dSAFER" "-dNOPAUSE" "-dBATCH" "-sDEVICE=pngalpha"
+                             "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
+                             "-dGraphicsAlphaBits=4" "-dQUIET"))))
 (provide '30_utility)
 ;;; 30_utility.el ends here

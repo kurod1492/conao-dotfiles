@@ -67,10 +67,10 @@
       :setq ((org-confirm-babel-evaluate . nil)))
 
     (org-babel-do-load-languages 'org-babel-load-languages
-                                 '((ipython . t)
-                                   (plantuml . t)
+                                 '(;; (ipython . t)
+                                   ;; (plantuml . t)
                                    (org . t)
-                                   (R . t)
+                                   ;; (R . t)
                                    (C . t)
                                    (emacs-lisp . t))))
   (leaf ox
