@@ -74,7 +74,7 @@
   :config
   (leaf helm-config
     :require t
-    :custom ((helm-command-prefix-key "C-c C-h")))
+    :custom ((helm-command-prefix-key . "C-c C-h")))
   
   (helm-autoresize-mode t)
   (helm-mode 1)
@@ -98,7 +98,7 @@
   
   :custom ((ac-auto-start . 1)                 ; min char to start
            (ac-auto-show-menu . t)             ; show menu immidiately
-           (ac-use-fuzzy t)                  ; use fuzzy
+           (ac-use-fuzzy . t)                  ; use fuzzy
            ))
 
 (leaf flycheck
