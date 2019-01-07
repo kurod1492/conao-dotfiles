@@ -58,10 +58,14 @@ This function is minor change from `add-to-list'."
  `(add-list-to-list 'load-path
     ',(mapcar (lambda (x)
                 (locate-user-emacs-file (format "site-lisp/%s" x)))
-              '("cort.el" "feather.el" "leaf.el" "orglyth.el" "straight.el"))))
+              '("cort-test.el" "feather.el" "leaf.el" "leaf-browser.el"
+                "orglyth.el" "straight.el"))))
 
 (require 'leaf)
-(require 'cort)
+(require 'cort-test)
+(require 'feather)
+(require 'leaf-browser)
+
 (leaf leaf
   :config
   (setq leaf-backend/:ensure 'package))
