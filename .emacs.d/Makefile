@@ -18,7 +18,7 @@ MIXFILE     := $(LOCALDIR)/$(MIXFILENAME)
 
 GITHUB      := https://github.com
 REMOTE      := $(GITHUB)/conao3
-REPOS       := leaf.el orglyth.el cort-test.el feather.el leaf-browser.el straight.el
+REPOS       := leaf.el orglyth.el cort-test.el feather.el leaf-browser.el multi-httpd.el straight.el
 REPODIRS    := $(addprefix $(LISPDIR)/, $(REPOS))
 
 VERNAME_CMD := --version | head -n 1 | cut -d ' ' -f 3 | grep -oP '^\d+\.\d+'   
