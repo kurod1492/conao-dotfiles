@@ -22,6 +22,7 @@
 
 ;;
 
+(leaf simple-httpd :ensure t)
 (leaf shackle
   :ensure t
   :custom ((shackle-rules . '(("\*helm" :regexp t :align below :popup t :size 0.4))))
