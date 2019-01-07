@@ -22,7 +22,11 @@
 
 ;;
 
-(leaf htmlize :ensure t)
+(leaf leaf-browser
+  :config
+  (leaf htmlize :ensure t)
+  (leaf simple-httpd :ensure t)
+  (leaf elquery :ensure t))
 
 (leaf shell-pop
   :ensure t
