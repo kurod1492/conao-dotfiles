@@ -50,6 +50,11 @@
   ;; find-name-dired (find file recursive)
   )
 
+(leaf files
+  :doc "file input and output commands for Emacs"
+  :config
+  (global-auto-revert-mode))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;  Resources/lisp/progmodes
