@@ -59,12 +59,13 @@ This function is minor change from `add-to-list'."
     ',(mapcar (lambda (x)
                 (locate-user-emacs-file (format "site-lisp/%s" x)))
               '("cort-test.el" "feather.el" "leaf.el" "leaf-browser.el"
-                "orglyth.el" "straight.el"))))
+                "seml-mode.el" "orglyth.el" "straight.el"))))
 
 (require 'leaf)
 (require 'cort-test)
 (require 'feather)
 (require 'leaf-browser)
+(require 'seml-mode)
 
 (leaf leaf
   :config
