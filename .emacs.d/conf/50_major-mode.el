@@ -22,6 +22,7 @@
 
 ;;
 
+(leaf polymode :ensure t)
 (leaf go-mode :ensure t)
 (leaf plantuml-mode :ensure t)
 
