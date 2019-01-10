@@ -58,14 +58,23 @@ This function is minor change from `add-to-list'."
  `(add-list-to-list 'load-path
     ',(mapcar (lambda (x)
                 (locate-user-emacs-file (format "site-lisp/%s" x)))
-              '("cort-test.el" "feather.el" "leaf.el" "leaf-browser.el"
-                "seml-mode.el" "orglyth.el" "straight.el"))))
+              '(;; depend packages
+                "seml-mode.el" "cort-test.el"
+                "leaf.el"
 
-(require 'leaf)
+                ;; standalone packages
+                "feather.el"  "leaf-browser.el"
+                "orglyth.el"
+
+                ;; other vendor packages
+                "straight.el"))))
+
+(require 'seml-mode)
 (require 'cort-test)
+(require 'leaf)
 (require 'feather)
 (require 'leaf-browser)
-(require 'seml-mode)
+(require 'straight)
 
 (leaf leaf
   :config
@@ -90,7 +99,6 @@ This function is minor change from `add-to-list'."
 ;;  Reference packages
 ;;
 
-(leaf straight)                         ; download by make
 (leaf use-package :ensure t)
 
 (provide '00_leaf)
