@@ -44,6 +44,12 @@
   :custom ((dired-recursive-copies  . 'always)
            (dired-recursive-deletes . 'always)))
 
+(leaf menu-bar
+  :doc "define a default menu bar"
+  :config
+  (menu-bar-mode 0)
+  (tool-bar-mode 0))
+
 (leaf find-dired
   :doc "run a `find' command and dired the output"
   ;; ==== function ====
