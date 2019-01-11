@@ -35,6 +35,16 @@
   :config  
   (shackle-mode 1))
 
+(leaf yasnippet
+  :ensure t
+  :bind (:map yas-minor-mode-map
+              ("C-c y i" . yas-insert-snippet)
+              ("C-c y n" . yas-new-snippet)
+              ("C-c y v" . yas-visit-snippet-file)
+              ("C-c y l" . yas-describe-tables)
+              ("C-c y g" . yas-reload-all))
+  :config (yas-global-mode 1))
+
 (leaf helm
   :ensure t
   :require t
