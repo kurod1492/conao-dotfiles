@@ -55,6 +55,12 @@
   :config
   (global-auto-revert-mode))
 
+(leaf novice
+  :doc "handling of disabled commands (\"novice mode\") for Emacs"
+  :config
+  (mapc (lambda (func) (put func 'disabled nil))
+        '(narrow-to-region narrow-to-page narrow-to-defun list-timers)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;  Resources/lisp/progmodes
