@@ -23,6 +23,12 @@
 ;;
 
 (leaf simple-httpd :ensure t)
+
+(leaf real-auto-save
+  :ensure t
+  :custom ((real-auto-save-interval . 1))
+  :config (add-hook 'find-file-hook 'real-auto-save-mode))
+
 (leaf shackle
   :ensure t
   :custom ((shackle-rules . '(("\*helm" :regexp t :align below :popup t :size 0.4))))
