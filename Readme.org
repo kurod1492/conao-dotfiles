@@ -1,8 +1,8 @@
 #+author: conao
 #+date: <2018-11-24 Sat>
 
-* Conao's dotfiles
 [[https://github.com/conao3/dotfiles.el][https://img.shields.io/github/license/conao3/dotfiles.svg?style=flat-square]]
+[[https://github.com/conao3/github-header][https://files.conao3.com/github-header/gif/dotfiles.gif]]
 
 * Try .emacs
 If you just try my .emacs, clone this repository, 
