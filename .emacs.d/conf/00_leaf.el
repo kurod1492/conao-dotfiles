@@ -68,17 +68,22 @@ This function is minor change from `add-to-list'."
 
                 ;; other vendor packages
                 "straight.el"))))
-
-(require 'seml-mode)
-(require 'cort-test)
 (require 'leaf)
-(require 'feather)
-(require 'leaf-browser)
-(require 'straight)
 
+(leaf seml-mode
+  :init (require 'seml-mode))
+(leaf cort-test
+  :init (require 'cort-test))
 (leaf leaf
-  :config
-  (setq leaf-backend/:ensure 'package))
+  :init (require 'leaf)
+  :custom ((leaf-backend/:ensure . 'package)))
+(leaf feather
+  :init (require 'feather))
+(leaf leaf-browser
+  :init (require 'leaf-browser)
+  :custom ((lbrowser-root-dir . "~/.emacs.d/site-lisp/leaf-browser.el/")))
+(leaf straight
+  :init (require 'straight))
 
 (leaf package
   :config
