@@ -71,7 +71,8 @@ This function is minor change from `add-to-list'."
 (require 'leaf)
 
 (leaf seml-mode
-  :init (require 'seml-mode))
+  :init (require 'seml-mode)
+  :custom ((seml-live-refresh-interval . 0.35)))
 (leaf cort-test
   :init (require 'cort-test))
 (leaf leaf
