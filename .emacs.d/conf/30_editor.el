@@ -27,7 +27,8 @@
 (leaf real-auto-save
   :ensure t
   :custom ((real-auto-save-interval . 0.3))
-  :config (add-hook 'find-file-hook 'real-auto-save-mode))
+  :commands real-auto-save-mode
+  :hook (find-file-hook . real-auto-save-mode))
 
 (leaf shackle
   :ensure t
