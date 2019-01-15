@@ -74,7 +74,7 @@ This function is minor change from `add-to-list'."
   :init (require 'seml-mode)
   :custom ((seml-live-refresh-interval     . 0.35)
            (seml-live-refresh-url-variable . ":var1/:var2")
-           (seml-live-refresh-url-quety    . '(path))))
+           (seml-live-refresh-url-quety    . '(path targetpath))))
 (leaf cort-test
   :init (require 'cort-test))
 (leaf leaf
