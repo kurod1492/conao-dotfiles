@@ -24,7 +24,9 @@
 
 ;; custom file (setting at top)
 (leaf cus-edit
-  :custom ((custom-file . (locate-user-emacs-file "custom.el"))))
+  :custom ((custom-file . (locate-user-emacs-file "custom.el")))
+  :config
+  (load custom-file))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
