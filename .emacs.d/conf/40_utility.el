@@ -22,6 +22,8 @@
 
 ;;
 
+(leaf lingr :ensure t :require t)
+
 (leaf leaf-browser
   :config
   (leaf htmlize :ensure t)
