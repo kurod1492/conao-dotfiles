@@ -26,7 +26,8 @@
 (leaf cus-edit
   :custom ((custom-file . (locate-user-emacs-file "custom.el")))
   :config
-  (load custom-file))
+  (when (file-readable-p custom-file)
+    (load custom-file)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
