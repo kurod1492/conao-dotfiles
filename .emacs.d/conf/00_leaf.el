@@ -84,7 +84,8 @@ This function is minor change from `add-to-list'."
   :init (require 'feather))
 (leaf leaf-browser
   :init (require 'leaf-browser)
-  :custom ((lbrowser-root-dir . "~/.emacs.d/site-lisp/leaf-browser.el/")))
+  :custom ((lbrowser-root-dir . "~/.emacs.d/site-lisp/leaf-browser.el/")
+           (lbrowser-debugp . t)))
 (leaf straight
   :init (require 'straight))
 
