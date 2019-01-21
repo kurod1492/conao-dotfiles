@@ -102,6 +102,63 @@
   ;;  (global-set-key (kbd "C-c h") helm-command-map)
   (global-unset-key (kbd "C-x c")))
 
+(leaf elscreen
+  :ensure t
+  :bind* (("C-c e k"       . elscreen-kill-screen-and-buffers)
+          ;; confrict with org-mode
+          ;; ("C-M-<right>" . elscreen-swap-next)
+          ;; ("C-M-<left>"  . elscreen-swap-previous)
+          ("C-<tab>"     . elscreen-next)
+          ("C-S-<tab>"   . elscreen-previous)
+          ("C-c e d"       . elscreen-dired)
+          ("C-c e r"       . elscreen-screen-nickname))
+  ;;  :init (el-get-bundle conao/elscreen-swap)
+  :config
+  (leaf session
+    :ensure t
+    :config
+    (setq session-initialize '(places session)
+          session-globals-include '((kill-ring 100)
+                                    (session-files-alist 500 t)
+                                    (file-name-history 10000))
+          session-globals-max-string 100000
+          history-length t
+          session-undo-check -1)
+    (add-hook 'after-init-hook 'session-initialize))
+  (leaf navbar
+    :init (el-get-bundle papaeye/emacs-navbar
+                         :features (navbarx-elscreen navbarx-version navbarx-time))
+    :config
+    (setq navbar-item-list '(navbarx-version navbarx-time navbarx-elscreen))
+    (navbar-mode)
+    (display-time-mode)
+    (navbar-revive-workaround))
+  (leaf elscreen-persist
+    :init (el-get-bundle robario/elscreen-persist)
+    :config
+    (elscreen-persist-mode 1)
+
+    ;; desktop.el settings
+    (setq desktop-files-not-to-save "")
+    (setq desktop-restore-frames nil)
+    (desktop-save-mode t))
+  (leaf elscreen-server :disabled t)
+  (custom-set-variables
+   '(elscreen-prefix-key (kbd "C-c e"))
+   '(elscreen-tab-display-kill-screen nil)    ;; don't show [x] mark in tab
+   '(elscreen-tab-display-control nil))       ;; don't show [<->] mark in header-line
+  (setq elscreen-display-screen-number nil)   ;; don't show screen number in mode-line
+  (elscreen-start))
+
+(leaf undo-tree :ensure t
+  :config
+  (leaf undohist :ensure t
+    :config
+    (undohist-initialize)
+    (setq undohist-directory (user-setting-directory "undohist")
+          undohist-ignored-files '("/tmp" "/elpa" "/el-get")))
+  (global-undo-tree-mode))
+
 (leaf auto-complete
   :ensure t
   :init
