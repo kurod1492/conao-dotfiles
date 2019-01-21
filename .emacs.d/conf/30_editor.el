@@ -115,6 +115,7 @@
   ;;  :init (el-get-bundle conao/elscreen-swap)
   :config
   (leaf session
+    :init (el-get-bundle conao/revive)
     :ensure t
     :config
     (setq session-initialize '(places session)
@@ -152,7 +153,9 @@
 
 (leaf undo-tree :ensure t
   :config
-  (leaf undohist :ensure t
+  (leaf undohist :ensure t :require t
+        :init
+        (defalias 'user-setting-directory 'locate-user-emacs-file)
     :config
     (undohist-initialize)
     (setq undohist-directory (user-setting-directory "undohist")
