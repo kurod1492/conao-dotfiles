@@ -104,6 +104,7 @@
 
 (leaf elscreen
   :ensure t
+  :require t
   :bind* (("C-c e k"       . elscreen-kill-screen-and-buffers)
           ;; confrict with org-mode
           ;; ("C-M-<right>" . elscreen-swap-next)
@@ -114,9 +115,10 @@
           ("C-c e r"       . elscreen-screen-nickname))
   ;;  :init (el-get-bundle conao/elscreen-swap)
   :config
+  (setq elscreen-tab-display-control nil)
   (leaf session
     :init (el-get-bundle conao/revive)
-    :ensure t
+    :requre t
     :config
     (setq session-initialize '(places session)
           session-globals-include '((kill-ring 100)
@@ -127,6 +129,7 @@
           session-undo-check -1)
     (add-hook 'after-init-hook 'session-initialize))
   (leaf navbar
+    :require t
     :init (el-get-bundle papaeye/emacs-navbar
                          :features (navbarx-elscreen navbarx-version navbarx-time))
     :config
@@ -135,6 +138,7 @@
     (display-time-mode)
     (navbar-revive-workaround))
   (leaf elscreen-persist
+    :require t
     :init (el-get-bundle robario/elscreen-persist)
     :config
     (elscreen-persist-mode 1)
