@@ -85,10 +85,14 @@ This function is minor change from `add-to-list'."
 (leaf leaf-browser
   :init (require 'leaf-browser)
   :custom ((lbrowser-root-dir . "~/.emacs.d/site-lisp/leaf-browser.el/")
-           (lbrowser-debugp . t)))
+           (lbrowser-debugp . t))
+  :config
+  (leaf htmlize :ensure t)
+  (leaf simple-httpd :ensure t
+        :custom ((httpd-show-backtrace-when-error . t)))
+  (leaf elquery :ensure t))
 (leaf straight
   :init (require 'straight))
-
 (leaf package
   :config
   (add-list-to-list 'package-archives

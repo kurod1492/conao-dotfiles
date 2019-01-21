@@ -24,13 +24,6 @@
 
 (leaf lingr :ensure t :require t)
 
-(leaf leaf-browser
-  :config
-  (leaf htmlize :ensure t)
-  (leaf simple-httpd :ensure t
-        :custom ((httpd-show-backtrace-when-error . t)))
-  (leaf elquery :ensure t))
-
 (leaf shell-pop
   :ensure t
   :bind (("C-o" . shell-pop)))
