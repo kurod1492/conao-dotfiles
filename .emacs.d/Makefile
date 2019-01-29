@@ -18,7 +18,7 @@ MIXFILE     := $(LOCALDIR)/$(MIXFILENAME)
 
 GITHUB      := https://github.com
 REMOTE      := $(GITHUB)/conao3
-REPOS       := leaf.el orglyth.el cort-test.el seml-mode.el
+REPOS       := leaf.el orglyth.el cort-test.el seml-mode.el po-mode.el
 REPOS         += feather.el leaf-browser.el straight.el
 REPODIRS    := $(addprefix $(LISPDIR)/, $(REPOS))
 

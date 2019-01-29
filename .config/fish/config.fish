@@ -27,6 +27,10 @@ set PATH $HOME/.cargo/bin $PATH
 set PATH /usr/local/opt/go/libexec/bin $PATH
 set PATH (go env GOPATH)/bin $PATH
 
+# po4a
+set PATH $HOME/Develop/git/po4a $PATH
+set -g fish_user_paths "/usr/local/opt/texinfo/bin" $fish_user_paths
+
 # ruby gem
 # set PATH ~/.anyenv/envs/rbenv/versions/2.5.3/bin $PATH
 

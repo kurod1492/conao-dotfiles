@@ -63,11 +63,10 @@ This function is minor change from `add-to-list'."
                 "leaf.el"
 
                 ;; standalone packages
-                "feather.el"  "leaf-browser.el"
-                "orglyth.el"
+                "feather.el" "leaf-browser.el" "orglyth.el"
 
                 ;; other vendor packages
-                "straight.el"))))
+                "straight.el" "po-mode.el"))))
 (require 'leaf)
 
 (leaf seml-mode
@@ -121,6 +120,9 @@ This function is minor change from `add-to-list'."
   :config
   (setq el-get-git-shallow-clone  t
         el-get-emacswiki-base-url "http://www.emacswiki.org/emacs/download/"))
+
+(leaf po-mode.el
+  :require po-mode po-compat start-po)
 
 (provide '00_leaf)
 ;;; 00_leaf.el ends here
