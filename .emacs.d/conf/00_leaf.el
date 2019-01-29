@@ -122,7 +122,30 @@ This function is minor change from `add-to-list'."
         el-get-emacswiki-base-url "http://www.emacswiki.org/emacs/download/"))
 
 (leaf po-mode.el
-  :require po-mode po-compat)
+  :require po-mode po-compat
+  :config
+  (autoload 'po-mode "po-mode"
+    "Major mode for translators when they edit PO files.
+
+Special commands:
+\\{po-mode-map}
+Turning on PO mode calls the value of the variable 'po-mode-hook',
+if that value is non-nil.  Behaviour may be adjusted through some variables,
+all reachable through 'M-x customize', in group 'Emacs.Editing.I18n.Po'."
+    t)
+  (setq auto-mode-alist
+        (cons '("\\.po\\'\\|\\.po\\." . po-mode) auto-mode-alist))
+
+  ;; For viewing PO and POT files.
+
+  ;; To use the right coding system automatically under Emacs 20 or newer.
+  (unless (fboundp 'po-find-file-coding-system)
+    (autoload 'po-find-file-coding-system "po-compat"
+      "\
+Return a Mule (DECODING . ENCODING) pair, according to PO file charset.
+Called through file-coding-system-alist, before the file is visited for real."))
+  (modify-coding-system-alist 'file "\\.po[t]?\\'\\|\\.po\\."
+                              'po-find-file-coding-system))
 
 (provide '00_leaf)
 ;;; 00_leaf.el ends here
