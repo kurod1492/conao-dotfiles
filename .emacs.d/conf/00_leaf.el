@@ -122,7 +122,7 @@ This function is minor change from `add-to-list'."
         el-get-emacswiki-base-url "http://www.emacswiki.org/emacs/download/"))
 
 (leaf po-mode.el
-  :require po-mode po-compat start-po)
+  :require po-mode po-compat)
 
 (provide '00_leaf)
 ;;; 00_leaf.el ends here
