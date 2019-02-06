@@ -43,6 +43,9 @@ set -gx CPPFLAGS "-I/usr/local/opt/flex/include"
 set -g fish_user_paths "/usr/local/opt/bison/bin" $fish_user_paths
 set -gx LDFLAGS "-L/usr/local/opt/bison/lib"
 
+# travis-ci
+set TRAVISTAG packer-1515445631-7dfb2e1
+
 ####################
 #  aliases
 balias g git

@@ -27,6 +27,13 @@
 (leaf plantuml-mode :ensure t)
 (leaf web-mode :ensure t)
 
+(leaf docker
+  :config
+  (leaf docker :ensure t)
+  (leaf dockerfile-mode :ensure t)
+  (leaf docker-compose-mode :ensure t)
+  (leaf docker-tramp :ensure t))
+
 (leaf bison-mode
   :ensure t
   :setq ((bison-rule-separator-column   . 4)
