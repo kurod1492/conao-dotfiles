@@ -27,6 +27,9 @@
 (leaf plantuml-mode :ensure t)
 (leaf web-mode :ensure t)
 
+(leaf cider :ensure t
+      :init (leaf clojure-mode :ensure t))
+
 (leaf docker
   :config
   (leaf docker :ensure t)
@@ -106,8 +109,8 @@
         :config
         (orglyth-latex-init)))))
 
-;; (Use-package ox-latex-subfigure
-;;   :init (el-get-bundle linktohack/ox-latex-subfigure))
+(use-package ox-latex-subfigure
+  :init (el-get-bundle linktohack/ox-latex-subfigure))
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
