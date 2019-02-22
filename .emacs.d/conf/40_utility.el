@@ -24,6 +24,11 @@
 
 (leaf lingr :ensure t :require t)
 
+(leaf google-translate :ensure t
+      :custom ((google-translate-default-source-language . "en")
+               (google-translate-default-target-language . "ja"))
+      :bind (("C-c g" . google-translate-at-point)))
+
 (leaf shell-pop
   :ensure t
   :bind (("C-o" . shell-pop)))
