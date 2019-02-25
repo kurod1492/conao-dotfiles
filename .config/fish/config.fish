@@ -25,6 +25,9 @@ end
 ####################
 #  paths
 
+# .local
+set PATH $HOME/.local/bin $PATH
+
 # anyenv
 set PATH $HOME/.anyenv/bin $PATH
 anyenv init - | source
