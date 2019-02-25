@@ -11,8 +11,8 @@
 # You should have received a copy of the Affero GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set --local secret_env_vars_path ~/.config/fish/secret_env_vars.fish
-test -e $secret_env_vars_path && source $secret_env_vars_path
+set --local secret_env_path ~/.secret/secret-env.fish
+test -e $secret_env_path && source $secret_env_path
 
 set SHELL /usr/local/bin/fish
 
