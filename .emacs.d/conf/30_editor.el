@@ -116,18 +116,18 @@
   ;;  :init (el-get-bundle conao/elscreen-swap)
   :config
   (setq elscreen-tab-display-control nil)
-  (leaf session
-    :init (el-get-bundle conao/revive)
-    :requre t
-    :config
-    (setq session-initialize '(places session)
-          session-globals-include '((kill-ring 100)
-                                    (session-files-alist 500 t)
-                                    (file-name-history 10000))
-          session-globals-max-string 100000
-          history-length t
-          session-undo-check -1)
-    (add-hook 'after-init-hook 'session-initialize))
+  ;; (leaf session
+  ;;   :init (el-get-bundle conao/revive)
+  ;;   :requre t
+  ;;   :config
+  ;;   (setq session-initialize '(places session)
+  ;;         session-globals-include '((kill-ring 100)
+  ;;                                   (session-files-alist 500 t)
+  ;;                                   (file-name-history 10000))
+  ;;         session-globals-max-string 100000
+  ;;         history-length t
+  ;;         session-undo-check -1)
+  ;;   (add-hook 'after-init-hook 'session-initialize))
   (leaf navbar
     :require t
     :init (el-get-bundle papaeye/emacs-navbar
@@ -136,17 +136,18 @@
     (setq navbar-item-list '(navbarx-version navbarx-time navbarx-elscreen))
     (navbar-mode)
     (display-time-mode)
-    (navbar-revive-workaround))
-  (leaf elscreen-persist
-    :require t
-    :init (el-get-bundle robario/elscreen-persist)
-    :config
-    (elscreen-persist-mode 1)
+    ;; (navbar-revive-workaround)
+    )
+  ;; (leaf elscreen-persist
+  ;;   :require t
+  ;;   :init (el-get-bundle robario/elscreen-persist)
+  ;;   :config
+  ;;   (elscreen-persist-mode 1)
 
-    ;; desktop.el settings
-    (setq desktop-files-not-to-save "")
-    (setq desktop-restore-frames nil)
-    (desktop-save-mode t))
+  ;;   ;; desktop.el settings
+  ;;   (setq desktop-files-not-to-save "")
+  ;;   (setq desktop-restore-frames nil)
+  ;;   (desktop-save-mode t))
   (leaf elscreen-server :disabled t)
   (custom-set-variables
    '(elscreen-prefix-key (kbd "C-c e"))

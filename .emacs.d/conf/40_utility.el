@@ -29,6 +29,8 @@
                (google-translate-default-target-language . "ja"))
       :bind (("C-c g" . google-translate-at-point)))
 
+(leaf restclient :ensure t)
+
 (leaf shell-pop
   :ensure t
   :bind (("C-o" . shell-pop)))
