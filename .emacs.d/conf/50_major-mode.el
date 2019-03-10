@@ -44,6 +44,8 @@
          (bison-decl-type-column        . 4)
          (bison-decl-token-column       . 4)))
 
+(leaf rust-mode :ensure t)
+
 (leaf org
   :init
   (leaf org-plus-contrib :ensure t :require nil)
