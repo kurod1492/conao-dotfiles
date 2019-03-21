@@ -16,6 +16,7 @@ anyenv init - | source
 # emacs
 set PATH /Applications/Emacs-23.4.app/Contents/MacOS/ $PATH
 set PATH /Applications/Emacs-26.1.app/Contents/MacOS/bin $PATH
+set PATH $HOME/.cask/bin $PATH
 
 # homebrew
 set PATH /usr/local/bin $PATH
