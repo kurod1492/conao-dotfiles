@@ -42,6 +42,7 @@ tramp
 /*/elpa/
 /*/el-get/
 auto-install/
+.cask
 
 # cookie files
 url/
