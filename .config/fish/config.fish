@@ -25,6 +25,9 @@ end
 ####################
 #  paths
 
+# homebrew
+set PATH /usr/local/bin $PATH
+
 # .local
 set PATH $HOME/.local/bin $PATH
 
@@ -35,9 +38,6 @@ anyenv init - | source
 # emacs
 set PATH /Applications/Emacs-23.4.app/Contents/MacOS/ $PATH
 set PATH /Applications/Emacs-26.1.app/Contents/MacOS/bin $PATH
-
-# homebrew
-set PATH /usr/local/bin $PATH
 
 # rust
 set PATH $HOME/.cargo/bin $PATH
