@@ -1,22 +1,32 @@
 #+author: conao
 #+date: <2018-11-24 Sat>
 
-[[https://github.com/conao3/dotfiles.el][https://img.shields.io/github/license/conao3/dotfiles.svg?style=flat-square]]
-[[https://github.com/conao3/github-header][https://files.conao3.com/github-header/gif/dotfiles.gif]]
+[[https://github.com/conao3/dotfiles][https://raw.githubusercontent.com/conao3/files/master/header/png/dotfiles.png]]
+[[https://github.com/conao3/dotfiles/blob/master/LICENSE][https://img.shields.io/github/license/conao3/dotfiles.svg?style=flat-square]]
+[[https://github.com/conao3/dotfiles/releases][https://img.shields.io/github/tag/conao3/dotfiles.svg?style=flat-square]]
+[[https://travis-ci.org/conao3/dotfiles][https://img.shields.io/travis/conao3/dotfiles/master.svg?style=flat-square]]
+[[https://app.codacy.com/project/conao3/dotfiles/dashboard][https://img.shields.io/codacy/grade/3c8c1bfad6944b5e810b7e0272c9eade.svg?logo=codacy&style=flat-square]]
+[[https://www.patreon.com/conao3][https://img.shields.io/badge/patreon-@conao3-orange.svg?logo=patreon&style=flat-square]]
+[[https://twitter.com/conao_3][https://img.shields.io/badge/twitter-@conao__3-blue.svg?logo=twitter&style=flat-square]]
+[[https://join.slack.com/t/conao3-support/shared_invite/enQtNTg2MTY0MjkzOTU0LTFjOTdhOTFiNTM2NmY5YTE5MTNlYzNiOTE2MTZlZWZkNDEzZmRhN2E0NjkwMWViZTZiYjA4MDUxYTUzNDZiNjY][https://img.shields.io/badge/chat-on_slack-blue.svg?logo=slack&style=flat-square]]
 
-* Try .emacs
-If you just try my .emacs, clone this repository, 
-copy ~.emacs.d~ to arbitrary path such as home folder.
-Start Emacs with explicitly specify ~init.el~'s path.
-#+BEGIN_SRC bash
-  git clone https://github.com/conao/dotfiles.git ~/.dotfiles-conao
+* Table of Contents
+- [[#background][Background]]
+- [[#install][Install]]
+- [[#usage][Usage]]
+  - [[#init-el][init.el]]
+- [[#information][Information]]
+  - [[#donation][Donation]]
+  - [[#community][Community]]
+  - [[#contribution][Contribution]]
+  - [[#license][License]]
+  - [[#author][Author]]
+  - [[#contributors][Contributors]]
 
-  cd ~/.dotfiles-conao/.emacs.d
-  make
-  emacs -q -l ~/.dotfiles-conao/.emacs.d/init.el
-#+END_SRC
+* Background
+This repository hosting coding contest source files.
 
-* Installation
+* Install
 Install dotfiles in your home folder.
 
 http://dotfiles.conao3.com/ is hosting ~install.sh~.
@@ -38,3 +48,45 @@ Tou type just ~curl dotfiles.conao3.com | sh~.
   $ curl dotfiles.conao3.com | sh
 #+END_SRC
 
+* Usage
+** init.el
+If you just try my init.el, clone this repository, 
+copy ~.emacs.d~ to arbitrary path such as home folder.
+Start Emacs with explicitly specify ~init.el~'s path.
+#+BEGIN_SRC bash
+  git clone https://github.com/conao/dotfiles.git ~/.dotfiles-conao
+
+  cd ~/.dotfiles-conao/.emacs.d
+  make
+  emacs -q -l ~/.dotfiles-conao/.emacs.d/init.el
+#+END_SRC
+
+* Information
+** Donation
+I love OSS and I am dreaming of working on it as *full-time* job.
+
+*With your support*, I will be able to spend more time at OSS!
+
+[[https://www.patreon.com/conao3][https://c5.patreon.com/external/logo/become_a_patron_button.png]]
+
+** Community
+All feedback and suggestions are welcome!
+
+You can use github issues, but you can also use [[https://join.slack.com/t/conao3-support/shared_invite/enQtNTg2MTY0MjkzOTU0LTFjOTdhOTFiNTM2NmY5YTE5MTNlYzNiOTE2MTZlZWZkNDEzZmRhN2E0NjkwMWViZTZiYjA4MDUxYTUzNDZiNjY][Slack]]
+if you want a more casual conversation.
+
+** Contribution
+Feel free to send PR!
+
+** License
+#+begin_example
+  The MIT License (MIT)
+  Copyright (c) Naoya Yamashita - https://conao3.com
+  https://github.com/conao3/dotfiles/blob/master/LICENSE
+#+end_example
+
+** Author
+- Naoya Yamashita ([[https://github.com/conao3][conao3]])
+
+** Contributors
+- Not yet... Now send PR and add your name!!
