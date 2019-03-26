@@ -6,6 +6,7 @@
 	ui = auto
 [core]
 	editor = "emacsclient -t" --alternate-editor emacs
+        ignorecase = false
 	quotepath = false
 	precomposeunicode = true
 	pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -r
