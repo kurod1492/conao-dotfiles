@@ -14,7 +14,7 @@
 - [[#background][Background]]
 - [[#install][Install]]
 - [[#usage][Usage]]
-  - [[#init-el][init.el]]
+  - [[#initel][init.el]]
 - [[#information][Information]]
   - [[#donation][Donation]]
   - [[#community][Community]]
