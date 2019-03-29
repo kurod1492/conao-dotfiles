@@ -27,6 +27,7 @@ end
 
 # homebrew
 set PATH /usr/local/bin $PATH
+set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 
 # .local
 set PATH $HOME/.local/bin $PATH
@@ -61,6 +62,9 @@ set -gx CPPFLAGS "-I/usr/local/opt/flex/include"
 # bison
 set -g fish_user_paths "/usr/local/opt/bison/bin" $fish_user_paths
 set -gx LDFLAGS "-L/usr/local/opt/bison/lib"
+
+# fusion (for minikube)
+set PATH "/Applications/VMware Fusion.app/Contents/Library" $PATH
 
 ####################
 #  aliases
