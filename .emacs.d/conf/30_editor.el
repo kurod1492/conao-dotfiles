@@ -30,6 +30,9 @@
   :commands real-auto-save-mode
   :hook (find-file-hook . real-auto-save-mode))
 
+(leaf hungry-delete :ensure t
+      :config (global-hungry-delete-mode))
+
 (leaf shackle
   :ensure t
   :custom ((shackle-rules . '(("\*helm" :regexp t :align below :popup t :size 0.4))))
@@ -46,7 +49,16 @@
               ("C-c y g" . yas-reload-all))
   :config (yas-global-mode 1))
 
+(leaf ivy :ensute t
+  :config
+  (leaf counsel :ensure t
+    :config
+    (counsel-mode 1))
+  (leaf swiper :ensure t)
+  (ivy-mode 1))
+
 (leaf helm
+  :disabled t
   :ensure t
   :require t
   :bind (("M-x"     . helm-M-x)
