@@ -54,6 +54,20 @@ This function is minor change from `add-to-list'."
      (pp ,form)
      nil))
 
+(defmacro pl (form &optional stream)
+  "Output list"
+  `(progn
+     (with-temp-buffer
+       (insert (prin1-to-string ,form))
+       (goto-char (point-min))
+       (forward-char)
+       (ignore-errors
+         (while t (forward-sexp) (insert "\n")))
+       (princ (buffer-substring-no-properties (point-min) (point-max))
+              (or ,stream standard-output))
+       (princ "\n"))
+     nil))
+
 (eval
  `(add-list-to-list 'load-path
     ',(mapcar (lambda (x)
