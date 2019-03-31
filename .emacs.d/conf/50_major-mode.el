@@ -86,7 +86,26 @@
                                    (org . t)
                                    ;; (R . t)
                                    (C . t)
-                                   (emacs-lisp . t))))
+                                   (shell . t)
+                                   (emacs-lisp . t)))
+
+    ;; override `org-eldoc-get-mode-local-documentation-function'
+    (defun org-eldoc-get-mode-local-documentation-function (lang)
+      "Check if LANG-mode sets eldoc-documentation-function and return its value."
+      (let ((cached-func (gethash lang org-eldoc-local-functions-cache 'empty))
+            ;; (mode-func (intern-soft (format "%s-mode" lang)))
+            (mode-func (org-src--get-lang-mode lang))
+            doc-func)
+        (if (eq 'empty cached-func)
+            (when (fboundp mode-func)
+              (with-temp-buffer
+                (funcall mode-func)
+                (setq doc-func (and eldoc-documentation-function
+                                    (symbol-value 'eldoc-documentation-function)))
+                (puthash lang doc-func org-eldoc-local-functions-cache))
+              doc-func)
+          cached-func))))
+
   (leaf ox
     :config
     (leaf ox-qmd :ensure t)
