@@ -88,13 +88,17 @@ This function is minor change from `add-to-list'."
   :custom ((seml-live-refresh-interval     . 0.35)
            (seml-live-refresh-url-variable . ":type/:var1/:var2")
            (seml-live-refresh-url-quety    . '(targetpath targetfile))))
+
 (leaf cort-test
   :init (require 'cort-test))
+
 (leaf leaf
   :init (require 'leaf)
   :custom ((leaf-backend/:ensure . 'package)))
+
 (leaf feather
   :init (require 'feather))
+
 (leaf leaf-browser
   :init (require 'leaf-browser)
   :custom ((lbrowser-root-dir . "~/.emacs.d/site-lisp/leaf-browser.el/")
@@ -104,6 +108,7 @@ This function is minor change from `add-to-list'."
   (leaf simple-httpd :ensure t
         :custom ((httpd-show-backtrace-when-error . t)))
   (leaf elquery :ensure t))
+
 (leaf orglyth :require t
       :config
       (leaf orglyth-html
@@ -119,8 +124,10 @@ This function is minor change from `add-to-list'."
         :setq ((orglyth-latex-enable-option . t))
         :config
         (orglyth-latex-init)))
+
 (leaf straight
   :init (require 'straight))
+
 (leaf package
   :config
   (add-list-to-list 'package-archives
