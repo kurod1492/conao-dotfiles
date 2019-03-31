@@ -112,15 +112,17 @@ This function is minor change from `add-to-list'."
 (leaf orglyth :require t
       :config
       (leaf orglyth-html
+        :require t
         :setq ((orglyth-html-enable-option    . t)
                (orglyth-html-use-ftp          . nil)
-               (orglyth-html-local-root-path  . "~/public_html/orglyth/")
-               (orglyth-html-remote-root-path . "~/public_html/remote/")
+               (orglyth-html-local-root-path  . "~/develop/conao3/orglyth-src/")
+               (orglyth-html-remote-root-path . "~/www/orglyth/")
                (orglyth-html-ftp-root-path    . "/ftp:conao3@conao3.com:~/www/orglyth/"))
         :config
         (orglyth-html-init)
         (orglyth-html-project-init))
       (leaf orglyth-latex
+        :require t
         :setq ((orglyth-latex-enable-option . t))
         :config
         (orglyth-latex-init)))
