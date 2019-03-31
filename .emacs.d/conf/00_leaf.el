@@ -114,7 +114,11 @@ This function is minor change from `add-to-list'."
                (orglyth-html-ftp-root-path    . "/ftp:conao3@conao3.com:~/www/orglyth/"))
         :config
         (orglyth-html-init)
-        (orglyth-html-project-init)))
+        (orglyth-html-project-init))
+      (leaf orglyth-latex
+        :setq ((orglyth-latex-enable-option . t))
+        :config
+        (orglyth-latex-init)))
 (leaf straight
   :init (require 'straight))
 (leaf package
