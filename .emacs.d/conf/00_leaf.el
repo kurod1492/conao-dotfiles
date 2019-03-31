@@ -104,6 +104,17 @@ This function is minor change from `add-to-list'."
   (leaf simple-httpd :ensure t
         :custom ((httpd-show-backtrace-when-error . t)))
   (leaf elquery :ensure t))
+(leaf orglyth :require t
+      :config
+      (leaf orglyth-html
+        :setq ((orglyth-html-enable-option    . t)
+               (orglyth-html-use-ftp          . nil)
+               (orglyth-html-local-root-path  . "~/public_html/orglyth/")
+               (orglyth-html-remote-root-path . "~/public_html/remote/")
+               (orglyth-html-ftp-root-path    . "/ftp:conao3@conao3.com:~/www/orglyth/"))
+        :config
+        (orglyth-html-init)
+        (orglyth-html-project-init)))
 (leaf straight
   :init (require 'straight))
 (leaf package
