@@ -136,9 +136,21 @@ This function is minor change from `add-to-list'."
 
 (leaf straight :require t)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;  Initial settings
+;;
+
 (leaf s    :ensure t)
 (leaf f    :ensure t)
 (leaf dash :ensure t)
+(leaf exec-path-from-shell
+  :ensure t
+  :custom ((exec-path-from-shell-check-startup-files . nil)
+           (exec-path-from-shell-variables . '("PATH" "GOPATH")))
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
