@@ -67,6 +67,7 @@
     :commands undohist-initialize
     :custom ((undohist-ignored-files . '("/tmp" "/elpa" "/el-get")))
     :config
+    (autoload 'undohist-initialize "undohist" nil t)
     (undohist-initialize)
     (setq undohist-directory (locate-user-emacs-file "undohist")))
   (global-undo-tree-mode 1))
@@ -160,11 +161,15 @@
 (leaf flyspell
   :when (executable-find "aspell")
   :hook
-  ((org-mode yaml-mode markdown-mode git-commit-mode) . flyspell-mode)
+  (org-mode . flyspell-mode)
+  (yaml-mode . flyspell-mode)
+  (markdown-mode . flyspell-mode)
+  (git-commit-mode . flyspell-mode)
   (prog-mode . flyspell-prog-mode)
-  (flyspell-mode . (lambda ()
-		     (dolist (key '("C-;" "C-," "C-."))
-		       (unbind-key key flyspell-mode-map))))
+  ;; (flyspell-mode . (lambda ()
+  ;;       	     (dolist (key '(;; "C-;"
+  ;;                                   "C-," "C-."))
+  ;;       	       (unbind-key key flyspell-mode-map))))
   :custom
   ((flyspell-issue-message-flag nil)
    (ispell-program-name "aspell")
