@@ -101,7 +101,9 @@ This function is minor change from `add-to-list'."
   :init (require 'cort-test))
 
 (leaf leaf
-  :init (require 'leaf)
+  :init
+  (require 'leaf)
+  (leaf hydra :ensure t)
   :custom ((leaf-backend/:ensure . 'package)))
 
 (leaf feather
