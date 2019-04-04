@@ -37,6 +37,17 @@
            (wgrep-auto-save-buffer . t)
            (wgrep-change-readonly-file . t)))
 
+(leaf ag
+  :ensure t
+  :custom ((ag-highligh-search . t)
+           (ag-reuse-buffers . t)
+           (ag-reuse-window . t))
+  ;; :bind (("M-s a" . ag-project))
+  ;; :config
+  (leaf wgrep-ag
+    :ensure t
+    :hook (ag-mode-hook . wgrep-ag-setup)))
+
 (leaf shell-pop
   :ensure t
   :bind (("C-o" . shell-pop)))
