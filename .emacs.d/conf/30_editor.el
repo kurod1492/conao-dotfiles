@@ -30,6 +30,12 @@
   :commands real-auto-save-mode
   :hook (find-file-hook . real-auto-save-mode))
 
+(leaf which-key
+  :ensure t
+  :custom ((which-key-idle-delay . 2))
+  :config
+  (which-key-mode 1))
+
 (leaf hungry-delete :ensure t
       :config (global-hungry-delete-mode))
 
