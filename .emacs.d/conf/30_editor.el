@@ -32,17 +32,16 @@
 (leaf which-key
   :ensure t
   :custom ((which-key-idle-delay . 2))
-  :config
-  (which-key-mode 1))
+  :config (which-key-mode 1))
 
-(leaf hungry-delete :ensure t
-      :config (global-hungry-delete-mode))
+(leaf hungry-delete
+  :ensure t
+  :config (global-hungry-delete-mode))
 
 (leaf shackle
   :ensure t
   :custom ((shackle-rules . '(("\*helm" :regexp t :align below :popup t :size 0.4))))
-  :config  
-  (shackle-mode 1))
+  :config (shackle-mode 1))
 
 (leaf yasnippet
   :ensure t
@@ -95,9 +94,7 @@
       :url "https://github.com/emacs-lsp/dap-mode"
       :ensure t
       :require t
-      :config
-      (dap-mode 1)
-      (dap-ui-mode 1)))
+      :config (dap-mode 1) (dap-ui-mode 1)))
 
   (leaf *other-lsp-pacakges
     :config
@@ -129,8 +126,7 @@
     (leaf lsp-java
       :doc "Java support for lsp-mode"
       :ensure t
-      :hook
-      (java-mode-hook . lsp)
+      :hook (java-mode-hook . lsp)
       :config
       (leaf dap-java))))
 
@@ -142,8 +138,7 @@
     (leaf swiper :ensure t)
     (leaf counsel
       :ensure t
-      :config
-      (counsel-mode 1)))
+      :config (counsel-mode 1)))
 
   (leaf *other-ivy-packages
     :config
@@ -154,8 +149,7 @@
       (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)))
 
   (leaf *ivy-settings
-    :config
-    (ivy-mode 1)))
+    :config (ivy-mode 1)))
 
 (leaf helm
   :disabled t
@@ -282,8 +276,7 @@
 (leaf auto-complete
   :disabled t
   :ensure t
-  :init
-  (leaf fuzzy :ensure t)
+  :init (leaf fuzzy :ensure t)
   :config
   (leaf auto-complete-config)
   (global-auto-complete-mode t)
@@ -309,9 +302,8 @@
       (leaf package-lint-flymake
         :disabled t
         :ensure t
-        :config
-        (add-hook 'emacs-lisp-mode-hook #'package-lint-setup-flymake)))
-    :config
-    (flycheck-package-setup)))
+        :config (add-hook 'emacs-lisp-mode-hook #'package-lint-setup-flymake)))
+    :config (flycheck-package-setup)))
+
 (provide '20_editor)
 ;;; 20_editor.el ends here
