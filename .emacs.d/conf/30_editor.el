@@ -190,6 +190,7 @@
     (leaf swiper :ensure t)
     (leaf counsel :ensure t))
   :bind (("C-s" . swiper))
+  :custom ((counsel-yank-pop-separator . "\n----------\n"))
   :config
   (leaf *other-ivy-packages
     :config
