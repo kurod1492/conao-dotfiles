@@ -42,6 +42,14 @@
   ;; align (beg end &optional separate rules exclude-rules)
   )
 
+(leaf auth-source
+  :doc "authentication sources for Gnus and Emacs"
+  )
+
+(leaf auth-source-pass
+  :doc "Integrate auth-source with password-store"
+  )
+
 (leaf custom
   :config
   ;; (load-theme 'wombat)
