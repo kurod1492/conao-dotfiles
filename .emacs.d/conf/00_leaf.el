@@ -93,57 +93,39 @@ This function is minor change from `add-to-list'."
 
 ;; leaf initialize
 (leaf leaf
+  :requre t
   :init
-  (require 'leaf)
   (leaf hydra :ensure t)
   (leaf bind-key :ensure t)
   :custom ((leaf-backend/:ensure . 'package)))
 
 ;; other conao3 packages
 (leaf seml-mode
-  :init (require 'seml-mode)
+  :require t
   :custom ((seml-live-refresh-interval     . 0.35)
            (seml-live-refresh-url-variable . ":type/:var1/:var2")
            (seml-live-refresh-url-quety    . '(targetpath targetfile))))
 
-(leaf cort-test
-  :init (require 'cort-test))
-
-(leaf feather
-  :init (require 'feather))
+(leaf cort-test :require t)
+(leaf feather :require t)
 
 (leaf leaf-browser
-  :init (require 'leaf-browser)
+  :require t
   :custom ((lbrowser-root-dir . "~/.emacs.d/site-lisp/leaf-browser.el/")
-           (lbrowser-debugp . t))
+           (lbrowser-debugp   . t))
   :config
   (leaf htmlize :ensure t)
-  (leaf simple-httpd :ensure t
-        :custom ((httpd-show-backtrace-when-error . t)))
+  (leaf simple-httpd
+    :ensure t
+    :custom ((httpd-show-backtrace-when-error . t)))
   (leaf elquery :ensure t))
 
 (leaf orglyth :require t
       :config
-      (leaf orglyth-html
-        :require t
-        ;; :setq ((orglyth-html-enable-option    . t)
-        ;;        (orglyth-html-use-ftp          . nil)
-        ;;        (orglyth-html-local-root-path  . "~/develop/conao3/orglyth-src/")
-        ;;        (orglyth-html-remote-root-path . "~/www/orglyth/")
-        ;;        (orglyth-html-ftp-root-path    . "/ftp:conao3@conao3.com:~/www/orglyth/"))
-        ;; :config
-        ;; (orglyth-html-init)
-        ;; (orglyth-html-project-init)
-        )
-      (leaf orglyth-latex
-        :require t
-        ;; :setq ((orglyth-latex-enable-option . t))
-        ;; :config
-        ;; (orglyth-latex-init)
-        ))
+      (leaf orglyth-html :require t)
+      (leaf orglyth-latex :require t))
 
-(leaf straight
-  :init (require 'straight))
+(leaf straight :require t)
 
 (leaf s    :ensure t)
 (leaf f    :ensure t)
