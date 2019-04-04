@@ -121,12 +121,16 @@
       :config
       (leaf dap-java))))
 
-(leaf ivy :ensute t
+(leaf ivy
+  :ensute t
   :config
-  (leaf counsel :ensure t
+  (leaf *ivy-ui-requirements
     :config
-    (counsel-mode 1))
-  (leaf swiper :ensure t)
+    (leaf swiper :ensure t)
+    (leaf counsel
+      :ensure t
+      :config
+      (counsel-mode 1)))
   (ivy-mode 1))
 
 (leaf helm
