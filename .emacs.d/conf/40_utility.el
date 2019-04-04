@@ -57,6 +57,13 @@
   (setq migemo-command (executable-find "cmigemo"))
   (migemo-init))
 
+(leaf mwim
+  :doc "Switch between the beginning/end of line or code"
+  :ensure t
+  :require t
+  :bind (("C-a" . mwim-beginning-of-code-or-line)
+         ("C-e" . mwim-end-of-code-or-line)))
+
 (leaf shell-pop
   :ensure t
   :bind (("C-o" . shell-pop)))
