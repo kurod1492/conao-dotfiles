@@ -22,6 +22,8 @@
 
 ;;
 
+(leaf treemacs :ensure t)
+
 (leaf simple-httpd :ensure t)
 
 (leaf real-auto-save
@@ -75,8 +77,40 @@
   :config
   (projectile-mode 1))
 
-(leaf treemacs :ensure t)
 (leaf company :ensure t)
+
+(leaf auto-complete
+  :disabled t
+  :ensure t
+  :init (leaf fuzzy :ensure t)
+  :config
+  (leaf auto-complete-config)
+  (global-auto-complete-mode t)
+  
+  (define-key ac-mode-map (kbd "TAB") 'ac-trigger-key-command)
+  (define-key ac-completing-map (kbd "C-n") 'ac-next)
+  (define-key ac-completing-map (kbd "C-p") 'ac-previous)
+  
+  :custom ((ac-auto-start . 1)                 ; min char to start
+           (ac-auto-show-menu . t)             ; show menu immidiately
+           (ac-use-fuzzy . t)                  ; use fuzzy
+           ))
+
+(leaf flycheck
+  :ensure t
+  :config
+  (leaf flycheck-package
+    :ensure t
+    :init
+    (leaf package-lint   ; provide (package-lint-current-buffer)
+      :ensure t
+      :config
+      (leaf package-lint-flymake
+        :disabled t
+        :ensure t
+        :config (add-hook 'emacs-lisp-mode-hook #'package-lint-setup-flymake)))
+    :config (flycheck-package-setup)))
+
 (leaf lsp-mode
   :url "https://github.com/MaskRay/ccls/wiki/lsp-mode#find-definitionsreferences"
   :doc "lsp is language server protocol"
@@ -279,38 +313,6 @@
    '(elscreen-tab-display-control nil))       ;; don't show [<->] mark in header-line
   (setq elscreen-display-screen-number nil)   ;; don't show screen number in mode-line
   (elscreen-start))
-
-(leaf auto-complete
-  :disabled t
-  :ensure t
-  :init (leaf fuzzy :ensure t)
-  :config
-  (leaf auto-complete-config)
-  (global-auto-complete-mode t)
-  
-  (define-key ac-mode-map (kbd "TAB") 'ac-trigger-key-command)
-  (define-key ac-completing-map (kbd "C-n") 'ac-next)
-  (define-key ac-completing-map (kbd "C-p") 'ac-previous)
-  
-  :custom ((ac-auto-start . 1)                 ; min char to start
-           (ac-auto-show-menu . t)             ; show menu immidiately
-           (ac-use-fuzzy . t)                  ; use fuzzy
-           ))
-
-(leaf flycheck
-  :ensure t
-  :config
-  (leaf flycheck-package
-    :ensure t
-    :init
-    (leaf package-lint   ; provide (package-lint-current-buffer)
-      :ensure t
-      :config
-      (leaf package-lint-flymake
-        :disabled t
-        :ensure t
-        :config (add-hook 'emacs-lisp-mode-hook #'package-lint-setup-flymake)))
-    :config (flycheck-package-setup)))
 
 (provide '20_editor)
 ;;; 20_editor.el ends here
