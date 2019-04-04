@@ -54,6 +54,16 @@
   :doc "automatic mode-dependent insertion of text into new files"
   )
 
+(leaf autorevert
+  :doc "revert buffers when files on disk change"
+  :custom ((auto-revert-interval . 1))  ; check file every 1sec
+  :config
+  (global-auto-revert-mode)
+  ;; ==== minor mode ====
+  ;; auto-revert-mode
+  ;; auto-revert-tail-mode
+  )
+
 (leaf custom
   :config
   ;; (load-theme 'wombat)
@@ -90,8 +100,7 @@
 
 (leaf files
   :doc "file input and output commands for Emacs"
-  :config
-  (global-auto-revert-mode))
+  )
 
 (leaf novice
   :doc "handling of disabled commands (\"novice mode\") for Emacs"
