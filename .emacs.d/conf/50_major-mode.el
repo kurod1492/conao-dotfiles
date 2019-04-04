@@ -108,28 +108,7 @@
 
   (leaf ox
     :config
-    (leaf ox-qmd :ensure t)
-    ;; (leaf orglyth
-    ;;   :require t
-    ;;   :config
-    ;;   (leaf orglyth-html
-    ;;     :require t
-    ;;     :setq
-    ;;     ((orglyth-html-enable-option    . t)
-    ;;      (orglyth-html-use-ftp          . nil)
-    ;;      (orglyth-html-local-root-path  . "~/Documents/sakura/orglyth/")
-    ;;      (orglyth-html-remote-root-path . "~/Documents/sakura/remote/")
-    ;;      (orglyth-html-ftp-root-path    . "/ftp:conao3@conao3.com:~/www/orglyth/"))
-    ;;     :config
-    ;;     (orglyth-html-init)
-    ;;     (orglyth-html-project-init))
-      
-    ;;   (leaf orglyth-latex
-    ;;     :require t
-    ;;     :setq ((orglyth-latex-enable-option . t))
-    ;;     :config
-    ;;     (orglyth-latex-init)))
-    ))
+    (leaf ox-qmd :ensure t)))
 
 (use-package ox-latex-subfigure
   :init (el-get-bundle linktohack/ox-latex-subfigure))
