@@ -57,16 +57,17 @@
   :ensure t
   :config (global-origami-mode 1))
 
-(leaf undo-tree :ensure t
+(leaf undo-tree
+  :ensure t
   :config
-  (leaf undohist :ensure t :require t
-        :init
-        (defalias 'user-setting-directory 'locate-user-emacs-file)
+  (leaf undohist
+    :ensure t
+    :require t
+    :custom ((undohist-ignored-files . '("/tmp" "/elpa" "/el-get")))
     :config
     (undohist-initialize)
-    (setq undohist-directory (user-setting-directory "undohist")
-          undohist-ignored-files '("/tmp" "/elpa" "/el-get")))
-  (global-undo-tree-mode))
+    (setq undohist-directory (locate-user-emacs-file "undohist")))
+  (global-undo-tree-mode 1))
 
 (leaf treemacs :ensure t)
 (leaf company :ensure t)
