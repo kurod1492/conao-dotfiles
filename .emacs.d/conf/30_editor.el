@@ -57,6 +57,17 @@
   :ensure t
   :config (global-origami-mode 1))
 
+(leaf undo-tree :ensure t
+  :config
+  (leaf undohist :ensure t :require t
+        :init
+        (defalias 'user-setting-directory 'locate-user-emacs-file)
+    :config
+    (undohist-initialize)
+    (setq undohist-directory (user-setting-directory "undohist")
+          undohist-ignored-files '("/tmp" "/elpa" "/el-get")))
+  (global-undo-tree-mode))
+
 (leaf treemacs :ensure t)
 (leaf company :ensure t)
 (leaf lsp-mode
@@ -261,17 +272,6 @@
    '(elscreen-tab-display-control nil))       ;; don't show [<->] mark in header-line
   (setq elscreen-display-screen-number nil)   ;; don't show screen number in mode-line
   (elscreen-start))
-
-(leaf undo-tree :ensure t
-  :config
-  (leaf undohist :ensure t :require t
-        :init
-        (defalias 'user-setting-directory 'locate-user-emacs-file)
-    :config
-    (undohist-initialize)
-    (setq undohist-directory (user-setting-directory "undohist")
-          undohist-ignored-files '("/tmp" "/elpa" "/el-get")))
-  (global-undo-tree-mode))
 
 (leaf auto-complete
   :disabled t
