@@ -52,6 +52,7 @@
 (leaf treemacs :ensure t)
 (leaf company :ensure t)
 (leaf lsp-mode
+  :doc "lsp is language server protocol"
   :ensure t
   :custom ((lsp-inhibit-message t)
            (lsp-message-project-root-warning t)
