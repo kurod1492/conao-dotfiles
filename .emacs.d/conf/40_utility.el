@@ -50,6 +50,13 @@
 
 (leaf magit :ensure t)
 
+(leaf migemo
+  :doc "Japanese incremental search through dynamic pattern expansion"
+  :when (executable-find "cmigemo")
+  :config
+  (setq migemo-command (executable-find "cmigemo"))
+  (migemo-init))
+
 (leaf shell-pop
   :ensure t
   :bind (("C-o" . shell-pop)))
