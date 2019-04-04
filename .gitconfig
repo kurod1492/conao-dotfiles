@@ -39,7 +39,7 @@
         files = !cd ${GIT_PREFIX:-.} && git ls-tree -z --name-only HEAD | xargs -0 -n1 -I@ -- git log -1 --pretty=format:'%C(green)%ai%Creset %C(yellow)%h%Creset @ %C(blue)(%ar)%Creset %C(red)<%an>%Creset' -- @
         prune-merged-branch = !git branch --merged | grep -vE '\\*|develop|master' | xargs git branch -d
 [commit]
-	gpgsign = true
+	# gpgsign = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
