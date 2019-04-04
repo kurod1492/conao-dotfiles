@@ -50,6 +50,10 @@
   :doc "Integrate auth-source with password-store"
   )
 
+(leaf autoinsert
+  :doc "automatic mode-dependent insertion of text into new files"
+  )
+
 (leaf custom
   :config
   ;; (load-theme 'wombat)
