@@ -49,6 +49,37 @@
               ("C-c y g" . yas-reload-all))
   :config (yas-global-mode 1))
 
+(leaf company :ensure t)
+(leaf lsp-mode
+  :ensure t
+  :custom ((lsp-inhibit-message t)
+           (lsp-message-project-root-warning t)
+           (create-lockfiles nil))
+  :hook (prog-major-mode . lsp-prog-major-mode-enable)
+  :config
+  (leaf lsp-ui
+    :ensure t
+    :hook (lsp-mode-hook . lsp-ui-mode))
+  (leaf company-lsp
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-lsp)
+    ;; :after (lsp-mode company yasnippet)
+    ;; :custom
+    ;; ((company-lsp-cache-candidates t) ;; auto, t(always using a cache), or nil
+    ;;  (company-lsp-async t)
+    ;;  (company-lsp-enable-snippet t)
+    ;;  (company-lsp-enable-recompletion t))
+    )
+  (leaf lsp-ruby
+    :ensure t
+    ;; :hook ((ruby-mode-hook . lsp-ruby-enable))
+    )
+  (leaf ccls
+    :ensure t
+    :config
+    (custom-set-variables `(ccls-executable ,(executable-find "ccls")))))
+
 (leaf ivy :ensute t
   :config
   (leaf counsel :ensure t
@@ -180,6 +211,7 @@
   (global-undo-tree-mode))
 
 (leaf auto-complete
+  :disabled t
   :ensure t
   :init
   (leaf fuzzy :ensure t)
