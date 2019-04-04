@@ -110,8 +110,14 @@
     :config
     (leaf ox-qmd :ensure t)))
 
-(use-package ox-latex-subfigure
+(leaf ox-latex-subfigure
   :init (el-get-bundle linktohack/ox-latex-subfigure))
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
+
+
+
+
+
+
