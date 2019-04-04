@@ -109,6 +109,25 @@
   (mapc (lambda (func) (put func 'disabled nil))
         '(narrow-to-region narrow-to-page narrow-to-defun list-timers)))
 
+(leaf *mouse-support-on-tty
+  :when (not window-system)
+  :init (progn
+          (defun conao3-scroll-down () (scroll-down 1))
+          (defun conao3-scroll-up   () (scroll-up   1)))
+  :bind (([mouse-4] . conao3-scroll-down)
+         ([mouse-4] . conao3-scroll-up))
+  :config
+  (leaf xt-mouse
+    :doc "support the mouse when emacs run in an xterm"
+    :config
+    (xterm-mouse-mode t))
+
+  (leaf mouse
+    :doc "window system-independent mouse support")
+
+  (leaf mwheel
+    :doc "Wheel mouse support"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;  Resources/lisp/progmodes
