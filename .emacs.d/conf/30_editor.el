@@ -36,7 +36,7 @@
 
 (leaf hungry-delete
   :ensure t
-  :config (global-hungry-delete-mode))
+  :config (global-hungry-delete-mode 1))
 
 (leaf shackle
   :ensure t
