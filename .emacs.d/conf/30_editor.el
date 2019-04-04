@@ -121,19 +121,6 @@
       ;; :hook ((ruby-mode-hook . lsp-ruby-enable))
       )
 
-    (leaf ccls
-      :doc "C/C++//Objective-C support for lsp-mode"
-      :ensure t
-      :hook
-      (c-mode-hook . lsp)
-      (c++-mode-hook . lsp)
-      (objc-mode-hook . lsp)
-      :custom ((ccls-args . '("--log-file=/tmp/ccls.log")))
-      ;; *No need to specify executable path when under shell PATH*
-      ;; :config
-      ;; (custom-set-variables `(ccls-executable ,(executable-find "ccls")))
-      )
-
     (leaf lsp-java
       :doc "Java support for lsp-mode"
       :ensure t

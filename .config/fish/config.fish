@@ -66,6 +66,9 @@ set -gx LDFLAGS "-L/usr/local/opt/bison/lib"
 # fusion (for minikube)
 set PATH "/Applications/VMware Fusion.app/Contents/Library" $PATH
 
+# llvm
+set -g fish_user_paths "/usr/local/opt/llvm/bin" $fish_user_paths
+
 ####################
 #  aliases
 balias g git
