@@ -190,7 +190,8 @@
     (leaf swiper :ensure t)
     (leaf counsel :ensure t))
   :bind (("C-s" . swiper))
-  :custom ((counsel-yank-pop-separator . "\n----------\n")
+  :custom ((ivy-initial-inputs-alist   . nil)
+           (counsel-yank-pop-separator . "\n----------\n")
            (counsel-grep-base-command  . "ag -S --noheading --nocolor --nofilename --numbers '%s' %s"))
   :config
   (leaf *other-ivy-packages
@@ -199,7 +200,10 @@
       :doc "Ivy interface for xref results"
       :ensure t
       :config
-      (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)))
+      (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+    (leaf flx
+      :doc "fuzzy matching with good sorting"
+      :ensure t))
 
   (leaf *ivy-integration
     :config
@@ -216,7 +220,8 @@
   (leaf *ivy-settings
     :config
     (ivy-mode 1)
-    (counsel-mode 1)))
+    (counsel-mode 1)
+    (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))))
 
 (leaf helm
   :disabled t
