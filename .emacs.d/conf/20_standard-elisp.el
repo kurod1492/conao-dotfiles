@@ -61,7 +61,9 @@
   :init
   (leaf filenotify
     "watch files for changes on disk")
-  :custom ((auto-revert-interval . 1))  ; check file every 1sec
+  :custom ((auto-revert-interval . 1)                ; check file every 1sec
+           (global-auto-revert-non-file-buffers . t) ; revert dired and buffer-list
+           )
   :config
   (global-auto-revert-mode))
 
