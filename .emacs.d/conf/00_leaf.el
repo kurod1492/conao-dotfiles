@@ -138,7 +138,7 @@ This function is minor change from `add-to-list'."
 
 (leaf use-package :ensure t)
 
-(use-package el-get :ensure t
+(leaf el-get :ensure t
   :if (or (executable-find "git")
           (message "'git' couldn't found. el-get can't download any packages")
           (defmacro el-get (&rest arg) nil))
