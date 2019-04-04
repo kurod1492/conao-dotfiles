@@ -107,6 +107,7 @@
       (c-mode-hook . lsp)
       (c++-mode-hook . lsp)
       (objc-mode-hook . lsp)
+      :custom ((ccls-args . '("--log-file=/tmp/ccls.log")))
       :config
       (custom-set-variables `(ccls-executable ,(executable-find "ccls"))))
 
