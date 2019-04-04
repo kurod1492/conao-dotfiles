@@ -36,6 +36,12 @@
 ;;  Resorces/lisp
 ;;
 
+(leaf align
+  :doc "align text to a specific column, by regexp"
+  ;; ==== function ====
+  ;; align (beg end &optional separate rules exclude-rules)
+  )
+
 (leaf custom
   :config
   ;; (load-theme 'wombat)
