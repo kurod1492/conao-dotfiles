@@ -190,7 +190,8 @@
     (leaf swiper :ensure t)
     (leaf counsel :ensure t))
   :bind (("C-s" . swiper))
-  :custom ((counsel-yank-pop-separator . "\n----------\n"))
+  :custom ((counsel-yank-pop-separator . "\n----------\n")
+           (counsel-grep-base-command  . "ag -S --noheading --nocolor --nofilename --numbers '%s' %s"))
   :config
   (leaf *other-ivy-packages
     :config
