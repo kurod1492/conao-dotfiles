@@ -92,12 +92,21 @@ This function is minor change from `add-to-list'."
   (package-initialize))
 
 ;; leaf initialize
+;;
+;; follow config generate error.
+;; Because expand leaf before custom `leaf-backend/:ensure'.
+;; (leaf leaf
+;;   :requre t
+;;   :init
+;;   (leaf hydra :ensure t)
+;;   (leaf bind-key :ensure t)
+;;   :custom ((leaf-backend/:ensure . 'package)))
+(leaf leaf :custom ((leaf-backend/:ensure . 'package)))
 (leaf leaf
   :requre t
   :init
   (leaf hydra :ensure t)
-  (leaf bind-key :ensure t)
-  :custom ((leaf-backend/:ensure . 'package)))
+  (leaf bind-key :ensure t))
 
 ;; other conao3 packages
 (leaf seml-mode
