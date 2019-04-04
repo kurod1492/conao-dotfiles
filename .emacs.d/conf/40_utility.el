@@ -31,6 +31,12 @@
 
 (leaf restclient :ensure t)
 
+(leaf wgrep
+  :ensure t
+  :custom ((wgrep-enable-key . "e")
+           (wgrep-auto-save-buffer . t)
+           (wgrep-change-readonly-file . t)))
+
 (leaf shell-pop
   :ensure t
   :bind (("C-o" . shell-pop)))
