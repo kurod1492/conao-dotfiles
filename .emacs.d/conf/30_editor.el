@@ -99,8 +99,13 @@
       ;; ==== functions ====
       ;; lsp-treemacs-errors-list
       :ensure t)
-    (leaf lsp-java-treemacs :ensure t)
+
+    (leaf lsp-java-treemacs
+      :disabled t
+      :ensure t)
+
     (leaf lsp-origami
+      :disabled t
       :ensure t
       :hooks (origami-mode-hook . lsp-origami-mode)))
 
