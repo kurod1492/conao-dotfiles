@@ -37,39 +37,33 @@
 ;;
 
 (leaf align
-  :doc "align text to a specific column, by regexp"
   ;; ==== function ====
   ;; align (beg end &optional separate rules exclude-rules)
-  )
+  :doc "align text to a specific column, by regexp")
 
 (leaf auth-source
   :doc "authentication sources for Gnus and Emacs"
   :init
   (leaf password-cache
-    :init "Read passwords, possibly using a password cache")
-  )
+    :init "Read passwords, possibly using a password cache"))
 
 (leaf auth-source-pass
-  :doc "Integrate auth-source with password-store"
-  )
+  :doc "Integrate auth-source with password-store")
 
 (leaf autoinsert
-  :doc "automatic mode-dependent insertion of text into new files"
-  )
+  :doc "automatic mode-dependent insertion of text into new files")
 
 (leaf autorevert
-  :doc "revert buffers when files on disk change"
-  :init
-  (leaf filenotify
-    "watch files for changes on disk"
-    )
-  :custom ((auto-revert-interval . 1))  ; check file every 1sec
-  :config
-  (global-auto-revert-mode)
   ;; ==== minor mode ====
   ;; auto-revert-mode
   ;; auto-revert-tail-mode
-  )
+  :doc "revert buffers when files on disk change"
+  :init
+  (leaf filenotify
+    "watch files for changes on disk")
+  :custom ((auto-revert-interval . 1))  ; check file every 1sec
+  :config
+  (global-auto-revert-mode))
 
 (leaf custom
   :config
@@ -100,14 +94,12 @@
   (tool-bar-mode 0))
 
 (leaf find-dired
-  :doc "run a `find' command and dired the output"
   ;; ==== function ====
   ;; find-name-dired (find file recursive)
-  )
+  :doc "run a `find' command and dired the output")
 
 (leaf files
-  :doc "file input and output commands for Emacs"
-  )
+  :doc "file input and output commands for Emacs")
 
 (leaf novice
   :doc "handling of disabled commands (\"novice mode\") for Emacs"
@@ -121,11 +113,10 @@
 ;;
 
 (leaf grep
-  :doc "run `grep' and display the results"
   ;; ==== function ====
   ;; rgrep (grep recursive)
   ;; lgrep (grep)
-  )
+  :doc "run `grep' and display the results")
 
 (leaf flymake
   :doc "A universal on-the-fly syntax checker")
