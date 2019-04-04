@@ -176,5 +176,16 @@
   :config
   :setq-default ((indent-tabs-mode . nil)))
 
+(leaf minibuf.c
+  :doc ""
+  :setq ((enable-recursive-minibuffers . t)))
+
 (provide '01_core-emacs)
 ;;; init.el ends here
+
+
+
+
+
+
+
