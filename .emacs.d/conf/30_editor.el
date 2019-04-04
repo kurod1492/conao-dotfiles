@@ -69,6 +69,12 @@
     (setq undohist-directory (locate-user-emacs-file "undohist")))
   (global-undo-tree-mode 1))
 
+(leaf projectile
+  :ensure t
+  ;; :bind ("M-o p" . projectile-switch-project)
+  :config
+  (projectile-mode 1))
+
 (leaf treemacs :ensure t)
 (leaf company :ensure t)
 (leaf lsp-mode
