@@ -48,6 +48,8 @@
     :ensure t
     :hook (ag-mode-hook . wgrep-ag-setup)))
 
+(leaf magit :ensure t)
+
 (leaf shell-pop
   :ensure t
   :bind (("C-o" . shell-pop)))
