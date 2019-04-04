@@ -58,20 +58,22 @@
            (create-lockfiles nil))
   :hook (prog-major-mode . lsp-prog-major-mode-enable)
   :config
-  (leaf lsp-ui
-    :ensure t
-    :hook (lsp-mode-hook . lsp-ui-mode))
-  (leaf company-lsp
-    :ensure t
+  (leaf lsp-ui-requirements
     :config
-    (add-to-list 'company-backends 'company-lsp)
-    ;; :after (lsp-mode company yasnippet)
-    ;; :custom
-    ;; ((company-lsp-cache-candidates t) ;; auto, t(always using a cache), or nil
-    ;;  (company-lsp-async t)
-    ;;  (company-lsp-enable-snippet t)
-    ;;  (company-lsp-enable-recompletion t))
-    )
+    (leaf lsp-ui
+      :ensure t
+      :hook (lsp-mode-hook . lsp-ui-mode))
+    (leaf company-lsp
+      :ensure t
+      :config
+      (add-to-list 'company-backends 'company-lsp)
+      ;; :after (lsp-mode company yasnippet)
+      ;; :custom
+      ;; ((company-lsp-cache-candidates t) ;; auto, t(always using a cache), or nil
+      ;;  (company-lsp-async t)
+      ;;  (company-lsp-enable-snippet t)
+      ;;  (company-lsp-enable-recompletion t))
+      ))
 
   ;; lsp ruby support
   (leaf lsp-ruby
