@@ -88,6 +88,7 @@
 
   (leaf *other-lsp-pacakges
     :config
+    (leaf lsp-treemacs :ensure t)
     (leaf lsp-java-treemacs))
 
   (leaf *lsp-clients
