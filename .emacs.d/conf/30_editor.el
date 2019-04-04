@@ -79,7 +79,10 @@
   (leaf ccls
     :ensure t
     :config
-    (custom-set-variables `(ccls-executable ,(executable-find "ccls")))))
+    (custom-set-variables `(ccls-executable ,(executable-find "ccls"))))
+  (leaf lsp-java
+    :ensure t
+    :hook (java-mode-hook . lsp)))
 
 (leaf ivy :ensute t
   :config
