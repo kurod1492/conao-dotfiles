@@ -131,6 +131,13 @@
       :ensure t
       :config
       (counsel-mode 1)))
+
+  (leaf *other-ivy-packages
+    :config
+    (leaf ivy-xref
+      :ensure t
+      :config
+      (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)))
   (ivy-mode 1))
 
 (leaf helm
