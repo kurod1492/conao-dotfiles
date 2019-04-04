@@ -58,7 +58,7 @@
            (create-lockfiles nil))
   :hook (prog-major-mode . lsp-prog-major-mode-enable)
   :config
-  (leaf lsp-ui-requirements
+  (leaf *lsp-ui-requirements
     :config
     (leaf lsp-ui
       :ensure t
@@ -75,7 +75,21 @@
       ;;  (company-lsp-enable-recompletion t))
       ))
 
-  (leaf lsp-clients
+  (leaf *lsp-dap-mode
+    :doc "dap is Debug Adapter Protocol"
+    :config
+    (leaf dap-mode
+      :ensure t
+      :require t
+      :config
+      (dap-mode t)
+      (dap-ui-mode t)))
+
+  (leaf *other-lsp-pacakges
+    :config
+    (leaf lsp-java-treemacs))
+
+  (leaf *lsp-clients
     :config
     ;; lsp ruby support
     (leaf lsp-ruby
@@ -92,7 +106,9 @@
     ;; lsp java support
     (leaf lsp-java
       :ensure t
-      :hook (java-mode-hook . lsp))))
+      :hook (java-mode-hook . lsp)
+      :config
+      (leaf dap-java))))
 
 (leaf ivy :ensute t
   :config
