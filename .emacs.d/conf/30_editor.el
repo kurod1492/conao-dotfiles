@@ -86,6 +86,7 @@
     :doc "dap is Debug Adapter Protocol"
     :config
     (leaf dap-mode
+      :url "https://github.com/emacs-lsp/dap-mode"
       :ensure t
       :require t
       :config
