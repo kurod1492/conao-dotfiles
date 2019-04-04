@@ -207,7 +207,12 @@
 
     (leaf amx
       :doc "Alternative M-x with extra features"
-      :ensure t))
+      :ensure t)
+
+    (leaf ivy-rich
+      :doc "More friendly display transformer for ivy"
+      :ensure t
+      :config (ivy-rich-mode 1)))
 
   (leaf *ivy-integration
     :config
