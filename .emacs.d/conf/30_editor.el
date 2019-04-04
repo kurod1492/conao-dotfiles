@@ -88,7 +88,11 @@
 
   (leaf *other-lsp-pacakges
     :config
-    (leaf lsp-treemacs :ensure t)
+    (leaf lsp-treemacs
+      :doc "Show errors with treemacs interface"
+      ;; ==== functions ====
+      ;; lsp-treemacs-errors-list
+      :ensure t)
     (leaf lsp-java-treemacs :ensure t))
 
   (leaf *lsp-clients
