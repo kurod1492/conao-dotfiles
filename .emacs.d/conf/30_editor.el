@@ -49,6 +49,10 @@
               ("C-c y g" . yas-reload-all))
   :config (yas-global-mode 1))
 
+(leaf origami
+  :ensure t
+  :config (global-origami-mode 1))
+
 (leaf treemacs :ensure t)
 (leaf company :ensure t)
 (leaf lsp-mode
@@ -93,7 +97,10 @@
       ;; ==== functions ====
       ;; lsp-treemacs-errors-list
       :ensure t)
-    (leaf lsp-java-treemacs :ensure t))
+    (leaf lsp-java-treemacs :ensure t)
+    (leaf lsp-origami
+      :ensure t
+      :hooks (origami-mode-hook . lsp-origami-mode)))
 
   (leaf *lsp-clients
     :config
