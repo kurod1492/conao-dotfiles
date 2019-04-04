@@ -157,6 +157,24 @@
         :config (add-hook 'emacs-lisp-mode-hook #'package-lint-setup-flymake)))
     :config (flycheck-package-setup)))
 
+(leaf flyspell
+  :when (executable-find "aspell")
+  :hook
+  ((org-mode yaml-mode markdown-mode git-commit-mode) . flyspell-mode)
+  (prog-mode . flyspell-prog-mode)
+  (flyspell-mode . (lambda ()
+		     (dolist (key '("C-;" "C-," "C-."))
+		       (unbind-key key flyspell-mode-map))))
+  :custom
+  ((flyspell-issue-message-flag nil)
+   (ispell-program-name "aspell")
+   (ispell-extra-args '("--sug-mode=ultra" "--lang=en_US" "--run-together")))
+  :config
+  (use-package flyspell-correct-ivy
+    :bind ("C-M-i" . flyspell-correct-wrapper)
+    :custom
+    ((flyspell-correct-interface #'flyspell-correct-ivy))))
+
 (leaf lsp-mode
   :url "https://github.com/MaskRay/ccls/wiki/lsp-mode#find-definitionsreferences"
   :doc "lsp is language server protocol"
