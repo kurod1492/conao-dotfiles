@@ -24,10 +24,12 @@
 
 ;; custom file (setting at top)
 (leaf cus-edit
-  :custom ((custom-file . (locate-user-emacs-file "custom.el")))
-  :config
-  (when (file-readable-p custom-file)
-    (load custom-file)))
+  :custom (;; (custom-file . (locate-user-emacs-file "custom.el"))
+           (custom-file . "/dev/null"))
+  ;; :config
+  ;; (when (file-readable-p custom-file)
+  ;;   (load custom-file))
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
