@@ -44,6 +44,9 @@
 
 (leaf auth-source
   :doc "authentication sources for Gnus and Emacs"
+  :init
+  (leaf password-cache
+    :init "Read passwords, possibly using a password cache")
   )
 
 (leaf auth-source-pass
