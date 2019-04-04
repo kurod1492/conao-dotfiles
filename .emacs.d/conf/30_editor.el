@@ -50,7 +50,6 @@
   :config (yas-global-mode 1))
 
 (leaf treemacs :ensure t)
-
 (leaf company :ensure t)
 (leaf lsp-mode
   :ensure t
