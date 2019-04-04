@@ -135,6 +135,7 @@
   (leaf *other-ivy-packages
     :config
     (leaf ivy-xref
+      :doc "Ivy interface for xref results"
       :ensure t
       :config
       (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)))
