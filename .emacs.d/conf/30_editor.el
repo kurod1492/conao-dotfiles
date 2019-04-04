@@ -213,6 +213,9 @@
     :config
     ;; Integration with `projectile'
     (with-eval-after-load 'projectile
+      (leaf counsel-projectile
+        :ensure t
+        :config (counsel-projectile-mode 1))
       (custom-set-variables
        '(projectile-completion-system 'ivy)))
 
