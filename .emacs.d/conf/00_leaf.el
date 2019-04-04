@@ -91,6 +91,14 @@ This function is minor change from `add-to-list'."
   :config
   (package-initialize))
 
+;; leaf initialize
+(leaf leaf
+  :init
+  (require 'leaf)
+  (leaf hydra :ensure t)
+  :custom ((leaf-backend/:ensure . 'package)))
+
+;; other conao3 packages
 (leaf seml-mode
   :init (require 'seml-mode)
   :custom ((seml-live-refresh-interval     . 0.35)
@@ -99,12 +107,6 @@ This function is minor change from `add-to-list'."
 
 (leaf cort-test
   :init (require 'cort-test))
-
-(leaf leaf
-  :init
-  (require 'leaf)
-  (leaf hydra :ensure t)
-  :custom ((leaf-backend/:ensure . 'package)))
 
 (leaf feather
   :init (require 'feather))
