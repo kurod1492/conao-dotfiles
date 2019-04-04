@@ -184,14 +184,13 @@
 
 (leaf ivy
   :ensute t
-  :config
+  :init
   (leaf *ivy-ui-requirements
     :config
     (leaf swiper :ensure t)
-    (leaf counsel
-      :ensure t
-      :config (counsel-mode 1)))
-
+    (leaf counsel :ensure t))
+  :bind (("C-s" . swiper))
+  :config
   (leaf *other-ivy-packages
     :config
     (leaf ivy-xref
@@ -201,7 +200,9 @@
       (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)))
 
   (leaf *ivy-settings
-    :config (ivy-mode 1)))
+    :config
+    (ivy-mode 1)
+    (counsel-mode 1)))
 
 (leaf helm
   :disabled t
