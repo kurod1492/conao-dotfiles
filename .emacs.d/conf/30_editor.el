@@ -99,7 +99,7 @@
       )
 
     (leaf ccls
-      :doc "C/C++ support for lsp-mode"
+      :doc "C/C++//Objective-C support for lsp-mode"
       :ensure t
       :config
       (custom-set-variables `(ccls-executable ,(executable-find "ccls"))))
