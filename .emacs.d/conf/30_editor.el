@@ -138,7 +138,10 @@
       :ensure t
       :config
       (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)))
-  (ivy-mode 1))
+
+  (leaf *ivy-settings
+    :config
+    (ivy-mode 1)))
 
 (leaf helm
   :disabled t
