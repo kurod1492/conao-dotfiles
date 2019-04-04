@@ -92,20 +92,20 @@
 
   (leaf *lsp-clients
     :config
-    ;; lsp ruby support
     (leaf lsp-ruby
+      :doc "Ruby support for lsp-mode"
       :ensure t
       ;; :hook ((ruby-mode-hook . lsp-ruby-enable))
       )
 
-    ;; lsp C/C++ support
     (leaf ccls
+      :doc "C/C++ support for lsp-mode"
       :ensure t
       :config
       (custom-set-variables `(ccls-executable ,(executable-find "ccls"))))
 
-    ;; lsp java support
     (leaf lsp-java
+      :doc "Java support for lsp-mode"
       :ensure t
       :hook (java-mode-hook . lsp)
       :config
