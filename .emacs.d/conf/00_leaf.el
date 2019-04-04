@@ -96,6 +96,7 @@ This function is minor change from `add-to-list'."
   :init
   (require 'leaf)
   (leaf hydra :ensure t)
+  (leaf bind-key :ensure t)
   :custom ((leaf-backend/:ensure . 'package)))
 
 ;; other conao3 packages
@@ -143,8 +144,6 @@ This function is minor change from `add-to-list'."
 
 (leaf straight
   :init (require 'straight))
-
-(leaf bind-key :ensure t)
 
 (leaf s    :ensure t)
 (leaf f    :ensure t)
