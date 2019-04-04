@@ -62,7 +62,7 @@
   :config
   (leaf undohist
     :ensure t
-    :require t
+    :commands undohist-initialize
     :custom ((undohist-ignored-files . '("/tmp" "/elpa" "/el-get")))
     :config
     (undohist-initialize)
