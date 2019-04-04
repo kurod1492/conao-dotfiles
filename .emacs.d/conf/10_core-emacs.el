@@ -173,7 +173,6 @@
 
 (leaf indent.c
   :doc "Indentation functions"
-  :config
   :setq-default ((indent-tabs-mode . nil)))
 
 (leaf minibuf.c
@@ -182,10 +181,3 @@
 
 (provide '01_core-emacs)
 ;;; init.el ends here
-
-
-
-
-
-
-
