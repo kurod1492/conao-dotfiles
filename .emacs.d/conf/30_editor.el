@@ -95,19 +95,26 @@
     (leaf lsp-ruby
       :doc "Ruby support for lsp-mode"
       :ensure t
+      :hook
+      (ruby-mode-hook . lsp)
       ;; :hook ((ruby-mode-hook . lsp-ruby-enable))
       )
 
     (leaf ccls
       :doc "C/C++//Objective-C support for lsp-mode"
       :ensure t
+      :hook
+      (c-mode-hook . lsp)
+      (c++-mode-hook . lsp)
+      (objc-mode-hook . lsp)
       :config
       (custom-set-variables `(ccls-executable ,(executable-find "ccls"))))
 
     (leaf lsp-java
       :doc "Java support for lsp-mode"
       :ensure t
-      :hook (java-mode-hook . lsp)
+      :hook
+      (java-mode-hook . lsp)
       :config
       (leaf dap-java))))
 
