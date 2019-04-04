@@ -56,6 +56,10 @@
 
 (leaf autorevert
   :doc "revert buffers when files on disk change"
+  :init
+  (leaf filenotify
+    "watch files for changes on disk"
+    )
   :custom ((auto-revert-interval . 1))  ; check file every 1sec
   :config
   (global-auto-revert-mode)
