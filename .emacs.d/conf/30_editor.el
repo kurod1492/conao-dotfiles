@@ -56,6 +56,7 @@
 (leaf treemacs :ensure t)
 (leaf company :ensure t)
 (leaf lsp-mode
+  :url "https://github.com/MaskRay/ccls/wiki/lsp-mode#find-definitionsreferences"
   :doc "lsp is language server protocol"
   :ensure t
   :custom ((lsp-inhibit-message t)
