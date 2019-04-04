@@ -203,6 +203,9 @@
       (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
     (leaf flx
       :doc "fuzzy matching with good sorting"
+      :ensure t)
+    (leaf amx
+      :doc "Alternative M-x with extra features"
       :ensure t))
 
   (leaf *ivy-integration
