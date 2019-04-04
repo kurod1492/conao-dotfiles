@@ -75,22 +75,24 @@
       ;;  (company-lsp-enable-recompletion t))
       ))
 
-  ;; lsp ruby support
-  (leaf lsp-ruby
-    :ensure t
-    ;; :hook ((ruby-mode-hook . lsp-ruby-enable))
-    )
-
-  ;; lsp C/C++ support
-  (leaf ccls
-    :ensure t
+  (leaf lsp-clients
     :config
-    (custom-set-variables `(ccls-executable ,(executable-find "ccls"))))
+    ;; lsp ruby support
+    (leaf lsp-ruby
+      :ensure t
+      ;; :hook ((ruby-mode-hook . lsp-ruby-enable))
+      )
 
-  ;; lsp java support
-  (leaf lsp-java
-    :ensure t
-    :hook (java-mode-hook . lsp)))
+    ;; lsp C/C++ support
+    (leaf ccls
+      :ensure t
+      :config
+      (custom-set-variables `(ccls-executable ,(executable-find "ccls"))))
+
+    ;; lsp java support
+    (leaf lsp-java
+      :ensure t
+      :hook (java-mode-hook . lsp))))
 
 (leaf ivy :ensute t
   :config
