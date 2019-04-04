@@ -191,13 +191,7 @@
     (leaf counsel :ensure t))
   :bind (("C-s" . swiper))
   :custom ((counsel-yank-pop-separator . "\n----------\n")
-           (counsel-grep-base-command  . "ag -S --noheading --nocolor --nofilename --numbers '%s' %s")
-
-           ;; integration with projectile
-           (projectile-completion-system . ivy)
-
-           ;; integration with magit
-           (magit-completing-read-function . ivy-completing-read))
+           (counsel-grep-base-command  . "ag -S --noheading --nocolor --nofilename --numbers '%s' %s"))
   :config
   (leaf *other-ivy-packages
     :config
@@ -206,6 +200,18 @@
       :ensure t
       :config
       (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)))
+
+  (leaf *ivy-integration
+    :config
+    ;; Integration with `projectile'
+    (with-eval-after-load 'projectile
+      (custom-set-variables
+       '(projectile-completion-system 'ivy)))
+
+    ;; Integration with `magit'
+    (with-eval-after-load 'magit
+      (custom-set-variables
+       '(magit-completing-read-function 'ivy-completing-read))))
 
   (leaf *ivy-settings
     :config
