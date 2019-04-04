@@ -70,6 +70,7 @@
       :hook (lsp-mode-hook . lsp-ui-mode))
     (leaf company-lsp
       :ensure t
+      :require t
       :config
       (add-to-list 'company-backends 'company-lsp)
       ;; :after (lsp-mode company yasnippet)
