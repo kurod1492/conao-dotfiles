@@ -83,6 +83,14 @@ This function is minor change from `add-to-list'."
                 "straight.el" "po-mode.el"))))
 (require 'leaf)
 
+;; package initialize
+(leaf package
+  :setq ((package-archives . '(("org"   . "https://orgmode.org/elpa/")
+                               ("melpa" . "https://melpa.org/packages/")
+                               ("gnu"   . "https://elpa.gnu.org/packages/"))))
+  :config
+  (package-initialize))
+
 (leaf seml-mode
   :init (require 'seml-mode)
   :custom ((seml-live-refresh-interval     . 0.35)
@@ -129,14 +137,6 @@ This function is minor change from `add-to-list'."
 
 (leaf straight
   :init (require 'straight))
-
-(leaf package
-  :config
-  (add-list-to-list 'package-archives
-    '(("org"       . "https://orgmode.org/elpa/")
-      ("melpa"     . "https://melpa.org/packages/")
-      ("marmalade" . "https://marmalade-repo.org/packages/")))
-  (package-initialize))
 
 (leaf bind-key :ensure t)
 
