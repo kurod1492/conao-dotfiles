@@ -37,6 +37,20 @@
   (leaf docker-compose-mode :ensure t)
   (leaf docker-tramp :ensure t))
 
+(leaf go-mode
+  :ensure t
+  :custom ((gofmt-command . "goimports"))
+  :bind (:map go-mode-map
+	      ("C-c C-n" . go-run)
+	      ("C-c ."   . go-test-current-test)
+	      ("C-c f"   . go-test-current-file)
+	      ("C-c a"   . go-test-current-project))
+  :hooks (before-save-hook . gofmt-before-save)
+  :config
+  (leaf gotest :ensure t)
+  (leaf go-tag :ensure t
+    :config (setq go-tag-args (list "-transform" "camelcase"))))
+
 (leaf bison-mode
   :ensure t
   :setq ((bison-rule-separator-column   . 4)
