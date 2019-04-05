@@ -28,6 +28,10 @@
   (leaf gitconfig-mode     :ensure t)
   (leaf gitignore-mode     :ensure t)
 
+  (leaf git-messenger
+    :ensure t
+    :bind (("C-x v p" . git-messenger:popup-message)))
+
   (leaf magit
     :ensure t
     :bind (("M-g s" . magit-status)))
