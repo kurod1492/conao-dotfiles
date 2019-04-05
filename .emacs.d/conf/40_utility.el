@@ -28,6 +28,7 @@
   (leaf gitconfig-mode     :ensure t)
   (leaf gitignore-mode     :ensure t)
   (leaf gh                 :ensure t)
+  (leaf github-pullrequest :ensure t)
 
   (leaf git-messenger
     :ensure t
