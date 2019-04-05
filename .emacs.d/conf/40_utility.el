@@ -56,6 +56,10 @@
   :ensure t
   :bind (("M-g t" . git-timemachine-toggle)))
 
+(leaf diffview
+  :doc "View diffs in side-by-side format"
+  :ensure t)
+
 (leaf migemo
   :doc "Japanese incremental search through dynamic pattern expansion"
   :when (executable-find "cmigemo")
