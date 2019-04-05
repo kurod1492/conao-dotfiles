@@ -362,6 +362,7 @@
   (global-unset-key (kbd "C-x c")))
 
 (leaf elscreen
+  :disabled t
   :ensure t
   :require t
   :bind* (("C-c e k"       . elscreen-kill-screen-and-buffers)
