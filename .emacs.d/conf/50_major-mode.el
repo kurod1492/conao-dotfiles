@@ -23,7 +23,6 @@
 ;;
 
 (leaf polymode :ensure t)
-(leaf go-mode :ensure t)
 (leaf plantuml-mode :ensure t)
 (leaf web-mode :ensure t)
 (leaf yaml-mode :ensure t)
