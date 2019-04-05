@@ -354,7 +354,14 @@
     (leaf ivy-rich
       :doc "More friendly display transformer for ivy"
       :ensure t
-      :config (ivy-rich-mode 1)))
+      :config (ivy-rich-mode 1))
+
+    (leaf ivy-posframe
+      :doc "Using posframe to show Ivy"
+      :ensure t
+      :custom ((ivy-display-function . #'ivy-posframe-display-at-frame-center))
+      :config
+      (ivy-posframe-enable)))
 
   (leaf *ivy-integration
     :config
