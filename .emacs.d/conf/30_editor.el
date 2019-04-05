@@ -442,6 +442,7 @@
   (global-unset-key (kbd "C-x c")))
 
 (leaf persp-mode
+  :ensure t
   ;; :hook ((emacs-startup . toggle-frame-maximized))
   :custom ((persp-keymap-prefix    . (kbd "C-c p"))
            (persp-nil-name         . "default")
