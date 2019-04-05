@@ -88,6 +88,11 @@
 
 (leaf *misc-tools
   :config
+  (leaf all-the-icons :ensure t)
+  (leaf hide-mode-line :ensure t
+  ;; :hook
+  ;; ((neotree-mode imenu-list-minor-mode minimap-mode) . hide-mode-line-mode)
+  )
   (leaf dashboard
     :ensure t
     :require t
