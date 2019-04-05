@@ -269,7 +269,36 @@
       :ensure t
       :hook (java-mode-hook . lsp)
       :config
-      (leaf dap-java))))
+      (leaf dap-java))
+
+    (leaf *lsp-latex
+      :doc "Latex support for lsp-mode"
+      :when (file-exists-p "/Users/conao/Develop/tex/texlab.jar")
+      :hooks
+      (tex-mode-hook   . lsp)
+      (latex-mode-hook . lsp)
+      (yatex-mode-hook . lsp)
+      :config
+      (defvar lsp-latex-java-executable "java")
+      (defvar lsp-latex-java-argument-list '("-jar"))
+      (defvar lsp-latex-texlab-jar-file "/Users/conao/Develop/tex/texlab.jar")
+      (defvar lsp-latex-texlab-jar-argument-list '())
+      (defun lsp-latex-new-connection ()
+        ""
+        (append
+         (cons
+          lsp-latex-java-executable
+          lsp-latex-java-argument-list)
+         (cons
+          lsp-latex-texlab-jar-file
+          lsp-latex-texlab-jar-argument-list)))
+
+      (lsp-register-client
+       (make-lsp-client :new-connection
+                        (lsp-stdio-connection
+                         #'lsp-latex-new-connection)
+                        :major-modes '(tex-mode yatex-mode latex-mode)
+                        :server-id 'texlab)))))
 
 (leaf ivy
   :ensute t
