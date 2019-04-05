@@ -118,7 +118,13 @@
   :config
   (projectile-mode 1))
 
-(leaf company :ensure t)
+(leaf company
+  :ensure t
+  :config
+  (leaf company-box
+    :ensure t
+    :hook (company-mode . company-box-mode))
+  (global-company-mode 1))
 
 (leaf auto-complete
   :disabled t
