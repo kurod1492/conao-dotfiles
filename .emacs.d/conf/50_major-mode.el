@@ -30,7 +30,7 @@
 (leaf cider :ensure t :require t
       :init (leaf clojure-mode :ensure t))
 
-(leaf docker
+(leaf *docker-modes
   :config
   (leaf docker :ensure t)
   (leaf dockerfile-mode :ensure t)
