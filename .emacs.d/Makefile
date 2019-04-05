@@ -2,6 +2,7 @@ all:
 
 include Makefunc.mk
 
+GREP        ?= grep
 LOCALDIR    := local
 LISPDIR     := site-lisp
 CONFDIR     := conf
@@ -22,7 +23,7 @@ REPOS       := leaf.el orglyth.el cort-test.el seml-mode.el po-mode.el navbar.el
 REPOS         += feather.el leaf-browser.el straight.el
 REPODIRS    := $(addprefix $(LISPDIR)/, $(REPOS))
 
-VERNAME_CMD := --version | head -n 1 | cut -d ' ' -f 3 | grep -oP '^\d+\.\d+'   
+VERNAME_CMD := --version | head -n 1 | cut -d ' ' -f 3 | $(GREP) -oP '^\d+\.\d+'   
 EMACS_RAW   := $(filter-out emacs-undumped, $(shell compgen -c emacs- | xargs))
 ALL_EMACS   := $(strip $(sort $(EMACS_RAW)))
 EMACS_VERS  := $(foreach ver,$(ALL_EMACS),$(shell $(ver) $(VERNAME_CMD)))
@@ -46,7 +47,7 @@ LOCAL_MIXELCFILES := $(addsuffix /$(MIXELCNAME),$(LOCAL_BUILDDIRS))
 
 DIRS          := $(LOCALDIR) $(LISPDIR) $(LOCALDIRS) $(LOCAL_BUILDDIRS) $(LOCAL_LISPDIRS)
 
-CURRENT_BRANCH = $(shell cd $1; test -d .git && git branch | grep \* | cut -d ' ' -f2)
+CURRENT_BRANCH = $(shell cd $1; test -d .git && git branch | $(GREP) \* | cut -d ' ' -f2)
 PULL_JOBS     := $(addprefix .make-pull-,$(REPOS))
 
 EMACS_KEY2VAL  = $(call KEY2VAL,$(EMACS_DIC),$1)
