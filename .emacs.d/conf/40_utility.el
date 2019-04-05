@@ -50,6 +50,11 @@
 
 (leaf magit :ensure t)
 
+(leaf git-timemachine
+  :doc "Walk through git revisions of a file"
+  :ensure t
+  :bind (("M-g t" . git-timemachine-toggle)))
+
 (leaf migemo
   :doc "Japanese incremental search through dynamic pattern expansion"
   :when (executable-find "cmigemo")
