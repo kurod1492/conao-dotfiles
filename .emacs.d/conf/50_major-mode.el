@@ -22,10 +22,10 @@
 
 ;;
 
-(leaf polymode :ensure t)
 (leaf plantuml-mode :ensure t)
-(leaf web-mode :ensure t)
-(leaf yaml-mode :ensure t)
+(leaf polymode      :ensure t)
+(leaf web-mode      :ensure t)
+(leaf yaml-mode     :ensure t)
 
 (leaf cider :ensure t :require t
       :init (leaf clojure-mode :ensure t))
