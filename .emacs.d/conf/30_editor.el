@@ -219,6 +219,8 @@
   (c-mode   . lsp)
   (c++-mode . lsp)
   (prog-major-mode . lsp-prog-major-mode-enable)
+  :bind (:map lsp-mode-map
+              ("C-c r" . lsp-rename))
   :config
   (leaf *lsp-ui-requirements
     :config
