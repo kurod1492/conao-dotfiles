@@ -45,6 +45,16 @@
   :custom ((shackle-rules . '(("\*helm" :regexp t :align below :popup t :size 0.4))))
   :config (shackle-mode 1))
 
+(leaf smartparens
+  :ensure t
+  :hooks
+  (after-init . smartparens-global-mode)
+  :config
+  (sp-local-pair 'org-mode "+" "+")
+  (sp-local-pair 'org-mode "=" "=")
+  (sp-local-pair 'markdown-mode "`" "`")
+  (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil))
+
 (leaf yasnippet
   ;; (expand-file-name "snippets" user-emacs-directory)
   :ensure t
