@@ -22,6 +22,19 @@
 
 ;;
 
+(leaf *git-tools
+  :config
+  (leaf magit :ensure t)
+
+  (leaf git-timemachine
+    :doc "Walk through git revisions of a file"
+    :ensure t
+    :bind (("M-g t" . git-timemachine-toggle)))
+
+  (leaf diffview
+    :doc "View diffs in side-by-side format"
+    :ensure t))
+
 (leaf *http-tools
   :config
   (leaf restclient :ensure t)
@@ -60,19 +73,6 @@
   (setq migemo-command (executable-find "cmigemo"))
   (autoload 'migemo-init "migemo" nil t)
   (migemo-init)))
-
-(leaf *git-tools
-  :config
-  (leaf magit :ensure t)
-
-  (leaf git-timemachine
-    :doc "Walk through git revisions of a file"
-    :ensure t
-    :bind (("M-g t" . git-timemachine-toggle)))
-
-  (leaf diffview
-    :doc "View diffs in side-by-side format"
-    :ensure t))
 
 (leaf *misc-tools
   :config
