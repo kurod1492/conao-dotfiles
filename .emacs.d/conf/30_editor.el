@@ -445,6 +445,7 @@
   :custom ((persp-keymap-prefix    . (kbd "C-c p"))
            (persp-nil-name         . "default")
            (persp-auto-resume-time . 1))
+  :hook (emacs-startup-hook . toggle-frame-maximized)
   :config
   ;; NOTE: Redefine `persp-add-new' to raddress.
   ;; Issue: Unable to create/handle persp-mode
