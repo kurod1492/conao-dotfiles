@@ -324,6 +324,7 @@
 
 (leaf ivy
   :ensute t
+  :custom ((ivy-height . 40))
   :init
   (leaf *ivy-ui-requirements
     :config
