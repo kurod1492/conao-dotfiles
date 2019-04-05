@@ -101,7 +101,9 @@ This function is minor change from `add-to-list'."
 ;;   (leaf hydra :ensure t)
 ;;   (leaf bind-key :ensure t)
 ;;   :custom ((leaf-backend/:ensure . 'package)))
-(leaf leaf :custom ((leaf-backend/:ensure . 'package)))
+(leaf leaf :custom ((leaf-backend/:ensure . 'package)
+                    (leaf-backend/:bind   . 'bind-key)
+                    (leaf-backend/:bind*  . 'bind-key)))
 (leaf leaf
   :requre t
   :init
