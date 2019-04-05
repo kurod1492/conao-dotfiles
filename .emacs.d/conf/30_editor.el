@@ -367,8 +367,7 @@
            (persp-nil-name         . "default")
            (persp-auto-resume-time . 1))
   :config
-  (persp-mode 1)
-  ;; NOTE: Redefine `persp-add-new' to address.
+  ;; NOTE: Redefine `persp-add-new' to raddress.
   ;; Issue: Unable to create/handle persp-mode
   ;; https://github.com/Bad-ptr/persp-mode.el/issues/96
   ;; https://github.com/Bad-ptr/persp-mode-projectile-bridge.el/issues/4
@@ -394,25 +393,30 @@
   ;;           (lambda (b) (or (string-prefix-p "*" (buffer-name b))
   ;;       	       (string-prefix-p "magit" (buffer-name b)))))
 
-  ;; Integrate IVY
-  ;; (with-eval-after-load "ivy"
-  ;;   (add-hook 'ivy-ignore-buffers
-  ;;             #'(lambda (b)
-  ;;       	  (when persp-mode
-  ;;       	    (let ((persp (get-current-persp)))
-  ;;       	      (if persp
-  ;;       		  (not (persp-contain-buffer-p b persp))
-  ;;       		nil)))))
+  (leaf *ivy-integration
+    :url "https://gist.github.com/Bad-ptr/1aca1ec54c3bdb2ee80996eb2b68ad2d#file-persp-ivy-el"
+    :config
+    (with-eval-after-load "ivy"
+      (add-hook 'ivy-ignore-buffers
+                #'(lambda (b)
+        	    (when persp-mode
+        	      (let ((persp (get-current-persp)))
+        	        (if persp
+        		    (not (persp-contain-buffer-p b persp))
+        		  nil)))))
 
-  ;;   (setq ivy-sort-functions-alist
-  ;;         (append ivy-sort-functions-alist
-  ;;       	  '((persp-kill-buffer   . nil)
-  ;;       	    (persp-remove-buffer . nil)
-  ;;       	    (persp-add-buffer    . nil)
-  ;;       	    (persp-switch        . nil)
-  ;;       	    (persp-window-switch . nil)
-  ;;       	    (persp-frame-switch  . nil)))))
-  )
+      (setq ivy-sort-functions-alist
+            (append ivy-sort-functions-alist
+        	    '((persp-kill-buffer   . nil)
+        	      (persp-remove-buffer . nil)
+        	      (persp-add-buffer    . nil)
+        	      (persp-switch        . nil)
+        	      (persp-window-switch . nil)
+        	      (persp-frame-switch  . nil))))))
+
+  (leaf *persp-settings
+    :config
+    (persp-mode 1)))
 
 (leaf elscreen
   :disabled t
