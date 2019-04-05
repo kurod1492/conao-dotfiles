@@ -27,6 +27,7 @@
   (leaf gitattributes-mode :ensure t)
   (leaf gitconfig-mode     :ensure t)
   (leaf gitignore-mode     :ensure t)
+  (leaf gh                 :ensure t)
 
   (leaf git-messenger
     :ensure t
