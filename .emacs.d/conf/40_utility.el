@@ -24,6 +24,10 @@
 
 (leaf *git-tools
   :config
+  (leaf gitattributes-mode :ensure t)
+  (leaf gitconfig-mode     :ensure t)
+  (leaf gitignore-mode     :ensure t)
+
   (leaf magit
     :ensure t
     :bind (("M-g s" . magit-status)))
