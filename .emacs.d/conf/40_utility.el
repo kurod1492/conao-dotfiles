@@ -88,6 +88,18 @@
 
 (leaf *misc-tools
   :config
+  (leaf dashboard
+    :ensure t
+    :require t
+    :custom ((dashboard-startup-banner . 4)
+             (dashboard-items          . '((recents . 15)
+		                           (projects . 5)
+		                           (bookmarks . 5)
+		                           (agenda . 5))))
+    :hook (after-init . dashboard-setup-startup-hook)
+    :config
+    (add-to-list 'dashboard-items '(agenda) t))
+
   (leaf mwim
     :doc "Switch between the beginning/end of line or code"
     :ensure t
