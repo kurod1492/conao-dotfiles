@@ -55,7 +55,7 @@
 	      ("C-c ."   . go-test-current-test)
 	      ("C-c f"   . go-test-current-file)
 	      ("C-c a"   . go-test-current-project))
-  :hooks (before-save-hook . gofmt-before-save)
+  :hook (before-save-hook . gofmt-before-save)
   :config
   (leaf gotest :ensure t)
   (leaf go-tag :ensure t

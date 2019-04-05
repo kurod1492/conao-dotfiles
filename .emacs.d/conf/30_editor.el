@@ -47,7 +47,7 @@
 
 (leaf smartparens
   :ensure t
-  :hooks
+  :hook
   (after-init . smartparens-global-mode)
   :config
   (sp-local-pair 'org-mode "+" "+")
@@ -275,7 +275,7 @@
     (leaf lsp-origami
       :disabled t
       :ensure t
-      :hooks (origami-mode-hook . lsp-origami-mode)))
+      :hook (origami-mode-hook . lsp-origami-mode)))
 
   (leaf *lsp-clients
     :config
@@ -297,7 +297,7 @@
     (leaf *lsp-latex
       :doc "Latex support for lsp-mode"
       :when (file-exists-p "/Users/conao/Develop/tex/texlab.jar")
-      :hooks
+      :hook
       (tex-mode-hook   . lsp)
       (latex-mode-hook . lsp)
       (yatex-mode-hook . lsp)
