@@ -78,13 +78,14 @@
       :hook (ag-mode-hook . wgrep-ag-setup)))
 
   (leaf migemo
-  :doc "Japanese incremental search through dynamic pattern expansion"
-  :when (executable-find "cmigemo")
-  :commands migemo-init
-  :config
-  (setq migemo-command (executable-find "cmigemo"))
-  (autoload 'migemo-init "migemo" nil t)
-  (migemo-init)))
+    :disabled t
+    :doc "Japanese incremental search through dynamic pattern expansion"
+    :when (executable-find "cmigemo")
+    :commands migemo-init
+    :config
+    (setq migemo-command (executable-find "cmigemo"))
+    (autoload 'migemo-init "migemo" nil t)
+    (migemo-init)))
 
 (leaf *misc-tools
   :config
