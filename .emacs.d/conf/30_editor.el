@@ -204,9 +204,21 @@
   :url "https://github.com/MaskRay/ccls/wiki/lsp-mode#find-definitionsreferences"
   :doc "lsp is language server protocol"
   :ensure t
-  ;; :custom ((lsp-inhibit-message . t)
-  ;;          (lsp-message-project-root-warning . t))
-  :hook (prog-major-mode . lsp-prog-major-mode-enable)
+  :custom (;; (lsp-inhibit-message . t)
+           ;; (lsp-message-project-root-warning . t)
+
+           ;; debug
+           (lsp-print-io          . nil)
+           (lsp-trace             . nil)
+           (lsp-print-performance . nil)
+
+           ;; general
+           (lsp-auto-guess-root . t))
+  :hook
+  (go-mode  . lsp)
+  (c-mode   . lsp)
+  (c++-mode . lsp)
+  (prog-major-mode . lsp-prog-major-mode-enable)
   :config
   (leaf *lsp-ui-requirements
     :config
