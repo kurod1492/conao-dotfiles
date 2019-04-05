@@ -128,6 +128,11 @@
   (leaf mwheel
     :doc "Wheel mouse support"))
 
+(leaf save-place-mode
+  :doc "automatically save place in files"
+  :config
+  (save-place-mode))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;  Resources/lisp/progmodes
