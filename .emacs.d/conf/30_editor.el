@@ -47,6 +47,7 @@
 
 (leaf smartparens
   :ensure t
+  :require t
   :hook
   (after-init . smartparens-global-mode)
   :config
