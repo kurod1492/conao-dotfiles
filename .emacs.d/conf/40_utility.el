@@ -24,7 +24,9 @@
 
 (leaf *git-tools
   :config
-  (leaf magit :ensure t)
+  (leaf magit
+    :ensure t
+    :bind (("M-g s" . magit-status)))
 
   (leaf git-timemachine
     :doc "Walk through git revisions of a file"
