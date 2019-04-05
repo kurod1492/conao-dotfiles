@@ -204,10 +204,9 @@
            (ispell-program-name . "aspell")
            (ispell-extra-args . '("--sug-mode=ultra" "--lang=en_US" "--run-together")))
   :config
-  (use-package flyspell-correct-ivy
-    :bind ("C-M-i" . flyspell-correct-wrapper)
-    :custom
-    ((flyspell-correct-interface #'flyspell-correct-ivy))))
+  (leaf flyspell-correct-ivy
+    :bind (("C-M-i" . flyspell-correct-wrapper))
+    :custom ((flyspell-correct-interface . #'flyspell-correct-ivy))))
 
 (leaf lsp-mode
   :url "https://github.com/emacs-lsp/lsp-mode#supported-languages"
