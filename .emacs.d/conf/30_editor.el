@@ -200,6 +200,7 @@
     ((flyspell-correct-interface #'flyspell-correct-ivy))))
 
 (leaf lsp-mode
+  :url "https://github.com/emacs-lsp/lsp-mode#supported-languages"
   :url "https://github.com/MaskRay/ccls/wiki/lsp-mode#find-definitionsreferences"
   :doc "lsp is language server protocol"
   :ensure t
