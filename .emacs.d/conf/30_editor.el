@@ -123,7 +123,15 @@
   :config
   (leaf company-box
     :ensure t
-    :hook (company-mode . company-box-mode))
+    :hook (company-mode-hook . company-box-mode))
+
+  (leaf company-quickhelp
+    :ensure t
+    :bind (:map company-active-map
+		("M-h" . company-quickhelp-manual-begin))
+    :hook (global-company-mode-hook . company-quickhelp-mode)
+    :custom ((company-quickhelp-delay . 0.8)))
+
   (global-company-mode 1))
 
 (leaf auto-complete
