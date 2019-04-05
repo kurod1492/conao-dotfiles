@@ -37,6 +37,16 @@
   (leaf docker-compose-mode :ensure t)
   (leaf docker-tramp :ensure t))
 
+(leaf cc-mode
+  :bind (:map c-mode-base-map
+	      ("C-c c" . compile))
+  :init
+  (defun conao3/c-mode-common ()
+    (c-set-style "bsd")
+    (setq tab-width 4)
+    (setq c-base-offset 4))
+  :hook (c-mode-common . conao3/c-mode-common))
+
 (leaf go-mode
   :ensure t
   :custom ((gofmt-command . "goimports"))
