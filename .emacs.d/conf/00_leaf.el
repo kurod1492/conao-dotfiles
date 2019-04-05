@@ -152,6 +152,9 @@ This function is minor change from `add-to-list'."
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
+(global-unset-key (kbd "M-o"))
+(global-unset-key (kbd "M-t"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;  Reference packages

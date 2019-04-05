@@ -125,7 +125,7 @@
 
 (leaf projectile
   :ensure t
-  ;; :bind ("M-o p" . projectile-switch-project)
+  :bind (("M-o p" . projectile-command-map))
   :config
   (projectile-mode 1))
 
