@@ -46,6 +46,7 @@
   :config (shackle-mode 1))
 
 (leaf yasnippet
+  ;; (expand-file-name "snippets" user-emacs-directory)
   :ensure t
   :bind (:map yas-minor-mode-map
               ("C-c y i" . yas-insert-snippet)
@@ -53,7 +54,11 @@
               ("C-c y v" . yas-visit-snippet-file)
               ("C-c y l" . yas-describe-tables)
               ("C-c y g" . yas-reload-all))
-  :config (yas-global-mode 1))
+  :config
+  (leaf yatemplate
+    ;; (locate-user-emacs-file "templates")
+    :ensure t)
+  (yas-global-mode 1))
 
 (leaf origami
   :ensure t
