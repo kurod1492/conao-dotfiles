@@ -200,10 +200,9 @@
   ;;       	     (dolist (key '(;; "C-;"
   ;;                                   "C-," "C-."))
   ;;       	       (unbind-key key flyspell-mode-map))))
-  :custom
-  ((flyspell-issue-message-flag nil)
-   (ispell-program-name "aspell")
-   (ispell-extra-args '("--sug-mode=ultra" "--lang=en_US" "--run-together")))
+  :custom ((flyspell-issue-message-flag . nil)
+           (ispell-program-name . "aspell")
+           (ispell-extra-args . '("--sug-mode=ultra" "--lang=en_US" "--run-together")))
   :config
   (use-package flyspell-correct-ivy
     :bind ("C-M-i" . flyspell-correct-wrapper)
