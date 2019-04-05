@@ -22,78 +22,85 @@
 
 ;;
 
-(leaf lingr :ensure t :require t)
+(leaf *http-tools
+  :config
+  (leaf restclient :ensure t)
+  (leaf lingr :ensure t :require t)
 
-(leaf google-translate
+  (leaf google-translate
   :ensure t
   :custom ((google-translate-default-source-language . "en")
            (google-translate-default-target-language . "ja"))
-  :bind (("C-c g" . google-translate-at-point)))
+  :bind (("C-c g" . google-translate-at-point))))
 
-(leaf restclient :ensure t)
-
-(leaf wgrep
-  :ensure t
-  :custom ((wgrep-enable-key . "e")
-           (wgrep-auto-save-buffer . t)
-           (wgrep-change-readonly-file . t)))
-
-(leaf ag
-  :ensure t
-  :custom ((ag-highligh-search . t)
-           (ag-reuse-buffers . t)
-           (ag-reuse-window . t))
-  ;; :bind (("M-s a" . ag-project))
+(leaf *grep-tools
   :config
-  (leaf wgrep-ag
+  (leaf wgrep
     :ensure t
-    :hook (ag-mode-hook . wgrep-ag-setup)))
+    :custom ((wgrep-enable-key . "e")
+             (wgrep-auto-save-buffer . t)
+             (wgrep-change-readonly-file . t)))
 
-(leaf magit :ensure t)
+  (leaf ag
+    :ensure t
+    :custom ((ag-highligh-search . t)
+             (ag-reuse-buffers . t)
+             (ag-reuse-window . t))
+    ;; :bind (("M-s a" . ag-project))
+    :config
+    (leaf wgrep-ag
+      :ensure t
+      :hook (ag-mode-hook . wgrep-ag-setup)))
 
-(leaf git-timemachine
-  :doc "Walk through git revisions of a file"
-  :ensure t
-  :bind (("M-g t" . git-timemachine-toggle)))
-
-(leaf diffview
-  :doc "View diffs in side-by-side format"
-  :ensure t)
-
-(leaf migemo
+  (leaf migemo
   :doc "Japanese incremental search through dynamic pattern expansion"
   :when (executable-find "cmigemo")
   :commands migemo-init
   :config
   (setq migemo-command (executable-find "cmigemo"))
   (autoload 'migemo-init "migemo" nil t)
-  (migemo-init))
+  (migemo-init)))
 
-(leaf mwim
-  :doc "Switch between the beginning/end of line or code"
-  :ensure t
-  :require t
-  :bind (("C-a" . mwim-beginning-of-code-or-line)
-         ("C-e" . mwim-end-of-code-or-line)))
-
-(leaf shell-pop
-  :ensure t
-  :bind (("C-o" . shell-pop)))
-
-(leaf latex-math-preview
-  :if (executable-find "platex")
-  :ensure t
-  :bind (("C-c l l" . latex-math-preview-expression)
-         ("C-c l s" . latex-math-preview-insert-mathematical-symbol))
+(leaf *git-tools
   :config
-  (setq latex-math-preview-tex-to-png-for-preview '(platex dvips-to-eps gs-to-png)
-        latex-math-preview-tex-to-png-for-save    '(platex dvipng)
-        latex-math-preview-tex-to-eps-for-save    '(platex dvips-to-eps)
-        latex-math-preview-tex-to-ps-for-save     '(platex dvips-to-ps)
-        latex-math-preview-beamer-to-png          '(platex dvipdfmx gs-to-png)
-        latex-math-preview-initial-page-of-symbol-list '((math . nil) (text . nil))
-        latex-math-preview-latex-template-header
-        "\\documentclass{jsarticle}
+  (leaf magit :ensure t)
+
+  (leaf git-timemachine
+    :doc "Walk through git revisions of a file"
+    :ensure t
+    :bind (("M-g t" . git-timemachine-toggle)))
+
+  (leaf diffview
+    :doc "View diffs in side-by-side format"
+    :ensure t))
+
+(leaf *misc-tools
+  :config
+  (leaf mwim
+    :doc "Switch between the beginning/end of line or code"
+    :ensure t
+    :require t
+    :bind (("C-a" . mwim-beginning-of-code-or-line)
+           ("C-e" . mwim-end-of-code-or-line)))
+
+  (leaf shell-pop
+    :ensure t
+    :bind (("C-o" . shell-pop)))
+
+  (leaf latex-math-preview
+    :if (executable-find "platex")
+    :ensure t
+    :bind (("C-c l l" . latex-math-preview-expression)
+           ("C-c l s" . latex-math-preview-insert-mathematical-symbol))
+    :config
+    (setq latex-math-preview-tex-to-png-for-preview '(platex dvips-to-eps gs-to-png)
+          latex-math-preview-tex-to-png-for-save    '(platex dvipng)
+          latex-math-preview-tex-to-eps-for-save    '(platex dvips-to-eps)
+          latex-math-preview-tex-to-ps-for-save     '(platex dvips-to-ps)
+          latex-math-preview-beamer-to-png          '(platex dvipdfmx gs-to-png)
+          latex-math-preview-initial-page-of-symbol-list '((math . nil) (text . nil))
+          latex-math-preview-latex-template-header
+          "\\documentclass{jsarticle}
 \\pagestyle{empty}
 \\usepackage[dvips]{color}
 \\usepackage{physics}
@@ -103,11 +110,12 @@
 \\newcommand{\\rot}{{\\nabla\\times}}
 \\newcommand{\\up}{\\uparrow}
 \\color{white}"
-        )
-  (with-eval-after-load 'latex-math-preview
-    (add-to-list 'latex-math-preview-command-option-alist
-                 '(gs-to-png "-q" "-dSAFER" "-dNOPAUSE" "-dBATCH" "-sDEVICE=pngalpha"
-                             "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
-                             "-dGraphicsAlphaBits=4" "-dQUIET"))))
+          )
+    (with-eval-after-load 'latex-math-preview
+      (add-to-list 'latex-math-preview-command-option-alist
+                   '(gs-to-png "-q" "-dSAFER" "-dNOPAUSE" "-dBATCH" "-sDEVICE=pngalpha"
+                               "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
+                               "-dGraphicsAlphaBits=4" "-dQUIET")))))
+
 (provide '30_utility)
 ;;; 30_utility.el ends here
