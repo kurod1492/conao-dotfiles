@@ -108,7 +108,7 @@
 
               ("C-\"" . sp-change-inner)
               ("M-i"  . sp-change-enclosing))
-  :config (smartparens-global-mode 1))
+  :config (smartparens-global-strict-mode 1))
 
 (leaf yasnippet
   ;; (expand-file-name "snippets" user-emacs-directory)
