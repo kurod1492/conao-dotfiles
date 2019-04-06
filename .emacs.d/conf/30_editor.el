@@ -48,12 +48,7 @@
 (leaf smartparens
   :ensure t
   :require smartparens-config
-  :config
-  (sp-local-pair 'org-mode "+" "+")
-  (sp-local-pair 'org-mode "=" "=")
-  (sp-local-pair 'markdown-mode "`" "`")
-  (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
-  (smartparens-global-mode))
+  :config (smartparens-global-mode 1))
 
 (leaf yasnippet
   ;; (expand-file-name "snippets" user-emacs-directory)
