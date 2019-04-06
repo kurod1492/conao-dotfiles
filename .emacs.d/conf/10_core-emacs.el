@@ -215,8 +215,8 @@ $ tree -L 1
 "
   :init
   (create-fontset-from-ascii-font "Hack Nerd Font" nil "hack_nerd")
-  (set-fontset-font "fontset-hack_nerd" 'unicode "Hiragino Kaku Gothic Pro-14:" nil 'append)
-  :custom ((default-frame-alist . ((font . "fontset-hack_nerd")))))
+  (set-fontset-font "fontset-hack_nerd" 'unicode "Hiragino Kaku Gothic Pro" nil 'append)
+  :custom ((default-frame-alist . '((font . "fontset-hack_nerd")))))
 
 (provide '01_core-emacs)
 ;;; init.el ends here
