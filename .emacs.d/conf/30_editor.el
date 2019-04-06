@@ -48,66 +48,66 @@
 (leaf smartparens
   :ensure t
   :require smartparens-config
+  :custom ((sp-navigate-interactive-always-progress-point . t))
   :bind (:map smartparens-mode-map
-              ;;;; paredit bindings
+              ;;;;
+              ;;;; navigation
 
-              ;; navigation
+              ;; basic (fbnp-ae)
               ("C-M-f" . sp-forward-sexp)
               ("C-M-b" . sp-backward-sexp)
+              ("C-M-n" . sp-next-sexp)
+              ("C-M-p" . sp-previous-sexp)
+              ("C-M-a" . sp-beginning-of-sexp)
+              ("C-M-e" . sp-end-of-sexp)
 
-              ("C-M-u" . sp-backward-up-sexp)
-              ("C-M-d" . sp-down-sexp)
-              ("C-M-p" . sp-backward-down-sexp)
-              ("C-M-n" . sp-up-sexp)
-
-              ;; depth-changing commands
-              ("M-s"      . sp-splice-sexp)
-              ("M-<up>"   . sp-splice-sexp-killing-backward)
-              ("M-<down>" . sp-splice-sexp-killing-forward)
-              ("M-r"      . sp-splice-sexp-killing-around)
-              ("M-("      . sp-wrap-round)
-
-              ;; barf/slurp
-              ("C-)"         . sp-forward-slurp-sexp)
-              ("C-<right>"   . sp-forward-slurp-sexp)
-              ("C-}"         . sp-forward-barf-sexp)
-              ("C-<left>"    . sp-forward-barf-sexp)
-              ("C-("         . sp-backward-slurp-sexp)
-              ("C-M-<left>"  . sp-backward-slurp-sexp)
-              ("C-{"         . sp-backward-barf-sexp)
-              ("C-M-<right>" . sp-backward-barf-sexp)
+              ;; checkin/checkout
+              ("C-M-i" . sp-down-sexp)
+              ("C-M-o" . sp-backward-up-sexp)
 
               ;; misc
-              ("M-S" . sp-split-sexp)
-              ("M-j" . sp-join-sexp)
-              ("M-?" . sp-convolute-sexp)
+              ("C-M-k"   . sp-kill-sexp)
+              ("C-M-w"   . sp-copy-sexp)
+              ("C-M-t"   . sp-transpose-sexp)
+              ("C-M-SPC" . sp-mark-sexp)
 
-              ;;;; smartparens bindings
-              ("C-M-t" . sp-transpose-sexp)
+              ;;;;
+              ;;;; depth-changing commands
 
-              ("C-M-n" . sp-forward-hybrid-sexp)
-              ("C-M-p" . sp-backward-hybrid-sexp)
-
-              ("C-M-k" . sp-kill-sexp)
-              ("C-M-w" . sp-copy-sexp)
-
+              ;; basic
+              ("M-s"           . sp-splice-sexp)
+              ("M-r"           . sp-splice-sexp-killing-around)
+              ("M-<up>"        . sp-splice-sexp-killing-backward)
+              ("M-<down>"      . sp-splice-sexp-killing-forward)
+              ("M-("           . sp-wrap-round)
+              ("M-["           . sp-wrap-square)
+              ("M-{"           . sp-wrap-qurly)
               ("M-<delete>"    . sp-unwrap-sexp)
               ("M-<backspace>" . sp-backward-unwrap-sexp)
 
-              ("M-D"             . sp-splice-sexp)
-              ("C-M-<delete>"    . sp-splice-sexp-killing-forward)
-              ("C-M-<backspace>" . sp-splice-sexp-killing-backward)
-              ("C-S-<backspace>" . sp-splice-sexp-killing-around)
+              ;; barf/slurp
+              ("C-)" . sp-forward-slurp-sexp)
+              ("C-}" . sp-forward-barf-sexp)
+              ("C-(" . sp-backward-slurp-sexp)
+              ("C-{" . sp-backward-barf-sexp)
 
-              ("C-]"              . sp-select-next-thing-exchange)
-              ("C-<left_bracket>" . sp-select-previous-thing)
-              ("C-M-]"            . sp-select-next-thing)
+              ;; split/join
+              ("M-k" . sp-split-sexp)
+              ("M-j" . sp-join-sexp)
 
-              ("M-F" . sp-forward-symbol)
-              ("M-B" . sp-backward-symbol)
+              ;;;;
+              ;;;; misc
 
-              ("C-\"" . sp-change-inner)
-              ("M-i"  . sp-change-enclosing))
+              ;; change constructure
+              ("C-c s a" . sp-absorb-sexp)
+              ("C-c s e" . sp-emit-sexp)
+              ("C-c s p" . sp-convolute-sexp)
+              ("C-c s t" . sp-transpose-hybrid-sexp)
+
+              ;; change elements
+              ("C-c s (" . sp-rewrap-sexp)
+              ("C-c s r" . sp-change-inner)
+              ("C-c s s" . sp-change-encosing))
   :config (smartparens-global-strict-mode 1))
 
 (leaf yasnippet
