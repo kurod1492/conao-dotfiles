@@ -33,7 +33,13 @@
 
 (leaf which-key
   :ensure t
-  :custom ((which-key-idle-delay . 2))
+  :custom ((which-key-idle-delay        . 2)
+           (which-key-replacement-alist
+            . '(((nil . "Prefix Command") . (nil . "prefix"))
+                ((nil . "\\`\\?\\?\\'") . (nil . "lambda"))
+                (("<left>") . ("←"))
+                (("<right>") . ("→"))
+                (("<\\([[:alnum:]-]+\\)>") . ("\\1")))))
   :config (which-key-mode 1))
 
 (leaf hungry-delete
