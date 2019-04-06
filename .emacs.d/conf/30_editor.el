@@ -48,6 +48,66 @@
 (leaf smartparens
   :ensure t
   :require smartparens-config
+  :bind (:map smartparens-mode-map
+              ;;;; paredit bindings
+
+              ;; navigation
+              ("C-M-f" . sp-forward-sexp)
+              ("C-M-b" . sp-backward-sexp)
+
+              ("C-M-u" . sp-backward-up-sexp)
+              ("C-M-d" . sp-down-sexp)
+              ("C-M-p" . sp-backward-down-sexp)
+              ("C-M-n" . sp-up-sexp)
+
+              ;; depth-changing commands
+              ("M-s" . sp-splice-sexp)
+              ("M-<up>" . sp-splice-sexp-killing-backward)
+              ("M-<down>" . sp-splice-sexp-killing-forward)
+              ("M-r" . sp-splice-sexp-killing-around)
+              ("M-(" . sp-wrap-round)
+
+              ;; barf/slurp
+              ("C-)" . sp-forward-slurp-sexp)
+              ("C-<right>" . sp-forward-slurp-sexp)
+              ("C-}" . sp-forward-barf-sexp)
+              ("C-<left>" . sp-forward-barf-sexp)
+              ("C-(" . sp-backward-slurp-sexp)
+              ("C-M-<left>" . sp-backward-slurp-sexp)
+              ("C-{" . sp-backward-barf-sexp)
+              ("C-M-<right>" . sp-backward-barf-sexp)
+
+              ;; misc
+              ("M-S" . sp-split-sexp)
+              ("M-j" . sp-join-sexp)
+              ("M-?" . sp-convolute-sexp)
+
+              ;;;; smartparens bindings
+              ("C-M-t" . sp-transpose-sexp)
+
+              ("C-M-n" . sp-forward-hybrid-sexp)
+              ("C-M-p" . sp-backward-hybrid-sexp)
+
+              ("C-M-k" . sp-kill-sexp)
+              ("C-M-w" . sp-copy-sexp)
+
+              ("M-<delete>" . sp-unwrap-sexp)
+              ("M-<backspace>" . sp-backward-unwrap-sexp)
+
+              ("M-D" . sp-splice-sexp)
+              ("C-M-<delete>" . sp-splice-sexp-killing-forward)
+              ("C-M-<backspace>" . sp-splice-sexp-killing-backward)
+              ("C-S-<backspace>" . sp-splice-sexp-killing-around)
+
+              ("C-]" . sp-select-next-thing-exchange)
+              ("C-<left_bracket>" . sp-select-previous-thing)
+              ("C-M-]" . sp-select-next-thing)
+
+              ("M-F" . sp-forward-symbol)
+              ("M-B" . sp-backward-symbol)
+
+              ("C-\"" . sp-change-inner)
+              ("M-i" . sp-change-enclosing))
   :config (smartparens-global-mode 1))
 
 (leaf yasnippet
@@ -146,11 +206,11 @@
   :config
   (leaf auto-complete-config)
   (global-auto-complete-mode t)
-  
+
   (define-key ac-mode-map (kbd "TAB") 'ac-trigger-key-command)
   (define-key ac-completing-map (kbd "C-n") 'ac-next)
   (define-key ac-completing-map (kbd "C-p") 'ac-previous)
-  
+
   :custom ((ac-auto-start . 1)                 ; min char to start
            (ac-auto-show-menu . t)             ; show menu immidiately
            (ac-use-fuzzy . t)                  ; use fuzzy
@@ -163,7 +223,7 @@
     :custom ((flymake-diagnostic-at-point-timer-delay 0.1)
              (flymake-diagnostic-at-point-error-prefix " ")
              (flymake-diagnostic-at-point-display-diagnostic-function 'flymake-diagnostic-at-point-display-popup))
-    ;; or flymake-diagnostic-at-point-display-minibuffer    
+    ;; or flymake-diagnostic-at-point-display-minibuffer
     :hook
     (flymake-mode-hook . flymake-diagnostic-at-point-mode)))
 
@@ -412,20 +472,20 @@
            (helm-scroll-amount                    . 8)
            (helm-ff-file-name-history-use-recentf . t)
            (helm-echo-input-in-header-line        . nil)
-           
+
            (helm-autoresize-max-height . 0)
            (helm-autoresize-min-height . 40)
 
            ;; 文字列を入力してから検索するまでのタイムラグ。デフォルトで 0
            (helm-input-idle-delay       . 0.0)
-           
+
            ;; 表示する最大候補数。デフォルトで 100
            (helm-candidate-number-limit . 100))
   :config
   (leaf helm-config
     :require t
     :custom ((helm-command-prefix-key . "C-c C-h")))
-  
+
   (helm-autoresize-mode t)
   (helm-mode 1)
 
