@@ -179,5 +179,44 @@
   :doc ""
   :setq ((enable-recursive-minibuffers . t)))
 
+(leaf fontset.c
+  :doc "commands for handling fontset"
+  :when window-system
+  :doc "
+|--------------+---------------------------|
+| digit        | 01234, 56789,             |
+| abc          | abcdef ghijkl             |
+| ABC          | ABCDEF GHIJKL             |
+| ascii 20~    | !#$%&' ()*+,-             |
+|              | ∩∪∞≤≥∏ ∑∫×±⊆⊇    |
+|              | αβγδεζ ηθικλμ |
+|              | ΑΒΓΔΕΖ ΗΘΙΚΛΜ |
+| kanji        | 日本語 の美観             |
+| kana         | あいう えおか             |
+| katakana     | アイウ エオカ             |
+| han-katakana | ｱｲｳｴｵｶ ｷｸｹｺｻｼ             |
+|--------------+---------------------------|
+"
+  :doc "
+$ tree -L 1
+.
+├── Makefile
+├── Makefunc.mk
+├── auto-save-list
+├── conf
+├── init.el
+├── latex-math-preview-cache
+├── local
+├── site-lisp
+├── snippets
+└── templete
+
+7 directories, 5 files
+"
+  :config
+  (create-fontset-from-ascii-font "Hack Nerd Font" nil "hack_nerd")
+  (set-fontset-font "fontset-hack_nerd" 'unicode "Hiragino Kaku Gothic Pro-14:" nil 'append)
+  (setq default-frame-alist '((font . "fontset-hack_nerd"))))
+
 (provide '01_core-emacs)
 ;;; init.el ends here
