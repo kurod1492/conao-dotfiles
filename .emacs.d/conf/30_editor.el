@@ -422,7 +422,8 @@
       :ensure t
       :custom ((ivy-display-function . #'ivy-posframe-display-at-frame-center))
       :config
-      (ivy-posframe-enable)))
+      (let ((inhibit-message t))
+        (ivy-posframe-enable))))
 
   (leaf *ivy-integration
     :config
