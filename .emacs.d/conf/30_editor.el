@@ -46,6 +46,8 @@
   :config (shackle-mode 1))
 
 (leaf smartparens
+  :doc "Automatic insertion, wrapping and  navigation with user defined pairs"
+  :url "https://github.com/Fuco1/smartparens/wiki/Tips-and-tricks"
   :ensure t
   :require smartparens-config
   :custom ((sp-navigate-interactive-always-progress-point . t))
