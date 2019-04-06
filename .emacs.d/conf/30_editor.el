@@ -47,7 +47,7 @@
 
 (leaf smartparens
   :ensure t
-  :require t
+  :require smartparens-config
   :config
   (sp-local-pair 'org-mode "+" "+")
   (sp-local-pair 'org-mode "=" "=")
