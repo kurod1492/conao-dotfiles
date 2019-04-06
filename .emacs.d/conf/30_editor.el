@@ -48,13 +48,12 @@
 (leaf smartparens
   :ensure t
   :require t
-  :hook
-  (after-init . smartparens-global-mode)
   :config
   (sp-local-pair 'org-mode "+" "+")
   (sp-local-pair 'org-mode "=" "=")
   (sp-local-pair 'markdown-mode "`" "`")
-  (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil))
+  (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
+  (smartparens-global-mode))
 
 (leaf yasnippet
   ;; (expand-file-name "snippets" user-emacs-directory)
