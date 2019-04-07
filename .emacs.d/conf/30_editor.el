@@ -458,6 +458,11 @@
   :config
   (leaf *other-ivy-packages
     :config
+    (leaf ivy-hydra
+      :doc "Additional key bindings for Ivy"
+      :ensure t
+      :bind (("C-c i i" . hydra-ivy/body)))
+
     (leaf ivy-xref
       :doc "Ivy interface for xref results"
       :ensure t
