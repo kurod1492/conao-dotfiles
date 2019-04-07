@@ -431,7 +431,11 @@
                 ("C-c o" . ace-link-gnus)
                 :map gnus-article-mode-map
                 ("C-c o" . ace-link-gnus))
-    :config (ace-link-setup-default)))
+    :config (ace-link-setup-default))
+
+  (leaf ace-window
+    :ensure t
+    :bind (("M-o w" . ace-window))))
 
 (leaf ivy
   :ensute t
