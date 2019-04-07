@@ -89,11 +89,15 @@
 
 (leaf *misc-tools
   :config
-  (leaf all-the-icons :ensure t)
-  (leaf hide-mode-line :ensure t
-  ;; :hook
-  ;; ((neotree-mode imenu-list-minor-mode minimap-mode) . hide-mode-line-mode)
-  )
+  (leaf all-the-icons
+    :ensure t)
+
+  (leaf hide-mode-line
+    :ensure t
+    ;; :hook
+    ;; ((neotree-mode imenu-list-minor-mode minimap-mode) . hide-mode-line-mode)
+    )
+  
   (leaf macrostep
     :ensure t
     :bind (("C-c e" . macrostep-expand)))
