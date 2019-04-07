@@ -61,6 +61,10 @@
   :config
   (powerline-default-theme))
 
+(leaf elisp-slime-nav
+  :ensure t
+  :hook (lisp-mode-hook . elisp-slime-nav-mode))
+
 (leaf smartparens
   :doc "Automatic insertion, wrapping and  navigation with user defined pairs"
   :url "https://github.com/Fuco1/smartparens/wiki/Working-with-expressions"
