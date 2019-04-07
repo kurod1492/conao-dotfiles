@@ -51,6 +51,11 @@
   :custom ((shackle-rules . '(("\*helm" :regexp t :align below :popup t :size 0.4))))
   :config (shackle-mode 1))
 
+(leaf expand-region
+  :doc "Increase selected region by semantic units"
+  :ensure t
+  :bind (("C-=" . er/expand-region)))
+
 (leaf smartparens
   :doc "Automatic insertion, wrapping and  navigation with user defined pairs"
   :url "https://github.com/Fuco1/smartparens/wiki/Working-with-expressions"
