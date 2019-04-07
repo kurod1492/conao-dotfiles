@@ -35,9 +35,19 @@
   "\\.json\\"
   "\\.p?html?\\"
   "\\.php\\"
+  "\\.tsx\\"
   "\\.vue\\"
   "\\.css\\"
   "\\.xml\\")
+
+(leaf tide
+  :ensure t
+  :init (defun conao3/enable-tide ()
+          (when (string-equal "tsx" (file-name-extension buffer-file-name))
+            (setup-tide-mode)))
+  :hook
+  (before-save-hook . tide-format-before-save)
+  (web-mode-hook . conao3/enable-tide))
 
 (leaf *clojure-modes
   :config
