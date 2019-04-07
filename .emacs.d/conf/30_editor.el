@@ -65,6 +65,7 @@
   :disabled t
   :ensure t
   :hook
+  (ielm-mode-hook . turn-on-elisp-slime-nav-mode)
   (lisp-mode-hook . turn-on-elisp-slime-nav-mode)
   (emacs-lisp-mode-hook . turn-on-elisp-slime-nav-mode))
 
