@@ -411,6 +411,8 @@
                         :server-id 'texlab)))))
 (leaf avy
   :ensure t
+  :bind (("M-g w" . avy-goto-word-1)
+         ("C-:"   . avy-goto-char-2))
   :config
   (leaf ace-link
     :doc "Quickly follow links"
@@ -425,7 +427,7 @@
     :ensure t
     :bind (:map org-mode-map
                 ("C-c o" . ace-link-org)
-                :map gnus-sammary-mode-map
+                :map gnus-summary-mode-map
                 ("C-c o" . ace-link-gnus)
                 :map gnus-article-mode-map
                 ("C-c o" . ace-link-gnus))
