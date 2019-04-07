@@ -155,7 +155,7 @@
                  (not (minibufferp)))
         (mac-select-input-source conao3/mac-last-input-method)
         (setq conao3/mac-last-input-method nil)))
-    :hook ((post-command-hook . conao3/mac-restore-input-source))
+    :hook (post-command-hook . conao3/mac-restore-input-source)
     :config
     (mac-auto-ascii-mode 1)
     (advice-add 'mac-auto-ascii-select-input-source :before #'conao3/mac-save-input-source)))
