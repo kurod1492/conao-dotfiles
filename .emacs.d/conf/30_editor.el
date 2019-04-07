@@ -411,8 +411,8 @@
                         :server-id 'texlab)))))
 (leaf avy
   :ensure t
-  :bind (("M-g w" . avy-goto-word-1)
-         ("C-:"   . avy-goto-char-2))
+  :bind (("M-o a a" . avy-goto-word-1)
+         ("M-o a c" . avy-goto-char-2))
   :config
   (leaf ace-link
     :doc "Quickly follow links"
@@ -426,16 +426,16 @@
   ace-link-custom       in custom-mode-map"
     :ensure t
     :bind (:map org-mode-map
-                ("C-c o" . ace-link-org)
+                ("M-o a l" . ace-link-org)
                 :map gnus-summary-mode-map
-                ("C-c o" . ace-link-gnus)
+                ("M-o a l" . ace-link-gnus)
                 :map gnus-article-mode-map
-                ("C-c o" . ace-link-gnus))
+                ("M-o a l" . ace-link-gnus))
     :config (ace-link-setup-default))
 
   (leaf ace-window
     :ensure t
-    :bind (("M-o w" . ace-window))))
+    :bind (("M-o a w" . ace-window))))
 
 (leaf ivy
   :ensute t
