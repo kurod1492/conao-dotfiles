@@ -56,6 +56,11 @@
   :ensure t
   :bind (("C-=" . er/expand-region)))
 
+(leaf powerline
+  :ensure t
+  :config
+  (powerline-default-theme))
+
 (leaf smartparens
   :doc "Automatic insertion, wrapping and  navigation with user defined pairs"
   :url "https://github.com/Fuco1/smartparens/wiki/Working-with-expressions"
