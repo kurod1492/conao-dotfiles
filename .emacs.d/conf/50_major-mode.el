@@ -26,6 +26,7 @@
 (leaf polymode      :ensure t)
 (leaf yaml-mode     :ensure t)
 (leaf haskell-mode  :ensure t)
+(leaf fish-mode     :ensure t)
 
 (leaf web-mode
   :ensure t
