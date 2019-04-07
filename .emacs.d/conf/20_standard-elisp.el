@@ -135,6 +135,33 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;;  Resources/lisp/term
+;;
+
+(leaf mac-win
+  :doc "parse switches controlling interface with Mac window system"
+  :config
+  (leaf *mac-auto-ascii-mode-fix
+    :doc "fix Japanese/US input method issue"
+    :init
+    (defvar conao3/mac-last-input-method nil)
+    (defun conao3/mac-save-input-source (&rest args)
+      (when (not (equal (mac-input-source)
+                        (mac-input-source 'ascii-capable-keyboard)))
+        (setq conao3/mac-last-input-method (mac-input-source))))
+
+    (defun conao3/mac-restore-input-source ()
+      (when (and conao3/mac-last-input-method
+                 (not (minibufferp)))
+        (mac-select-input-source conao3/mac-last-input-method)
+        (setq conao3/mac-last-input-method nil)))
+    :hook ((post-command-hook . conao3/mac-restore-input-source))
+    :config
+    (mac-auto-ascii-mode 1)
+    (advice-add 'mac-auto-ascii-select-input-source :before #'conao3/mac-save-input-source)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;;  Resources/lisp/progmodes
 ;;
 
