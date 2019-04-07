@@ -40,6 +40,17 @@
 
   (leaf git-timemachine
     :doc "Walk through git revisions of a file"
+    :doc "
+p Visit previous historic version
+n Visit next historic version
+w Copy the abbreviated hash of the current historic version
+W Copy the full hash of the current historic version
+g Goto nth revision
+t Goto revision by selected commit message
+q Exit the time machine.
+b Run magit-blame on the currently visited revision (if magit available).
+c Show current commit using magit (if magit available).
+"
     :ensure t
     :bind (("M-g t" . git-timemachine-toggle)))
 
