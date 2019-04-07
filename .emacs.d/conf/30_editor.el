@@ -160,6 +160,7 @@
               ("C-c y l" . yas-describe-tables)
               ("C-c y g" . yas-reload-all))
   :config
+  (leaf yasnippet-snippets :ensure t)
   (leaf yatemplate
     ;; (locate-user-emacs-file "templates")
     :ensure t)
