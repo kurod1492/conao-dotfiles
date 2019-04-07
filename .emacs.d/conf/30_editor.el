@@ -63,7 +63,9 @@
 
 (leaf elisp-slime-nav
   :ensure t
-  :hook (lisp-mode-hook . elisp-slime-nav-mode))
+  :hook
+  (lisp-mode-hook . turn-on-elisp-slime-nav-mode)
+  (emacs-lisp-mode-hook . turn-on-elisp-slime-nav-mode))
 
 (leaf smartparens
   :doc "Automatic insertion, wrapping and  navigation with user defined pairs"
