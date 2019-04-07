@@ -225,5 +225,22 @@ $ tree -L 1
       (set-fontset-font "fontset-hack_nerd" 'unicode "Hiragino Kaku Gothic Pro" nil 'append)
       :custom ((default-frame-alist . '((font . "fontset-hack_nerd"))))))))
 
+(leaf macterm.c
+  :doc "Implementation of GUI terminal on macOS"
+  :doc "Each SYMBOL can be `control', `meta', `alt', `hyper', or `super'"
+  :doc "`left' meens same value setting its left key"
+  :when (eq window-system 'mac)
+  :custom ((mac-control-modifier       . 'control)
+           (mac-option-modifier        . 'hyper)
+           (mac-command-modifier       . 'meta)
+
+           (mac-right-control-modifier . 'control)
+           (mac-right-option-modifier  . 'meta)
+           (mac-right-command-modifier . 'super)
+
+           ;; use fn key as normal way.
+           ;; (mac-function-modifier      . 'super)
+           ))
+
 (provide '01_core-emacs)
 ;;; init.el ends here
