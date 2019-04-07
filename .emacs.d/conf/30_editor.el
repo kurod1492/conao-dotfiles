@@ -62,10 +62,18 @@
   (powerline-default-theme))
 
 (leaf elisp-slime-nav
+  :disabled t
   :ensure t
   :hook
   (lisp-mode-hook . turn-on-elisp-slime-nav-mode)
   (emacs-lisp-mode-hook . turn-on-elisp-slime-nav-mode))
+
+(leaf elisp-def
+  :ensure t
+  :hook
+  (ielm-mode-hook . elisp-def-mode)
+  (lisp-mode-hook . elisp-def-mode)
+  (emacs-lisp-mode-hook . elisp-def-mode))
 
 (leaf smartparens
   :doc "Automatic insertion, wrapping and  navigation with user defined pairs"
