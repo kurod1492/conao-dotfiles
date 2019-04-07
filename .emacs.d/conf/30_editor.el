@@ -153,6 +153,7 @@
 (leaf yasnippet
   ;; (expand-file-name "snippets" user-emacs-directory)
   :ensure t
+  :custom ((yas-indent-line . 'fixed))
   :bind (:map yas-minor-mode-map
               ("C-c y i" . yas-insert-snippet)
               ("C-c y n" . yas-new-snippet)
