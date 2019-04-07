@@ -87,7 +87,13 @@
    (org-image-actual-width                . nil)
    (org-highlight-latex-and-related       . '(latex script entities)))
 
-  :config  
+  :config
+  (leaf *misc-tools
+    :config
+    (leaf org-bullets
+      :ensure t
+      :hooks (org-mode-hook . org-bullets-mode)))
+  
   (leaf ob
     :setq ((org-confirm-babel-evaluate . nil))
     :config
