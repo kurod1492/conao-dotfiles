@@ -28,6 +28,10 @@
 (leaf haskell-mode  :ensure t)
 (leaf fish-mode     :ensure t)
 
+(leaf tuareg
+  :doc "OCaml mode for Emacs."
+  :ensure t)
+
 (leaf web-mode
   :ensure t
   :mode
