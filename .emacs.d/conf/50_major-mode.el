@@ -30,7 +30,14 @@
 
 (leaf web-mode
   :ensure t
-  :mode "\\.js\\" "\\.p?html?\\" "\\.php\\" "\\.vue\\" "\\.css\\" "\\.xml\\")
+  :mode
+  "\\.js\\"
+  "\\.json\\"
+  "\\.p?html?\\"
+  "\\.php\\"
+  "\\.vue\\"
+  "\\.css\\"
+  "\\.xml\\")
 
 (leaf cider :ensure t :require t
       :init (leaf clojure-mode :ensure t))
