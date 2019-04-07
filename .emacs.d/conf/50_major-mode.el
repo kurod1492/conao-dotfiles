@@ -75,6 +75,15 @@
 (leaf rust-mode :ensure t)
 
 (leaf org
+  :bind (("M-o o c" . org-capture)
+         ("M-o o a" . org-agenda)
+         ("M-o o l" . org-store-link)
+         :map org-mode-map
+	 ("C-c i" . org-clock-in)
+	 ("C-c o" . org-clock-out)
+	 ("C-c n" . org-narrow-to-subtree)
+	 ("C-c b" . org-narrow-to-block)
+         ("C-c e" . org-set-effort))
   :init
   (leaf org-plus-contrib :ensure t)
   
