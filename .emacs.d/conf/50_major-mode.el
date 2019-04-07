@@ -76,7 +76,7 @@
 
 (leaf org
   :init
-  (leaf org-plus-contrib :ensure t :require nil)
+  (leaf org-plus-contrib :ensure t)
   
   :custom
   ((org-directory                         . "~/Documents/org/")
