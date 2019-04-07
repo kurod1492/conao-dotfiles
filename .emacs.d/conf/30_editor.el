@@ -418,12 +418,12 @@
     :doc "Quickly follow links"
     :doc "
 (ace-link-setup-default) will bind `o' to
-  ace-link-info         in Info-mode
-  ace-link-help         in help-mode
-  ace-link-woman        in woman-mode
-  ace-link-eww          in eww-mode
-  ace-link-compilation  in compilation-mode
-  ace-link-custom       in custom-mode-map"
+  `ace-link-info'         in Info-mode
+  `ace-link-help'         in help-mode
+  `ace-link-woman'        in woman-mode
+  `ace-link-eww'          in eww-mode
+  `ace-link-compilation'  in compilation-mode
+  `ace-link-custom'       in custom-mode-map"
     :ensure t
     :bind (:map org-mode-map
                 ("M-o a l" . ace-link-org)
