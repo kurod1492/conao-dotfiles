@@ -231,12 +231,12 @@ $ tree -L 1
   :doc "`left' meens same value setting its left key"
   :when (eq window-system 'mac)
   :custom ((mac-control-modifier       . 'control)
-           (mac-option-modifier        . 'hyper)
+           (mac-option-modifier        . 'super)
            (mac-command-modifier       . 'meta)
 
            (mac-right-control-modifier . 'control)
-           (mac-right-option-modifier  . 'meta)
-           (mac-right-command-modifier . 'super)
+           (mac-right-option-modifier  . 'hyper)
+           (mac-right-command-modifier . 'meta)
 
            ;; use fn key as normal way.
            ;; (mac-function-modifier      . 'super)
