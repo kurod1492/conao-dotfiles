@@ -409,6 +409,27 @@
                          #'lsp-latex-new-connection)
                         :major-modes '(tex-mode yatex-mode latex-mode)
                         :server-id 'texlab)))))
+(leaf avy
+  :ensure t
+  :config
+  (leaf ace-link
+    :doc "Quickly follow links"
+    :doc "
+(ace-link-setup-default) will bind `o' to
+  ace-link-info         in Info-mode
+  ace-link-help         in help-mode
+  ace-link-woman        in woman-mode
+  ace-link-eww          in eww-mode
+  ace-link-compilation  in compilation-mode
+  ace-link-custom       in custom-mode-map"
+    :ensure t
+    :bind (:map org-mode-map
+                ("C-c o" . ace-link-org)
+                :map gnus-sammary-mode-map
+                ("C-c o" . ace-link-gnus)
+                :map gnus-article-mode-map
+                ("C-c o" . ace-link-gnus))
+    :config (ace-link-setup-default)))
 
 (leaf ivy
   :ensute t
