@@ -213,10 +213,17 @@ $ tree -L 1
 
 7 directories, 5 files
 "
-  :init
-  (create-fontset-from-ascii-font "Hack Nerd Font" nil "hack_nerd")
-  (set-fontset-font "fontset-hack_nerd" 'unicode "Hiragino Kaku Gothic Pro" nil 'append)
-  :custom ((default-frame-alist . '((font . "fontset-hack_nerd")))))
+  :config
+  (cond
+   ((and (member "Hack Nerd Font" (font-family-list))
+         (member "Hiragino Kaku Gothic Pro" (font-family-list)))
+    (leaf *hack-nerd-font
+      :doc "https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts"
+      :doc "brew tap caskroom/fonts && brew cask install font-hack-nerd-font"
+      :init
+      (create-fontset-from-ascii-font "Hack Nerd Font" nil "hack_nerd")
+      (set-fontset-font "fontset-hack_nerd" 'unicode "Hiragino Kaku Gothic Pro" nil 'append)
+      :custom ((default-frame-alist . '((font . "fontset-hack_nerd"))))))))
 
 (provide '01_core-emacs)
 ;;; init.el ends here
