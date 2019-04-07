@@ -24,9 +24,12 @@
 
 (leaf plantuml-mode :ensure t)
 (leaf polymode      :ensure t)
-(leaf web-mode      :ensure t)
 (leaf yaml-mode     :ensure t)
 (leaf haskell-mode  :ensure t)
+
+(leaf web-mode
+  :ensure t
+  :mode "\\.js\\" "\\.p?html?\\" "\\.php\\" "\\.vue\\" "\\.css\\" "\\.xml\\")
 
 (leaf cider :ensure t :require t
       :init (leaf clojure-mode :ensure t))
