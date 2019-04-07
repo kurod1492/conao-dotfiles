@@ -94,6 +94,10 @@
   ;; :hook
   ;; ((neotree-mode imenu-list-minor-mode minimap-mode) . hide-mode-line-mode)
   )
+  (leaf macrostep
+    :ensure t
+    :bind (("C-c e" . macrostep-expand)))
+
   (leaf dashboard
     :ensure t
     :require t
