@@ -39,8 +39,11 @@
   "\\.css\\"
   "\\.xml\\")
 
-(leaf cider :ensure t :require t
-      :init (leaf clojure-mode :ensure t))
+(leaf *clojure-modes
+  :config
+  (leaf clojure-mode  :ensure t)
+  (leaf edn           :ensure t)
+  (leaf cider         :ensure t))
 
 (leaf *docker-modes
   :config
