@@ -46,6 +46,12 @@
   :ensure t
   :config (global-hungry-delete-mode 1))
 
+(leaf indent-guide
+  :ensure t
+  :custom ((indent-guide-char . "│"))
+  :require t
+  :config (indent-guide-global-mode))
+
 (leaf shackle
   :ensure t
   :custom ((shackle-rules . '(("\*helm" :regexp t :align below :popup t :size 0.4))))
