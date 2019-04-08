@@ -35,14 +35,14 @@
 (leaf web-mode
   :ensure t
   :mode
-  "\\.js\\"
-  "\\.json\\"
-  "\\.p?html?\\"
-  "\\.php\\"
-  "\\.tsx\\"
-  "\\.vue\\"
-  "\\.css\\"
-  "\\.xml\\")
+  "\\.js\\'"
+  "\\.json\\'"
+  "\\.p?html?\\'"
+  "\\.php\\'"
+  "\\.tsx\\'"
+  "\\.vue\\'"
+  "\\.css\\'"
+  "\\.xml\\'")
 
 (leaf tide
   :ensure t
