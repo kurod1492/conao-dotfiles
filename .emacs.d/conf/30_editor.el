@@ -434,12 +434,16 @@
   `ace-link-custom'       in custom-mode-map"
     :ensure t
     :bind (:map org-mode-map
-                ("M-o a l" . ace-link-org)
-                :map gnus-summary-mode-map
-                ("M-o a l" . ace-link-gnus)
-                :map gnus-article-mode-map
-                ("M-o a l" . ace-link-gnus))
-    :config (ace-link-setup-default))
+                ("M-o a l" . ace-link-org))
+    :config
+    (leaf ace-link
+      :disabled t
+      :after gnus
+      :bind (:map gnus-summary-mode-map
+                  ("M-o a l" . ace-link-gnus)
+                  :map gnus-article-mode-map
+                  ("M-o a l" . ace-link-gnus)))
+    (ace-link-setup-default))
 
   (leaf ace-window
     :ensure t
