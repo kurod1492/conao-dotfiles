@@ -117,8 +117,8 @@
               ;; basic
               ("M-s"           . sp-splice-sexp)
               ("M-r"           . sp-splice-sexp-killing-around)
-              ("M-<up>"        . sp-splice-sexp-killing-backward)
-              ("M-<down>"      . sp-splice-sexp-killing-forward)
+              ("M-<up>"        . nil)
+              ("M-<down>"      . nil)
               ("M-("           . sp-wrap-round)
               ("M-["           . sp-wrap-square)
               ("M-{"           . sp-wrap-qurly)
