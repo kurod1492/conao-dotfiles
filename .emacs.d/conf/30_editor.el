@@ -76,6 +76,7 @@
   (emacs-lisp-mode-hook . turn-on-elisp-slime-nav-mode))
 
 (leaf elisp-def
+  :disabled t
   :ensure t
   :hook
   (ielm-mode-hook       . elisp-def-mode)
