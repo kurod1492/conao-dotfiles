@@ -30,17 +30,24 @@
 ;;   (package-install 'leaf))
 
 ;; support funcs
-(defmacro add-list-to-list (dest-lst source-lst &optional append)
-  "Add SOURCE_LST to DEST-LST in a destructive.
-Defaltly, add at the beginning of the list,
+(defun add-list-to-list (dest-lst source-lst &optional append compare-fn)
+  "Add SOURCE-LST to DEST-LST in a destructive.
+
+DEST-LST is modified and new DEST-LST value is returned.
+
+Normally add at the beginning of the list,
 but when APPEND is non-nil, SOURCE-LST is added at the end.
+
+The test for presence of ELEMENT is done with `equal', or with
+COMPARE-FN if that's non-nil.
+
 This function is minor change from `add-to-list'."
   (declare (indent 1))
-  `(progn
-     (mapc (lambda (x)
-             (add-to-list ,dest-lst x ,append))
-           (if ,append ,source-lst (reverse ,source-lst)))
-     ,dest-lst))
+  (let ((source-lst* (if append source-lst (reverse source-lst))))
+    (mapc (lambda (x)
+            (add-to-list dest-lst x append compare-fn))
+          source-lst*)
+    dst-lst))
 
 (defmacro p (form)
   "Output expand given FORM."
