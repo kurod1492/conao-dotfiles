@@ -47,7 +47,7 @@ This function is minor change from `add-to-list'."
     (mapc (lambda (x)
             (add-to-list dest-lst x append compare-fn))
           source-lst*)
-    dst-lst))
+    dest-lst))
 
 (defmacro p (form)
   "Output expand given FORM."
