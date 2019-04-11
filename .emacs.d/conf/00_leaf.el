@@ -84,7 +84,7 @@ This function is minor change from `add-to-list'."
                 "leaf.el"
 
                 ;; standalone packages
-                "feather.el" "leaf-browser.el" "orglyth.el"
+                "feather.el" "feather-server.el" "leaf-browser.el" "orglyth.el"
 
                 ;; other vendor packages
                 "straight.el" "po-mode.el"))))
@@ -126,6 +126,7 @@ This function is minor change from `add-to-list'."
 
 (leaf cort-test :require t)
 (leaf feather :require t)
+(leaf feather-server :require t)
 
 (leaf leaf-browser
   :require t
