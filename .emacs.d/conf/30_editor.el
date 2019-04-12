@@ -89,7 +89,8 @@
   :url "https://github.com/Fuco1/smartparens/wiki/Tips-and-tricks"
   :ensure t
   :require smartparens-config
-  :custom ((sp-navigate-interactive-always-progress-point . t))
+  :custom ((sp-highlight-pair-overlay                     . nil)
+           (sp-navigate-interactive-always-progress-point . t))
   :bind (:map smartparens-mode-map
               ;;;;
               ;;;; navigation
