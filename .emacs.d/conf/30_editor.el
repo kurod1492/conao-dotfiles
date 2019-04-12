@@ -263,9 +263,9 @@
   :config
   (leaf flymake-diagnostic-at-point
     :ensure t
-    :custom ((flymake-diagnostic-at-point-timer-delay 0.1)
-             (flymake-diagnostic-at-point-error-prefix " ")
-             (flymake-diagnostic-at-point-display-diagnostic-function 'flymake-diagnostic-at-point-display-popup))
+    :custom ((flymake-diagnostic-at-point-timer-delay . 0.1)
+             (flymake-diagnostic-at-point-error-prefix . " ► ")
+             (flymake-diagnostic-at-point-display-diagnostic-function . 'flymake-diagnostic-at-point-display-popup))
     ;; or flymake-diagnostic-at-point-display-minibuffer
     :hook
     (flymake-mode-hook . flymake-diagnostic-at-point-mode)))
