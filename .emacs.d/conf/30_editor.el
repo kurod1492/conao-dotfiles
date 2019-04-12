@@ -453,7 +453,9 @@
 
 (leaf ivy
   :ensute t
-  :custom ((ivy-height . 40))
+  :custom ((ivy-height . 40)
+           (ivy-re-builders-alist . '((counsel-M-x . ivy--regex-fuzzy)
+                                      (t . ivy--regex-plus))))
   :init
   (leaf *ivy-ui-requirements
     :config
@@ -515,8 +517,7 @@
   (leaf *ivy-settings
     :config
     (ivy-mode 1)
-    (counsel-mode 1)
-    (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))))
+    (counsel-mode 1)))
 
 (leaf helm
   :disabled t
