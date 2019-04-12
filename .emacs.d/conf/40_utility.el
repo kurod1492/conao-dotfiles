@@ -126,16 +126,13 @@ c Show current commit using magit (if magit available).
      :complete (lambda (&rest _) (message "Finished!"))
      :status-code '((400 . (lambda (&rest _) (message "Got 400.")))
                     (418 . (lambda (&rest _) (message "Got 418.")))))
-    :ensure t
-    :require t)
+    :ensure t)
 
   (leaf macrostep
-    :ensure t
     :bind (("C-c e" . macrostep-expand)))
 
   (leaf dashboard
     :ensure t
-    :require t
     :custom ((dashboard-startup-banner . 4)
              (dashboard-items          . '((recents . 15)
 		                           (projects . 5)

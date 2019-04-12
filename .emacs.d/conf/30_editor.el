@@ -22,9 +22,9 @@
 
 ;;
 
-(leaf treemacs :ensure t)
+(leaf treemacs)
 
-(leaf simple-httpd :ensure t)
+(leaf simple-httpd)
 
 (leaf real-auto-save
   :ensure t
@@ -49,7 +49,6 @@
 (leaf indent-guide
   :ensure t
   :custom ((indent-guide-char . "│"))
-  :require t
   :config (indent-guide-global-mode))
 
 (leaf shackle
@@ -337,7 +336,6 @@
 
     (leaf company-lsp
       :ensure t
-      :require t
       :config
       (add-to-list 'company-backends 'company-lsp)
       ;; :after (lsp-mode company yasnippet)
@@ -354,7 +352,6 @@
     (leaf dap-mode
       :url "https://github.com/emacs-lsp/dap-mode"
       :ensure t
-      :require t
       :config (dap-mode 1) (dap-ui-mode 1)))
 
   (leaf *other-lsp-pacakges
@@ -663,6 +660,7 @@
   ;;         session-undo-check -1)
   ;;   (add-hook 'after-init-hook 'session-initialize))
   (leaf navbar
+    :disabled t
     :require t
     :init (el-get-bundle papaeye/emacs-navbar
                          :features (navbarx-elscreen navbarx-version navbarx-time))
