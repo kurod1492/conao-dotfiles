@@ -451,8 +451,8 @@
 (leaf ivy
   :ensute t
   :custom ((ivy-height . 40)
-           (ivy-re-builders-alist . '((counsel-M-x . ivy--regex-fuzzy)
-                                      (t . ivy--regex-plus))))
+           (ivy-re-builders-alist . '((swiper . ivy--regex-plus)
+                                      (t      . ivy--regex-fuzzy))))
   :init
   (leaf *ivy-ui-requirements
     :config
