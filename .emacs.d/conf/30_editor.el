@@ -452,7 +452,7 @@
     :bind (("M-o a w" . ace-window))))
 
 (leaf ivy
-  :ensute t
+  :ensure t
   :custom ((ivy-height . 40)
            (ivy-re-builders-alist . '((swiper . ivy--regex-plus)
                                       (t      . ivy--regex-fuzzy))))
