@@ -133,6 +133,7 @@ c Show current commit using magit (if magit available).
 
   (leaf dashboard
     :ensure t
+    :require dashboard-widgets
     :custom ((dashboard-startup-banner . 4)
              (dashboard-items          . '((recents . 15)
 		                           (projects . 5)
