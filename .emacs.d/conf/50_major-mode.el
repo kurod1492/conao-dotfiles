@@ -177,6 +177,7 @@
   (leaf ox
     :config
     (leaf ox-qmd :ensure t)
+    (leaf ox-reveal :ensure t)
     (leaf ox-latex-subfigure
       :init (el-get-bundle linktohack/ox-latex-subfigure))))
 
