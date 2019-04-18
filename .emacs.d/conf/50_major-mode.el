@@ -175,11 +175,43 @@
           cached-func))))
 
   (leaf ox
+    :custom ((org-export-backends . '(;; build-in
+                                      ascii
+                                      html latex beamer odt org
+                                      ;; bibtex texinfo
+                                      ;; confluence deck freemind groff icalendar
+                                      ;; koma-letter man md rss s5 taskjuggler
+
+                                      extra
+
+                                      ;; optional ox packages
+                                      latex-subfigure
+
+                                      ;; optional backends
+                                      qmd re-reveal
+                                      )))
     :config
-    (leaf ox-qmd :ensure t)
-    (leaf ox-reveal :ensure t)
-    (leaf ox-latex-subfigure
-      :init (el-get-bundle linktohack/ox-latex-subfigure))))
+    (leaf *built-in-ox-packages
+      :config
+      (leaf ox-extra
+        :config
+        (ox-extras-activate '(latex-header-blocks ignore-headlines))))
+
+    (leaf *optional-ox-packages
+      :config
+      (leaf ox-qmd :ensure t)
+      (leaf ox-latex-subfigure
+        :init (el-get-bundle linktohack/ox-latex-subfigure))
+      (leaf org-re-reveal
+        :ensure t
+        :custom ((re-org-re-reveal-root         . "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0")
+                 (re-org-re-reveal-title-slide  . 'auto)
+                 (re-org-re-reveal-transition   . "slide")
+                 (re-org-re-reveal-theme        . "")
+                 (re-org-re-reveal-history      . t)
+                 (re-org-re-reveal-center       . nil)
+                 (re-org-re-reveal-slide-number . "c/t")
+                 (re-org-re-reveal-margin       . "0.2"))))))
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
