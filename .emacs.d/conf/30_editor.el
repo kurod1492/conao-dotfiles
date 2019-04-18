@@ -31,6 +31,9 @@
   :custom ((real-auto-save-interval . 0.3))
   :hook (find-file-hook . real-auto-save-mode))
 
+(leaf rainbow-mode
+  :ensure t)
+
 (leaf which-key
   :ensure t
   :custom ((which-key-idle-delay        . 2)
