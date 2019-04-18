@@ -66,7 +66,9 @@
                  (truncate-lines . t)        ; don't wrap lines
                  (cursor-type    . t)        ; use specified for the frame
                  (line-spacing   . 0.0)      ; line-spacing (double is relative)
-                 (buffer-file-coding-system . 'utf-8-unix)))
+                 (buffer-file-coding-system . 'utf-8-unix))
+  :config
+  (put 'erase-buffer 'disabled nil))
 
 (leaf bytecode.c
   :doc "Execution of byte code produced by bytecomp.el.")
@@ -241,6 +243,12 @@ $ tree -L 1
            ;; use fn key as normal way.
            ;; (mac-function-modifier      . 'super)
            ))
+
+(leaf casefiddle.c
+  :doc "GNU Emacs case conversion functions"
+  :config
+  (put 'upcase-region 'disabled nil)
+  (put 'downcase-region 'disabled nil))
 
 (provide '01_core-emacs)
 ;;; init.el ends here
