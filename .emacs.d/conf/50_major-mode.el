@@ -220,3 +220,4 @@
 
 (provide '40_major-mode)
 ;;; 40_major-mode.el ends here
+
