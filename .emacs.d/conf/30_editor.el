@@ -497,8 +497,10 @@
     (leaf ivy-posframe
       :doc "Using posframe to show Ivy"
       :ensure t
-      :custom ((ivy-display-function . #'ivy-posframe-display-at-frame-center))
+      :custom ((ivy-display-function    . #'ivy-posframe-display-at-frame-center)
+               (ivy-posframe-parameters . '((left-fringe . 10))))
       :config
+      (custom-set-faces '(ivy-posframe-border ((t (:background "#a3be8c")))))
       (let ((inhibit-message t))
         (ivy-posframe-enable))))
 
