@@ -2,7 +2,7 @@ all:
 
 include Makefunc.mk
 
-HOMEDIR   := ~
+HOMEDIR   ?= ~
 SOURCEDIR := .dotfiles
 MAKEDIRS  := .emacs.d
 DOTFILES  := .emacs.d .bash_profile .bashrc
