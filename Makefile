@@ -27,6 +27,7 @@ debug:
 ##############################
 
 install: $(DIRS) dotfiles config
+	$(MAKE) -C $(HOMEDIR)/.emacs.d
 	@echo
 	@echo "==== job completed ===="
 	@echo
