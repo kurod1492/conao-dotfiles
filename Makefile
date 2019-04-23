@@ -2,39 +2,49 @@ all:
 
 include Makefunc.mk
 
-TOP_DIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-HOME_DIR ?= ~
+TOPDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+HOMEDIR ?= ~
 
-.PHONY: all install
+DOTFILES     := $(filter-out ./,$(shell cd .dotfiles && git ls-tree --name-status HEAD)) 
+CONFIG_DIRS  := $(filter-out ./,$(shell cd .config && git ls-tree -rd --name-status HEAD))
+CONFIG_FILES := $(shell cd .config && git ls-tree -r --name-status HEAD)
+
+DIRS := $(HOMEDIR)
+
+.PHONY: all install debug
 all:
-	@echo $(TOP_DIR)
+	@echo $(TOPDIR)
 	@echo "Install dotfiles in \$$HOME_DIR."
 	@echo "Install in $$HOME by default, but if you want install"
 	@echo "specific folder, run as below.  (do not write slash at end)"
 	@echo
-	@echo "\$$ make install HOME_DIR=~/conao-dotfiles/debug"
+	@echo "\$$ make install HOMEDIR=~/conao-dotfiles/debug"
 	@echo
 
 debug:
-	$(MAKE) install HOME_DIR=$(TOP_DIR)/debug
+	$(MAKE) install HOMEDIR=$(TOPDIR)/debug
 
 ##############################
 
-install:
+install: $(DIRS) dotfiles
 	@echo
 	@echo "==== job completed ===="
 	@echo
 
+$(DIRS):
+	mkdir -p $@
+
 ##############################
 
-$(DOTFILES:%=$(HOME_DIR)/%):
-	ln -sf $(SOURCE_DIR)/$(@F) ~/
+dotfiles: $(DOTFILES:%=$(HOMEDIR)/%)
+$(DOTFILES:%=$(HOMEDIR)/%):
+	ln -sf $(TOPDIR)/.dotfiles/$(@F) $@
 
 .make-make-%:
 	$(MAKE) -C $*
 
 ##############################
 
-clean: $(MAKE_DIRS:%=.make-clean-%)
+clean: $(MAKEDIRS:%=.make-clean-%)
 .make-clean-%:
 	$(MAKE) -C $* clean
