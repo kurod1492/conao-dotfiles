@@ -47,5 +47,8 @@ $(HOMEDIR)/.config/%: $(TOPDIR)/.config/%
 
 ##############################
 
+clean-debug:
+	$(MAKE) clean HOMEDIR=$(TOPDIR)/.debug
+
 clean:
 	rm -rf $(DOTFILES:%=$(HOMEDIR)/%) $(CONFIG_FILES:%=$(HOMEDIR)/.config/%)
