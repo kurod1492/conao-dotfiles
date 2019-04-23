@@ -46,6 +46,5 @@ $(HOMEDIR)/.config/%: $(TOPDIR)/.config/%
 
 ##############################
 
-clean: $(MAKEDIRS:%=.make-clean-%)
-.make-clean-%:
-	$(MAKE) -C $* clean
+clean:
+	rm -rf $(DOTFILES:%=$(HOMEDIR)/%) $(CONFIG_FILES:%=$(HOMEDIR)/.config/%)
