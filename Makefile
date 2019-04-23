@@ -5,7 +5,7 @@ include Makefunc.mk
 HOMEDIR   := ~
 SOURCEDIR := .dotfiles
 MAKEDIRS  := .emacs.d
-DOTFILES  := .emacs.d .gitignore_global .gitconfig .bash_profile .bashrc 
+DOTFILES  := .emacs.d .bash_profile .bashrc
 
 .PHONY: all install
 all:
