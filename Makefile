@@ -2,16 +2,18 @@ all:
 
 include Makefunc.mk
 
-HOME_DIR   ?= ~
-SOURCE_DIR := .dotfiles
-MAKE_DIRS  := .emacs.d
-DOTFILES   := .emacs.d .bash_profile .bashrc
+TOP_DIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+HOME_DIR ?= ~
 
 .PHONY: all install
 all:
-	$(MAKE) install -n
-	@$(call ECHO_YELLOW,"If you really run above comamnds","\n\n","")
-	@$(call ECHO_YELLOW,"run 'make install'.","","\n")
+	@echo $(TOP_DIR)
+	@echo "Install dotfiles in \$$HOME_DIR."
+	@echo "Install in $$HOME by default, but if you want install"
+	@echo "specific folder, run as below.  (do not write slash at end)"
+	@echo
+	@echo "\$$ make install HOME_DIR=~/conao-dotfiles/debug"
+	@echo
 
 install: $(DOTFILES:%=$(HOME_DIR)/%) $(MAKE_DIRS:%=.make-make-%)
 	@echo
