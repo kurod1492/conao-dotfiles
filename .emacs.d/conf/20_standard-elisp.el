@@ -85,7 +85,8 @@
   (leaf wdired
     :bind (:map dired-mode-map
                 ("r" . wdired-change-to-wdired-mode)))
-  (leaf dired-filter :ensure t)
+  (leaf dired-filter :ensure t
+        :hooks (dired-mode-hook . dired-filter-mode))
   :custom ((dired-recursive-copies  . 'always)
            (dired-recursive-deletes . 'always)))
 
