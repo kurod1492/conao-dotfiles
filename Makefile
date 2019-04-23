@@ -15,16 +15,25 @@ all:
 	@echo "\$$ make install HOME_DIR=~/conao-dotfiles/debug"
 	@echo
 
-install: $(DOTFILES:%=$(HOME_DIR)/%) $(MAKE_DIRS:%=.make-make-%)
+debug:
+	$(MAKE) install HOME_DIR=$(TOP_DIR)/debug
+
+##############################
+
+install:
 	@echo
 	@echo "==== job completed ===="
 	@echo
+
+##############################
 
 $(DOTFILES:%=$(HOME_DIR)/%):
 	ln -sf $(SOURCE_DIR)/$(@F) ~/
 
 .make-make-%:
 	$(MAKE) -C $*
+
+##############################
 
 clean: $(MAKE_DIRS:%=.make-clean-%)
 .make-clean-%:
