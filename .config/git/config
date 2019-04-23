@@ -11,7 +11,6 @@
 	precomposeunicode = true
 	pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -r
 	commentchar = ";"
-	excludesfile = /Users/conao/.gitignore_global
 [push]
 	default = simple
 [help]
