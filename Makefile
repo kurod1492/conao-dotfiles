@@ -37,8 +37,8 @@ $(DIRS):
 ##############################
 
 dotfiles: $(DOTFILES:%=$(HOMEDIR)/%)
-$(DOTFILES:%=$(HOMEDIR)/%):
-	ln -sf $(TOPDIR)/.dotfiles/$(@F) $@
+$(DOTFILES:%=$(HOMEDIR)/%): $(TOPDIR)/.dotfiles/$(@F)
+	ln -sf $< $@
 
 .make-make-%:
 	$(MAKE) -C $*
