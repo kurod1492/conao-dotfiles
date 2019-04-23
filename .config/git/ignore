@@ -27,7 +27,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-#### Emacs temporary files
+### Emacs temporary files
 # general backup files
 *~
 .#*
@@ -36,10 +36,10 @@ Temporary Items
 # flymake-mode
 *_flymake.*
 
-# Flycheck
-flycheck_*.el
+# flycheck
+flycheck_*
 
-# directory configuration
-.dir-locals.el
-
-.make*
+### tagfiles
+GPATH
+GTAGS
+GRTAGS
