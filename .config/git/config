@@ -2,19 +2,36 @@
 	name = conao3
 	email = conao3@gmail.com
 	signingkey = 81903F6B7B02852F
-[color]
-	ui = auto
 [core]
-	editor = "emacsclient -t" --alternate-editor emacs
-        ignorecase = false
+	ignorecase = false
 	quotepath = false
 	precomposeunicode = true
-	pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -r
+	autocrlf = input
+	pager = (type diff-highlight &>/dev/null && diff-highlight || cat) | less
 	commentchar = ";"
+[color]
+	ui = auto
 [push]
 	default = simple
+	follow-tags = true
+[fetch]
+	prune = true
+[remote]
+	pushDefault = origin
+[rebase]
+	autoStash = true
+	autoSquash = true
+[diff]
+	algorithm = histogram
+[grep]
+	lineNumber = true
+[commit]
+	verbose = true
+	# gpgsign = true
 [help]
 	autocorrect = -1
+[rerere]
+	enabled = true
 [alias]
         # `git git status` etc.
         git = !git
@@ -26,7 +43,7 @@
         br = branch
         co = checkout
 
-        cp = cherry-pick
+        chp = cherry-pick
 
         # show list comamnds
         tags = tag
@@ -38,9 +55,12 @@
         alias = config --get-regexp alias.*
         revoke = reset --soft HEAD^
         files = !cd ${GIT_PREFIX:-.} && git ls-tree -z --name-only HEAD | xargs -0 -n1 -I@ -- git log -1 --pretty=format:'%C(green)%ai%Creset %C(yellow)%h%Creset @ %C(blue)(%ar)%Creset %C(red)<%an>%Creset' -- @
-        prune-merged-branch = !git branch --merged | grep -vE '\\*|develop|master' | xargs git branch -d
-[commit]
-	# gpgsign = true
+	prune-merged-branch = !git branch --merged | grep -vE '\\*|develop|master' | xargs git branch -d
+		remote-fork = "!f() { \
+		git remote rename origin upstream && \
+		git remote add origin \"$(git config remote.upstream.url | sed 's;^\\(git@\\|https://\\)github\\.com[/:][^/]\\+/;git@github.com:conao3/;')\" && \
+		git fetch origin; \
+	}; f"
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
