@@ -2,10 +2,10 @@ all:
 
 include Makefunc.mk
 
-HOMEDIR   ?= ~
-SOURCEDIR := .dotfiles
-MAKEDIRS  := .emacs.d
-DOTFILES  := .emacs.d .bash_profile .bashrc
+HOME_DIR   ?= ~
+SOURCE_DIR := .dotfiles
+MAKE_DIRS  := .emacs.d
+DOTFILES   := .emacs.d .bash_profile .bashrc
 
 .PHONY: all install
 all:
@@ -13,17 +13,17 @@ all:
 	@$(call ECHO_YELLOW,"If you really run above comamnds","\n\n","")
 	@$(call ECHO_YELLOW,"run 'make install'.","","\n")
 
-install: $(DOTFILES:%=$(HOMEDIR)/%) $(MAKEDIRS:%=.make-make-%)
+install: $(DOTFILES:%=$(HOME_DIR)/%) $(MAKE_DIRS:%=.make-make-%)
 	@echo
 	@echo "==== job completed ===="
 	@echo
 
-$(DOTFILES:%=$(HOMEDIR)/%):
-	ln -sf $(SOURCEDIR)/$(@F) ~/
+$(DOTFILES:%=$(HOME_DIR)/%):
+	ln -sf $(SOURCE_DIR)/$(@F) ~/
 
 .make-make-%:
 	$(MAKE) -C $*
 
-clean: $(MAKEDIRS:%=.make-clean-%)
+clean: $(MAKE_DIRS:%=.make-clean-%)
 .make-clean-%:
 	$(MAKE) -C $* clean
