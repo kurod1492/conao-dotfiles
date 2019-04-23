@@ -9,7 +9,7 @@ DOTFILES     := $(filter-out ./,$(shell cd .dotfiles && git ls-tree --name-statu
 CONFIG_DIRS  := $(filter-out ./,$(shell cd .config && git ls-tree -rd --name-status HEAD))
 CONFIG_FILES := $(shell cd .config && git ls-tree -r --name-status HEAD)
 
-DIRS := $(HOMEDIR)
+DIRS := $(HOMEDIR) $(CONFIG_DIRS:%=$(HOMEDIR)/.config/%)
 
 .PHONY: all install debug
 all:
@@ -22,11 +22,11 @@ all:
 	@echo
 
 debug:
-	$(MAKE) install HOMEDIR=$(TOPDIR)/debug
+	$(MAKE) install HOMEDIR=$(TOPDIR)/.debug
 
 ##############################
 
-install: $(DIRS) dotfiles
+install: $(DIRS) dotfiles config
 	@echo
 	@echo "==== job completed ===="
 	@echo
@@ -37,11 +37,12 @@ $(DIRS):
 ##############################
 
 dotfiles: $(DOTFILES:%=$(HOMEDIR)/%)
-$(DOTFILES:%=$(HOMEDIR)/%): $(TOPDIR)/.dotfiles/$(@F)
+$(HOMEDIR)/%: $(TOPDIR)/.dotfiles/%
 	ln -sf $< $@
 
-.make-make-%:
-	$(MAKE) -C $*
+config: $(CONFIG_FILES:%=$(HOMEDIR)/.config/%)
+$(HOMEDIR)/.config/%: $(TOPDIR)/.config/%
+	ln -sf $< $@
 
 ##############################
 

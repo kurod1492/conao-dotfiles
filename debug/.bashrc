@@ -1,1 +1,0 @@
-/Users/conao/Develop/git/.dotfiles/.dotfiles/.bashrc
