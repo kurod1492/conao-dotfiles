@@ -183,11 +183,9 @@
   (leaf undohist
     :ensure t
     :commands undohist-initialize
-    :custom ((undohist-ignored-files . '("/tmp" "/elpa" "/el-get")))
     :config
     (autoload 'undohist-initialize "undohist" nil t)
-    (undohist-initialize)
-    (setq undohist-directory (locate-user-emacs-file "undohist")))
+    (undohist-initialize))
   (global-undo-tree-mode 1))
 
 (leaf multiple-cursors
