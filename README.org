@@ -160,7 +160,7 @@ It is the best way to try my setup without polluting your environment at all.
   $ emacs -q -l ~/.dotfiles-conao3/build/.emacs.d/init.el
 #+end_src
 
-*** make clean-debug 
+*** make debug-clean 
 clean debug folder's symbolic links.
 
 * Information

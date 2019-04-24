@@ -23,6 +23,9 @@ all:
 debug:
 	$(MAKE) install HOMEDIR=$(TOPDIR)/build
 
+debug-clean:
+	$(MAKE) clean HOMEDIR=$(TOPDIR)/build
+
 ##############################
 
 install: $(DIRS) dotfiles config
@@ -45,9 +48,6 @@ $(HOMEDIR)/.config/%: $(TOPDIR)/.config/%
 	ln -sf $< $@
 
 ##############################
-
-clean-debug:
-	$(MAKE) clean HOMEDIR=$(TOPDIR)/build
 
 clean:
 	echo $(DOTFILES:%=$(HOMEDIR)/%) $(CONFIG_FILES:%=$(HOMEDIR)/.config/%) | xargs -n1 unlink
