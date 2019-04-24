@@ -58,6 +58,7 @@
   :config (indent-guide-global-mode))
 
 (leaf shackle
+  :disabled t
   :ensure t
   :custom ((shackle-rules . '(("\*helm" :regexp t :align below :popup t :size 0.4))))
   :config (shackle-mode 1))
