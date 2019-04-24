@@ -36,7 +36,7 @@
 
 (leaf which-key
   :ensure t
-  :custom ((which-key-idle-delay        . 2)
+  :custom ((which-key-idle-delay        . 3)
            (which-key-replacement-alist
             . '(((nil . "Prefix Command") . (nil . "prefix"))
                 ((nil . "\\`\\?\\?\\'") . (nil . "lambda"))
