@@ -21,7 +21,7 @@ all:
 	@echo
 
 debug:
-	$(MAKE) install HOMEDIR=$(TOPDIR)/.debug
+	$(MAKE) install HOMEDIR=$(TOPDIR)/build
 
 ##############################
 
@@ -47,7 +47,7 @@ $(HOMEDIR)/.config/%: $(TOPDIR)/.config/%
 ##############################
 
 clean-debug:
-	$(MAKE) clean HOMEDIR=$(TOPDIR)/.debug
+	$(MAKE) clean HOMEDIR=$(TOPDIR)/build
 
 clean:
 	rm -rf $(DOTFILES:%=$(HOMEDIR)/%) $(CONFIG_FILES:%=$(HOMEDIR)/.config/%)
