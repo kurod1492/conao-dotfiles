@@ -64,6 +64,7 @@
   :config (shackle-mode 1))
 
 (leaf expand-region
+  :disabled t
   :doc "Increase selected region by semantic units"
   :ensure t
   :bind (("C-=" . er/expand-region)))
