@@ -46,6 +46,7 @@
   :config (which-key-mode 1))
 
 (leaf hungry-delete
+  :disabled t
   :ensure t
   :config (global-hungry-delete-mode 1))
 
