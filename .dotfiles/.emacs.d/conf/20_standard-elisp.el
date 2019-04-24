@@ -111,6 +111,7 @@
         '(narrow-to-region narrow-to-page narrow-to-defun list-timers)))
 
 (leaf *mouse-support-on-tty
+  :disabled t
   :when (not window-system)
   :init (progn
           (defun conao3-scroll-down () (scroll-down 1))
