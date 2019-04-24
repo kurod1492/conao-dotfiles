@@ -52,7 +52,8 @@
 
 (leaf indent-guide
   :ensure t
-  :custom ((indent-guide-char . "│"))
+  :custom ((indent-guide-char . "│")
+           (indent-guide-delay . 0.5))
   :config (indent-guide-global-mode))
 
 (leaf shackle
