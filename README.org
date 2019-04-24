@@ -11,10 +11,16 @@
 [[https://join.slack.com/t/conao3-support/shared_invite/enQtNTg2MTY0MjkzOTU0LTFjOTdhOTFiNTM2NmY5YTE5MTNlYzNiOTE2MTZlZWZkNDEzZmRhN2E0NjkwMWViZTZiYjA4MDUxYTUzNDZiNjY][https://img.shields.io/badge/chat-on_slack-blue.svg?logo=slack&style=flat-square]]
 
 * Table of Contents
-- [[#background][Background]]
+- [[#description][Description]]
 - [[#install][Install]]
 - [[#usage][Usage]]
-  - [[#initel][init.el]]
+  - [[#general-installation][General installation]]
+    - [[#make][make]]
+    - [[#make-install][make install]]
+    - [[#make-clean][make clean]]
+  - [[#just-try-dotfiles-try-emacs-d-in-most-cases][Just try dotfiles (try .emacs.d in most cases)]]
+    - [[#make-debug][make debug]]
+    - [[#make-clean-debug][make clean-debug]]
 - [[#information][Information]]
   - [[#donation][Donation]]
   - [[#community][Community]]
@@ -23,11 +29,17 @@
   - [[#author][Author]]
   - [[#contributors][Contributors]]
 
-* Background
-This repository hosting coding contest source files.
+* Description
+This repository manages conao3's dotfiles. 
 
 * Install
-Install dotfiles in your home folder.
+~clone~ and ~make~ to install conao3's dotfiles in ~$HOMEDIR~ (default ~$HOME~).
+
+#+begin_src bash
+  $ git clone https://github.com/conao3/dotfiles.git ~/.dotfiles
+  $ cd ~/.dotfiles
+  $ make install
+#+end_src
 
 http://dotfiles.conao3.com/ is hosting ~install.sh~.
 
@@ -35,31 +47,121 @@ Tou type just ~curl dotfiles.conao3.com | sh~.
 
 #+BEGIN_SRC bash
   $ curl dotfiles.conao3.com
-  #!/bin/sh
-  # <br />
-  # Conao3 dotfiles hosting server.<br />
-  # See <a href=https://github.com/conao3/dotfiles_server>GitHub</a> to get more information.<br />
-  # <!--
-  git clone --depth 1 https://github.com/conao/dotfiles.git ~/.dotfiles
-  cd ~/.dotfiles
-  make
-  # -->
+    > #!/bin/sh
+    > # <br />
+    > # Conao3 dotfiles hosting server.<br />
+    > # See <a href=https://github.com/conao3/dotfiles_server>GitHub</a> to get more information.<br />
+    > # <!--
+    > git clone --depth 1 https://github.com/conao/dotfiles.git ~/.dotfiles
+    > cd ~/.dotfiles
+    > make install
+    > # -->
 
   $ curl dotfiles.conao3.com | sh
 #+END_SRC
 
 * Usage
-** init.el
-If you just try my init.el, clone this repository, 
-copy ~.emacs.d~ to arbitrary path such as home folder.
-Start Emacs with explicitly specify ~init.el~'s path.
-#+BEGIN_SRC bash
-  git clone https://github.com/conao/dotfiles.git ~/.dotfiles-conao
+** General installation
+*** make
+#+begin_src bash
+  $ make
+    > Install dotfiles in $HOME_DIR.
+    > Install in /Users/conao by default, but if you want install
+    > specific folder, run as below.  (do not write slash at end)
+    >
+    > $ make install HOMEDIR=~/conao-dotfiles/debug
+#+end_src
+In order to prevent an unintended installation,
+just display prompt when just execute with ~make~.
 
-  cd ~/.dotfiles-conao/.emacs.d
-  make
-  emacs -q -l ~/.dotfiles-conao/.emacs.d/init.el
-#+END_SRC
+*** make install
+Execute ~make install~ to install ~$HOMEDIR~ (default ~$HOME~).
+
+Set symbolic links under ~$HOME~ to files saved in ~.dotfiles~ and
+under ~.config~ to files saved in ~.config~ with the same structure.
+
+After executing, the following directory structure is generated.
+
+#+begin_src bash
+  $ make install
+  $ cd
+  $ tree -a
+    > ~/
+    > ├── .dotfiles/
+    > ├── .bash_profile -> /Users/conao/.dotfiles/.dotfiles/.bash_profile
+    > ├── .bashrc -> /Users/conao/.dotfiles/.dotfiles/.bashrc
+    > ├── .config/
+    > │   ├── brew/
+    > │   │   └── brewfile -> /Users/conao/.dotfiles/.config/brew/brewfile
+    > │   ├── fish/
+    > │   │   ├── config.fish -> /Users/conao/.dotfiles/.config/fish/config.fish
+    > │   │   └── fishfile -> /Users/conao/.dotfiles/.config/fish/fishfile
+    > │   └── git/
+    > │       ├── config -> /Users/conao/.dotfiles/.config/git/config
+    > │       └── ignore -> /Users/conao/.dotfiles/.config/git/ignore
+    > └── .emacs.d/ -> /Users/conao/.dotfiles/.dotfiles/.emacs.d
+#+end_src
+
+But if you want install specific folder, run as below.
+(do not write slash at end)
+
+#+begin_src bash
+  $ make install HOMEDIR=~/conao-dotfiles/debug
+  $ cd ~/conao-dotfiles/debug
+  $ tree -a
+    > ~/conao-dotfiles/debug/
+    > ├── .bash_profile -> /Users/conao/.dotfiles/.dotfiles/.bash_profile
+    > ├── .bashrc -> /Users/conao/.dotfiles/.dotfiles/.bashrc
+    > ├── .config/
+    > │   ├── brew/
+    > │   │   └── brewfile -> /Users/conao/.dotfiles/.config/brew/brewfile
+    > │   ├── fish/
+    > │   │   ├── config.fish -> /Users/conao/.dotfiles/.config/fish/config.fish
+    > │   │   └── fishfile -> /Users/conao/.dotfiles/.config/fish/fishfile
+    > │   └── git/
+    > │       ├── config -> /Users/conao/.dotfiles/.config/git/config
+    > │       └── ignore -> /Users/conao/.dotfiles/.config/git/ignore
+    > └── .emacs.d/ -> /Users/conao/.dotfiles/.dotfiles/.emacs.d
+#+end_src
+    
+*** make clean
+~unlink~ all symbolic links.
+
+** Just try dotfiles (try .emacs.d in most cases)
+*** make debug
+~make debug~ and ~make install HOMEDIR=/path/to/.dotfiles/build~ are the same.
+
+It is the best way to try my setup without polluting your environment at all.
+
+#+begin_src bash
+  $ git clone --depth 1 https://github.com/conao/dotfiles.git ~/.dotfiles-conao3
+  $ cd ~/.dotfiles-conao3
+  $ make debug
+  $ cd build
+  $ tree -a
+    > ~/conao-dotfiles/debug/build/
+    > ├── .bash_profile -> /Users/conao/.dotfiles-conao3/.dotfiles/.bash_profile
+    > ├── .bashrc -> /Users/conao/.dotfiles-conao3/.dotfiles/.bashrc
+    > ├── .config/
+    > │   ├── brew/
+    > │   │   └── brewfile -> /Users/conao/.dotfiles-conao3/.config/brew/brewfile
+    > │   ├── fish/
+    > │   │   ├── config.fish -> /Users/conao/.dotfiles-conao3/.config/fish/config.fish
+    > │   │   └── fishfile -> /Users/conao/.dotfiles-conao3/.config/fish/fishfile
+    > │   └── git/
+    > │       ├── config -> /Users/conao/.dotfiles-conao3/.config/git/config
+    > │       └── ignore -> /Users/conao/.dotfiles-conao3/.config/git/ignore
+    > └── .emacs.d/ -> /Users/conao/.dotfiles-conao3/.dotfiles/.emacs.d
+
+  # on mac
+  $ open -n /Applications/Emacs.app/ --args -q -l ~/.dotfiles-conao3/build/.emacs.d/init.el
+
+  # on linux
+  $ emacs -q -l ~/.dotfiles-conao3/build/.emacs.d/init.el
+#+end_src
+
+*** make clean-debug 
+clean debug folder's symbolic links.
 
 * Information
 ** Donation

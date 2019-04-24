@@ -13,7 +13,6 @@ DIRS := $(HOMEDIR) $(CONFIG_DIRS:%=$(HOMEDIR)/.config/%)
 
 .PHONY: all install debug
 all:
-	@echo $(TOPDIR)
 	@echo "Install dotfiles in \$$HOME_DIR."
 	@echo "Install in $$HOME by default, but if you want install"
 	@echo "specific folder, run as below.  (do not write slash at end)"
