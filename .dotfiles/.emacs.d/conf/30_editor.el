@@ -160,7 +160,6 @@
   :config (smartparens-global-strict-mode 1))
 
 (leaf yasnippet
-  ;; (expand-file-name "snippets" user-emacs-directory)
   :ensure t
   :custom ((yas-indent-line . 'fixed))
   :bind (:map yas-minor-mode-map
@@ -171,9 +170,7 @@
               ("C-c y g" . yas-reload-all))
   :config
   (leaf yasnippet-snippets :ensure t)
-  (leaf yatemplate
-    ;; (locate-user-emacs-file "templates")
-    :ensure t)
+  (leaf yatemplate :ensure t)
   (yas-global-mode 1))
 
 (leaf origami
