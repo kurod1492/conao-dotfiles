@@ -221,10 +221,15 @@ $ tree -L 1
          (member "Hiragino Kaku Gothic Pro" (font-family-list)))
     (leaf *hack-nerd-font
       :doc "https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts"
-      :doc "brew tap caskroom/fonts && brew cask install font-hack-nerd-font"
+      :doc "http://extra-vision.blogspot.com/2016/07/emacs.html"
+      :doc "
+brew tap caskroom/fonts
+brew cask install font-hack-nerd-font"
       :init
       (create-fontset-from-ascii-font "Hack Nerd Font" nil "hack_nerd")
-      (set-fontset-font "fontset-hack_nerd" 'unicode "Hiragino Kaku Gothic Pro" nil 'append)
+      (set-fontset-font
+       "fontset-hack_nerd" 'unicode
+       (font-spec :family "Hiragino Kaku Gothic Pro" :size 14) nil 'append)
       :custom ((default-frame-alist . '((font . "fontset-hack_nerd"))))))))
 
 (leaf macterm.c
