@@ -51,6 +51,7 @@
   :config (global-hungry-delete-mode 1))
 
 (leaf indent-guide
+  :disabled t
   :ensure t
   :custom ((indent-guide-char . "│")
            (indent-guide-delay . 0.5))
