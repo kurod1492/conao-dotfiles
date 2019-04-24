@@ -245,6 +245,7 @@
               ("M-p" . flymake-goto-prev-error))
   :config
   (leaf flymake-diagnostic-at-point
+    :disabled t
     :ensure t
     :custom ((flymake-diagnostic-at-point-timer-delay . 0.1)
              (flymake-diagnostic-at-point-error-prefix . " ► ")
