@@ -180,12 +180,6 @@
 (leaf undo-tree
   :ensure t
   :config
-  (leaf undohist
-    :ensure t
-    :commands undohist-initialize
-    :config
-    (autoload 'undohist-initialize "undohist" nil t)
-    (undohist-initialize))
   (global-undo-tree-mode 1))
 
 (leaf multiple-cursors
