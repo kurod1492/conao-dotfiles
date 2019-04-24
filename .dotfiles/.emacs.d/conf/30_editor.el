@@ -239,23 +239,6 @@
 
   (global-company-mode 1))
 
-(leaf auto-complete
-  :disabled t
-  :ensure t
-  :init (leaf fuzzy :ensure t)
-  :config
-  (leaf auto-complete-config)
-  (global-auto-complete-mode t)
-
-  (define-key ac-mode-map (kbd "TAB") 'ac-trigger-key-command)
-  (define-key ac-completing-map (kbd "C-n") 'ac-next)
-  (define-key ac-completing-map (kbd "C-p") 'ac-previous)
-
-  :custom ((ac-auto-start . 1)                 ; min char to start
-           (ac-auto-show-menu . t)             ; show menu immidiately
-           (ac-use-fuzzy . t)                  ; use fuzzy
-           ))
-
 (leaf flymake
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
