@@ -18,7 +18,7 @@
     - [[#make][make]]
     - [[#make-install][make install]]
     - [[#make-clean][make clean]]
-  - [[#just-try-dotfiles-try-emacs-d-in-most-cases][Just try dotfiles (try .emacs.d in most cases)]]
+  - [[#just-try-dotfiles-try-emacsd-in-most-cases][Just try dotfiles (try .emacs.d in most cases)]]
     - [[#make-debug][make debug]]
     - [[#make-clean-debug][make clean-debug]]
 - [[#information][Information]]
