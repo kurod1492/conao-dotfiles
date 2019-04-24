@@ -68,6 +68,7 @@
   (global-auto-revert-mode))
 
 (leaf custom
+  :when window-system
   :config
   ;; (load-theme 'wombat)
   ;; (leaf monokai-theme :ensure t
