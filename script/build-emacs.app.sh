@@ -7,10 +7,10 @@
 #   please notice that all files under target directory "./emacs-mac-build" will been cleared
 # 3. That's all.
 
-installprefix=`pwd`/emacs-mac-build
+installprefix=$(pwd)/emacs-mac-build
 app_dir=$installprefix/Emacs.app/Contents/Resources
 version=25.2
-compver=x86_64-apple-darwin`uname -r`
+compver=x86_64-apple-darwin$(uname -r)
 
 if [ -d $installprefix ]; then
     echo "target directory $installprefix exists, exit"

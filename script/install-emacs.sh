@@ -4,8 +4,8 @@ version=25.2
 patchname=25.2-mac-6.4
 
 # where this script is
-cwd=`dirname "${0}"`
-expr "${0}" : "/.*" > /dev/null || cwd=`(cd "${cwd}" && pwd)`
+cwd=$(dirname "${0}")
+expr "${0}" : "/.*" > /dev/null || cwd=$(cd "${cwd}" && pwd)
 cd ${cwd}
 
 curl -O http://ftp.gnu.org/gnu/emacs/emacs-$version.tar.gz
@@ -22,7 +22,7 @@ cp nextstep/Cocoa/Emacs.base/Contents/Resources/Emacs.icns mac/Emacs.app/Content
 cp ../emacs-hires-icons-2.0/etc/images/* ./etc/images/
 cp ../emacs-$patchname/src/* ./src/
 cp ../emacs-$patchname/lisp/term/mac-win.el ./lisp/term/
-CC="clang -fobjc-arc"
+export CC="clang -fobjc-arc"
 
 cd ../
 ./build-emacs.app.sh emacs-$version
