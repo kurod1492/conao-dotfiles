@@ -50,4 +50,4 @@ clean-debug:
 	$(MAKE) clean HOMEDIR=$(TOPDIR)/build
 
 clean:
-	rm -rf $(DOTFILES:%=$(HOMEDIR)/%) $(CONFIG_FILES:%=$(HOMEDIR)/.config/%)
+	echo $(DOTFILES:%=$(HOMEDIR)/%) $(CONFIG_FILES:%=$(HOMEDIR)/.config/%) | xargs -n1 unlink
