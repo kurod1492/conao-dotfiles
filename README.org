@@ -30,7 +30,7 @@
   - [[#contributors][Contributors]]
 
 * Description
-This repository manages conao3's dotfiles. 
+This repository manages conao3's dotfiles.
 
 * Install
 ~clone~ and ~make~ to install conao3's dotfiles in ~$HOMEDIR~ (default ~$HOME~).
@@ -123,7 +123,7 @@ But if you want install specific folder, run as below.
     > │       └── ignore -> /Users/conao/.dotfiles/.config/git/ignore
     > └── .emacs.d/ -> /Users/conao/.dotfiles/.dotfiles/.emacs.d
 #+end_src
-    
+
 *** make clean
 ~unlink~ all symbolic links.
 
@@ -160,7 +160,7 @@ It is the best way to try my setup without polluting your environment at all.
   $ emacs -q -l ~/.dotfiles-conao3/build/.emacs.d/init.el
 #+end_src
 
-*** make debug-clean 
+*** make debug-clean
 clean debug folder's symbolic links.
 
 * Information
