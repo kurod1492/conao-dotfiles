@@ -94,6 +94,7 @@
   :doc "Automatic insertion, wrapping and  navigation with user defined pairs"
   :url "https://github.com/Fuco1/smartparens/wiki/Working-with-expressions"
   :url "https://github.com/Fuco1/smartparens/wiki/Tips-and-tricks"
+  :when window-system
   :ensure t
   :require smartparens-config
   :custom ((sp-highlight-pair-overlay                     . nil)
