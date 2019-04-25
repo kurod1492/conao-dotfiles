@@ -431,8 +431,7 @@
 
 (leaf ivy
   :ensure t
-  :custom ((ivy-height . 40)
-           (ivy-re-builders-alist . '((swiper . ivy--regex-plus)
+  :custom ((ivy-re-builders-alist . '((swiper . ivy--regex-plus)
                                       (t      . ivy--regex-fuzzy))))
   :init
   (leaf *ivy-ui-requirements
@@ -473,6 +472,7 @@
       :doc "Using posframe to show Ivy"
       :ensure t
       :custom ((ivy-display-function    . #'ivy-posframe-display-at-frame-center)
+               (ivy-posframe-min-height . 40)
                (ivy-posframe-parameters . '((left-fringe . 10))))
       :config
       (custom-set-faces '(ivy-posframe-border ((t (:background "#a3be8c")))))
