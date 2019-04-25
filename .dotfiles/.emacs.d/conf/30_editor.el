@@ -470,6 +470,7 @@
 
     (leaf ivy-posframe
       :doc "Using posframe to show Ivy"
+      :when window-system
       :ensure t
       :custom ((ivy-display-function    . #'ivy-posframe-display-at-frame-center)
                (ivy-posframe-min-height . 40)
