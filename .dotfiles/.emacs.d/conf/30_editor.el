@@ -431,8 +431,8 @@
 
 (leaf ivy
   :ensure t
-  :custom ((ivy-re-builders-alist . '((swiper . ivy--regex-plus)
-                                      (t      . ivy--regex-fuzzy))))
+  :custom ((ivy-re-builders-alist . '((t      . ivy--regex-fuzzy)
+                                      (swiper . ivy--regex-plus))))
   :init
   (leaf *ivy-ui-requirements
     :config
