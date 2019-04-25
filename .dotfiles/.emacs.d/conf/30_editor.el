@@ -468,7 +468,6 @@
                (ivy-posframe-min-height . 40)
                (ivy-posframe-parameters . '((left-fringe . 10))))
       :config
-      (custom-set-faces '(ivy-posframe-border ((t (:background "#a3be8c")))))
       (let ((inhibit-message t))
         (ivy-posframe-enable))))
 
