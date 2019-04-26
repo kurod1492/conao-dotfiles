@@ -1,4 +1,5 @@
 # conao3's global .gitignore at
 # http://dotfiles.conao3.com/gitignore
 
-build
+# debug build folder
+/build
