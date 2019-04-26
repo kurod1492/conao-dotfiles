@@ -34,7 +34,6 @@ set PATH $HOME/.local/bin $PATH
 set PKG_CONFIG_PATH $HOME/.local/lib/pkgconfig $PKG_CONFIG_PATH
 
 # anyenv
-set PATH $HOME/.anyenv/bin $PATH
 anyenv init - | source
 
 # emacs
