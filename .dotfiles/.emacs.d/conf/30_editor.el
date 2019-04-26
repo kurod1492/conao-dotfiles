@@ -553,7 +553,7 @@
   ;; :hook ((emacs-startup . toggle-frame-maximized))
   :custom ((persp-keymap-prefix    . (kbd "C-c p"))
            (persp-nil-name         . "default")
-           (persp-auto-resume-time . 1))
+           (persp-set-last-persp-for-new-frames . nil))
   :hook (emacs-startup-hook . toggle-frame-maximized)
   :config
   ;; NOTE: Redefine `persp-add-new' to raddress.
