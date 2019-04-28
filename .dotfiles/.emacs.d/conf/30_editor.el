@@ -464,8 +464,8 @@
       :doc "Using posframe to show Ivy"
       :when window-system
       :ensure t
-      :custom ((ivy-display-function    . #'ivy-posframe-display-at-frame-center)
-               (ivy-posframe-min-height . 40)
+      :custom ((ivy-height              . 40)
+               (ivy-display-function    . #'ivy-posframe-display-at-frame-center)
                (ivy-posframe-parameters . '((left-fringe . 10))))
       :config
       (let ((inhibit-message t))
