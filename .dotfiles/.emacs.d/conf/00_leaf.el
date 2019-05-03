@@ -87,7 +87,7 @@ This function is minor change from `add-to-list'."
                 "feather.el" "feather-server.el" "leaf-browser.el" "orglyth.el"
 
                 ;; other vendor packages
-                "straight.el" "po-mode.el"))))
+                "po-mode.el"))))
 (require 'leaf)
 
 ;; package initialize
@@ -143,8 +143,6 @@ This function is minor change from `add-to-list'."
       :config
       (leaf orglyth-html :require t)
       (leaf orglyth-latex :require t))
-
-(leaf straight :require t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
