@@ -165,7 +165,14 @@
 
   (leaf callint.c
     :doc "Call a Lisp function interactively"
-    :custom ((mark-even-if-inactive . t)))) ; editing-basics boolean
+    :custom ((mark-even-if-inactive . t)))   ; editing-basics boolean
+
+  (leaf callproc.c
+    :doc "Synchronous subprocess invocation for GNU Emacs"
+    :custom ((shell-file-name . "/bin/bash") ; execute file
+	     ;; (exec-path . "")             ; execute repeat
+	     (exec-suffixes . "")))          ; execute (repeat string)
+  )
 
 (provide 'init)
 ;;; init.el ends here
