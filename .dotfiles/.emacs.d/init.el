@@ -210,7 +210,10 @@
   ;;            (dos-hyper-key)            ; keyboard integer
   ;;            (dos-super-key)            ; keyboard integer
   ;;            (dos-keypad-mode)))        ; keyboard integer
-  
+
+  (leaf editfns.c
+    :doc "Lisp functions pertaining to editing"
+    :custom ((user-full-name . "Naoya Yamashita"))) ; mail string
   )
 
 (provide 'init)
