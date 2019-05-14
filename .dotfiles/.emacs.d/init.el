@@ -139,7 +139,29 @@
     :doc "Storage allocation and gc for GNU Emacs Lisp interpreter"
     :custom `((gc-cons-threshold           . ,(512 1024 1024))
               (gc-cons-percentage          . 0.1)
-              (garbage-collection-messages . t))))
+              (garbage-collection-messages . t)))
+
+  (leaf buffer.c
+    :doc "Buffer manipulation primitives for GNU Emacs"
+    :custom ((cursor-type                    . 'box) ; display ,cursor-type-types
+	     ;; (mode-line-format mode-line sexp)    ; mode-line sexp
+	     ;; (major-mode internal function)       ; internal function
+	     (case-fold-search               . t)    ; matching boolean
+	     (fill-column                    . 80)   ; fill integer
+	     (left-margin                    . 0)    ; fill integer
+	     (tab-width                      . 8)    ; editing-basics integer
+	     (ctl-arrow                      . t)    ; display boolean
+	     (truncate-lines                 . t)    ; display boolean
+	     (word-wrap                      . nil)  ; display boolean
+	     (selective-display-ellipses     . t)    ; display boolean
+	     (indicate-empty-lines           . nil)  ; fringe boolean
+	     (indicate-buffer-boundaries     . nil)  ; fringe sexp
+	     (scroll-up-aggressively         . 0.0)  ; windows float
+	     (scroll-down-aggressively       . 0.0)  ; windows float
+	     (line-spacing                   . 0.0)  ; display float
+	     (cursor-in-non-selected-windows . t)    ; cursor boolean
+	     (transient-mark-mode            . t)    ; editing-basics boolean nil
+	     (bidi-paragraph-direction       . 'left-to-right))))
 
 (provide 'init)
 ;;; init.el ends here
