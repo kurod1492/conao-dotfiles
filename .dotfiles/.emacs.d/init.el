@@ -214,6 +214,10 @@
   (leaf editfns.c
     :doc "Lisp functions pertaining to editing"
     :custom ((user-full-name . "Naoya Yamashita"))) ; mail string
+
+  (leaf emacs.c
+    :doc "Fully extensible Emacs, running on Unix, intended for GNU"
+    :custom ((report-emacs-bug-address . "bug-gnu-emacs@gnu.org"))) ; emacsbug string
   )
 
 (provide 'init)
