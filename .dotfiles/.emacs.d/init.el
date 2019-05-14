@@ -199,6 +199,10 @@
 	     (inverse-video        . nil)   ; display boolean
 	     (visible-bell         . nil)   ; display boolean
 	     (no-redraw-on-reenter . nil))) ; display boolean
+
+  (leaf doc.c
+    :doc "Record indices of function doc strings stored in a file"
+    :custom ((text-quoting-style   . nil))) ; display choice
   )
 
 (provide 'init)
