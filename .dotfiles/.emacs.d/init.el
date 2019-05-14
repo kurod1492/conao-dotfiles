@@ -192,6 +192,13 @@
     :doc "Lisp functions for making directory listings"
     ;; :custom ((completion-ignored-extensions . nil))  ; dired sexp
     )
+
+  (leaf dispnew.c
+    :doc "Updating of data structures for redisplay"
+    :custom ((baud-rate            . 38400) ; display integer
+	     (inverse-video        . nil)   ; display boolean
+	     (visible-bell         . nil)   ; display boolean
+	     (no-redraw-on-reenter . nil))) ; display boolean
   )
 
 (provide 'init)
