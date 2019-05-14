@@ -94,7 +94,6 @@
 (leaf menu-bar
   :doc "define a default menu bar"
   :config
-  (menu-bar-mode 0)
   (tool-bar-mode 0))
 
 (leaf find-dired
