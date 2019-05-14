@@ -24,29 +24,29 @@
 
 ;;; Code:
 
-;; enable debug
+(prog1
+  "Change user-emacs-directory"
+  ;; enable debug
+  (setq debug-on-error  t
+        init-file-debug t)
 
-(setq debug-on-error  t
-      init-file-debug t)
+  ;; you can run like 'emacs -q -l ~/hoge/init.el'
+  (when load-file-name
+    (setq user-emacs-directory
+          (expand-file-name (file-name-directory load-file-name))))
 
-;; if you run like 'emacs -q -l ~/hoge/init.el'
-(when load-file-name
+  ;; change user-emacs-directory
   (setq user-emacs-directory
-        (expand-file-name (file-name-directory load-file-name))))
+        (expand-file-name
+         (format "local/%s.%s/"
+                 emacs-major-version emacs-minor-version)
+         user-emacs-directory))
+  (make-directory user-emacs-directory t))
 
-(setq user-emacs-directory
-      (format "%slocal/%s.%s/"
-              user-emacs-directory
-              emacs-major-version emacs-minor-version))
-
-(make-directory user-emacs-directory t)
-(add-to-list 'load-path (concat user-emacs-directory "build/"))
-
-(if (require 'conao-mixed nil t)
-    (message "load conao-mix.el")
-  (message "missing conao-mix.el..."))
-
-(package-initialize)
+(prog1
+  "Load leaf.el"
+  (add-to-list 'load-path (locate-user-emacs-file "site-lisp/leaf.el"))
+  (require 'leaf))
 
 (provide 'init)
 ;;; init.el ends here
