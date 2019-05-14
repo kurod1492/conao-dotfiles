@@ -218,6 +218,17 @@
   (leaf emacs.c
     :doc "Fully extensible Emacs, running on Unix, intended for GNU"
     :custom ((report-emacs-bug-address . "bug-gnu-emacs@gnu.org"))) ; emacsbug string
+
+  (leaf eval.c
+    :doc "Evaluator for GNU Emacs Lisp interpreter"
+    :custom ((max-specpdl-size             . 1300)   ; limits integer
+	     (max-lisp-eval-depth          . 1000)   ; limits integer
+	     (max-mini-window-height       . 0.25)   ; limits number
+	     (debug-on-error               . t)      ; debug const
+	     ;; (debug-ignored-errors      . nil)    ; debug (repeat (choice symbol regexp))
+	     (debug-on-quit                . nil)    ; debug boolean
+	     (debug-on-signal              . nil)    ; debug boolean
+             (debugger-stack-frame-as-list . nil)))  ; debugger boolean "26.1"
   )
 
 (provide 'init)
