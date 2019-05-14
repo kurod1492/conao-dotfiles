@@ -187,6 +187,11 @@
 	     (eol-mnemonic-dos             . "(DOS)") ; mule string
 	     (eol-mnemonic-mac             . "(Mac)") ; mule string
 	     (file-coding-system-alist     . nil)))   ; mule sexp
+
+  (leaf dired.c
+    :doc "Lisp functions for making directory listings"
+    ;; :custom ((completion-ignored-extensions . nil))  ; dired sexp
+    )
   )
 
 (provide 'init)
