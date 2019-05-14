@@ -121,5 +121,15 @@
       :load-path `,(locate-user-emacs-file "site-lisp/orglyth.el")
       :require t orglyth-html orglyth-latex)))
 
+
+(leaf reference-packages
+  :config
+  (leaf use-package :ensure t)
+  (leaf el-get :ensure t
+    :init (unless (executable-find "git")
+            (warn "'git' couldn't found. el-get can't download any packages"))
+    :custom ((el-get-git-shallow-clone  . t)
+             (el-get-emacswiki-base-url . "http://www.emacswiki.org/emacs/download/"))))
+
 (provide 'init)
 ;;; init.el ends here
