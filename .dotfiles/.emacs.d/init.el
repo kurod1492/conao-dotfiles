@@ -229,6 +229,11 @@
 	     (debug-on-quit                . nil)    ; debug boolean
 	     (debug-on-signal              . nil)    ; debug boolean
              (debugger-stack-frame-as-list . nil)))  ; debugger boolean "26.1"
+
+  (leaf fileio.c
+    :doc "File IO for GNU Emacs"
+    :custom ((delete-by-moving-to-trash    . nil)    ; auto-save boolean "23.1"
+	     (auto-save-visited-file-name  . nil)))  ; auto-save boolean
   )
 
 (provide 'init)
