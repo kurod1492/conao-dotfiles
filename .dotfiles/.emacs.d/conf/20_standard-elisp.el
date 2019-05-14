@@ -143,6 +143,7 @@
 
 (leaf mac-win
   :doc "parse switches controlling interface with Mac window system"
+  :when (eq 'mac window-system)
   :config
   (leaf *mac-auto-ascii-mode-fix
     :doc "fix Japanese/US input method issue"
