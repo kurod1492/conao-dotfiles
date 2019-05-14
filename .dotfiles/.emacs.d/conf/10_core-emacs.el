@@ -262,7 +262,11 @@ brew cask install font-hack-nerd-font"
 
            ;; use fn key as normal way.
            ;; (ns-function-modifier      . 'super)
-           ))
+           (initial-frame-alist . '((ns-transparent-titlebar . t)
+                                    (vertical-scroll-bars . nil)
+                                    (ns-appearance . dark)
+                                    (internal-border-width . 0)))
+           (default-frame-alist . initial-frame-alist)))
 
 (leaf casefiddle.c
   :doc "GNU Emacs case conversion functions"
