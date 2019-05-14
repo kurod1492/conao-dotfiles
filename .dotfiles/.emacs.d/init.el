@@ -48,5 +48,22 @@
   (add-to-list 'load-path (locate-user-emacs-file "site-lisp/leaf.el"))
   (require 'leaf))
 
+(leaf conao3-packages
+  :doc "Elisp packages are developed by conao3"
+  :config
+  (leaf leaf
+    :doc "Symplify your init.el configuration"
+    :doc "Initialize leaf dependent packages"
+    :custom ((leaf-backend-ensure . 'package)
+             (leaf-backend-bind   . 'bind-key))
+    :config
+    (leaf package
+      :custom ((package-archives . '(("org"   . "https://orgmode.org/elpa/")
+                                     ("melpa" . "https://melpa.org/packages/")
+                                     ("gnu"   . "https://elpa.gnu.org/packages/"))))
+      :config
+      (package-initialize))
+    (leaf bind-key :ensure t)))
+
 (provide 'init)
 ;;; init.el ends here
