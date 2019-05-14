@@ -63,6 +63,20 @@
     (leaf bind-key :ensure t)))
 
 
+(leaf initialize-emacs
+  :config
+  (leaf exec-path-from-shell
+    :ensure t
+    :when (memq '(mac ns x) window-system)
+    :custom ((exec-path-from-shell-check-startup-files . nil)
+             (exec-path-from-shell-variables . '("PATH" "GOPATH")))
+    :config
+    (exec-path-from-shell-initialize))
+
+  (global-unset-key (kbd "M-o"))
+  (global-unset-key (kbd "M-t")))
+
+
 (leaf conao3-packages
   :doc "Elisp packages are developed by conao3"
   :config
