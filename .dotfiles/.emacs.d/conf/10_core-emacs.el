@@ -237,7 +237,7 @@ brew cask install font-hack-nerd-font"
   :doc "Implementation of GUI terminal on macOS"
   :doc "Each SYMBOL can be `control', `meta', `alt', `hyper', or `super'"
   :doc "`left' meens same value setting its left key"
-  :when (eq window-system 'mac)
+  :when (eq 'mac window-system)
   :custom ((mac-control-modifier       . 'control)
            (mac-option-modifier        . 'super)
            (mac-command-modifier       . 'meta)
@@ -248,6 +248,20 @@ brew cask install font-hack-nerd-font"
 
            ;; use fn key as normal way.
            ;; (mac-function-modifier      . 'super)
+           ))
+
+(leaf nsterm.c
+  :when (eq 'ns window-system)
+  :custom ((ns-control-modifier       . 'control)
+           (ns-option-modifier        . 'super)
+           (ns-command-modifier       . 'meta)
+
+           (ns-right-control-modifier . 'control)
+           (ns-right-option-modifier  . 'hyper)
+           (ns-right-command-modifier . 'meta)
+
+           ;; use fn key as normal way.
+           ;; (ns-function-modifier      . 'super)
            ))
 
 (leaf casefiddle.c
