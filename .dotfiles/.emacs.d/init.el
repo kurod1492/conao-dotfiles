@@ -24,6 +24,7 @@
 
 ;;; Code:
 
+
 (prog1
   "Change user-emacs-directory"
   ;; enable debug
@@ -46,11 +47,7 @@
 (prog1
   "Load leaf.el"
   (add-to-list 'load-path (locate-user-emacs-file "site-lisp/leaf.el"))
-  (require 'leaf))
-
-(leaf conao3-packages
-  :doc "Elisp packages are developed by conao3"
-  :config
+  (require 'leaf)
   (leaf leaf
     :doc "Symplify your init.el configuration"
     :doc "Initialize leaf dependent packages"
@@ -64,6 +61,51 @@
       :config
       (package-initialize))
     (leaf bind-key :ensure t)))
+
+
+(leaf conao3-packages
+  :doc "Elisp packages are developed by conao3"
+  :config
+  (leaf melpa-packages
+    :config
+    (leaf seml-mode
+      :ensure t
+      :custom ((seml-live-refresh-interval     . 0.35)
+               (seml-live-refresh-url-variable . ":type/:var1/:var2")
+               (seml-live-refresh-url-quety    . '(targetpath targetfile)))))
+
+  (leaf site-lisp-packages
+    :config
+    (leaf cort-test
+      :load-path `,(locate-user-emacs-file "site-lisp/cort-test.el")
+      :require t)
+
+    (leaf feather
+      :load-path `,(locate-user-emacs-file "site-lisp/feather.el")
+      :require t)
+
+    (leaf feather-server
+      :load-path `,(locate-user-emacs-file "site-lisp/feather-server.el")
+      :require t)
+
+    (leaf leaf-browser
+      :load-path `,(locate-user-emacs-file "site-lisp/leaf-browser.el")
+      :require t
+      :custom ((lbrowser-root-dir . "~/.emacs.d/site-lisp/leaf-browser.el/")
+               (lbrowser-debugp   . t))
+      :config
+      (leaf htmlize :ensure t)
+      (leaf simple-httpd
+        :ensure t
+        :custom ((httpd-show-backtrace-when-error . t))))
+
+    (leaf navbar
+      :load-path `,(locate-user-emacs-file "site-lisp/navbar.el")
+      :require t)
+
+    (leaf orglyth
+      :load-path `,(locate-user-emacs-file "site-lisp/orglyth.el")
+      :require t orglyth-html orglyth-latex)))
 
 (provide 'init)
 ;;; init.el ends here
