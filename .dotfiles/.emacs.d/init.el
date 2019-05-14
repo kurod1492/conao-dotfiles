@@ -133,6 +133,7 @@
 
 
 (leaf cus-start
+  :doc "define customization properties of builtins"
   :config
   (leaf alloc.c
     :doc "Storage allocation and gc for GNU Emacs Lisp interpreter"
