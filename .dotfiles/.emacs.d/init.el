@@ -203,6 +203,14 @@
   (leaf doc.c
     :doc "Record indices of function doc strings stored in a file"
     :custom ((text-quoting-style   . nil))) ; display choice
+
+  ;; (leaf dosfns.c
+  ;;   :doc
+  ;;   :custom ((dos-display-scancodes)    ; display boolean
+  ;;            (dos-hyper-key)            ; keyboard integer
+  ;;            (dos-super-key)            ; keyboard integer
+  ;;            (dos-keypad-mode)))        ; keyboard integer
+  
   )
 
 (provide 'init)
