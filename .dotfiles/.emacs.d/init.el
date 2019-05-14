@@ -177,6 +177,16 @@
     :doc "Basic character set support"
     ;; :custom ((charset-map-path . ""))     ; installation repeat
     )
+
+  (leaf coding.c
+    :doc "Coding system handler (conversion, detection, etc)"
+    :custom ((inhibit-eol-conversion       . nil)     ; mule boolean
+	     (enable-character-translation . t)       ; mule boolean
+	     (eol-mnemonic-undecided       . ":")     ; mule string
+             (eol-mnemonic-unix            . ":")     ; mule string
+	     (eol-mnemonic-dos             . "(DOS)") ; mule string
+	     (eol-mnemonic-mac             . "(Mac)") ; mule string
+	     (file-coding-system-alist     . nil)))   ; mule sexp
   )
 
 (provide 'init)
