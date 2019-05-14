@@ -172,6 +172,11 @@
     :custom ((shell-file-name . "/bin/bash") ; execute file
 	     ;; (exec-path . "")             ; execute repeat
 	     (exec-suffixes . "")))          ; execute (repeat string)
+
+  (leaf charset.c
+    :doc "Basic character set support"
+    ;; :custom ((charset-map-path . ""))     ; installation repeat
+    )
   )
 
 (provide 'init)
