@@ -137,9 +137,9 @@
   :config
   (leaf alloc.c
     :doc "Storage allocation and gc for GNU Emacs Lisp interpreter"
-    :custom `((gc-cons-threshold           . ,(512 1024 1024))
-              (gc-cons-percentage          . 0.1)
-              (garbage-collection-messages . t)))
+    :custom `((gc-cons-threshold           . ,(512 1024 1024)) ; alloc integer
+              (gc-cons-percentage          . 0.1)    ; alloc integer
+              (garbage-collection-messages . t)))    ; alloc boolean
 
   (leaf buffer.c
     :doc "Buffer manipulation primitives for GNU Emacs"
@@ -161,7 +161,11 @@
 	     (line-spacing                   . 0.0)  ; display float
 	     (cursor-in-non-selected-windows . t)    ; cursor boolean
 	     (transient-mark-mode            . t)    ; editing-basics boolean nil
-	     (bidi-paragraph-direction       . 'left-to-right))))
+	     (bidi-paragraph-direction       . 'left-to-right)))
+
+  (leaf callint.c
+    :doc "Call a Lisp function interactively"
+    :custom ((mark-even-if-inactive . t)))) ; editing-basics boolean
 
 (provide 'init)
 ;;; init.el ends here
