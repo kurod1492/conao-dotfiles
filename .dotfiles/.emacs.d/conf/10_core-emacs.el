@@ -68,7 +68,6 @@
                  (line-spacing   . 0.0)      ; line-spacing (double is relative)
                  (buffer-file-coding-system . 'utf-8-unix))
   :config
-  (scroll-bar-mode 0)
   (put 'erase-buffer 'disabled nil))
 
 (leaf bytecode.c
