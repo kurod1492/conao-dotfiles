@@ -236,7 +236,7 @@
 	     (auto-save-visited-file-name  . nil)))  ; auto-save boolean
 
   (leaf filelock.c
-    :doc
+    :doc "Lock files for editing"
     :custom ((create-lockfiles         . nil)        ; files boolean "24.3"
 	     ;; (temporary-file-directory)           ; files directory
              ))
