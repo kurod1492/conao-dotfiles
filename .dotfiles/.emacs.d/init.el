@@ -25,8 +25,7 @@
 ;;; Code:
 
 
-(prog1
-  "Change user-emacs-directory"
+(prog1 "Change user-emacs-directory"
   ;; enable debug
   (setq debug-on-error  t
         init-file-debug t)
@@ -44,8 +43,7 @@
          user-emacs-directory))
   (make-directory user-emacs-directory t))
 
-(prog1
-  "Load leaf.el"
+(prog1 "Load leaf.el"
   (add-to-list 'load-path (locate-user-emacs-file "site-lisp/leaf.el"))
   (require 'leaf)
   (leaf leaf
@@ -133,28 +131,57 @@
 
 
 (leaf cus-start
-      :doc "define customization properties of builtins"
-      :custom `((gc-cons-threshold           . ,(* 512 1024 1024)) ; alloc integer
-		(garbage-collection-messages . t)
-		(fill-column                 . 80)
-		(tab-width                   . 8)
-		;; (shell-file-name . "/bin/bash")
-		(user-full-name . "Naoya Yamashita")
-		(debug-on-error               . t)
-		(create-lockfiles         . nil)
-		(use-dialog-box      . nil)             ; menu boolean "21.1"
-		(use-file-dialog     . nil)
-		(default-frame-alist . '(;; (font . "fontset-hack_nerd")
-					 (ns-transparent-titlebar . t)
-					 (vertical-scroll-bars    . nil)
-					 (ns-appearance           . dark)
-					 (internal-border-width   . 0)))
-		(frame-resize-pixelwise       . t)
-		)
-      :config
-      (menu-bar-mode 1)
-      (tool-bar-mode 0)
-      )
+  :doc "define customization properties of builtins"
+  :custom `((gc-cons-threshold           . ,(* 512 1024 1024))
+	    (garbage-collection-messages . t)
+	    (fill-column                 . 80)
+	    (tab-width                   . 8)
+	    ;; (shell-file-name . "/bin/bash")
+	    (user-full-name              . "Naoya Yamashita")
+	    (debug-on-error              . t)
+	    (create-lockfiles            . nil)
+	    (use-dialog-box              . nil)
+	    (use-file-dialog             . nil)
+	    (frame-resize-pixelwise      . t)
+	    (indent-tabs-mode            . nil)
+	    (enable-recursive-minibuffers . t)
+	    )
+  :config
+  (menu-bar-mode 1)
+  (tool-bar-mode 0))
+
+(leaf mac
+  :doc "Implementation of GUI terminal on macOS"
+  :doc "Each SYMBOL can be `control', `meta', `alt', `hyper', or `super'"
+  :doc "`left' meens same value setting its left key"
+  :when (eq 'mac window-system)
+  :custom ((mac-control-modifier       . 'control)
+           (mac-option-modifier        . 'super)
+           (mac-command-modifier       . 'meta)
+
+           (mac-right-control-modifier . 'control)
+           (mac-right-option-modifier  . 'hyper)
+           (mac-right-command-modifier . 'meta)
+
+           ;; use fn key as normal way.
+           ;; (mac-function-modifier      . 'super)
+           ))
+
+(leaf ns
+  :doc "NeXT/Open/GNUstep / macOS communication module"
+  :when (eq 'ns window-system)
+  :custom ((ns-control-modifier       . 'control)
+           (ns-option-modifier        . 'super)
+           (ns-command-modifier       . 'meta)
+
+           (ns-right-control-modifier . 'control)
+           (ns-right-option-modifier  . 'hyper)
+           (ns-right-command-modifier . 'meta)
+
+           ;; use fn key as normal way.
+           ;; (ns-function-modifier      . 'super)
+           (default-frame-alist . '((ns-appearance           . dark)
+                                    (ns-transparent-titlebar . t)))))
 
 (provide 'init)
 ;;; init.el ends here
