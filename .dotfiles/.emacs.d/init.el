@@ -133,152 +133,28 @@
 
 
 (leaf cus-start
-  :doc "define customization properties of builtins"
-  :config
-  (leaf alloc.c
-    :doc "Storage allocation and gc for GNU Emacs Lisp interpreter"
-    :custom `((gc-cons-threshold           . ,(* 512 1024 1024)) ; alloc integer
-              (gc-cons-percentage          . 0.1)    ; alloc integer
-              (garbage-collection-messages . t)))    ; alloc boolean
-
-  (leaf buffer.c
-    :doc "Buffer manipulation primitives for GNU Emacs"
-    :custom ((cursor-type                    . 'box) ; display ,cursor-type-types
-	     ;; (mode-line-format mode-line sexp)    ; mode-line sexp
-	     ;; (major-mode internal function)       ; internal function
-	     (case-fold-search               . t)    ; matching boolean
-	     (fill-column                    . 80)   ; fill integer
-	     (left-margin                    . 0)    ; fill integer
-	     (tab-width                      . 8)    ; editing-basics integer
-	     (ctl-arrow                      . t)    ; display boolean
-	     (truncate-lines                 . t)    ; display boolean
-	     (word-wrap                      . nil)  ; display boolean
-	     (selective-display-ellipses     . t)    ; display boolean
-	     (indicate-empty-lines           . nil)  ; fringe boolean
-	     (indicate-buffer-boundaries     . nil)  ; fringe sexp
-	     (scroll-up-aggressively         . 0.0)  ; windows float
-	     (scroll-down-aggressively       . 0.0)  ; windows float
-	     (line-spacing                   . 0.0)  ; display float
-	     (cursor-in-non-selected-windows . t)    ; cursor boolean
-	     (transient-mark-mode            . t)    ; editing-basics boolean nil
-	     (bidi-paragraph-direction       . 'left-to-right)))
-
-  (leaf callint.c
-    :doc "Call a Lisp function interactively"
-    :custom ((mark-even-if-inactive . t)))   ; editing-basics boolean
-
-  (leaf callproc.c
-    :doc "Synchronous subprocess invocation for GNU Emacs"
-    :custom ((shell-file-name . "/bin/bash") ; execute file
-	     ;; (exec-path . "")             ; execute repeat
-	     (exec-suffixes . "")))          ; execute (repeat string)
-
-  (leaf charset.c
-    :doc "Basic character set support"
-    ;; :custom ((charset-map-path . ""))     ; installation repeat
-    )
-
-  (leaf coding.c
-    :doc "Coding system handler (conversion, detection, etc)"
-    :custom ((inhibit-eol-conversion       . nil)     ; mule boolean
-	     (enable-character-translation . t)       ; mule boolean
-	     (eol-mnemonic-undecided       . ":")     ; mule string
-             (eol-mnemonic-unix            . ":")     ; mule string
-	     (eol-mnemonic-dos             . "(DOS)") ; mule string
-	     (eol-mnemonic-mac             . "(Mac)") ; mule string
-	     (file-coding-system-alist     . nil)))   ; mule sexp
-
-  (leaf dired.c
-    :doc "Lisp functions for making directory listings"
-    ;; :custom ((completion-ignored-extensions . nil))  ; dired sexp
-    )
-
-  (leaf dispnew.c
-    :doc "Updating of data structures for redisplay"
-    :custom ((baud-rate            . 38400) ; display integer
-	     (inverse-video        . nil)   ; display boolean
-	     (visible-bell         . nil)   ; display boolean
-	     (no-redraw-on-reenter . nil))) ; display boolean
-
-  (leaf doc.c
-    :doc "Record indices of function doc strings stored in a file"
-    :custom ((text-quoting-style   . nil))) ; display choice
-
-  ;; (leaf dosfns.c
-  ;;   :doc
-  ;;   :custom ((dos-display-scancodes)    ; display boolean
-  ;;            (dos-hyper-key)            ; keyboard integer
-  ;;            (dos-super-key)            ; keyboard integer
-  ;;            (dos-keypad-mode)))        ; keyboard integer
-
-  (leaf editfns.c
-    :doc "Lisp functions pertaining to editing"
-    :custom ((user-full-name . "Naoya Yamashita"))) ; mail string
-
-  (leaf emacs.c
-    :doc "Fully extensible Emacs, running on Unix, intended for GNU"
-    :custom ((report-emacs-bug-address . "bug-gnu-emacs@gnu.org"))) ; emacsbug string
-
-  (leaf eval.c
-    :doc "Evaluator for GNU Emacs Lisp interpreter"
-    :custom ((max-specpdl-size             . 1300)   ; limits integer
-	     (max-lisp-eval-depth          . 1000)   ; limits integer
-	     (max-mini-window-height       . 0.25)   ; limits number
-	     (debug-on-error               . t)      ; debug const
-	     ;; (debug-ignored-errors      . nil)    ; debug (repeat (choice symbol regexp))
-	     (debug-on-quit                . nil)    ; debug boolean
-	     (debug-on-signal              . nil)    ; debug boolean
-             (debugger-stack-frame-as-list . nil)))  ; debugger boolean "26.1"
-
-  (leaf fileio.c
-    :doc "File IO for GNU Emacs"
-    :custom ((delete-by-moving-to-trash    . nil)    ; auto-save boolean "23.1"
-	     (auto-save-visited-file-name  . nil)))  ; auto-save boolean
-
-  (leaf filelock.c
-    :doc "Lock files for editing"
-    :custom ((create-lockfiles         . nil)        ; files boolean "24.3"
-	     ;; (temporary-file-directory)           ; files directory
-             ))
-
-  (leaf fns.c
-    :doc "Random utility Lisp functions"
-    :custom ((use-dialog-box      . nil)             ; menu boolean "21.1"
-	     (use-file-dialog     . nil)             ; menu boolean "22.1"
-	     (focus-follows-mouse . nil)))           ; frames symbol
-
-  (leaf fontset.c
-    :doc "Fontset handler"
-    ;; :custom ((vertical-centering-font-regexp))    ; display regexp
-    )
-
-  (leaf frame.c
-    :doc ""
-    :doc "https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts"
-    :doc "http://extra-vision.blogspot.com/2016/07/emacs.html"
-    :doc "
-brew tap caskroom/fonts
-brew cask install font-hack-nerd-font"
-    :preface
-    ;; (create-fontset-from-ascii-font "Hack Nerd Font" nil "hack_nerd")
-    ;;   (set-fontset-font
-    ;;    "fontset-hack_nerd" 'unicode
-    ;;    (font-spec :family "Hiragino Kaku Gothic Pro" :size 14) nil 'append)
-    :custom ((default-frame-alist . '(;; (font . "fontset-hack_nerd")
-                                      (ns-transparent-titlebar . t)
-                                      (vertical-scroll-bars    . nil)
-                                      (ns-appearance           . dark)
-                                      (internal-border-width   . 0))) ; frames
-	     (mouse-highlight              . t)                  ; mouse symbol
-	     (make-pointer-invisible       . t)                  ; mouse boolean
-	     (frame-resize-pixelwise       . t)                  ; frames boolean
-	     (frame-inhibit-implied-resize . nil)                ; frames boolean
-	     (iconify-child-frame          . 'iconify-top-level) ; frames symbol
-	     (tooltip-reuse-hidden-frame   . nil))               ; tooltip boolean
-    :config
-    (menu-bar-mode 1)
-    (tool-bar-mode 0))
-  )
+      :doc "define customization properties of builtins"
+      :custom `((gc-cons-threshold           . ,(* 512 1024 1024)) ; alloc integer
+		(garbage-collection-messages . t)
+		(fill-column                 . 80)
+		(tab-width                   . 8)
+		;; (shell-file-name . "/bin/bash")
+		(user-full-name . "Naoya Yamashita")
+		(debug-on-error               . t)
+		(create-lockfiles         . nil)
+		(use-dialog-box      . nil)             ; menu boolean "21.1"
+		(use-file-dialog     . nil)
+		(default-frame-alist . '(;; (font . "fontset-hack_nerd")
+					 (ns-transparent-titlebar . t)
+					 (vertical-scroll-bars    . nil)
+					 (ns-appearance           . dark)
+					 (internal-border-width   . 0)))
+		(frame-resize-pixelwise       . t)
+		)
+      :config
+      (menu-bar-mode 1)
+      (tool-bar-mode 0)
+      )
 
 (provide 'init)
 ;;; init.el ends here
