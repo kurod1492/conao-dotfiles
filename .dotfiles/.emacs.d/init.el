@@ -137,7 +137,7 @@
   :config
   (leaf alloc.c
     :doc "Storage allocation and gc for GNU Emacs Lisp interpreter"
-    :custom `((gc-cons-threshold           . ,(512 1024 1024)) ; alloc integer
+    :custom `((gc-cons-threshold           . ,(* 512 1024 1024)) ; alloc integer
               (gc-cons-percentage          . 0.1)    ; alloc integer
               (garbage-collection-messages . t)))    ; alloc boolean
 
