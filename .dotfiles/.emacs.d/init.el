@@ -130,6 +130,17 @@
              (el-get-emacswiki-base-url . "http://www.emacswiki.org/emacs/download/"))))
 
 
+(leaf custom
+  :custom ((custom-file . "/dev/null"))
+  :config
+(leaf cus-edit
+  :custom (;; (custom-file . (locate-user-emacs-file "custom.el"))
+           (custom-file . "/dev/null"))
+  ;; :config
+  ;; (when (file-readable-p custom-file)
+  ;;   (load custom-file))
+  )
+
 (leaf cus-start
   :doc "define customization properties of builtins"
   :custom `((gc-cons-threshold            . ,(* 512 1024 1024))
@@ -185,7 +196,7 @@
            ;; use fn key as normal way.
            ;; (ns-function-modifier      . 'super)
            (default-frame-alist . '((ns-appearance           . dark)
-                                    (ns-transparent-titlebar . t)))))
+                                    (ns-transparent-titlebar . t))))))
 
 (provide 'init)
 ;;; init.el ends here
