@@ -158,6 +158,7 @@
               (history-length               . 1000)
               (history-delete-duplicates    . t)
 
+              (truncate-lines               . t)
               (menu-bar-mode                . t)
               (tool-bar-mode                . nil)
               (indent-tabs-mode             . nil))
@@ -201,7 +202,20 @@
   (leaf autorevert
     :doc "revert buffers when files on disk change"
     :custom ((auto-revert-interval . 1)
-             (global-auto-revert-mode . t))))
+             (global-auto-revert-mode . t)))
+
+  (leaf custom
+    :when window-system
+    :config
+    ;; (load-theme 'wombat)
+    ;; (leaf monokai-theme :ensure t
+    ;;       :config (load-theme 'monokai t))
+    ;; (leaf flucui-themes :ensure t
+    ;;       :config (flucui-themes-load-style 'dark))
+    ;; (leaf zenburn-theme :ensure t
+    ;;       :config (load-theme 'zenburn t))
+    (leaf sublime-themes :ensure t
+      :config (load-theme 'brin t))))
 
 (provide 'init)
 ;;; init.el ends here
