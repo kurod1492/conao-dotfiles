@@ -251,8 +251,34 @@
     :doc "Fontset handler"
     ;; :custom ((vertical-centering-font-regexp))    ; display regexp
     )
+
+  (leaf frame.c
+    :doc ""
+    :doc "https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts"
+    :doc "http://extra-vision.blogspot.com/2016/07/emacs.html"
+    :doc "
+brew tap caskroom/fonts
+brew cask install font-hack-nerd-font"
+    :preface
+    ;; (create-fontset-from-ascii-font "Hack Nerd Font" nil "hack_nerd")
+    ;;   (set-fontset-font
+    ;;    "fontset-hack_nerd" 'unicode
+    ;;    (font-spec :family "Hiragino Kaku Gothic Pro" :size 14) nil 'append)
+    :custom ((default-frame-alist . '(;; (font . "fontset-hack_nerd")
+                                      (ns-transparent-titlebar . t)
+                                      (vertical-scroll-bars    . nil)
+                                      (ns-appearance           . dark)
+                                      (internal-border-width   . 0))) ; frames
+	     (mouse-highlight              . t)                  ; mouse symbol
+	     (make-pointer-invisible       . t)                  ; mouse boolean
+	     (frame-resize-pixelwise       . t)                  ; frames boolean
+	     (frame-inhibit-implied-resize . nil)                ; frames boolean
+	     (iconify-child-frame          . 'iconify-top-level) ; frames symbol
+	     (tooltip-reuse-hidden-frame   . nil))               ; tooltip boolean
+    :config
+    (menu-bar-mode 1)
+    (tool-bar-mode 0))
   )
-  
 
 (provide 'init)
 ;;; init.el ends here
