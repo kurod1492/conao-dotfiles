@@ -130,73 +130,78 @@
              (el-get-emacswiki-base-url . "http://www.emacswiki.org/emacs/download/"))))
 
 
-(leaf custom
+(leaf emacs-buildin
   :custom ((custom-file . "/dev/null"))
   :config
-(leaf cus-edit
-  :custom (;; (custom-file . (locate-user-emacs-file "custom.el"))
-           (custom-file . "/dev/null"))
-  ;; :config
-  ;; (when (file-readable-p custom-file)
-  ;;   (load custom-file))
-  )
+  (leaf cus-edit
+    :custom (;; (custom-file . (locate-user-emacs-file "custom.el"))
+             (custom-file . "/dev/null"))
+    ;; :config
+    ;; (when (file-readable-p custom-file)
+    ;;   (load custom-file))
+    )
 
-(leaf cus-start
-  :doc "define customization properties of builtins"
-  :custom `((gc-cons-threshold            . ,(* 512 1024 1024))
-	    (garbage-collection-messages  . t)
-	    (fill-column                  . 80)
-	    (tab-width                    . 8)
-	    ;; (shell-file-name . "/bin/bash")
-	    (user-full-name               . "Naoya Yamashita")
-	    (debug-on-error               . t)
-	    (create-lockfiles             . nil)
-	    (use-dialog-box               . nil)
-            (use-file-dialog              . nil)
-	    (frame-resize-pixelwise       . t)
-            (enable-recursive-minibuffers . t)
-            (history-length               . 1000)
-            (history-delete-duplicates    . t)
+  (leaf cus-start
+    :doc "define customization properties of builtins"
+    :custom `((gc-cons-threshold            . ,(* 512 1024 1024))
+              (garbage-collection-messages  . t)
+              (fill-column                  . 80)
+              (tab-width                    . 8)
+              ;; (shell-file-name . "/bin/bash")
+              (user-full-name               . "Naoya Yamashita")
+              (debug-on-error               . t)
+              (create-lockfiles             . nil)
+              (use-dialog-box               . nil)
+              (use-file-dialog              . nil)
+              (frame-resize-pixelwise       . t)
+              (enable-recursive-minibuffers . t)
+              (history-length               . 1000)
+              (history-delete-duplicates    . t)
 
-            (menu-bar-mode                . t)
-            (tool-bar-mode                . nil)
-            (indent-tabs-mode             . nil))
-  :config
-  (put 'upcase-region   'disabled nil)
-  (put 'downcase-region 'disabled nil))
+              (menu-bar-mode                . t)
+              (tool-bar-mode                . nil)
+              (indent-tabs-mode             . nil))
+    :config
+    (put 'upcase-region   'disabled nil)
+    (put 'downcase-region 'disabled nil))
 
-(leaf mac
-  :doc "Implementation of GUI terminal on macOS"
-  :doc "Each SYMBOL can be `control', `meta', `alt', `hyper', or `super'"
-  :doc "`left' meens same value setting its left key"
-  :when (eq 'mac window-system)
-  :custom ((mac-control-modifier       . 'control)
-           (mac-option-modifier        . 'super)
-           (mac-command-modifier       . 'meta)
+  (leaf mac
+    :doc "Implementation of GUI terminal on macOS"
+    :doc "Each SYMBOL can be `control', `meta', `alt', `hyper', or `super'"
+    :doc "`left' meens same value setting its left key"
+    :when (eq 'mac window-system)
+    :custom ((mac-control-modifier       . 'control)
+             (mac-option-modifier        . 'super)
+             (mac-command-modifier       . 'meta)
 
-           (mac-right-control-modifier . 'control)
-           (mac-right-option-modifier  . 'hyper)
-           (mac-right-command-modifier . 'meta)
+             (mac-right-control-modifier . 'control)
+             (mac-right-option-modifier  . 'hyper)
+             (mac-right-command-modifier . 'meta)
 
-           ;; use fn key as normal way.
-           ;; (mac-function-modifier      . 'super)
-           ))
+             ;; use fn key as normal way.
+             ;; (mac-function-modifier      . 'super)
+             ))
 
-(leaf ns
-  :doc "NeXT/Open/GNUstep / macOS communication module"
-  :when (eq 'ns window-system)
-  :custom ((ns-control-modifier       . 'control)
-           (ns-option-modifier        . 'super)
-           (ns-command-modifier       . 'meta)
+  (leaf ns
+    :doc "NeXT/Open/GNUstep / macOS communication module"
+    :when (eq 'ns window-system)
+    :custom ((ns-control-modifier       . 'control)
+             (ns-option-modifier        . 'super)
+             (ns-command-modifier       . 'meta)
 
-           (ns-right-control-modifier . 'control)
-           (ns-right-option-modifier  . 'hyper)
-           (ns-right-command-modifier . 'meta)
+             (ns-right-control-modifier . 'control)
+             (ns-right-option-modifier  . 'hyper)
+             (ns-right-command-modifier . 'meta)
 
-           ;; use fn key as normal way.
-           ;; (ns-function-modifier      . 'super)
-           (default-frame-alist . '((ns-appearance           . dark)
-                                    (ns-transparent-titlebar . t))))))
+             ;; use fn key as normal way.
+             ;; (ns-function-modifier      . 'super)
+             (default-frame-alist . '((ns-appearance           . dark)
+                                      (ns-transparent-titlebar . t)))))
+
+  (leaf autorevert
+    :doc "revert buffers when files on disk change"
+    :custom ((auto-revert-interval . 1)
+             (global-auto-revert-mode . t))))
 
 (provide 'init)
 ;;; init.el ends here
