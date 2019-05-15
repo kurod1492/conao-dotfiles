@@ -246,6 +246,11 @@
     :custom ((use-dialog-box      . nil)             ; menu boolean "21.1"
 	     (use-file-dialog     . nil)             ; menu boolean "22.1"
 	     (focus-follows-mouse . nil)))           ; frames symbol
+
+  (leaf fontset.c
+    :doc "Fontset handler"
+    ;; :custom ((vertical-centering-font-regexp))    ; display regexp
+    )
   )
   
 
