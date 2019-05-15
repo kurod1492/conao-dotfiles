@@ -149,7 +149,10 @@
 
             (menu-bar-mode                . t)
             (tool-bar-mode                . nil)
-            (indent-tabs-mode             . nil)))
+            (indent-tabs-mode             . nil))
+  :config
+  (put 'upcase-region   'disabled nil)
+  (put 'downcase-region 'disabled nil))
 
 (leaf mac
   :doc "Implementation of GUI terminal on macOS"
