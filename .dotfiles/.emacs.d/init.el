@@ -206,7 +206,8 @@
 
   (leaf custom
     :when window-system
-    :config
+    :custom-face ((asdf . '((t :default asdf))))
+    ;; :config
     ;; (load-theme 'wombat)
     ;; (leaf monokai-theme :ensure t
     ;;       :config (load-theme 'monokai t))
@@ -214,8 +215,9 @@
     ;;       :config (flucui-themes-load-style 'dark))
     ;; (leaf zenburn-theme :ensure t
     ;;       :config (load-theme 'zenburn t))
-    (leaf sublime-themes :ensure t
-      :config (load-theme 'brin t))))
+    ;; (leaf sublime-themes :ensure t
+    ;;   :config (load-theme 'brin t))
+    ))
 
 (provide 'init)
 ;;; init.el ends here
