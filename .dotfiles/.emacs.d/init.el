@@ -144,6 +144,8 @@
             (use-file-dialog             . nil)
 	    (frame-resize-pixelwise      . t)
             (enable-recursive-minibuffers . t)
+            (history-length              . 1000)
+            (history-delete-duplicates   . t)
             )
   :config
   (menu-bar-mode 1)
