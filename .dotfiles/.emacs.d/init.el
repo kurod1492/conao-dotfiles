@@ -141,14 +141,14 @@
 	    (debug-on-error              . t)
 	    (create-lockfiles            . nil)
 	    (use-dialog-box              . nil)
-	    (use-file-dialog             . nil)
+            (use-file-dialog             . nil)
 	    (frame-resize-pixelwise      . t)
-	    (indent-tabs-mode            . nil)
-	    (enable-recursive-minibuffers . t)
-	    )
+            (enable-recursive-minibuffers . t)
+            )
   :config
   (menu-bar-mode 1)
-  (tool-bar-mode 0))
+  (tool-bar-mode 0)
+  (indent-tabs-mode 0))
 
 (leaf mac
   :doc "Implementation of GUI terminal on macOS"
