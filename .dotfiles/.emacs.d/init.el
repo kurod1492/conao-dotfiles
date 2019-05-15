@@ -67,7 +67,7 @@
   :config
   (leaf exec-path-from-shell
     :ensure t
-    :when (memq '(mac ns x) window-system)
+    :when (memq window-system '(mac ns x))
     :custom ((exec-path-from-shell-check-startup-files . nil)
              (exec-path-from-shell-variables . '("PATH" "GOPATH")))
     :config
@@ -234,6 +234,12 @@
     :doc "File IO for GNU Emacs"
     :custom ((delete-by-moving-to-trash    . nil)    ; auto-save boolean "23.1"
 	     (auto-save-visited-file-name  . nil)))  ; auto-save boolean
+
+  (leaf filelock.c
+    :doc
+    :custom ((create-lockfiles         . nil)        ; files boolean "24.3"
+	     ;; (temporary-file-directory)           ; files directory
+             ))
   )
 
 (provide 'init)
