@@ -240,7 +240,14 @@
     :custom ((create-lockfiles         . nil)        ; files boolean "24.3"
 	     ;; (temporary-file-directory)           ; files directory
              ))
+
+  (leaf fns.c
+    :doc "Random utility Lisp functions"
+    :custom ((use-dialog-box      . nil)             ; menu boolean "21.1"
+	     (use-file-dialog     . nil)             ; menu boolean "22.1"
+	     (focus-follows-mouse . nil)))           ; frames symbol
   )
+  
 
 (provide 'init)
 ;;; init.el ends here
