@@ -145,11 +145,11 @@
 	    (frame-resize-pixelwise       . t)
             (enable-recursive-minibuffers . t)
             (history-length               . 1000)
-            (history-delete-duplicates    . t))
-  :config
-  (menu-bar-mode 1)
-  (tool-bar-mode 0)
-  (indent-tabs-mode 0))
+            (history-delete-duplicates    . t)
+
+            (menu-bar-mode                . t)
+            (tool-bar-mode                . nil)
+            (indent-tabs-mode             . nil)))
 
 (leaf mac
   :doc "Implementation of GUI terminal on macOS"
