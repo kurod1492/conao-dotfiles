@@ -34,15 +34,9 @@
 
 (leaf web-mode
   :ensure t
-  :mode
-  "\\.js\\'"
-  "\\.json\\'"
-  "\\.p?html?\\'"
-  "\\.php\\'"
-  "\\.tsx\\'"
-  "\\.vue\\'"
-  "\\.css\\'"
-  "\\.xml\\'")
+  :mode ("\\.css\\'"
+         "\\.js\\'" "\\.json\\'" "\\.p?html?\\'"
+         "\\.php\\'" "\\.tsx\\'" "\\.vue\\'" "\\.xml\\'"))
 
 (leaf tide
   :ensure t

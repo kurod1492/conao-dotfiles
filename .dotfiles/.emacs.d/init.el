@@ -817,7 +817,30 @@
 
 (leaf major-mode
   :config
-  nil)
+  (leaf plantuml-mode :ensure t)
+  (leaf polymode      :ensure t)
+  (leaf yaml-mode     :ensure t)
+  (leaf haskell-mode  :ensure t)
+  (leaf fish-mode     :ensure t)
+
+  (leaf tuareg
+    :doc "OCaml mode for Emacs."
+    :ensure t)
+
+  (leaf web-mode
+    :ensure t
+    :mode ("\\.css\\'"
+           "\\.js\\'" "\\.json\\'" "\\.p?html?\\'"
+           "\\.php\\'" "\\.tsx\\'" "\\.vue\\'" "\\.xml\\'"))
+
+  (leaf tide
+    :ensure t
+    :init (defun conao3/enable-tide ()
+            (when (string-equal "tsx" (file-name-extension buffer-file-name))
+              (setup-tide-mode)))
+    :hook
+    (before-save-hook . tide-format-before-save)
+    (web-mode-hook . conao3/enable-tide)))
 
 
 (leaf misc-tools
