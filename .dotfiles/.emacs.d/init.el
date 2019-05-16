@@ -190,8 +190,11 @@
               (tool-bar-mode                . nil)
               (indent-tabs-mode             . nil))
     :config
-    (put 'upcase-region   'disabled nil)
-    (put 'downcase-region 'disabled nil))
+    (mapc (lambda (func) (put func 'disabled nil))
+          (cdr '(:dummy
+                 upcase-region downcase-region
+                 narrow-to-region narrow-to-page narrow-to-defun
+                 list-timers))))
 
   (leaf mac
     :doc "implementation of gui terminal on macos"
