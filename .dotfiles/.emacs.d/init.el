@@ -365,6 +365,17 @@
              (rainbow-r-colors-major-mode-list     . '(ess-mode)))
     :hook emacs-lisp-mode-hook)
 
+  (leaf which-key
+    :ensure t
+    :custom ((which-key-idle-delay . 3)
+             (which-key-replacement-alist
+              . '(((nil . "Prefix Command") . (nil . "prefix"))
+                  ((nil . "\\`\\?\\?\\'") . (nil . "lambda"))
+                  (("<left>") . ("←"))
+                  (("<right>") . ("→"))
+                  (("<\\([[:alnum:]-]+\\)>") . ("\\1"))))
+             (which-key-mode . t)))
+
   (leaf macrostep
     :ensure t
     :bind (("C-c e" . macrostep-expand)))
