@@ -846,7 +846,14 @@
     :config
     (leaf clojure-mode  :ensure t)
     (leaf edn           :ensure t)
-    (leaf cider         :ensure t)))
+    (leaf cider         :ensure t))
+
+  (leaf *docker-modes
+    :config
+    (leaf docker              :ensure t)
+    (leaf dockerfile-mode     :ensure t)
+    (leaf docker-compose-mode :ensure t)
+    (leaf docker-tramp        :ensure t)))
 
 
 (leaf misc-tools
