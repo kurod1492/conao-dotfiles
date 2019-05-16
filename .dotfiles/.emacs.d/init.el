@@ -184,6 +184,7 @@
               (enable-recursive-minibuffers . t)
               (history-length               . 1000)
               (history-delete-duplicates    . t)
+              (inhibit-compacting-font-caches . t)
 
               (truncate-lines               . t)
               (menu-bar-mode                . t)
