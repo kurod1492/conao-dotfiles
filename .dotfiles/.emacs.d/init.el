@@ -386,7 +386,7 @@
     :config
     (leaf company-box
       :ensure t
-      :init (leaf all-the-icons :ensure t)
+      :init (leaf all-the-icons :ensure t :require t)
       :hook ((company-mode-hook . company-box-mode)))
 
     (leaf company-quickhelp
