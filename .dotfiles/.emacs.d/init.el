@@ -341,18 +341,19 @@
            ;; change elements
            ("C-c s (" . sp-rewrap-sexp)
            ("C-c s r" . sp-change-inner)
-           ("C-c s s" . sp-change-encosing))))
+           ("C-c s s" . sp-change-encosing)))
 
-
-(leaf major-mode
-  :config
-  nil)
-
-
-(leaf misc-tools
-  :config
   (leaf treemacs :ensure t)
-  (leaf simple-httpd :ensure t)
+
+  (leaf real-auto-save
+    :ensure t
+    :custom ((real-auto-save-interval . 0.3))
+    :hook ((find-file-hook . real-auto-save-mode)))
+
+  (leaf powerline
+    :disabled t
+    :ensure t
+    :config (powerline-default-theme))
 
   (leaf rainbow-mode
     :ensure t
@@ -374,21 +375,21 @@
                   (("<left>") . ("←"))
                   (("<right>") . ("→"))
                   (("<\\([[:alnum:]-]+\\)>") . ("\\1"))))
-             (which-key-mode . t)))
+             (which-key-mode . t))))
+
+
+(leaf major-mode
+  :config
+  nil)
+
+
+(leaf misc-tools
+  :config
+  (leaf simple-httpd :ensure t)
 
   (leaf macrostep
     :ensure t
-    :bind (("C-c e" . macrostep-expand)))
-
-  (leaf powerline
-    :disabled t
-    :ensure t
-    :config (powerline-default-theme))
-
-  (leaf real-auto-save
-    :ensure t
-    :custom ((real-auto-save-interval . 0.3))
-    :hook ((find-file-hook . real-auto-save-mode))))
+    :bind (("C-c e" . macrostep-expand))))
 
 (provide 'init)
 ;;; init.el ends here
