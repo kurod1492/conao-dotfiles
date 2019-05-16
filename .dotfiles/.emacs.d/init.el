@@ -259,7 +259,10 @@
 
 (leaf misc-tools
   :config
-  nil)
+  (leaf real-auto-save
+    :ensure t
+    :custom ((real-auto-save-interval . 0.3))
+    :hook ((find-file-hook . real-auto-save-mode))))
 
 (provide 'init)
 ;;; init.el ends here
