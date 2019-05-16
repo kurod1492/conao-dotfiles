@@ -899,9 +899,87 @@ c Show current commit using magit (if magit available).
       (autoload 'migemo-init "migemo" nil t)
       (migemo-init)))
 
-  (leaf macrostep
-    :ensure t
-    :bind (("C-c e" . macrostep-expand))))
+  (leaf *misc-tools
+    :config
+    (leaf hide-mode-line
+      :ensure t
+      ;; :hook
+      ;; ((neotree-mode imenu-list-minor-mode minimap-mode) . hide-mode-line-mode)
+      )
+
+    (leaf request
+      :doc "Compatible layer for URL request in Emacs"
+      :doc "http://tkf.github.io/emacs-request/"
+      :doc
+      (request
+       "https://api.github.com"
+       :parser 'json-read
+       :success (cl-function
+                 (lambda (&key data &allow-other-keys)
+                   (when data
+                     (with-current-buffer (get-buffer-create "*request demo*")
+                       (erase-buffer)
+                       (insert (pp-to-string data))
+                       (pop-to-buffer (current-buffer))))))
+       :complete (lambda (&rest _) (message "Finished!"))
+       :status-code '((400 . (lambda (&rest _) (message "Got 400.")))
+                      (418 . (lambda (&rest _) (message "Got 418.")))))
+      :ensure t)
+
+    (leaf macrostep
+      :ensure t
+      :bind (("C-c e" . macrostep-expand)))
+
+    (leaf dashboard
+      :ensure t
+      :custom ((dashboard-startup-banner . 4)
+               (dashboard-items          . '((recents . 15)
+                                             (projects . 5)
+                                             (bookmarks . 5)
+                                             (agenda . 5))))
+      :config
+      (add-to-list 'dashboard-items '(agenda) t)
+      (dashboard-setup-startup-hook))
+
+    (leaf mwim
+      :doc "Switch between the beginning/end of line or code"
+      :ensure t
+      :bind (("C-a" . mwim-beginning-of-code-or-line)
+             ("C-e" . mwim-end-of-code-or-line)))
+
+    (leaf shell-pop
+      :ensure t
+      :bind (("C-o" . shell-pop)))
+
+    (leaf latex-math-preview
+      :if (executable-find "platex")
+      :ensure t
+      :bind (("C-c l l" . latex-math-preview-expression)
+             ("C-c l s" . latex-math-preview-insert-mathematical-symbol))
+      :config
+      (setq latex-math-preview-tex-to-png-for-preview '(platex dvips-to-eps gs-to-png)
+            latex-math-preview-tex-to-png-for-save    '(platex dvipng)
+            latex-math-preview-tex-to-eps-for-save    '(platex dvips-to-eps)
+            latex-math-preview-tex-to-ps-for-save     '(platex dvips-to-ps)
+            latex-math-preview-beamer-to-png          '(platex dvipdfmx gs-to-png)
+            latex-math-preview-initial-page-of-symbol-list '((math . nil) (text . nil))
+            latex-math-preview-latex-template-header
+            "\\documentclass{jsarticle}
+\\pagestyle{empty}
+\\usepackage[dvips]{color}
+\\usepackage{physics}
+\\newcommand{\\ee}{\\mathrm{e}}
+\\newcommand{\\jj}{\\mathrm{j}}
+\\newcommand{\\ii}{\\mathrm{i}}
+\\newcommand{\\rot}{{\\nabla\\times}}
+\\newcommand{\\up}{\\uparrow}
+\\color{white}"
+            )
+      (with-eval-after-load 'latex-math-preview
+        (add-to-list 'latex-math-preview-command-option-alist
+                     '(gs-to-png "-q" "-dSAFER" "-dNOPAUSE" "-dBATCH" "-sDEVICE=pngalpha"
+                                 "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
+                                 "-dGraphicsAlphaBits=4" "-dQUIET"))))))
 
 (provide 'init)
 ;;; init.el ends here
