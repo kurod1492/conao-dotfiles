@@ -244,7 +244,11 @@
     ;;       :config (load-theme 'zenburn t))
     ;; (leaf sublime-themes :ensure t
     ;;   :config (load-theme 'brin t))
-    ))
+    )
+
+  (leaf paren
+    :custom ((show-paren-delay . 0.0)
+             (show-paren-mode  . t))))
 
 
 (leaf minor-mode
