@@ -394,6 +394,11 @@
 
   (leaf treemacs :ensure t)
 
+  (leaf projectile
+    :ensure t
+    :bind (("M-o p" . projectile-command-map))
+    :custom ((projectile-mode . t)))
+
   (leaf origami
     :ensure t
     :custom ((global-origami-mode . t)))
