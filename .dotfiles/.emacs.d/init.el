@@ -175,7 +175,7 @@
               (fill-column                  . 80)
               (tab-width                    . 8)
               ;; (shell-file-name . "/bin/bash")
-              (user-full-name               . "naoya yamashita")
+              (user-full-name               . "Naoya Yamashita")
               (debug-on-error               . t)
               (create-lockfiles             . nil)
               (use-dialog-box               . nil)
