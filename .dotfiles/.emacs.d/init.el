@@ -378,6 +378,21 @@
         ("<drag-mouse-1>" ignore)
         ("q" nil))))
 
+  (leaf company
+    :ensure t
+    :custom ((global-company-mode . t))
+    :config
+    (leaf company-box
+      :ensure t
+      :hook ((company-mode-hook . company-box-mode)))
+
+    (leaf company-quickhelp
+      :ensure t
+      :custom ((company-quickhelp-delay . 0.8))
+      :bind (:company-active-map
+             ("M-h" . company-quickhelp-manual-begin))
+      :hook ((global-company-mode-hook . company-quickhelp-mode))))
+
   (leaf yasnippet
     :ensure t
     :custom ((yas-indent-line . 'fixed)
