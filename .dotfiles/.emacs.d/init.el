@@ -498,7 +498,117 @@
                   (("<left>") . ("←"))
                   (("<right>") . ("→"))
                   (("<\\([[:alnum:]-]+\\)>") . ("\\1"))))
-             (which-key-mode . t))))
+             (which-key-mode . t)))
+
+  (leaf lsp-mode
+    :url "https://github.com/emacs-lsp/lsp-mode#supported-languages"
+    :url "https://github.com/MaskRay/ccls/wiki/lsp-mode#find-definitionsreferences"
+    :doc "lsp is language server protocol"
+    :ensure t
+    :custom (;; (lsp-inhibit-message . t)
+             ;; (lsp-message-project-root-warning . t)
+
+             ;; debug
+             (lsp-print-io          . nil)
+             (lsp-trace             . nil)
+             (lsp-print-performance . nil)
+
+             ;; general
+             (lsp-auto-guess-root . t))
+    :hook ((go-mode         . lsp)
+           (c-mode          . lsp)
+           (c++-mode        . lsp)
+           (prog-major-mode . lsp-prog-major-mode-enable))
+    :bind (:lsp-mode-map
+           ("C-c r" . lsp-rename))
+    :config
+    (leaf *lsp-ui-requirements
+      :config
+      (leaf lsp-ui
+        :ensure t
+        :hook ((lsp-mode-hook . lsp-ui-mode)))
+
+      (leaf company-lsp
+        :ensure t
+        :config
+        (add-to-list 'company-backends 'company-lsp)
+        ;; :after (lsp-mode company yasnippet)
+        ;; :custom
+        ;; ((company-lsp-cache-candidates t) ;; auto, t(always using a cache), or nil
+        ;;  (company-lsp-async t)
+        ;;  (company-lsp-enable-snippet t)
+        ;;  (company-lsp-enable-recompletion t))
+        ))
+
+    (leaf *lsp-dap-mode
+      :doc "dap is Debug Adapter Protocol"
+      :config
+      (leaf dap-mode
+        :url "https://github.com/emacs-lsp/dap-mode"
+        :ensure t
+        :custom ((dap-mode    . t)
+                 (dap-ui-mode . t))))
+
+    (leaf *other-lsp-pacakges
+      :config
+      (leaf lsp-treemacs
+        :doc "Show errors with treemacs interface"
+        ;; ==== functions ====
+        ;; lsp-treemacs-errors-list
+        :ensure t)
+
+      (leaf lsp-java-treemacs
+        :disabled t
+        :ensure t)
+
+      (leaf lsp-origami
+        :disabled t
+        :ensure t
+        :hook ((origami-mode-hook . lsp-origami-mode))))
+
+    (leaf *lsp-clients
+      :config
+      (leaf lsp-ruby
+        :doc "Ruby support for lsp-mode"
+        :ensure t
+        :hook ((ruby-mode-hook . lsp))
+        ;; :hook ((ruby-mode-hook . lsp-ruby-enable))
+        )
+
+      (leaf lsp-java
+        :doc "Java support for lsp-mode"
+        :ensure t
+        :hook ((java-mode-hook . lsp))
+        :config
+        (leaf dap-java))
+
+      (leaf *lsp-latex
+        :doc "Latex support for lsp-mode"
+        :when (file-exists-p "/Users/conao/Develop/tex/texlab.jar")
+        :hook ((tex-mode-hook   . lsp)
+               (latex-mode-hook . lsp)
+               (yatex-mode-hook . lsp))
+        :config
+        (defvar lsp-latex-java-executable "java")
+        (defvar lsp-latex-java-argument-list '("-jar"))
+        (defvar lsp-latex-texlab-jar-file "/Users/conao/Develop/tex/texlab.jar")
+        (defvar lsp-latex-texlab-jar-argument-list '())
+        (defun lsp-latex-new-connection ()
+          ""
+          (append
+           (cons
+            lsp-latex-java-executable
+            lsp-latex-java-argument-list)
+           (cons
+            lsp-latex-texlab-jar-file
+            lsp-latex-texlab-jar-argument-list)))
+
+        (lsp-register-client
+         (make-lsp-client :new-connection
+                          (lsp-stdio-connection
+                           #'lsp-latex-new-connection)
+                          :major-modes '(tex-mode yatex-mode latex-mode)
+                          :server-id 'texlab))))))
 
 
 (leaf major-mode
