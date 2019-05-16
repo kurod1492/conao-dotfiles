@@ -352,6 +352,7 @@
 (leaf misc-tools
   :config
   (leaf treemacs :ensure t)
+  (leaf simple-httpd :ensure t)
 
   (leaf macrostep
     :ensure t
