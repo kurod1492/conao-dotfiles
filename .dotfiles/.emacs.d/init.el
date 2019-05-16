@@ -853,7 +853,17 @@
     (leaf docker              :ensure t)
     (leaf dockerfile-mode     :ensure t)
     (leaf docker-compose-mode :ensure t)
-    (leaf docker-tramp        :ensure t)))
+    (leaf docker-tramp        :ensure t))
+
+  (leaf cc-mode
+    :bind (:c-mode-base-map
+           ("C-c c" . compile))
+    :preface
+    (defun conao3/c-mode-common ()
+      (c-set-style "bsd")
+      (setq tab-width 4)
+      (setq c-base-offset 4))
+    :hook ((c-mode-common . conao3/c-mode-common))))
 
 
 (leaf misc-tools
