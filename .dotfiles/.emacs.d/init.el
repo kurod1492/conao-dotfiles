@@ -61,7 +61,7 @@
     (leaf bind-key :ensure t)))
 
 
-(leaf initialize-emacs
+(leaf *initialize-emacs
   :config
   (leaf exec-path-from-shell
     :ensure t
@@ -102,10 +102,10 @@
   (global-unset-key (kbd "m-t")))
 
 
-(leaf conao3-packages
+(leaf *conao3-packages
   :doc "elisp packages are developed by conao3"
   :config
-  (leaf melpa-packages
+  (leaf *melpa-packages
     :config
     (leaf seml-mode
       :ensure t
@@ -113,7 +113,7 @@
                (seml-live-refresh-url-variable . ":type/:var1/:var2")
                (seml-live-refresh-url-quety    . '(targetpath targetfile)))))
 
-  (leaf site-lisp-packages
+  (leaf *site-lisp-packages
     :config
     (leaf cort-test
       :load-path `,(locate-user-emacs-file "site-lisp/cort-test.el")
@@ -147,7 +147,7 @@
       :require t orglyth-html orglyth-latex)))
 
 
-(leaf reference-packages
+(leaf *reference-packages
   :config
   (leaf use-package :ensure t)
   (leaf el-get :ensure t
@@ -157,7 +157,7 @@
              (el-get-emacswiki-base-url . "http://www.emacswiki.org/emacs/download/"))))
 
 
-(leaf emacs-buildin
+(leaf *emacs-buildin
   :custom ((custom-file . "/dev/null"))
   :config
   (leaf cus-edit
@@ -272,7 +272,7 @@
       :hook ((dired-mode-hook . dired-filter-mode)))))
 
 
-(leaf minor-mode
+(leaf *minor-mode
   :config
   (leaf smartparens
     :doc "Automatic insertion, wrapping and  navigation with user defined pairs"
@@ -815,7 +815,7 @@
                           :server-id 'texlab))))))
 
 
-(leaf major-mode
+(leaf *major-mode
   :config
   (leaf plantuml-mode :ensure t)
   (leaf polymode      :ensure t)
@@ -987,7 +987,7 @@
 <h4 class=\"miscinfo\">%m</h4>")))))))
 
 
-(leaf misc-tools
+(leaf *misc-tools
   :config
   (leaf *git-tools
     :config
