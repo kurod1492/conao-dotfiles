@@ -248,7 +248,11 @@
 
   (leaf paren
     :custom ((show-paren-delay . 0.0)
-             (show-paren-mode  . t))))
+             (show-paren-mode  . t)))
+
+  (leaf save-place-mode
+    :doc "automatically save place in files"
+    :custom ((save-place-mode . t))))
 
 
 (leaf minor-mode
