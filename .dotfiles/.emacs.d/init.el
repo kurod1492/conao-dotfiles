@@ -407,6 +407,21 @@
           :config (add-hook 'emacs-lisp-mode-hook #'package-lint-setup-flymake)))
       :config (flycheck-package-setup)))
 
+  (leaf flyspell
+    :when (executable-find "aspell")
+    :hook ((org-mode        . flyspell-mode)
+           (yaml-mode       . flyspell-mode)
+           (markdown-mode   . flyspell-mode)
+           (git-commit-mode . flyspell-mode)
+           (prog-mode       . flyspell-prog-mode))
+    :custom ((flyspell-issue-message-flag . nil)
+             (ispell-program-name         . "aspell")
+             (ispell-extra-args           . '("--sug-mode=ultra" "--lang=en_US" "--run-together")))
+    :config
+    (leaf flyspell-correct-ivy
+      :bind (("C-M-i" . flyspell-correct-wrapper))
+      :custom ((flyspell-correct-interface . #'flyspell-correct-ivy))))
+
   (leaf company
     :ensure t
     :custom ((company-minimum-prefix-length . 1)
