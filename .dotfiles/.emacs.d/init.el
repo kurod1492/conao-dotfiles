@@ -98,8 +98,8 @@
                   (or ,stream standard-output))
            (princ "\n"))
          nil)))
-  (global-unset-key (kbd "m-o"))
-  (global-unset-key (kbd "m-t")))
+  (global-unset-key (kbd "M-o"))
+  (global-unset-key (kbd "M-t")))
 
 
 (leaf *conao3-packages
@@ -460,6 +460,7 @@
              (ispell-extra-args           . '("--sug-mode=ultra" "--lang=en_US" "--run-together")))
     :config
     (leaf flyspell-correct-ivy
+      :ensure t
       :bind (("C-M-i" . flyspell-correct-wrapper))
       :custom ((flyspell-correct-interface . #'flyspell-correct-ivy))))
 
@@ -979,7 +980,6 @@
 
       (leaf ob-plantuml
         :when (executable-find "plantuml")
-        :ensure t
         :custom ((org-plantuml-jar-path . plantuml-jar-path)
                  (org-confirm-babel-evaluate . nil))))
 
@@ -1140,13 +1140,11 @@ c Show current commit using magit (if magit available).
 
     (leaf dashboard
       :ensure t
-      :custom ((dashboard-startup-banner . 4)
-               (dashboard-items          . '((recents . 15)
-                                             (projects . 5)
-                                             (bookmarks . 5)
-                                             (agenda . 5))))
+      :custom ((dashboard-items . '((recents . 15)
+                                    (projects . 5)
+                                    (bookmarks . 5)
+                                    (agenda . 5))))
       :config
-      (add-to-list 'dashboard-items '(agenda) t)
       (dashboard-setup-startup-hook))
 
     (leaf mwim
