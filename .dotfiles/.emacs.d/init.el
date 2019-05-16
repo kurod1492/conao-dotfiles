@@ -870,6 +870,35 @@ c Show current commit using magit (if magit available).
                (google-translate-default-target-language . "ja"))
       :bind (("C-c g" . google-translate-at-point))))
 
+  (leaf *grep-tools
+    :config
+    (leaf wgrep
+      :ensure t
+      :custom ((wgrep-enable-key . "e")
+               (wgrep-auto-save-buffer . t)
+               (wgrep-change-readonly-file . t)))
+
+    (leaf ag
+      :ensure t
+      :custom ((ag-highligh-search . t)
+               (ag-reuse-buffers . t)
+               (ag-reuse-window . t))
+      ;; :bind (("M-s a" . ag-project))
+      :config
+      (leaf wgrep-ag
+        :ensure t
+        :hook ((ag-mode-hook . wgrep-ag-setup))))
+
+    (leaf migemo
+      :disabled t
+      :doc "Japanese incremental search through dynamic pattern expansion"
+      :when (executable-find "cmigemo")
+      :commands migemo-init
+      :config
+      (setq migemo-command (executable-find "cmigemo"))
+      (autoload 'migemo-init "migemo" nil t)
+      (migemo-init)))
+
   (leaf macrostep
     :ensure t
     :bind (("C-c e" . macrostep-expand))))
