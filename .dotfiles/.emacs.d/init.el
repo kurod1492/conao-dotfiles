@@ -878,7 +878,14 @@
     :config
     (leaf gotest :ensure t)
     (leaf go-tag :ensure t
-      :custom (go-tag-args . '("-transform" "camelcase")))))
+      :custom (go-tag-args . '("-transform" "camelcase"))))
+
+  (leaf bison-mode
+    :ensure t
+    :custom ((bison-rule-separator-column   . 4)
+             (bison-rule-enumeration-column . 4)
+             (bison-decl-type-column        . 4)
+             (bison-decl-token-column       . 4))))
 
 
 (leaf misc-tools
