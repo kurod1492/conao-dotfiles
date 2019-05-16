@@ -98,12 +98,12 @@
                   (or ,stream standard-output))
            (princ "\n"))
          nil)))
-  (global-unset-key (kbd "M-o"))
-  (global-unset-key (kbd "M-t")))
+  (global-unset-key (kbd "m-o"))
+  (global-unset-key (kbd "m-t")))
 
 
 (leaf conao3-packages
-  :doc "Elisp packages are developed by conao3"
+  :doc "elisp packages are developed by conao3"
   :config
   (leaf melpa-packages
     :config
@@ -175,7 +175,7 @@
               (fill-column                  . 80)
               (tab-width                    . 8)
               ;; (shell-file-name . "/bin/bash")
-              (user-full-name               . "Naoya Yamashita")
+              (user-full-name               . "naoya yamashita")
               (debug-on-error               . t)
               (create-lockfiles             . nil)
               (use-dialog-box               . nil)
@@ -194,8 +194,8 @@
     (put 'downcase-region 'disabled nil))
 
   (leaf mac
-    :doc "Implementation of GUI terminal on macOS"
-    :doc "Each SYMBOL can be `control', `meta', `alt', `hyper', or `super'"
+    :doc "implementation of gui terminal on macos"
+    :doc "each symbol can be `control', `meta', `alt', `hyper', or `super'"
     :doc "`left' meens same value setting its left key"
     :when (eq 'mac window-system)
     :custom ((mac-control-modifier       . 'control)
@@ -211,7 +211,7 @@
              ))
 
   (leaf ns
-    :doc "NeXT/Open/GNUstep / macOS communication module"
+    :doc "next/open/gnustep / macos communication module"
     :when (eq 'ns window-system)
     :custom ((ns-control-modifier       . 'control)
              (ns-option-modifier        . 'super)
@@ -245,6 +245,21 @@
     ;; (leaf sublime-themes :ensure t
     ;;   :config (load-theme 'brin t))
     ))
+
+
+(leaf minor-mode
+  :config
+  nil)
+
+
+(leaf major-mode
+  :config
+  nil)
+
+
+(leaf misc-tools
+  :config
+  nil)
 
 (provide 'init)
 ;;; init.el ends here
