@@ -327,6 +327,10 @@
 
 (leaf misc-tools
   :config
+  (leaf macrostep
+    :ensure t
+    :bind (("C-c e" . macrostep-expand)))
+
   (leaf real-auto-save
     :ensure t
     :custom ((real-auto-save-interval . 0.3))
