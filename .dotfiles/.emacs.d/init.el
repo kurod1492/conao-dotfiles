@@ -354,6 +354,10 @@
   (leaf treemacs :ensure t)
   (leaf simple-httpd :ensure t)
 
+  (leaf rainbow-mode
+    :ensure t
+    :hook emacs-lisp-mode-hook)
+
   (leaf macrostep
     :ensure t
     :bind (("C-c e" . macrostep-expand)))
