@@ -840,7 +840,13 @@
               (setup-tide-mode)))
     :hook
     (before-save-hook . tide-format-before-save)
-    (web-mode-hook . conao3/enable-tide)))
+    (web-mode-hook . conao3/enable-tide))
+
+  (leaf *clojure-modes
+    :config
+    (leaf clojure-mode  :ensure t)
+    (leaf edn           :ensure t)
+    (leaf cider         :ensure t)))
 
 
 (leaf misc-tools
