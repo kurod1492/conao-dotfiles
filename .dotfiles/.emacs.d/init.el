@@ -343,6 +343,20 @@
            ("C-c s r" . sp-change-inner)
            ("C-c s s" . sp-change-encosing)))
 
+  (leaf yasnippet
+    :ensure t
+    :custom ((yas-indent-line . 'fixed)
+             (yas-global-mode . t))
+    :bind (:yas-minor-mode-map
+           ("C-c y i" . yas-insert-snippet)
+           ("C-c y n" . yas-new-snippet)
+           ("C-c y v" . yas-visit-snippet-file)
+           ("C-c y l" . yas-describe-tables)
+           ("C-c y g" . yas-reload-all))
+    :config
+    (leaf yasnippet-snippets :ensure t)
+    (leaf yatemplate :ensure t))
+
   (leaf treemacs :ensure t)
 
   (leaf real-auto-save
