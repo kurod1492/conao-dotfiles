@@ -520,6 +520,10 @@
     :ensure t
     :config (powerline-default-theme))
 
+  (leaf page-break-lines
+    :ensure t
+    :custom ((global-page-break-lines-mode . t)))
+
   (leaf rainbow-mode
     :ensure t
     :custom ((rainbow-html-colors-major-mode-list
