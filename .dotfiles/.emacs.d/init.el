@@ -356,6 +356,13 @@
 
   (leaf rainbow-mode
     :ensure t
+    :custom ((rainbow-html-colors-major-mode-list
+              . '(css-mode html-mode php-mode nxml-mode xml-mode))
+             (rainbow-x-colors-major-mode-list
+              . '(emacs-lisp-mode lisp-interaction-mode c-mode c++-mode java-mode))
+             (rainbow-latex-colors-major-mode-list . '(latex-mode))
+             (rainbow-ansi-colors-major-mode-list  . '(sh-mode c-mode c++-mode))
+             (rainbow-r-colors-major-mode-list     . '(ess-mode)))
     :hook emacs-lisp-mode-hook)
 
   (leaf macrostep
