@@ -380,10 +380,12 @@
 
   (leaf company
     :ensure t
-    :custom ((global-company-mode . t))
+    :custom ((company-minimum-prefix-length . 1)
+             (global-company-mode . t))
     :config
     (leaf company-box
       :ensure t
+      :init (leaf all-the-icons :ensure t)
       :hook ((company-mode-hook . company-box-mode)))
 
     (leaf company-quickhelp
