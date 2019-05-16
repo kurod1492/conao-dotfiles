@@ -863,7 +863,22 @@
       (c-set-style "bsd")
       (setq tab-width 4)
       (setq c-base-offset 4))
-    :hook ((c-mode-common . conao3/c-mode-common))))
+    :hook ((c-mode-common . conao3/c-mode-common)))
+
+  
+  (leaf go-mode
+    :ensure t
+    :custom ((gofmt-command . "goimports"))
+    :bind (:go-mode-map
+           ("C-c C-n" . go-run)
+           ("C-c ."   . go-test-current-test)
+           ("C-c f"   . go-test-current-file)
+           ("C-c a"   . go-test-current-project))
+    :hook ((before-save-hook . gofmt-before-save))
+    :config
+    (leaf gotest :ensure t)
+    (leaf go-tag :ensure t
+      :custom (go-tag-args . '("-transform" "camelcase")))))
 
 
 (leaf misc-tools
