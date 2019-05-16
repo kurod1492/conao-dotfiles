@@ -71,6 +71,33 @@
     :config
     (exec-path-from-shell-initialize))
 
+  (prog1 "conao3 utility"
+    (defmacro p (form)
+      "Output expand  given FORM."
+      `(progn
+         (pp (macroexpand-1 ',form))
+         nil))
+
+    (defmacro po (form)
+      "Output expand given FORM."
+      `(progn
+         (pp ,form)
+         nil))
+
+    (defmacro pl (form &optional stream)
+      "Output list"
+      `(progn
+         (with-temp-buffer
+           (insert (prin1-to-string ,form))
+           (goto-char (point-min))
+           (forward-char)
+           (ignore-errors
+             (while t (forward-sexp) (insert "\n")))
+           (delete-char -1)
+           (princ (buffer-substring-no-properties (point-min) (point-max))
+                  (or ,stream standard-output))
+           (princ "\n"))
+         nil)))
   (global-unset-key (kbd "M-o"))
   (global-unset-key (kbd "M-t")))
 
