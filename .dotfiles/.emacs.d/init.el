@@ -379,6 +379,34 @@
         ("<drag-mouse-1>" ignore)
         ("q" nil))))
 
+  (leaf flymake
+    :bind (:flymake-mode-map
+           ("M-n" . flymake-goto-next-error)
+           ("M-p" . flymake-goto-prev-error))
+    :config
+    (leaf flymake-diagnostic-at-point
+      :ensure t
+      :custom ((flymake-diagnostic-at-point-timer-delay . 0.1)
+               (flymake-diagnostic-at-point-error-prefix . " ► ")
+               (flymake-diagnostic-at-point-display-diagnostic-function . 'flymake-diagnostic-at-point-display-popup))
+      ;; or flymake-diagnostic-at-point-display-minibuffer
+      :hook ((flymake-mode-hook . flymake-diagnostic-at-point-mode))))
+
+  (leaf flycheck
+    :ensure t
+    :config
+    (leaf flycheck-package
+      :ensure t
+      :init
+      (leaf package-lint   ; provide (package-lint-current-buffer)
+        :ensure t
+        :config
+        (leaf package-lint-flymake
+          :disabled t
+          :ensure t
+          :config (add-hook 'emacs-lisp-mode-hook #'package-lint-setup-flymake)))
+      :config (flycheck-package-setup)))
+
   (leaf company
     :ensure t
     :custom ((company-minimum-prefix-length . 1)
