@@ -1147,7 +1147,8 @@ c Show current commit using magit (if magit available).
       :custom ((dashboard-items . '((recents . 15)
                                     (projects . 5)
                                     (bookmarks . 5)
-                                    (agenda . 5))))
+                                    ;; (agenda . 5)
+                                    )))
       :config
       (dashboard-setup-startup-hook))
 
