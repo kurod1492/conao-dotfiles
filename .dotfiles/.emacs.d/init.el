@@ -359,6 +359,10 @@
 
   (leaf treemacs :ensure t)
 
+  (leaf origami
+    :ensure t
+    :custom (global-origami-mode . t))
+
   (leaf real-auto-save
     :ensure t
     :custom ((real-auto-save-interval . 0.3))
