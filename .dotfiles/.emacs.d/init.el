@@ -351,6 +351,8 @@
 
 (leaf misc-tools
   :config
+  (leaf treemacs :ensure t)
+
   (leaf macrostep
     :ensure t
     :bind (("C-c e" . macrostep-expand)))
