@@ -858,7 +858,17 @@ c Show current commit using magit (if magit available).
       :doc "View diffs in side-by-side format"
       :ensure t))
 
-  (leaf simple-httpd :ensure t)
+  (leaf *http-tools
+    :config
+    (leaf simple-httpd :ensure t)
+    (leaf restclient :ensure t)
+    (leaf lingr :ensure t :require t)
+
+    (leaf google-translate
+      :ensure t
+      :custom ((google-translate-default-source-language . "en")
+               (google-translate-default-target-language . "ja"))
+      :bind (("C-c g" . google-translate-at-point))))
 
   (leaf macrostep
     :ensure t
