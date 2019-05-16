@@ -886,7 +886,105 @@
     :custom ((bison-rule-separator-column   . 4)
              (bison-rule-enumeration-column . 4)
              (bison-decl-type-column        . 4)
-             (bison-decl-token-column       . 4))))
+             (bison-decl-token-column       . 4)))
+
+  (leaf org
+    :init (leaf org-plus-contrib :ensure t)
+    :bind (("M-o o c" . org-capture)
+           ("M-o o a" . org-agenda)
+           ("M-o o l" . org-store-link)
+           (:org-mode-map
+            ("C-c i" . org-clock-in)
+            ("C-c o" . org-clock-out)
+            ("C-c n" . org-narrow-to-subtree)
+            ("C-c b" . org-narrow-to-block)
+            ("C-c e" . org-set-effort)))
+    :custom ((org-directory                         . "~/Documents/org/")
+             (org-default-notes-file                . "~/Documents/org/notes.org")
+             (org-agenda-files                      . "~/Documents/org/notes.org")
+             (org-return-follows-link               . t)
+             (org-startup-indented                  . t)
+             (org-indent-mode-turns-on-hiding-stars . t)
+             (org-indent-indentation-per-level      . 2)
+             (org-src-window-setup                  . 'other-window)
+             (org-use-sub-superscripts              . '{})
+             (org-image-actual-width                . nil)
+             (org-highlight-latex-and-related       . '(latex script entities)))
+    :config
+    (leaf *misc-tools
+      :config
+      (leaf org-bullets
+        :ensure t
+        :hook ((org-mode-hook . org-bullets-mode))))
+    
+    (leaf ob
+      :custom ((org-confirm-babel-evaluate . nil))
+      :config
+      (org-babel-do-load-languages 'org-babel-load-languages
+                                   '(;; (ipython . t)
+                                     ;; (plantuml . t)
+                                     (org . t)
+                                     ;; (R . t)
+                                     (C . t)
+                                     (shell . t)
+                                     (emacs-lisp . t)))
+      :init
+      (leaf ob-ipython
+        :when (executable-find "jupyter")
+        :ensure t
+        :config
+        ;; depend of jypyter, ipython
+        (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
+
+      (leaf ob-plantuml
+        :when (executable-find "plantuml")
+        :ensure t
+        :custom ((org-plantuml-jar-path . plantuml-jar-path)
+                 (org-confirm-babel-evaluate . nil))))
+
+    (leaf ox
+      :custom ((org-export-backends . '(;; build-in
+                                        ascii
+                                        html latex beamer odt org
+                                        ;; bibtex texinfo
+                                        ;; confluence deck freemind groff icalendar
+                                        ;; koma-letter man md rss s5 taskjuggler
+
+                                        extra
+
+                                        ;; optional ox packages
+                                        latex-subfigure
+
+                                        ;; optional backends
+                                        qmd re-reveal
+                                        )))
+      :config
+      (leaf *built-in-ox-packages
+        :config
+        (leaf ox-extra
+          :config
+          (ox-extras-activate '(latex-header-blocks ignore-headlines))))
+
+      (leaf *optional-ox-packages
+        :config
+        (leaf ox-qmd :ensure t)
+        (leaf ox-latex-subfigure
+          :init (el-get-bundle linktohack/ox-latex-subfigure))
+        (leaf org-re-reveal
+          :ensure t
+          :custom ((org-re-reveal-root         . "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0")
+                   (org-re-reveal-transition   . "slide")
+                   (org-re-reveal-theme        . "conao3-dark")
+                   (org-re-reveal-history      . t)
+                   (org-re-reveal-center       . nil)
+                   (org-re-reveal-slide-number . "c/t")
+                   (org-re-reveal-margin       . "0.2")
+                   (org-re-reveal-title-slide  . "
+<h1 class=\"title\">%t</h1>
+<h3 class=\"subtitle\">%s</h3>
+<h3 class=\"author\">%a</h3>
+<h4 class=\"date\">%d</h4>
+<h4 class=\"miscinfo\">%m</h4>")))))))
 
 
 (leaf misc-tools
