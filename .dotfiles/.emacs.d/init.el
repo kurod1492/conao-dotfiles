@@ -380,6 +380,11 @@
     :ensure t
     :bind (("C-c e" . macrostep-expand)))
 
+  (leaf powerline
+    :disabled t
+    :ensure t
+    :config (powerline-default-theme))
+
   (leaf real-auto-save
     :ensure t
     :custom ((real-auto-save-interval . 0.3))
