@@ -822,6 +822,42 @@
 
 (leaf misc-tools
   :config
+  (leaf *git-tools
+    :config
+    (leaf gitattributes-mode :ensure t)
+    (leaf gitconfig-mode     :ensure t)
+    (leaf gitignore-mode     :ensure t)
+    (leaf gh                 :ensure t)
+    (leaf github-pullrequest :ensure t)
+
+    (leaf git-messenger
+      :ensure t
+      :bind (("C-x v p" . git-messenger:popup-message)))
+
+    (leaf magit
+      :ensure t
+      :bind (("M-g s" . magit-status)))
+
+    (leaf git-timemachine
+      :doc "Walk through git revisions of a file"
+      :doc "
+p Visit previous historic version
+n Visit next historic version
+w Copy the abbreviated hash of the current historic version
+W Copy the full hash of the current historic version
+g Goto nth revision
+t Goto revision by selected commit message
+q Exit the time machine.
+b Run magit-blame on the currently visited revision (if magit available).
+c Show current commit using magit (if magit available).
+"
+      :ensure t
+      :bind (("M-g t" . git-timemachine-toggle)))
+
+    (leaf diffview
+      :doc "View diffs in side-by-side format"
+      :ensure t))
+
   (leaf simple-httpd :ensure t)
 
   (leaf macrostep
