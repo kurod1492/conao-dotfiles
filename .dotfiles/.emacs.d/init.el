@@ -500,6 +500,98 @@
                   (("<\\([[:alnum:]-]+\\)>") . ("\\1"))))
              (which-key-mode . t)))
 
+  (leaf avy
+    :ensure t
+    :bind (("M-o a a" . avy-goto-word-1)
+           ("M-o a c" . avy-goto-char-2))
+    :config
+    (leaf ace-link
+      :doc "Quickly follow links"
+      :doc "
+(ace-link-setup-default) will bind `o' to
+  `ace-link-info'         in Info-mode
+  `ace-link-help'         in help-mode
+  `ace-link-woman'        in woman-mode
+  `ace-link-eww'          in eww-mode
+  `ace-link-compilation'  in compilation-mode
+  `ace-link-custom'       in custom-mode-map"
+      :ensure t
+      :bind (:org-mode-map
+             ("M-o a l" . ace-link-org))
+      :config
+      (leaf ace-link
+        :disabled t
+        :after gnus
+        :bind ((:gnus-summary-mode-map
+                ("M-o a l" . ace-link-gnus))
+               (:gnus-article-mode-map
+                ("M-o a l" . ace-link-gnus))))
+      (ace-link-setup-default))
+
+    (leaf ace-window
+      :ensure t
+      :bind (("M-o a w" . ace-window))))
+
+  (leaf ivy
+    :ensure t
+    :custom ((ivy-re-builders-alist . '((t      . ivy--regex-fuzzy)
+                                        (swiper . ivy--regex-plus)))
+
+             (ivy-mode     . t)
+             (counsel-mode . t))
+    :init
+    (leaf *ivy-ui-requirements
+      :config
+      (leaf swiper :ensure t)
+      (leaf counsel :ensure t))
+    :bind (("C-s" . swiper))
+    :custom ((ivy-initial-inputs-alist   . nil)
+             (counsel-yank-pop-separator . "\n----------\n")
+             (counsel-grep-base-command  . "ag -S --noheading --nocolor --nofilename --numbers '%s' %s"))
+    :config
+    (leaf *other-ivy-packages
+      :config
+      (leaf ivy-hydra
+        :doc "Additional key bindings for Ivy"
+        :ensure t
+        :bind (("C-c i i" . hydra-ivy/body)))
+
+      (leaf ivy-xref
+        :doc "Ivy interface for xref results"
+        :ensure t
+        :custom ((xref-show-xrefs-function . #'ivy-xref-show-xrefs)))
+
+      (leaf ivy-rich
+        :doc "More friendly display transformer for ivy"
+        :ensure t
+        :custom ((ivy-rich-mode . t)))
+
+      (leaf ivy-posframe
+        :doc "Using posframe to show Ivy"
+        :when window-system
+        :ensure t
+        :custom ((ivy-height              . 40)
+                 (ivy-display-function    . #'ivy-posframe-display-at-frame-center)
+                 (ivy-posframe-parameters . '((left-fringe . 10))))
+        :config
+        (let ((inhibit-message t))
+          (ivy-posframe-enable))))
+
+    (leaf *ivy-integration
+      :config
+      ;; Integration with `projectile'
+      (with-eval-after-load 'projectile
+        (leaf counsel-projectile
+          :ensure t
+          :config (counsel-projectile-mode 1))
+        (custom-set-variables
+         '(projectile-completion-system 'ivy)))
+
+      ;; Integration with `magit'
+      (with-eval-after-load 'magit
+        (custom-set-variables
+         '(magit-completing-read-function 'ivy-completing-read)))))
+
   (leaf lsp-mode
     :url "https://github.com/emacs-lsp/lsp-mode#supported-languages"
     :url "https://github.com/MaskRay/ccls/wiki/lsp-mode#find-definitionsreferences"
