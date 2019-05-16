@@ -361,7 +361,7 @@
 
   (leaf origami
     :ensure t
-    :custom (global-origami-mode . t))
+    :custom ((global-origami-mode . t)))
 
   (leaf undo-tree
     :ensure t
