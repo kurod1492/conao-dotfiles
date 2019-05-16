@@ -862,7 +862,7 @@ c Show current commit using magit (if magit available).
     :config
     (leaf simple-httpd :ensure t)
     (leaf restclient :ensure t)
-    (leaf lingr :ensure t :require t)
+    (leaf lingr :ensure t :commands lingr-login)
 
     (leaf google-translate
       :ensure t
