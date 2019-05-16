@@ -868,7 +868,26 @@ c Show current commit using magit (if magit available).
       :ensure t
       :custom ((google-translate-default-source-language . "en")
                (google-translate-default-target-language . "ja"))
-      :bind (("C-c g" . google-translate-at-point))))
+      :bind (("C-c g" . google-translate-at-point)))
+
+    (leaf request
+      :doc "Compatible layer for URL request in Emacs"
+      :doc "http://tkf.github.io/emacs-request/"
+      :doc
+      (request
+       "https://api.github.com"
+       :parser 'json-read
+       :success (cl-function
+                 (lambda (&key data &allow-other-keys)
+                   (when data
+                     (with-current-buffer (get-buffer-create "*request demo*")
+                       (erase-buffer)
+                       (insert (pp-to-string data))
+                       (pop-to-buffer (current-buffer))))))
+       :complete (lambda (&rest _) (message "Finished!"))
+       :status-code '((400 . (lambda (&rest _) (message "Got 400.")))
+                      (418 . (lambda (&rest _) (message "Got 418.")))))
+      :ensure t))
 
   (leaf *grep-tools
     :config
@@ -906,25 +925,6 @@ c Show current commit using magit (if magit available).
       ;; :hook
       ;; ((neotree-mode imenu-list-minor-mode minimap-mode) . hide-mode-line-mode)
       )
-
-    (leaf request
-      :doc "Compatible layer for URL request in Emacs"
-      :doc "http://tkf.github.io/emacs-request/"
-      :doc
-      (request
-       "https://api.github.com"
-       :parser 'json-read
-       :success (cl-function
-                 (lambda (&key data &allow-other-keys)
-                   (when data
-                     (with-current-buffer (get-buffer-create "*request demo*")
-                       (erase-buffer)
-                       (insert (pp-to-string data))
-                       (pop-to-buffer (current-buffer))))))
-       :complete (lambda (&rest _) (message "Finished!"))
-       :status-code '((400 . (lambda (&rest _) (message "Got 400.")))
-                      (418 . (lambda (&rest _) (message "Got 418.")))))
-      :ensure t)
 
     (leaf macrostep
       :ensure t
