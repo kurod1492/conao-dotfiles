@@ -363,6 +363,10 @@
     :ensure t
     :custom (global-origami-mode . t))
 
+  (leaf undo-tree
+    :ensure t
+    :custom ((global-undo-tree-mode . t)))
+
   (leaf real-auto-save
     :ensure t
     :custom ((real-auto-save-interval . 0.3))
