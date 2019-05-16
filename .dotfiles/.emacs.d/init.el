@@ -255,7 +255,20 @@
 
   (leaf save-place-mode
     :doc "automatically save place in files"
-    :custom ((save-place-mode . t))))
+    :custom ((save-place-mode . t)))
+
+  (leaf dired
+    :custom ((dired-recursive-copies  . 'always)
+             (dired-recursive-deletes . 'always))
+    :config
+    (leaf dired-x
+      :require t)
+    (leaf wdired
+      :bind (:dired-mode-map
+             ("r" . wdired-change-to-wdired-mode)))
+    (leaf dired-filter
+      :ensure t
+      :hook ((dired-mode-hook . dired-filter-mode)))))
 
 
 (leaf minor-mode
