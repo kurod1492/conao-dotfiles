@@ -56,11 +56,15 @@ update:
 	-find site-lisp -depth 1 -type d | \
 	  xargs -n1 -P$(P) -t -I^ bash -c \
 	    "cd ^; git pull origin \$$(git symbolic-ref --short HEAD)"
+	find local -depth 2 -type d -name site-lisp | xargs rm -rf
+	$(MAKE)
 
 unshallow:
 	-find site-lisp -depth 1 -type d | \
 	  xargs -n1 -P$(P) -t -I^ bash -c \
 	    "cd ^; git fetch --unshallow"
+	find local -depth 2 -type d -name site-lisp | xargs rm -rf
+	$(MAKE)
 
 clean:
 	-rm -rf local
