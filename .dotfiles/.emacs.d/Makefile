@@ -33,7 +33,7 @@ build: $(EMACS_LST:%=local/%/conf.el) $(EMACS_LST:%=local/%/site-lisp) $(EMACS_L
 
 local/%/conf.el: conf.el
 	cp $< $@
-	-type emacs-$* > /dev/null && \
+	-type emacs-$* > /dev/null 2>&1 && \
 	  cd $(@D); emacs-$* -Q --batch -f barch-byte-compile $(@F)
 
 ####################
@@ -46,7 +46,7 @@ local/%/latex-math-preview-cache:
 local/%/site-lisp: $(DEV_PKGS:%=site-lisp/%)
 	cp -rf site-lisp $@
 	find $@ -name '*.elc' | xargs rm -rf
-	-type emacs-$* > /dev/null && \
+	-type emacs-$* > /dev/null 2>&1 && \
 	  find $@ -depth 1 -type d |
 	    xargs bash -c -I^ \
 	      "cd ^; [ -e Makefile ] && make EMACS=emacs-$*"
