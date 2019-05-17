@@ -34,7 +34,7 @@ build: $(EMACS_LST:%=local/%/conf.el) $(EMACS_LST:%=local/%/site-lisp) $(EMACS_L
 local/%/conf.el: conf.el
 	cp $< $@
 	-type emacs-$* > /dev/null 2>&1 && \
-	  cd $(@D); emacs-$* -Q --batch -f barch-byte-compile $(@F)
+	  cd $(@D); emacs-$* -Q --batch -f batch-byte-compile $(@F)
 
 ####################
 
