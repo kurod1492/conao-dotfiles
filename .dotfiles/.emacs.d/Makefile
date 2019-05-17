@@ -58,8 +58,10 @@ update:
 	  xargs -n1 -P$(P) -t -I^ bash -c \
 	    "cd ^; git pull origin \$$(git symbolic-ref --short HEAD)"
 
-unshallow: $(REPOS:%=.make-unshallow-%)
-	$(MAKE)
+unshallow:
+	-find site-lisp -depth 1 -type d | \
+	  xargs -n1 -P$(P) -t -I^ bash -c \
+	    "cd ^; git fetch --unshallow"
 
 .make-update-%:
 	@$(call ECHO_BLUE,"git pull origin (on $*)","\n","")
