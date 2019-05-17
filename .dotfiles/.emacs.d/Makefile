@@ -98,48 +98,7 @@ site-lisp/%:
 	  git clone https://github.com/conao3/dotfiles.git $@ \
 	fi
 
-##########
-_TARGETDIR = $(shell echo $@ | cut -d '/' -f 1,2)
-_BYTECOMP = --batch -f batch-byte-compile $(<F)
-$(LOCAL_MIXELCFILES): $(LOCAL_MIXFILES) $(REPODIRS)
-	@$(call ECHO_MAGENTA,"compile $@...","\n","")
-	-ln -sf $(shell readlink $<) $(@D)/
-	-cd $(_TARGETDIR); $(call LOCAL_EMACS,2) $(REPODIRS:%=-L %) $(_BYTECOMP)
-	-cp $(<:%el=%elc) $@
-
-$(LOCAL_MIXFILES): $(MIXFILE)
-	ln -fs ../$(<F) $@
-
-##########
-define build_repo
-$(addsuffix /$(LISPDIR)/$1, $(LOCALDIRS)): $(LISPDIR)/$1
-	@$$(call ECHO_MAGENTA,"compile $$@...","\n","")
-	-rm -rf $$@
-	cp -rf $$(LISPDIR)/$$(@F) $$@
-	-EMACS=$$(call LOCAL_EMACS,2) $$(MAKE) -C $$@
-endef
-$(foreach repo,$(REPOS),$(eval $(call build_repo,$(repo))))
-
-##########
-$(LOCAL_SNIPPETS): $(SNIPPETDIR)
-	ln -s ../../$(@F) $(LOCALDIR)/$(call STRCUTREV,$@,'/',1)/
-
-$(LOCAL_TEMPLETES): $(TEMPLETEDIR)
-	ln -s ../../$(@F) $(LOCALDIR)/$(call STRCUTREV,$@,'/',1)/
-
-$(LOCAL_TEXCACHES): $(TEXCACHEDIR)
-	ln -s ../../$(@F) $(LOCALDIR)/$(call STRCUTREV,$@,'/',1)/
-
-#################### support jobs
-##########
-$(MIXFILE): $(CONFFILES)
-	cat $^ > $(MIXRAWFILE)
-	cat $(MIXRAWFILE) | sed -e $(SED_MIXFILE) > $(MIXFILE)
-	echo "(provide 'conao-mixed)" >> $(MIXFILE)
-
-$(REPODIRS):
-	@$(call ECHO_MAGENTA,"git clone $(REMOTE)/$(@F)","\n","")
-	git clone --depth 1 $(REMOTE)/$(@F) $@
+##############################
 
 # .make-update-. is update dotfiles(root) repository.
 update: $(REPOS:%=.make-update-%) .make-update-.
