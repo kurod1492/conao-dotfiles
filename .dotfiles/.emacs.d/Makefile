@@ -15,6 +15,9 @@ EMACS_LST  += 26.0 26.1 26.2
 EMACS_LST  += 27.0
 DIRS := site-lisp local $(EMACS_LST:%=local/%/site-lisp)
 
+# xargs parallel option
+P ?= 8
+
 ##################################################
 
 .PHONY: all test build clean
@@ -49,8 +52,11 @@ site-lisp/%:
 ##############################
 
 # .make-update-. is update dotfiles(root) repository.
-update: $(REPOS:%=.make-update-%) .make-update-.
-	$(MAKE)
+update:
+	git pull origin $$(git symbolic-ref --short HEAD)
+	-find site-lisp -depth 1 -type d | \
+	  xargs -n1 -P$(P) -t -I^ bash -c \
+	    "cd ^; git pull origin \$$(git symbolic-ref --short HEAD)"
 
 unshallow: $(REPOS:%=.make-unshallow-%)
 	$(MAKE)
