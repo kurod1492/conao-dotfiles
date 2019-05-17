@@ -144,7 +144,11 @@
 
     (leaf orglyth
       :load-path `,(locate-user-emacs-file "site-lisp/orglyth.el")
-      :require t orglyth-html orglyth-latex)))
+      :require t orglyth-html orglyth-latex)
+
+    (leaf solarized-theme
+      :load-path `,(locate-user-emacs-file "site-lisp/solarized-theme")
+      :require t)))
 
 
 (leaf *reference-packages
@@ -234,62 +238,6 @@
     :doc "revert buffers when files on disk change"
     :custom ((auto-revert-interval . 1)
              (global-auto-revert-mode . t)))
-
-  (leaf custom
-    :when window-system
-    :custom-face `,(let ((background     "#2b303b")
-                         (gutters        "#343d46")
-                         (gutter-fg      "#65737e")
-                         (gutters-active "#4f5b66")
-                         (builtin        "#d08770")
-                         (foreground     "#c0c5ce")
-                         (invisibles     "#65737e")
-                         (lineHighlight  "#343d46")
-                         (selection      "#4f5b66")
-                         (text           "#c0c5ce")
-                         (comments       "#65737e")
-                         (punctuation    "#c0c5ce")
-                         (delimiters     "#c0c5ce")
-                         (operators      "#c0c5ce")
-                         (keywords       "#b48ead")
-                         (variables      "#bf616a")
-                         (functions      "#8fa1b3")
-                         (methods        "#8fa1b3")
-                         (strings        "#a3be8c")
-                         (constants      "#d08770")
-                         (white          "#ffffff"))
-
-                     `(;; Default colors
-                       (default            . '((t (:foreground ,text       :background ,background))))
-                       (region             . '((t (:background ,selection))))
-                       (cursor             . '((t (:background ,white))))
-                       (fringe             . '((t (:background ,background :foreground ,white))))
-                       (linum              . '((t (:background ,background :foreground ,gutter-fg))))
-                       (mode-line          . '((t (:foreground ,white      :background ,gutters-active))))
-                       (mode-line-inactive . '((t (:foreground ,gutter-fg  :background ,gutters))))
-
-                       ;; Font lock faces
-                       (font-lock-keyword-face           . '((t (:foreground ,keywords))))
-                       (font-lock-type-face              . '((t (:foreground ,punctuation))))
-                       (font-lock-constant-face          . '((t (:foreground ,constants))))
-                       (font-lock-variable-name-face     . '((t (:foreground ,variables))))
-                       (font-lock-builtin-face           . '((t (:foreground ,builtin))))
-                       (font-lock-string-face            . '((t (:foreground ,strings))))
-                       (font-lock-comment-face           . '((t (:foreground ,comments))))
-                       (font-lock-comment-delimiter-face . '((t (:foreground ,delimiters))))
-                       (font-lock-function-name-face     . '((t (:foreground ,functions))))
-                       (font-lock-doc-string-face        . '((t (:foreground ,strings))))))
-    ;; :config
-    ;; (load-theme 'wombat)
-    ;; (leaf monokai-theme :ensure t
-    ;;       :config (load-theme 'monokai t))
-    ;; (leaf flucui-themes :ensure t
-    ;;       :config (flucui-themes-load-style 'dark))
-    ;; (leaf zenburn-theme :ensure t
-    ;;       :config (load-theme 'zenburn t))
-    ;; (leaf sublime-themes :ensure t
-    ;;   :config (load-theme 'brin t))
-    )
 
   (leaf paren
     :custom ((show-paren-delay . 0.0)
