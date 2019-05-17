@@ -54,17 +54,22 @@ EMACS_KEY2VAL  = $(call KEY2VAL,$(EMACS_DIC),$1)
 EMACS_VAL2KEY  = $(call VAL2KEY,$(EMACS_DIC),$1)
 LOCAL_EMACS    = $(call EMACS_VAL2KEY,$(call STRCUTREV,$@,'/',$1))
 
+PKGS := leaf.el orglyth.el cort-test.el seml-mode.el po-mode.el navbar.el
+PKGS  += feather.el feather-server.el leaf-browser.el
+
+EMACS_LST := 22.0 22.1 22.2 22.3
+EMACS_LST  += 23.0 23.1 23.2 23.3 23.4
+EMACS_LST  += 24.0 24.1 24.2 24.3 24.4 24.5
+EMACS_LST  += 25.0 25.1 25.2 25.3
+EMACS_LST  += 26.0 26.1 26.2
+EMACS_LST  += 27.0
+DIRS := site-lisp local $(EMACS_LST:%=local/%/site-lisp)
 
 ##################################################
 
 .PHONY: all test build clean
 all: $(DIRS) build
 	@$(call ECHO_YELLOW,"make job:all completed!!","\n","\n")
-
-test:
-	echo $(call MAKEDIC,$(ALL_EMACS),$(EMACS_VERS))
-	@echo $(EMACS_DIC)
-	@echo $(call VAL2KEY,$(EMACS_DIC),22.1)
 
 $(DIRS):
 	mkdir -p $@
