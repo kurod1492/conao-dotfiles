@@ -27,9 +27,7 @@ all: $(DIRS) build
 $(DIRS):
 	mkdir -p $@
 
-build: $(EMACS_LST:%=local/%/conf.el)
-bulid: $(EMACS_LST:%=local/%/site-lisp)
-build: $(EMACS_LST:%=local/%/latex-math-preview-cache)
+build: $(EMACS_LST:%=local/%/conf.el) $(EMACS_LST:%=local/%/site-lisp) $(EMACS_LST:%=local/%/latex-math-preview-cache) $(EMACS_LST:%=local/%/snippets) $(EMACS_LST:%=local/%/templete)
 
 ##############################
 
@@ -40,8 +38,8 @@ local/%/conf.el: conf.el
 
 ####################
 
-local/%/latex-math-preview-cache:
-	ln -s ../../latex-math-preview-cache $@
+local/%/latex-math-preview-cache local/%/snippets local/%/templete:
+	ln -s ../../$(@D) $@
 
 ####################
 
