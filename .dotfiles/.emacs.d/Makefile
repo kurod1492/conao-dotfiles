@@ -47,9 +47,9 @@ local/%/site-lisp: $(DEV_PKGS:%=site-lisp/%)
 	cp -rf site-lisp $@
 	find $@ -name '*.elc' | xargs rm -rf
 	-type emacs-$* > /dev/null 2>&1 && \
-	  find $@ -depth 1 -type d |
-	    xargs -n1 -t -I^ bash -c \
-	      "cd ^; [ -e Makefile ] && make EMACS=emacs-$*"
+	  find $@ -depth 1 -type d | \
+	    xargs -n1 -t -I%% bash -c \
+	      "cd %%; [ -e Makefile ] && make EMACS=emacs-$*"
 
 site-lisp/%:
 	if [ -d ~/dev/repos/$* ]; then \
@@ -63,15 +63,15 @@ site-lisp/%:
 update:
 	git pull origin $$(git symbolic-ref --short HEAD)
 	-find site-lisp -depth 1 -type d | \
-	  xargs -n1 -P$(P) -t -I^ bash -c \
-	    "cd ^; git pull origin \$$(git symbolic-ref --short HEAD)"
+	  xargs -n1 -P$(P) -t -I%% bash -c \
+	    "cd %%; git pull origin \$$(git symbolic-ref --short HEAD)"
 	find local -depth 2 -type d -name site-lisp | xargs rm -rf
 	$(MAKE)
 
 unshallow:
 	-find site-lisp -depth 1 -type d | \
-	  xargs -n1 -P$(P) -t -I^ bash -c \
-	    "cd ^; git fetch --unshallow"
+	  xargs -n1 -P$(P) -t -I%% bash -c \
+	    "cd %%; git fetch --unshallow"
 	find local -depth 2 -type d -name site-lisp | xargs rm -rf
 	$(MAKE)
 
