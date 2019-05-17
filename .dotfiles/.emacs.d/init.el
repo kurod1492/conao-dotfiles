@@ -466,8 +466,14 @@
 
   (leaf company
     :ensure t
+    :bind (:company-active-map
+           ("M-n" . nil)
+           ("M-p" . nil)
+           ("C-n" . company-select-next)
+           ("C-p" . company-select-previous))
     :custom ((company-idle-delay            . 0)
              (company-minimum-prefix-length . 1)
+             (company-transformers          . '(company-sort-by-occurrence))
              (global-company-mode . t))
     :config
     (leaf company-box
@@ -480,7 +486,19 @@
       :custom ((company-quickhelp-delay . 0.8))
       :bind (:company-active-map
              ("M-h" . company-quickhelp-manual-begin))
-      :hook ((global-company-mode-hook . company-quickhelp-mode))))
+      :hook ((global-company-mode-hook . company-quickhelp-mode)))
+
+    (leaf company-math
+      :ensure t
+      :preface
+      (defun conao3/latex-mode-setup ()
+        (setq-local company-backends
+                    (append '((company-math-symbols-latex
+                               company-math-symbols-unicode
+                               company-latex-commands))
+                            company-backends)))
+      :hook ((org-mode-hook . conao3/latex-mode-setup)
+             (tex-mode-hook . conao3/latex-mode-setup))))
 
   (leaf yasnippet
     :ensure t
