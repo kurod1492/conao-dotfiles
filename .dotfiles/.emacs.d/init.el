@@ -482,7 +482,8 @@
   (leaf real-auto-save
     :ensure t
     :custom ((real-auto-save-interval . 0.3))
-    :hook ((find-file-hook . real-auto-save-mode)))
+    :hook ((find-file-hook . real-auto-save-mode))
+    :config (real-auto-save-activate-advice))
 
   (leaf powerline
     :disabled t
