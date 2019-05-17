@@ -51,7 +51,6 @@ site-lisp/%:
 
 ##############################
 
-# .make-update-. is update dotfiles(root) repository.
 update:
 	git pull origin $$(git symbolic-ref --short HEAD)
 	-find site-lisp -depth 1 -type d | \
@@ -62,14 +61,6 @@ unshallow:
 	-find site-lisp -depth 1 -type d | \
 	  xargs -n1 -P$(P) -t -I^ bash -c \
 	    "cd ^; git fetch --unshallow"
-
-.make-update-%:
-	@$(call ECHO_BLUE,"git pull origin (on $*)","\n","")
-	cd $(LISPDIR)/$*; git pull origin $(call CURRENT_BRANCH,$(LISPDIR)/$*)
-
-.make-unshallow-%:
-	@$(call ECHO_BLUE,"git fetch --unshallow (on $*)","\n","")
-	-cd $(LISPDIR)/$*; git fetch --unshallow
 
 clean:
 	-rm -rf local
