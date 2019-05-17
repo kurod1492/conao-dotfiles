@@ -13,7 +13,7 @@ EMACS_LST  += 24.0 24.1 24.2 24.3 24.4 24.5
 EMACS_LST  += 25.0 25.1 25.2 25.3
 EMACS_LST  += 26.0 26.1 26.2
 EMACS_LST  += 27.0
-DIRS := site-lisp local $(EMACS_LST:%=local/%/site-lisp)
+DIRS := site-lisp local
 
 # xargs parallel option
 P ?= 8
