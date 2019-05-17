@@ -27,12 +27,21 @@ all: $(DIRS) build
 $(DIRS):
 	mkdir -p $@
 
-build: $(EMACS_LST:%=local/%/site-lisp) $(EMACS_LST:%=local/%/latex-math-preview-cache)
+build: $(EMACS_LST:%=local/%/conf.el) $(EMACS_LST:%=local/%/site-lisp) $(EMACS_LST:%=local/%/latex-math-preview-cache)
 
 ##############################
 
+local/%/conf.el: conf.el
+	cp $< $@
+	-type emacs-$* > /dev/null && \
+	  cd $(@D); emacs-$* -Q --batch -f barch-byte-compile $(@F)
+
+####################
+
 local/%/latex-math-preview-cache:
 	ln -s ../../latex-math-preview-cache $@
+
+####################
 
 local/%/site-lisp: $(DEV_PKGS:%=site-lisp/%)
 	cp -rf site-lisp $@
