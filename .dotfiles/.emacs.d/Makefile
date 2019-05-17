@@ -116,5 +116,5 @@ unshallow: $(REPOS:%=.make-unshallow-%)
 	-cd $(LISPDIR)/$*; git fetch --unshallow
 
 clean:
-	-rm -rf $(DIRS)
+	-rm -rf local
 	@$(call ECHO_CYAN,"make job:clean completed!!","\n","\n")
