@@ -76,11 +76,17 @@ all: $(DIRS) build
 $(DIRS):
 	mkdir -p $@
 
-build: clone
+build: $(EMACS_LST:%=local/%/site-lisp)
 
 ##############################
 
-clone: $(DEV_PKGS:%=site-lisp/%)
+local/%/site-lisp: $(DEV_PKGS:%=site-lisp/%)
+	cp -rf site-lisp $@
+	find $@ -name '*.elc' | xargs rm -rf
+	-type emacs-$* > /dev/null && \
+	  find $@ -depth 1 -type d |
+	    xargs bash -c -I^ \
+	      "cd ^; [ -e Makefile ] && make EMACS=emacs-$*"
 
 site-lisp/%:
 	if [ -d ~/dev/repos/$* ]; then \
