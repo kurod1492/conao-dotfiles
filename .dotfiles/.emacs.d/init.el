@@ -466,7 +466,8 @@
 
   (leaf company
     :ensure t
-    :custom ((company-minimum-prefix-length . 1)
+    :custom ((company-idle-delay            . 0)
+             (company-minimum-prefix-length . 1)
              (global-company-mode . t))
     :config
     (leaf company-box
