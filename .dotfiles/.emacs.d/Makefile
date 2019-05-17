@@ -48,14 +48,14 @@ local/%/site-lisp: $(DEV_PKGS:%=site-lisp/%)
 	find $@ -name '*.elc' | xargs rm -rf
 	-type emacs-$* > /dev/null 2>&1 && \
 	  find $@ -depth 1 -type d |
-	    xargs bash -c -I^ \
+	    xargs -n1 -t -I^ bash -c \
 	      "cd ^; [ -e Makefile ] && make EMACS=emacs-$*"
 
 site-lisp/%:
 	if [ -d ~/dev/repos/$* ]; then \
-	  ln -s ~/dev/repos/$* $@ \
+	  ln -s ~/dev/repos/$* $@; \
 	else \
-	  git clone https://github.com/conao3/dotfiles.git $@ \
+	  git clone https://github.com/conao3/dotfiles.git $@; \
 	fi
 
 ##############################
