@@ -54,8 +54,10 @@ EMACS_KEY2VAL  = $(call KEY2VAL,$(EMACS_DIC),$1)
 EMACS_VAL2KEY  = $(call VAL2KEY,$(EMACS_DIC),$1)
 LOCAL_EMACS    = $(call EMACS_VAL2KEY,$(call STRCUTREV,$@,'/',$1))
 
-PKGS := leaf.el orglyth.el cort-test.el seml-mode.el po-mode.el navbar.el
-PKGS  += feather.el feather-server.el leaf-browser.el
+DEV_PKGS := leaf.el orglyth.el cort-test.el seml-mode.el po-mode.el navbar.el
+DEV_PKGS  += feather.el feather-server.el leaf-browser.el
+
+CLONE_URLS :=
 
 EMACS_LST := 22.0 22.1 22.2 22.3
 EMACS_LST  += 23.0 23.1 23.2 23.3 23.4
@@ -74,9 +76,19 @@ all: $(DIRS) build
 $(DIRS):
 	mkdir -p $@
 
-build: $(LOCAL_MIXELCFILES) $(LOCAL_REPOS) $(LOCAL_SNIPPETS) $(LOCAL_TEMPLETES) $(LOCAL_TEXCACHES)
+build: clone
 
-#################### main jobs
+##############################
+
+clone: $(DEV_PKGS:%=site-lisp/%)
+
+site-lisp/%:
+	if [ -d ~/dev/repos/$* ]; then \
+	  ln -s ~/dev/repos/$* $@ \
+	else \
+	  git clone https://github.com/conao3/dotfiles.git $@ \
+	fi
+
 ##########
 _TARGETDIR = $(shell echo $@ | cut -d '/' -f 1,2)
 _BYTECOMP = --batch -f batch-byte-compile $(<F)
