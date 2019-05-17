@@ -482,6 +482,7 @@
       :hook ((company-mode-hook . company-box-mode)))
 
     (leaf company-quickhelp
+      :when (display-graphic-p)
       :ensure t
       :custom ((company-quickhelp-delay . 0.8))
       :bind (:company-active-map
