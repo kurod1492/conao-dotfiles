@@ -38,7 +38,11 @@ local/%/conf.el: conf.el
 
 ####################
 
-local/%/latex-math-preview-cache local/%/snippets local/%/templete:
+local/%/latex-math-preview-cache:
+	ln -s ../../$(@F) $@
+local/%/snippets:
+	ln -s ../../$(@F) $@
+local/%/templete:
 	ln -s ../../$(@F) $@
 
 ####################
