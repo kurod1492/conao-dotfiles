@@ -147,7 +147,7 @@
       :require t orglyth-html orglyth-latex)
 
     (leaf solarized-theme
-      :load-path `,(locate-user-emacs-file "site-lisp/solarized-theme")
+      :load-path `,(locate-user-emacs-file "site-lisp/solarized-emacs")
       :require t)))
 
 
