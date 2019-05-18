@@ -150,8 +150,30 @@
       :load-path `,(locate-user-emacs-file "site-lisp/solarized-emacs")
       :init (leaf dash :ensure t)
       :require t
+      :custom ((solarized-use-less-bold  . t)
+               (solarized-scale-org-headlines . nil)
+               (solarized-distinct-fringe-background . t))
       :config
-      (load-theme 'solarized-dark t))))
+      (create-solarized-theme-with-pallet 'dark 'solarized-wombat-dark
+        '("#242424" "#f6f3e8"           ; base03 (02 01 00 0 1 2) base3
+          "#e5c06d" "#ddaa6f"           ; yellow orange
+          "#ffb4ac" "#e5786d"           ; red    magenta
+          "#834c98" "#a4b5e6"           ; violet blue
+          "#7ec98f" "#8ac6f2"           ; cyan   green
+          )
+        (lambda ()
+          (custom-theme-set-faces
+           theme-name
+           `(default ((,class (:foreground ,(solarized-color-blend base03 base3 0.15 2) :background ,base02))))
+           `(font-lock-builtin-face ((,class (:foreground ,magenta))))
+           `(font-lock-constant-face ((,class (:foreground ,blue))))
+           `(mode-line
+             ((,class (:foreground ,base2 :background ,(solarized-color-blend base03 base3 0.85 2)))))
+           `(mode-line-inactive
+             ((,class (:foreground ,base00 :background ,base03))))
+           `(mode-line-buffer-id ((,class (:foreground ,base3 :weight bold))))
+           `(minibuffer-prompt ((,class (:foreground ,base1)))))))
+      (enable-theme 'solarized-wombat-dark))))
 
 
 (leaf *reference-packages
