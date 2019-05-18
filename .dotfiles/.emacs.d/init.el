@@ -149,7 +149,9 @@
     (leaf solarized-theme
       :load-path `,(locate-user-emacs-file "site-lisp/solarized-emacs")
       :init (leaf dash :ensure t)
-      :require t)))
+      :require t
+      :config
+      (load-theme 'solarized-dark t))))
 
 
 (leaf *reference-packages
