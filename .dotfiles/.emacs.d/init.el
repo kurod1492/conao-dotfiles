@@ -156,6 +156,14 @@
       :hook ((kill-buffer-hook . phantom-inline-comment-save-data)
              (find-file-hook   . phantom-inline-comment-auto-restore-mode)))
 
+    (leaf annotate
+      :load-path `,(locate-user-emacs-file "site-lisp/annotate.el")
+      :custom ((annotate-mode . t))
+      :commands annotate-mode
+      :bind (("C-c a a" . annotate-annotate)
+             ("C-c a ]" . annotate-next-annotation)
+             ("C-c a [" . annotate-previous-anotation)))
+
     (leaf solarized-theme
       :load-path `,(locate-user-emacs-file "site-lisp/solarized-emacs")
       :init (leaf dash :ensure t)

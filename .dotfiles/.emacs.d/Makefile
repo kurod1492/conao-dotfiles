@@ -4,7 +4,7 @@ include Makefunc.mk
 
 DEV_PKGS := leaf.el orglyth.el cort-test.el seml-mode.el po-mode.el navbar.el
 DEV_PKGS  += feather.el feather-server.el leaf-browser.el solarized-emacs
-DEV_PKGS  += phantom-inline-comment
+DEV_PKGS  += phantom-inline-comment annotate.el
 
 CLONE_URLS :=
 
