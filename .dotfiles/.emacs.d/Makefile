@@ -48,7 +48,7 @@ local/%/templete:
 
 ####################
 
-local/%/site-lisp: $(DEV_PKGS:%=site-lisp/%)
+local/%/site-lisp: .make-clone-site-lisp $(DEV_PKGS:%=site-lisp/%)
 	cp -rf site-lisp $@
 	find $@ -name '*.elc' | xargs rm -rf
 	-type emacs-$* > /dev/null 2>&1 && \
@@ -62,6 +62,9 @@ site-lisp/%:
 	else \
 	  git clone https://github.com/conao3/$*.git $@; \
 	fi
+
+.make-clone-site-lisp:
+	cd site-lisp; echo $(CLONE_URLS) | xargs -n1 -t git clone
 
 ##############################
 
