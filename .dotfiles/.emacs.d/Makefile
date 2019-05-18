@@ -3,7 +3,7 @@ all:
 include Makefunc.mk
 
 DEV_PKGS := leaf.el orglyth.el cort-test.el seml-mode.el po-mode.el navbar.el
-DEV_PKGS  += feather.el feather-server.el leaf-browser.el
+DEV_PKGS  += feather.el feather-server.el leaf-browser.el solarized-emacs
 
 CLONE_URLS :=
 
