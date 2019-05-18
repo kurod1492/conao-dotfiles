@@ -483,6 +483,7 @@
   (leaf real-auto-save
     :ensure t
     :custom ((real-auto-save-interval . 0.3))
+    :commands real-auto-save-activate-advice
     :hook ((find-file-hook . real-auto-save-mode))
     :config (real-auto-save-activate-advice))
 
