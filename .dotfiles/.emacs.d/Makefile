@@ -13,7 +13,7 @@ EMACS_LST  += 24.0 24.1 24.2 24.3 24.4 24.5
 EMACS_LST  += 25.0 25.1 25.2 25.3
 EMACS_LST  += 26.0 26.1 26.2
 EMACS_LST  += 27.0
-DIRS := site-lisp local $(EMACS_LST:%=local/%)
+DIRS := local $(EMACS_LST:%=local/%)
 
 # xargs parallel option
 P ?= 8
@@ -48,7 +48,7 @@ local/%/templete:
 
 ####################
 
-local/%/site-lisp: .make-clone-site-lisp $(DEV_PKGS:%=site-lisp/%)
+local/%/site-lisp: site-lisp $(DEV_PKGS:%=site-lisp/%)
 	cp -rf site-lisp $@
 	find $@ -name '*.elc' | xargs rm -rf
 	-type emacs-$* > /dev/null 2>&1 && \
@@ -63,8 +63,9 @@ site-lisp/%:
 	  git clone https://github.com/conao3/$*.git $@; \
 	fi
 
-.make-clone-site-lisp:
-	cd site-lisp; echo $(CLONE_URLS) | xargs -n1 -t git clone
+site-lisp:
+	mkdir $@
+	cd $@; echo $(CLONE_URLS) | xargs -n1 -t git clone
 
 ##############################
 
