@@ -60,7 +60,7 @@ site-lisp/%:
 	if [ -d ~/dev/repos/$* ]; then \
 	  ln -s ~/dev/repos/$* $@; \
 	else \
-	  git clone https://github.com/conao3/dotfiles.git $@; \
+	  git clone https://github.com/conao3/$*.git $@; \
 	fi
 
 ##############################
