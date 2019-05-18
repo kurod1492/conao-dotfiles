@@ -21,6 +21,7 @@ P ?= 8
 ##################################################
 
 .PHONY: all test build clean
+.PRECIOUS: site-lisp/%
 all: $(DIRS) build
 	@$(call ECHO_YELLOW,"make job:all completed!!","\n","\n")
 
