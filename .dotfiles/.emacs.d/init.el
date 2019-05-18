@@ -146,6 +146,14 @@
       :load-path `,(locate-user-emacs-file "site-lisp/orglyth.el")
       :require t orglyth-html orglyth-latex)
 
+    (leaf phantom-inline-comment
+      :load-path `,(locate-user-emacs-file "site-lisp/phantom-inline-comment")
+      :init (leaf popwin :ensure t)
+      :bind (("C-c b b" . phantom-inline-comment)
+             ("C-c b d" . phantom-inline-comment-delete))
+      :custom ((phantom-inline-comment-auto-save-mode . t))
+      :hook ((find-file-hook . phantom-inline-comment-auto-restore-mode)))
+
     (leaf solarized-theme
       :load-path `,(locate-user-emacs-file "site-lisp/solarized-emacs")
       :init (leaf dash :ensure t)
