@@ -167,6 +167,7 @@
            `(default ((,class (:foreground ,(solarized-color-blend base03 base3 0.15 2) :background ,base02))))
            `(font-lock-builtin-face ((,class (:foreground ,magenta))))
            `(font-lock-constant-face ((,class (:foreground ,blue))))
+           `(font-lock-comment-face ((,class (:foreground ,base00))))
            `(mode-line
              ((,class (:foreground ,base2 :background ,(solarized-color-blend base03 base3 0.85 2)))))
            `(mode-line-inactive
