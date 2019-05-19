@@ -164,6 +164,13 @@
              ("C-c a ]" . annotate-next-annotation)
              ("C-c a [" . annotate-previous-anotation)))
 
+    (leaf point-history
+      :load-path `,(locate-user-emacs-file "site-lisp/point-history")
+      :custom ((point-history-mode . t))
+      :bind (("C-c b p" . point-history-show)
+             (:point-history-show-mode-map
+              ("q" . point-history-close))))
+
     (leaf solarized-theme
       :load-path `,(locate-user-emacs-file "site-lisp/solarized-emacs")
       :init (leaf dash :ensure t)
@@ -749,7 +756,12 @@
                  (ivy-posframe-parameters . '((left-fringe . 10))))
         :config
         (let ((inhibit-message t))
-          (ivy-posframe-enable))))
+          (ivy-posframe-enable)))
+
+      (leaf ivy-point-history
+        :init (el-get-bundle SuzumiyaAoba/ivy-point-history)
+        :bind (("C-c b p" . ivy-point-history))
+        :require t))
 
     (leaf *ivy-integration
       :config
