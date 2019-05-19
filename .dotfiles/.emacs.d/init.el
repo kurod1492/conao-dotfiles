@@ -183,7 +183,7 @@
           (custom-theme-set-faces
            theme-name
            `(default ((,class (:foreground ,(solarized-color-blend base03 base3 0.15 2) :background ,base02))))
-           `(highlight ((,class (:background ,base01))))
+           `(highlight ((,class (:background ,violet))))
            `(font-lock-builtin-face ((,class (:foreground ,magenta))))
            `(font-lock-constant-face ((,class (:foreground ,blue))))
            `(font-lock-comment-face ((,class (:foreground ,base00))))
