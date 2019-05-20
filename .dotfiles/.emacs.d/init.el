@@ -104,6 +104,10 @@
 
 (leaf *conao3-packages
   :doc "elisp packages are developed by conao3"
+  :init (leaf *dependency
+	  :config
+	  (leaf dash :ensure t)
+	  (leaf popwin :ensure t))
   :config
   (leaf *melpa-packages
     :config
@@ -148,7 +152,6 @@
 
     (leaf phantom-inline-comment
       :load-path `,(locate-user-emacs-file "site-lisp/phantom-inline-comment")
-      :preface (leaf popwin :ensure t)
       :bind (("C-c b b" . phantom-inline-comment)
              ("C-c b d" . phantom-inline-comment-delete))
       :custom ((phantom-inline-comment-auto-save-mode    . t)
@@ -173,7 +176,6 @@
 
     (leaf solarized-theme
       :load-path `,(locate-user-emacs-file "site-lisp/solarized-emacs")
-      :init (leaf dash :ensure t)
       :require t
       :custom ((solarized-use-less-bold  . t)
                (solarized-scale-org-headlines . nil)
