@@ -148,7 +148,7 @@
 
     (leaf phantom-inline-comment
       :load-path `,(locate-user-emacs-file "site-lisp/phantom-inline-comment")
-      :init (leaf popwin :ensure t)
+      :preface (leaf popwin :ensure t)
       :bind (("C-c b b" . phantom-inline-comment)
              ("C-c b d" . phantom-inline-comment-delete))
       :custom ((phantom-inline-comment-auto-save-mode    . t)
@@ -180,7 +180,7 @@
                (solarized-distinct-fringe-background . t))
       :config
       (create-solarized-theme-with-pallet 'dark 'solarized-wombat-dark
-        '("#242424" "#f6f3e8"           ; base03 (02 01 00 0 1 2) base3
+        '("#2a2a29" "#f6f3e8"           ; base03 (02 01 00 0 1 2) base3
           "#e5c06d" "#ddaa6f"           ; yellow orange
           "#ffb4ac" "#e5786d"           ; red    magenta
           "#834c98" "#a4b5e6"           ; violet blue
@@ -189,7 +189,7 @@
         (lambda ()
           (custom-theme-set-faces
            theme-name
-           `(default ((,class (:foreground ,(solarized-color-blend base03 base3 0.15 2) :background ,base02))))
+           `(default ((,class (:foreground ,(solarized-color-blend base03 base3 0.15 2) :background ,base03))))
            `(highlight ((,class (:background ,violet))))
            `(font-lock-builtin-face ((,class (:foreground ,magenta))))
            `(font-lock-constant-face ((,class (:foreground ,blue))))
@@ -197,7 +197,7 @@
            `(mode-line
              ((,class (:foreground ,base2 :background ,(solarized-color-blend base03 base3 0.85 2)))))
            `(mode-line-inactive
-             ((,class (:foreground ,base00 :background ,base03))))
+             ((,class (:foreground ,base00 :background ,(solarized-color-blend base03 "black" 0.85 2)))))
            `(mode-line-buffer-id ((,class (:foreground ,base3 :weight bold))))
            `(minibuffer-prompt ((,class (:foreground ,base1)))))))
       (enable-theme 'solarized-wombat-dark))))
