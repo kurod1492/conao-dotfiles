@@ -576,6 +576,10 @@
                   (("<\\([[:alnum:]-]+\\)>") . ("\\1"))))
              (which-key-mode . t)))
 
+  (leaf mew
+    :ensure t
+    :custom ((read-mail-command . 'mew)))
+
   (leaf persp-mode
     :ensure t
     :custom `((persp-keymap-prefix                 . ,(kbd "C-c p"))
