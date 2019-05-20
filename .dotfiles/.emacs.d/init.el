@@ -155,9 +155,7 @@
       :bind (("C-c b b" . phantom-inline-comment)
              ("C-c b d" . phantom-inline-comment-delete))
       :custom ((phantom-inline-comment-auto-save-mode    . t)
-               (phantom-inline-comment-auto-restore-mode . t))
-      :hook ((kill-buffer-hook . phantom-inline-comment-save-data)
-             (find-file-hook   . phantom-inline-comment-auto-restore-mode)))
+               (phantom-inline-comment-auto-restore-mode . t)))
 
     (leaf annotate
       :load-path `,(locate-user-emacs-file "site-lisp/annotate.el")
