@@ -106,7 +106,10 @@
   :doc "elisp packages are developed by conao3"
   :init (leaf *dependency
 	  :config
+          ;; solarized
 	  (leaf dash :ensure t)
+
+          ;; phantom-inline-comment
 	  (leaf popwin :ensure t))
   :config
   (leaf *melpa-packages
