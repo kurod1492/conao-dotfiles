@@ -119,6 +119,7 @@
   (leaf *melpa-packages
     :config
     (leaf seml-mode
+      :when (version<= "25.1" emacs-version)
       :ensure t
       :custom ((seml-live-refresh-interval     . 0.35)
                (seml-live-refresh-url-variable . ":type/:var1/:var2")
@@ -139,6 +140,7 @@
       :require t)
 
     (leaf leaf-browser
+      :when (version<= "25.1" emacs-version)
       :load-path `,(locate-user-emacs-file "site-lisp/leaf-browser.el")
       :require t
       :custom ((lbrowser-root-dir . "~/.emacs.d/site-lisp/leaf-browser.el/")
@@ -154,6 +156,7 @@
       :require t)
 
     (leaf orglyth
+      :when (version<= "25.1" emacs-version)
       :load-path `,(locate-user-emacs-file "site-lisp/orglyth.el")
       :require t orglyth-html orglyth-latex)
 
@@ -180,6 +183,7 @@
               ("q" . point-history-close))))
 
     (leaf solarized-theme
+      :when (version<= "25.1" emacs-version)
       :load-path `,(locate-user-emacs-file "site-lisp/solarized-emacs")
       :require t
       :custom ((solarized-use-less-bold  . t)
@@ -433,6 +437,7 @@
            ("M-p" . flymake-goto-prev-error))
     :config
     (leaf flymake-diagnostic-at-point
+      :when (version<= "26.1" emacs-version)
       :ensure t
       :custom ((flymake-diagnostic-at-point-timer-delay . 0.1)
                (flymake-diagnostic-at-point-error-prefix . " ► ")
@@ -485,6 +490,7 @@
              (global-company-mode . t))
     :config
     (leaf company-box
+      :when (version<= "26.1" emacs-version)
       :ensure t
       :init (leaf all-the-icons :ensure t :require t)
       :hook ((company-mode-hook . company-box-mode)))
@@ -523,9 +529,12 @@
     (leaf yasnippet-snippets :ensure t)
     (leaf yatemplate :ensure t))
 
-  (leaf treemacs :ensure t)
+  (leaf treemacs
+    :when (version<= "25.2" emacs-version)
+    :ensure t)
 
   (leaf projectile
+    :when (version<= "25.1" emacs-version)
     :ensure t
     :bind (("M-o p" . projectile-command-map))
     :custom ((projectile-mode . t)))
@@ -709,6 +718,7 @@
   `ace-link-custom'       in custom-mode-map"
       :ensure t
       :bind (:org-mode-map
+             :package org
              ("M-o a l" . ace-link-org))
       :config
       (leaf ace-link
@@ -750,6 +760,7 @@
 
       (leaf ivy-xref
         :doc "Ivy interface for xref results"
+        :when (version<= "25.1" emacs-version)
         :ensure t
         :custom ((xref-show-xrefs-function . #'ivy-xref-show-xrefs)))
 
@@ -760,6 +771,7 @@
 
       (leaf ivy-posframe
         :doc "Using posframe to show Ivy"
+        :when (version<= "26.1" emacs-version)
         :when window-system
         :ensure t
         :custom ((ivy-height              . 40)
@@ -793,6 +805,7 @@
     :url "https://github.com/emacs-lsp/lsp-mode#supported-languages"
     :url "https://github.com/MaskRay/ccls/wiki/lsp-mode#find-definitionsreferences"
     :doc "lsp is language server protocol"
+    :when (version<= "25.1" emacs-version)
     :ensure t
     :custom (;; (lsp-inhibit-message . t)
              ;; (lsp-message-project-root-warning . t)
@@ -902,8 +915,12 @@
 
 (leaf *major-mode
   :config
-  (leaf plantuml-mode :ensure t)
-  (leaf polymode      :ensure t)
+  (leaf plantuml-mode
+    :when (version<= "25.1" emacs-version)
+    :ensure t)
+  (leaf polymode
+    :when (version<= "25.1" emacs-version)
+    :ensure t)
   (leaf yaml-mode     :ensure t)
   (leaf haskell-mode  :ensure t)
   (leaf fish-mode     :ensure t)
@@ -929,6 +946,7 @@
     (web-mode-hook . conao3/enable-tide))
 
   (leaf *clojure-modes
+    :when (version<= "25.1" emacs-version)
     :config
     (leaf clojure-mode  :ensure t)
     (leaf edn           :ensure t)
@@ -951,7 +969,7 @@
       (setq c-base-offset 4))
     :hook ((c-mode-common . conao3/c-mode-common)))
 
-  
+
   (leaf go-mode
     :ensure t
     :custom ((gofmt-command . "goimports"))
@@ -1001,7 +1019,7 @@
       (leaf org-bullets
         :ensure t
         :hook ((org-mode-hook . org-bullets-mode))))
-    
+
     (leaf ob
       :custom ((org-confirm-babel-evaluate . nil))
       :config
@@ -1046,6 +1064,7 @@
       (leaf *built-in-ox-packages
         :config
         (leaf ox-extra
+	  :when (version<= "25.1" emacs-version)
           :config
           (ox-extras-activate '(latex-header-blocks ignore-headlines))))
 
@@ -1079,13 +1098,16 @@
     (leaf gitconfig-mode     :ensure t)
     (leaf gitignore-mode     :ensure t)
     (leaf gh                 :ensure t)
-    (leaf github-pullrequest :ensure t)
+    (leaf github-pullrequest
+      :when (version<= "25.1" emacs-version)
+      :ensure t)
 
     (leaf git-messenger
       :ensure t
       :bind (("C-x v p" . git-messenger:popup-message)))
 
     (leaf magit
+      :when (version<= "25.1" emacs-version)
       :ensure t
       :bind (("M-g s" . magit-status)))
 
@@ -1102,6 +1124,7 @@ q Exit the time machine.
 b Run magit-blame on the currently visited revision (if magit available).
 c Show current commit using magit (if magit available).
 "
+      :when (version<= "25.1" emacs-version)
       :ensure t
       :bind (("M-g t" . git-timemachine-toggle)))
 
@@ -1182,6 +1205,7 @@ c Show current commit using magit (if magit available).
       :bind (("C-c e" . macrostep-expand)))
 
     (leaf dashboard
+      :when (version<= "25.1" emacs-version)
       :ensure t
       :custom ((dashboard-items . '((recents . 15)
                                     (projects . 5)
@@ -1202,6 +1226,7 @@ c Show current commit using magit (if magit available).
       :bind (("C-o" . shell-pop)))
 
     (leaf latex-math-preview
+      :when (version<= "25.1" emacs-version)
       :if (executable-find "platex")
       :ensure t
       :bind (("C-c l l" . latex-math-preview-expression)
