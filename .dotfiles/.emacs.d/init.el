@@ -969,7 +969,6 @@
       (setq c-base-offset 4))
     :hook ((c-mode-common . conao3/c-mode-common)))
 
-
   (leaf go-mode
     :ensure t
     :custom ((gofmt-command . "goimports"))
