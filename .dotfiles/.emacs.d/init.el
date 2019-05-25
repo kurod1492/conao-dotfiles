@@ -966,7 +966,7 @@
     (defun conao3/c-mode-common ()
       (c-set-style "bsd")
       (setq tab-width 4)
-      (setq c-base-offset 4))
+      (setq c-basic-offset 4))
     :hook ((c-mode-common . conao3/c-mode-common)))
 
   (leaf go-mode
