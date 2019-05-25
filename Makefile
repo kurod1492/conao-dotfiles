@@ -9,6 +9,7 @@ DOTFILES     := $(filter-out ./,$(shell cd .dotfiles && git ls-tree --name-statu
 CONFIG_DIRS  := $(filter-out ./,$(shell cd .config && git ls-tree -rd --name-status HEAD))
 CONFIG_FILES := $(shell cd .config && git ls-tree -r --name-status HEAD)
 
+XARGS := xargs -t $(shell if xargs -r > /dev/null 2>&1; then echo "-r"; else echo ""; fi)
 DIRS := $(HOMEDIR) $(CONFIG_DIRS:%=$(HOMEDIR)/.config/%)
 
 .PHONY: all install debug
@@ -50,4 +51,4 @@ $(HOMEDIR)/.config/%: $(TOPDIR)/.config/%
 ##############################
 
 clean:
-	echo $(DOTFILES:%=$(HOMEDIR)/%) $(CONFIG_FILES:%=$(HOMEDIR)/.config/%) | xargs -n1 unlink
+	echo $(DOTFILES:%=$(HOMEDIR)/%) $(CONFIG_FILES:%=$(HOMEDIR)/.config/%) | $(XARGS) -n1 unlink
