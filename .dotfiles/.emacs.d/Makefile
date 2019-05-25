@@ -16,7 +16,8 @@ EMACS_LST  += 26.0 26.1 26.2
 EMACS_LST  += 27.0
 DIRS := local $(EMACS_LST:%=local/%)
 
-# xargs parallel option
+# xargs option
+XARGS := xargs -t $(shell if xargs -r > /dev/null 2>&1; then echo "-r"; else echo ""; fi)
 P ?= 8
 
 ##################################################
@@ -51,10 +52,10 @@ local/%/templete:
 
 local/%/site-lisp: site-lisp $(DEV_PKGS:%=site-lisp/%)
 	cp -rf site-lisp $@
-	find $@ -name '*.elc' | xargs rm -rf
+	find $@ -name '*.elc' | $(XARGS) rm -rf
 	-type emacs-$* > /dev/null 2>&1 && \
-	  find $@ -depth 1 -type d | \
-	    xargs -n1 -t -I%% bash -c \
+	  find $@ -maxdepth 1 -type d | \
+	    $(XARGS) -n1 -I%% bash -c \
 	      "cd %%; [ -e Makefile ] && make EMACS=emacs-$*"
 
 site-lisp/%:
@@ -66,23 +67,23 @@ site-lisp/%:
 
 site-lisp:
 	mkdir $@
-	cd $@; echo $(CLONE_URLS) | xargs -n1 -t git clone
+	cd $@; echo $(CLONE_URLS) | $(XARGS) -n1 git clone
 
 ##############################
 
 update:
 	git pull origin $$(git symbolic-ref --short HEAD)
-	-find site-lisp -depth 1 -type d | \
-	  xargs -n1 -P$(P) -t -I%% bash -c \
+	-find site-lisp -maxdepth 1 -type d | \
+	  $(XARGS) -n1 -P$(P) -I%% bash -c \
 	    "cd %%; git pull origin \$$(git symbolic-ref --short HEAD)"
-	find local -depth 2 -type d -name site-lisp | xargs rm -rf
+	find local -maxdepth 2 -type d -name site-lisp | $(XARGS) rm -rf
 	$(MAKE)
 
 unshallow:
-	-find site-lisp -depth 1 -type d | \
-	  xargs -n1 -P$(P) -t -I%% bash -c \
+	-find site-lisp -maxdepth 1 -type d | \
+	  $(XARGS) -n1 -P$(P) -I%% bash -c \
 	    "cd %%; git fetch --unshallow"
-	find local -depth 2 -type d -name site-lisp | xargs rm -rf
+	find local -maxdepth 2 -type d -name site-lisp | $(XARGS) rm -rf
 	$(MAKE)
 
 clean:
