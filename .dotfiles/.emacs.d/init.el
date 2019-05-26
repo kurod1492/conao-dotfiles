@@ -294,6 +294,7 @@
 
              ;; use fn key as normal way.
              ;; (ns-function-modifier      . 'super)
+             ;; https://www.reddit.com/r/emacs/comments/9jm1az/emacs_rendering_is_broken_in_macos_mojave/e6sg9ei/
              (default-frame-alist . '((inhibit-double-buffering . t)
                                       (ns-appearance            . dark)
                                       (ns-transparent-titlebar  . t)))))
