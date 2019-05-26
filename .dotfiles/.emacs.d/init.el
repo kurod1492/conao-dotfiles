@@ -333,6 +333,7 @@
     :url "https://github.com/Fuco1/smartparens/wiki/Tips-and-tricks"
     :when window-system
     :ensure t
+    :leaf-defer nil
     :require smartparens-config
     :custom ((sp-highlight-pair-overlay                     . nil)
              (sp-navigate-interactive-always-progress-point . t)
@@ -479,6 +480,7 @@
 
   (leaf company
     :ensure t
+    :leaf-defer nil
     :bind (:company-active-map
            ("M-n" . nil)
            ("M-p" . nil)
@@ -537,6 +539,7 @@
   (leaf projectile
     :when (version<= "25.1" emacs-version)
     :ensure t
+    :leaf-defer nil
     :bind (("M-o p" . projectile-command-map))
     :custom ((projectile-mode . t)))
 
@@ -592,6 +595,7 @@
 
   (leaf persp-mode
     :ensure t
+    :leaf-defer nil
     :custom `((persp-keymap-prefix                 . ,(kbd "C-c p"))
               (persp-nil-name                      . "default")
               (persp-set-last-persp-for-new-frames . nil)
@@ -737,6 +741,7 @@
 
   (leaf ivy
     :ensure t
+    :leaf-defer nil
     :custom ((ivy-re-builders-alist . '((t      . ivy--regex-fuzzy)
                                         (swiper . ivy--regex-plus)))
 
