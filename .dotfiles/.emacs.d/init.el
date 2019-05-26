@@ -49,8 +49,6 @@
   (leaf leaf
     :doc "Symplify your init.el configuration"
     :doc "Initialize leaf dependent packages"
-    :custom ((leaf-backend-ensure . 'package)
-             (leaf-backend-bind   . 'bind-key))
     :config
     (leaf package
       :custom ((package-archives . '(("org"   . "https://orgmode.org/elpa/")
@@ -244,6 +242,8 @@
               ;; (shell-file-name . "/bin/bash")
               (user-full-name                 . "Naoya Yamashita")
               (debug-on-error                 . t)
+              (eval-expression-print-length   . nil)
+              (eval-expression-print-level    . nil)
               (create-lockfiles               . nil)
               (use-dialog-box                 . nil)
               (use-file-dialog                . nil)
@@ -294,8 +294,9 @@
 
              ;; use fn key as normal way.
              ;; (ns-function-modifier      . 'super)
-             (default-frame-alist . '((ns-appearance           . dark)
-                                      (ns-transparent-titlebar . t)))))
+             (default-frame-alist . '((inhibit-double-buffering . t)
+                                      (ns-appearance            . dark)
+                                      (ns-transparent-titlebar  . t)))))
 
   (leaf autorevert
     :doc "revert buffers when files on disk change"
