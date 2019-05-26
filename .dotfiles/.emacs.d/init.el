@@ -55,8 +55,7 @@
                                      ("melpa" . "https://melpa.org/packages/")
                                      ("gnu"   . "https://elpa.gnu.org/packages/"))))
       :config
-      (package-initialize))
-    (leaf bind-key :ensure t)))
+      (package-initialize))))
 
 
 (leaf *initialize-emacs
