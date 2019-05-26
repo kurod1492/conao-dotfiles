@@ -239,7 +239,7 @@
     :doc "define customization properties of builtins"
     :custom `((gc-cons-threshold              . ,(* 512 1024 1024))
               (garbage-collection-messages    . t)
-              (fill-column                    . 80)
+              (fill-column                    . 70)
               (tab-width                      . 8)
               ;; (shell-file-name . "/bin/bash")
               (user-full-name                 . "Naoya Yamashita")
