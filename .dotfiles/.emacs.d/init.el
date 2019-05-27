@@ -534,6 +534,7 @@
 
   (leaf yasnippet
     :ensure t
+    :url "https://kiwanami.hatenadiary.org/entry/20110224/1298526678"
     :custom ((yas-indent-line . 'fixed)
              (yas-global-mode . t))
     :bind (:yas-minor-mode-map
