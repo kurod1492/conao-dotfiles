@@ -339,7 +339,10 @@
           (funcall (plist-get (nth 0 founds) :secret))))))
 
   (leaf files
-    :custom ((require-final-newline . t))))
+    :custom ((require-final-newline . t)))
+
+  (leaf smie
+    :url "https://qiita.com/kawabata@github/items/1a51ff1e22ad7ae824d5"))
 
 
 (leaf *minor-mode
