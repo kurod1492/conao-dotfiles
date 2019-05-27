@@ -570,6 +570,26 @@
     :bind (("M-o p" . projectile-command-map))
     :custom ((projectile-mode . t)))
 
+  (leaf selected
+    :ensure t
+    :custom ((selected-global-mode . t))
+    :preface
+    (defun c/eval-region ()
+      (interactive)
+      (when mark-active
+        (eval-region (region-beginning) (region-end) t)))
+    :bind ((:selected-keymap
+            ("g" . google-this-noconfirm)
+            (";" . comment-dwim)
+            ("=" . count-words-region)
+            ("f" . describe-function)
+            ("v" . describe-variable)
+            ("e" . c/eval-region)
+            ("w" . osx-dictionary-search-pointer)
+            ("5" . query-replace-from-region)
+            ("q" . keyboard-quit)
+            ("t" . org-table-convert-region))))
+
   (leaf origami
     :ensure t
     :custom ((global-origami-mode . t)))
