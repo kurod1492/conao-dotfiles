@@ -1287,5 +1287,27 @@ c Show current commit using magit (if magit available).
                                  "-dEPSCrop" "-r600" "-dTextAlphaBits=4"
                                  "-dGraphicsAlphaBits=4" "-dQUIET"))))))
 
+
+(leaf *misc-functions
+  :config
+  (leaf *font-lock-util
+    :url "https://buzztaiki.hatenablog.com/entry/20111209/1323444755"
+    :preface
+    (defun font-lock-user-keywords (mode &optional keywords)
+      "Add user highlighting to KEYWORDS to MODE.
+See `font-lock-add-keywords' and `font-lock-defaults'."
+      (unless mode
+        (error "mode should be non-nil "))
+      (font-lock-remove-keywords mode (get mode 'font-lock-user-keywords))
+      (font-lock-add-keywords mode keywords)
+      (put mode 'font-lock-user-keywords keywords))
+    :config
+    ;; (font-lock-user-keywords
+    ;;  'c-mode
+    ;;  '(("!" . font-lock-warning-face)
+    ;;    ("hoge" . font-lock-keyword-face)
+    ;;    ("[0-9]+" . font-lock-constant-face)))
+    ))
+
 (provide 'init)
 ;;; init.el ends here
