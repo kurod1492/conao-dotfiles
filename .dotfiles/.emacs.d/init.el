@@ -1309,7 +1309,14 @@ See `font-lock-add-keywords' and `font-lock-defaults'."
       (font-lock-remove-keywords mode (get mode 'font-lock-user-keywords))
       (font-lock-add-keywords mode keywords)
       (put mode 'font-lock-user-keywords keywords))
-    :config
+
+    (defun conao3/kill-region-or-backward-kill-word ()
+      (interactive)
+      (if (region-active-p)
+          (kill-region (point) (mark))
+        (backward-kill-word 1)))
+    :bind (("C-w" . conao3/kill-region-or-backward-kill-word))
+    ;; :config
     ;; (font-lock-user-keywords
     ;;  'c-mode
     ;;  '(("!" . font-lock-warning-face)
