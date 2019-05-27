@@ -1200,6 +1200,11 @@ c Show current commit using magit (if magit available).
 
   (leaf *misc-tools
     :config
+    (leaf twittering-mode
+      :doc "Major mode for Twitter"
+      :url "https://github.com/hayamiz/twittering-mode"
+      :ensure t)
+
     (leaf hide-mode-line
       :ensure t
       ;; :hook
