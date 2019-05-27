@@ -34,33 +34,33 @@
 [rerere]
 	enabled = true
 [alias]
-        # `git git status` etc.
-        git = !git
+	# `git git status` etc.
+	git = !git
 
-        # short commands
-        st = status
-        cm = commit
+	# short commands
+	st = status
+	cm = commit
 
-        br = branch
-        co = checkout
+	br = branch
+	co = checkout
 
-        chp = cherry-pick
+	chp = cherry-pick
 
-        # show list comamnds
-        tags = tag
-        remotes = remote -v
-        branches = branch -a
-        stashes = stash list
+	# show list comamnds
+	tags = tag
+	remotes = remote -v
+	branches = branch -a
+	stashes = stash list
 
-        # complex comamnds
-        alias = config --get-regexp alias.*
-        revoke = reset --soft HEAD^
-        files = !cd ${GIT_PREFIX:-.} && git ls-tree -z --name-only HEAD | xargs -0 -n1 -I@ -- git log -1 --pretty=format:'%C(green)%ai%Creset %C(yellow)%h%Creset @ %C(blue)(%ar)%Creset %C(red)<%an>%Creset' -- @
+	# complex comamnds
+	alias = config --get-regexp alias.*
+	revoke = reset --soft HEAD^
+	files = !cd ${GIT_PREFIX:-.} && git ls-tree -z --name-only HEAD | xargs -0 -n1 -I@ -- git log -1 --pretty=format:'%C(green)%ai%Creset %C(yellow)%h%Creset @ %C(blue)(%ar)%Creset %C(red)<%an>%Creset' -- @
 	prune-merged-branch = !git branch --merged | grep -vE '\\*|develop|master' | xargs git branch -d
-		remote-fork = "!f() { \
-		git remote rename origin upstream && \
-		git remote add origin \"$(git config remote.upstream.url | sed 's;^\\(git@\\|https://\\)github\\.com[/:][^/]\\+/;git@github.com:conao3/;')\" && \
-		git fetch origin; \
+	remote-fork = "!f() { \
+	git remote rename origin upstream && \
+	git remote add origin \"$(git config remote.upstream.url | sed 's;^\\(git@\\|https://\\)github\\.com[/:][^/]\\+/;git@github.com:conao3/;')\" && \
+	git fetch origin; \
 	}; f"
 	pp-log = !git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [difftool "sourcetree"]
