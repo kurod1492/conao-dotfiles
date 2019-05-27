@@ -261,6 +261,7 @@
               (tool-bar-mode    . nil)
               (indent-tabs-mode . nil))
     :config
+    (keyboard-translate ?\C-h ?\C-?)
     (mapc (lambda (func) (put func 'disabled nil))
           (cdr '(:dummy
                  upcase-region downcase-region
