@@ -501,12 +501,14 @@
   (leaf company
     :ensure t
     :leaf-defer nil
-    :bind (:company-active-map
-           ("M-n" . nil)
-           ("M-p" . nil)
-           ("C-n" . company-select-next)
-           ("C-p" . company-select-previous)
-           ("<tab>" . company-complete-common-or-cycle))
+    :bind ((:company-active-map
+            ("M-n" . nil)
+            ("M-p" . nil)
+            ("C-s" . company-filter-candidates)
+            ("C-n" . company-select-next)
+            ("C-p" . company-select-previous)
+            ("C-f" . company-complete-selection)
+            ("<tab>" . company-complete-selection)))
     :custom ((company-idle-delay            . 0)
              (company-minimum-prefix-length . 1)
              (company-transformers          . '(company-sort-by-occurrence))
