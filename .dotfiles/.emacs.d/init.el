@@ -1290,6 +1290,10 @@ c Show current commit using magit (if magit available).
       :bind (("C-a" . mwim-beginning-of-code-or-line)
              ("C-e" . mwim-end-of-code-or-line)))
 
+    (leaf google-this
+      :ensure t
+      :bind (("s-g" . google-this-noconfirm)))
+
     (leaf shell-pop
       :ensure t
       :bind (("C-o" . shell-pop)))
