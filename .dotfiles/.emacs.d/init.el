@@ -342,7 +342,11 @@
     :custom ((require-final-newline . t)))
 
   (leaf smie
-    :url "https://qiita.com/kawabata@github/items/1a51ff1e22ad7ae824d5"))
+    :url "https://qiita.com/kawabata@github/items/1a51ff1e22ad7ae824d5")
+
+  (leaf recentf
+    :custom ((recentf-exclude . '(".recentf"))
+             (recentf-max-saved-items . 200))))
 
 
 (leaf *minor-mode
