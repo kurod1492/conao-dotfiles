@@ -236,8 +236,7 @@
     :doc "define customization properties of builtins"
     :url "http://handlename.hatenablog.jp/entry/2011/12/11/214923" ; align sumple
     :bind (("M-ESC ESC" . keyboard-quit))
-    :hook (;; (before-save-hook . delete-trailing-whitespace)
-           )
+    ;; :hook ((before-save-hook . delete-trailing-whitespace))
     :custom `((gc-cons-threshold               . ,(* 512 1024 1024))
               (garbage-collection-messages     . t)
               (fill-column                     . 70)
@@ -328,7 +327,16 @@
              ("r" . wdired-change-to-wdired-mode)))
     (leaf dired-filter
       :ensure t
-      :hook ((dired-mode-hook . dired-filter-mode)))))
+      :hook ((dired-mode-hook . dired-filter-mode))))
+
+  (leaf auth-source
+    :url "http://aki2o.hatenablog.jp/entry/2014/09/20/Emacs%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%81%AF%E3%83%91%E3%82%B9%E3%83%AF%E3%83%BC%E3%83%89%E3%81%A8%E3%81%8B%E3%81%AF%E7%9B%B4%E6%9B%B8%E3%81%8D%E3%81%9B%E3%81%9Aauth-source%E4%BD%BF%E3%81%86%E3%81%A8"
+    :custom ((auth-sources . '("~/.secret/authinfo.gpg")))
+    :preface
+    (defun conao3/auth-source-get-passwd (&rest spec)
+      (let ((founds (apply 'auth-source-search spec)))
+        (when founds
+          (funcall (plist-get (nth 0 founds) :secret)))))))
 
 
 (leaf *minor-mode
