@@ -336,7 +336,10 @@
     (defun conao3/auth-source-get-passwd (&rest spec)
       (let ((founds (apply 'auth-source-search spec)))
         (when founds
-          (funcall (plist-get (nth 0 founds) :secret)))))))
+          (funcall (plist-get (nth 0 founds) :secret))))))
+
+  (leaf files
+    :custom ((require-final-newline . t))))
 
 
 (leaf *minor-mode
