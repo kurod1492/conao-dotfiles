@@ -590,6 +590,14 @@
     :ensure t
     :config (powerline-default-theme))
 
+  (leaf neotree
+    :ensure t
+    :custom ((neo-theme        . 'ascii)
+             (neo-persist-show . t)
+             (neo-smart-open   . t)
+             (neo-smart-open   . t))
+    :bind (("s-o" . neotree-toggle)))
+
   (leaf page-break-lines
     :ensure t
     :custom ((global-page-break-lines-mode . t)))
