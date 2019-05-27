@@ -234,6 +234,7 @@
 
   (leaf cus-start
     :doc "define customization properties of builtins"
+    :url "http://handlename.hatenablog.jp/entry/2011/12/11/214923" ; align sumple
     :bind (("M-ESC ESC" . keyboard-quit))
     :hook (;; (before-save-hook . delete-trailing-whitespace)
            )
