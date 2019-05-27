@@ -616,6 +616,14 @@
                   (("<\\([[:alnum:]-]+\\)>") . ("\\1"))))
              (which-key-mode . t)))
 
+  (leaf dumb-jump
+      :ensure t
+      :custom ((dumb-jump-mode               . t)
+               (dumb-jump-selector           . 'ivy)
+               (dumb-jump-use-visible-window . nil))
+      :bind (("s-." . dumb-jump-go)
+             ("s-," . dumb-jump-back)))
+
   (leaf mew
     :ensure t
     :custom ((read-mail-command . 'mew)))
@@ -1227,14 +1235,6 @@ c Show current commit using magit (if magit available).
 
   (leaf *misc-tools
     :config
-    (leaf dumb-jump
-      :ensure t
-      :custom ((dumb-jump-mode               . t)
-               (dumb-jump-selector           . 'ivy)
-               (dumb-jump-use-visible-window . nil))
-      :bind (("s-." . dumb-jump-go)
-             ("s-," . dumb-jump-back)))
-    
     (leaf highlight-symbol
       :ensure t
       :config
