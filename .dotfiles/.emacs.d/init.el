@@ -775,7 +775,8 @@
       :config
       (leaf swiper :ensure t)
       (leaf counsel :ensure t))
-    :bind* (("C-s" . swiper))
+    :bind* (("C-x C-r" . counsel-recentf)
+            ("C-s" . swiper))
     :custom ((ivy-initial-inputs-alist   . nil)
              (counsel-yank-pop-separator . "\n----------\n")
              (counsel-grep-base-command  . "ag -S --noheading --nocolor --nofilename --numbers '%s' %s"))
