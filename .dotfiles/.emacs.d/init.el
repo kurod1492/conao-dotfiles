@@ -235,6 +235,8 @@
   (leaf cus-start
     :doc "define customization properties of builtins"
     :bind (("M-ESC ESC" . keyboard-quit))
+    :hook (;; (before-save-hook . delete-trailing-whitespace)
+           )
     :custom `((gc-cons-threshold              . ,(* 512 1024 1024))
               (garbage-collection-messages    . t)
               (fill-column                    . 70)
