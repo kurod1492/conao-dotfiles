@@ -55,7 +55,7 @@
 
 	# combine commands
 	co-pull = !git checkout master && git pull origin master
-	co-issue = "!f() { hub issue create -m $1 | rev | cut -d/ -f1 | rev | xargs -I^ git checkout -b feature!#^ }; f"
+	co-issue = "!f() { hub issue create -m $1 | rev | cut -d/ -f1 | rev | xargs -I^ git checkout -b feature#^; }; f"
 
 	# complex comamnds
 	alias = config --get-regexp alias.*
