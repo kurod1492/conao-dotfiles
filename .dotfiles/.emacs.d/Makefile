@@ -6,7 +6,7 @@ DEV_PKGS := leaf.el orglyth.el cort-test.el seml-mode.el po-mode.el navbar.el
 DEV_PKGS  += feather.el feather-server.el leaf-browser.el solarized-emacs
 DEV_PKGS  += phantom-inline-comment annotate.el point-history
 
-CLONE_URLS :=
+CLONE_URLS := https://github.com/kazu-yamamoto/Mew.git
 
 EMACS_LST := 22.0 22.1 22.2 22.3
 EMACS_LST  += 23.0 23.1 23.2 23.3 23.4

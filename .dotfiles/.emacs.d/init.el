@@ -243,6 +243,8 @@
               (tab-width                       . 8)
               ;; (shell-file-name              . "/bin/bash")
               (user-full-name                  . "Naoya Yamashita")
+              (user-mail-address               . "conao3@gmail.com")
+              (user-login-name                 . "conao3")
               (debug-on-error                  . t)
               (eval-expression-print-length    . nil)
               (eval-expression-print-level     . nil)
@@ -1260,86 +1262,49 @@ c Show current commit using magit (if magit available).
   (leaf *misc-tools
     :config
     (leaf mew
-      :ensure t
       :url "http://sleepboy-zzz.blogspot.com/2012/11/mewgmail.html"
+      :doc "brew install stunnel"
       :preface
-      (defvar my/mew-gmail-prefixes '()
-        "Specify list as title and address without @gmail.com.
-Note: the default title can't changed
-For example
-'((\"default\" \"foo\") ; if your mail address is 'foo@gmail.com'
-  (\"sub\"     \"bar\")
-  (\"temp\"    \"baz\"))")
-
-      (defun my/biff-function (n)
-        (when (< 0 n)
-          (if (version< "24.0.0" emacs-version)
-              (notifications-notify :title "Emacs/Mew"
-                                    :body  (format "You got mail(s): %i" n)
-                                    :timeout 5000)
-            (mew-biff-bark n))))
-
-      (defun mew-spam-assassin-or-bsfilter (val)
-        (let ((case-fold-search t))
-          (if (string-match "yes" val) ?D)))
-
-      (defun my/generate-mew/gmail-alist-from (mail-prefix)
-        (let ((inbox-name (concat "+inbox-" mail-prefix))
-              (address (concat mail-prefix "@gmail.com")))
-          (loop for property in '("user" "imap-user" "smtp-user")
-                for alist = `(,(cons "inbox-folder" inbox-name)) then alist
-                collect (cons property mail-prefix) into alist
-                finally return alist)))
-
-      (setq mew-ssl-verify-level 0
-            ;; Does not bring mail automatically at booting time
-            mew-auto-get nil
-            ;; Leave mail of pop server after get mail
-            mew-pop-delete nil
-            ;; Add extension ".mew"
-            mew-use-suffix t
-            ;; Manage unread topic
-            mew-use-unread-mark t
-            ;; Spam configuration
-            mew-spam: "X-Spam-Flag:"
-            mew-inbox-action-alist
-            '(("X-Spam-Flag:" mew-spam-assassin-or-bsfilter))
-            ;; Register password briefly
-            mew-use-cached-passwd t
-            ;; Does not bring mail at booting time
-            mew-auto-get nil
-            ;; For Biff
-            mew-use-biff t
-            mew-use-biff-bell t  ; use alarm
-            mew-biff-interval 10 ; minute
-            mew-biff-function 'my/biff-function)
-
-      (defvar mew/gmail-default-alist
-        `(("proto"             . "%")
-          ("name"              . ,(user-full-name))
-          ("mail-domain"       . "gmail.com")
-          ("imap-trash-folder" . "%Trash")
-          ("imap-spam-folder"  . "%SPAM")
-          ("fcc"               . "%Sent")
-          ("imap-server"       . "imap.gmail.com")
-          ("imap-auth"         . t)
-          ("imap-ssl"          . t)
-          ("imap-ssl-port"     . "993")
-          ("smtp-auth"         . t)
-          ("smtp-ssl"          . t)
-          ("smtp-ssl-port"     . "465")
-          ("smtp-server"       . "smtp.gmail.com")
-          ("use-smtp-auth"     . t)))
-
-      (defun my/mew-create-alist (list)
-        (loop with alist = '()
-              for (title account) in list
-              collect `(,title
-                        ,@mew/gmail-default-alist
-                        ,@(my/generate-mew/gmail-alist-from account))))
+      (add-to-list 'el-get-sources
+                   '(:name mew
+                           :type git
+                           ;; Make sure "~/.gnupg/gpg-agent.conf"
+                           ;; and Add mew-pinentry to pinentry-program
+                           ;; For example
+                           ;; pinentry-program /home/you/.emacs.d/el-get/mew/bin/mew-pinentry
+                           :build ("./configure" "make")
+                           :url "https://github.com/kazu-yamamoto/Mew.git"
+                           :load-path "./"))
+      :init (el-get 'sync 'mew)
       :config
-      (defconst my/mew-gmail-prefixes
-        '(("default" "conao3@gmail.com"))))
+      ;; (defconst my/mew-gmail-prefixes '(("default" "conao3@gmail.com")))
+      ;; (setq mew-config-alist (my/mew-create-alist my/mew-gmail-prefixes))
+
+      (setq mew-name "Naoya Yamashita") ;; (user-full-name)
+      (setq mew-user "conao3") ;; (user-login-name)
+      (setq mew-mail-domain "gmail.com")
+
+      (setq mew-proto "%")
+
+      (setq mew-imap-user "conao3@gmail.com")  ;; (user-login-name)
+      (setq mew-imap-server "imap.gmail.com")    ;; if not localhost
+      (setq mew-imap-auth  t)
+      (setq mew-imap-ssl t)
+      (setq mew-imap-ssl-port "993")
+
+      (setq mew-smtp-user "conao3@gmail.com")
+      (setq mew-smtp-server "smtp.gmail.com")  ;; if not localhost
+      (setq mew-smtp-auth t)
+      (setq mew-smtp-ssl t)
+      (setq mew-smtp-ssl-port "465")
+
+      (setq mew-fcc "+outbox") ; 送信メールを保存
+      (setq mew-ssl-verify-level 0)
+      (setq mew-use-cached-passwd t)
+      (setq mew-use-master-passwd t)
+
+      (setq mail-user-agent 'mew-user-agent)
+      (define-mail-user-agent 'mew-user-agent 'mew-user-agent-compose 'mew-draft-send-message 'mew-draft-kill 'mew-send-hook))
 
     (leaf highlight-symbol
       :ensure t
