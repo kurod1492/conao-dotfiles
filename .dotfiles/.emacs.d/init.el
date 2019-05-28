@@ -1264,18 +1264,11 @@ c Show current commit using magit (if magit available).
     (leaf mew
       :url "http://sleepboy-zzz.blogspot.com/2012/11/mewgmail.html"
       :doc "brew install stunnel"
-      :preface
-      (add-to-list 'el-get-sources
-                   '(:name mew
-                           :type git
-                           ;; Make sure "~/.gnupg/gpg-agent.conf"
-                           ;; and Add mew-pinentry to pinentry-program
-                           ;; For example
-                           ;; pinentry-program /home/you/.emacs.d/el-get/mew/bin/mew-pinentry
-                           :build ("./configure" "make")
-                           :url "https://github.com/kazu-yamamoto/Mew.git"
-                           :load-path "./"))
-      :init (el-get 'sync 'mew)
+      :init (el-get-bundle mew
+              :type git
+              :build ("./configure" "make")
+              :url "https://github.com/kazu-yamamoto/Mew.git"
+              :load-path "./")
       :config
       ;; (defconst my/mew-gmail-prefixes '(("default" "conao3@gmail.com")))
       ;; (setq mew-config-alist (my/mew-create-alist my/mew-gmail-prefixes))
