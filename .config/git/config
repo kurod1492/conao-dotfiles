@@ -40,6 +40,7 @@
 	# short commands
 	st = status
 	cm = commit
+	c  = commit -am
 
 	br = branch
 	co = checkout
@@ -51,6 +52,10 @@
 	remotes = remote -v
 	branches = branch -a
 	stashes = stash list
+
+	# combine commands
+	co-pull = !git checkout master && git pull origin master
+	co-issue = "!f() { hub issue create -m $1 | rev | cut -d/ -f1 | rev | xargs -I^ git checkout -b feature!#^ }; f"
 
 	# complex comamnds
 	alias = config --get-regexp alias.*
