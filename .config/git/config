@@ -54,9 +54,11 @@
 	stashes = stash list
 
         # combine commands
-	co-issue = "!f() { hub issue create -m $1 | rev | cut -d/ -f1 | rev | xargs -I^ git checkout -b feature#^; }; f"
-	co-pr = "!f() { git cbranch | xargs -t -I^ bash -c \"git push origin ^ && hub pull-request -m '^\n\ndone, close ^.'\"; }; f"
-	co-pull = !git checkout master && git pull origin master
+	coissue = "!f() { hub issue create -m \"$1\" | rev | cut -d/ -f1 | rev | xargs -t -I^ git checkout -b feature#^; }; f"
+	copr = "!f() { git cbranch | rev | cut -d# -f1 | rev | xargs -t -I^ bash -c \
+	\"git push origin feature#^ && hub pull-request -m 'feature#^\n\ndone, close #^.' | \
+	rev | cut -d/ -f1 | rev | xargs -t -I% hub browse -- pull/% \"; }; f"
+	copull = !git checkout master && git pull origin master
 
 	# complex comamnds
 	cbranch = !git symbolic-ref --short HEAD
