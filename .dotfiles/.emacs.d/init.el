@@ -1262,7 +1262,7 @@ c Show current commit using magit (if magit available).
       :doc "brew install stunnel"
       :init (el-get-bundle mew
               :type git
-              :build ("./configure" "make")
+              :build ("./configure --with-emacs=emacs-26.2" "make")
               :url "https://github.com/kazu-yamamoto/Mew.git"
               :load-path "./")
       :config
