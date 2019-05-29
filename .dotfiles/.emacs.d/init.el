@@ -1264,7 +1264,8 @@ c Show current commit using magit (if magit available).
               :type git
               :build ("./configure --with-emacs=emacs-26.2" "make")
               :url "https://github.com/kazu-yamamoto/Mew.git"
-              :load-path "./")
+              :load-path "./"
+              (add-to-list 'exec-path (expand-file-name "mew/bin" el-get-dir)))
       :config
       ;; (defconst my/mew-gmail-prefixes '(("default" "conao3@gmail.com")))
       ;; (setq mew-config-alist (my/mew-create-alist my/mew-gmail-prefixes))
