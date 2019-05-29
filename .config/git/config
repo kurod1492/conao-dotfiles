@@ -53,11 +53,13 @@
 	branches = branch -a
 	stashes = stash list
 
-	# combine commands
-	co-pull = !git checkout master && git pull origin master
+        # combine commands
 	co-issue = "!f() { hub issue create -m $1 | rev | cut -d/ -f1 | rev | xargs -I^ git checkout -b feature#^; }; f"
+	co-pr = "!f() { git cbranch | xargs -t -I^ bash -c \"git push origin ^ && hub pull-request -m '^\n\ndone, close ^.'\"; }; f"
+	co-pull = !git checkout master && git pull origin master
 
 	# complex comamnds
+	cbranch = !git symbolic-ref --short HEAD
 	alias = config --get-regexp alias.*
 	revoke = reset --soft HEAD^
 	files = !cd ${GIT_PREFIX:-.} && git ls-tree -z --name-only HEAD | xargs -0 -n1 -I@ -- git log -1 --pretty=format:'%C(green)%ai%Creset %C(yellow)%h%Creset @ %C(blue)(%ar)%Creset %C(red)<%an>%Creset' -- @
