@@ -107,11 +107,7 @@
 	  (leaf dash :ensure t)
 
           ;; phantom-inline-comment
-	  (leaf popwin :ensure t)
-
-          ;; navbar
-          (leaf mew :ensure t)
-          (leaf elscreen :ensure t))
+	  (leaf popwin :ensure t))
   :config
   (leaf *melpa-packages
     :config
