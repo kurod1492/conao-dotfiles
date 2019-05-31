@@ -183,7 +183,7 @@
                (solarized-scale-org-headlines . nil)
                (solarized-distinct-fringe-background . t))
       :config
-      (create-solarized-theme-with-pallet 'dark 'solarized-wombat-dark
+      (create-solarized-theme-with-palette 'dark 'solarized-wombat-dark
         '("#2a2a29" "#f6f3e8"           ; base03 (02 01 00 0 1 2) base3
           "#e5c06d" "#ddaa6f"           ; yellow orange
           "#ffb4ac" "#e5786d"           ; red    magenta
