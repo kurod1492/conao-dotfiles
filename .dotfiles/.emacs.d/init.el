@@ -568,6 +568,24 @@
     :bind (("M-o p" . projectile-command-map))
     :custom ((projectile-mode . t)))
 
+  (leaf skk
+    :ensure ddskk
+    :require t skk-study skk-hint
+    :bind (("C-x j" . skk-auto-fill-mode))
+    :custom `((default-input-method . "japanese-skk")
+              (skk-user-directory   . ,(locate-user-emacs-file "skk/jisyo"))
+              (skk-large-jisyo      . ,(locate-user-emacs-file "skk/jisyo/SKK-JISYO.L"))
+              (skk-auto-insert-paren . t)
+              (skk-use-auto-enclose-pair-of-region . t)
+              (skk-undo-kakutei-return-previous-point . t)
+              (skk-check-okurigana-on-touroku . 'ask)
+              (skk-henkan-number-to-display-candidates . 15))
+    :init
+    (let ((skk-jisyo-dir (locate-user-emacs-file "skk/jisyo")))
+      (unless (file-directory-p skk-jisyo-dir)
+        (make-directory skk-jisyo-dir 'parent)
+        (skk-get skk-jisyo-dir))))
+
   (leaf selected
     :ensure t
     :custom ((selected-global-mode . t))
