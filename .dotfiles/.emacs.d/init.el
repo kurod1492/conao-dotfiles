@@ -333,7 +333,7 @@
     :url "http://aki2o.hatenablog.jp/entry/2014/09/20/Emacs%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%81%AF%E3%83%91%E3%82%B9%E3%83%AF%E3%83%BC%E3%83%89%E3%81%A8%E3%81%8B%E3%81%AF%E7%9B%B4%E6%9B%B8%E3%81%8D%E3%81%9B%E3%81%9Aauth-source%E4%BD%BF%E3%81%86%E3%81%A8"
     :custom ((auth-sources . '("~/.secret/authinfo.gpg")))
     :preface
-    (defun conao3/auth-source-get-passwd (&rest spec)
+    (defun c/auth-source-get-passwd (&rest spec)
       (let ((founds (apply 'auth-source-search spec)))
         (when founds
           (funcall (plist-get (nth 0 founds) :secret))))))
@@ -535,14 +535,14 @@
     (leaf company-math
       :ensure t
       :preface
-      (defun conao3/latex-mode-setup ()
+      (defun c/latex-mode-setup ()
         (setq-local company-backends
                     (append '((company-math-symbols-latex
                                company-math-symbols-unicode
                                company-latex-commands))
                             company-backends)))
-      :hook ((org-mode-hook . conao3/latex-mode-setup)
-             (tex-mode-hook . conao3/latex-mode-setup))))
+      :hook ((org-mode-hook . c/latex-mode-setup)
+             (tex-mode-hook . c/latex-mode-setup))))
 
   (leaf yasnippet
     :ensure t
@@ -567,7 +567,7 @@
     (leaf ivy-posframe
       :doc "Using posframe to show Ivy"
       :after ivy
-      :el-get (conao3/ivy-posframe :branch "ivy-posframe-mode")
+      :el-get (c/ivy-posframe :branch "ivy-posframe-mode")
       :custom ((ivy-posframe-mode . t)
                (ivy-posframe-height-alist . '((swiper . 20) (t . 40)))
                (ivy-posframe-display-functions-alis
@@ -593,7 +593,7 @@
     (leaf ddskk-posframe
       :doc "Show Henkan tooltip for ddskk via posframe"
       :after skk
-      :el-get (conao3/ddskk-posframe.el)
+      :el-get (c/ddskk-posframe.el)
       :custom ((ddskk-posframe-mode . t)))
 
     (leaf hydra-posframe
@@ -782,11 +782,11 @@
             ("C-S-<tab>"   . elscreen-previous)
             ("C-c e d"       . elscreen-dired)
             ("C-c e r"       . elscreen-screen-nickname))
-    ;;  :init (el-get-bundle conao/elscreen-swap)
+    ;;  :init (el-get-bundle c/elscreen-swap)
     :config
     (setq elscreen-tab-display-control nil)
     ;; (leaf session
-    ;;   :init (el-get-bundle conao/revive)
+    ;;   :init (el-get-bundle c/revive)
     ;;   :requre t
     ;;   :config
     ;;   (setq session-initialize '(places session)
@@ -1053,12 +1053,12 @@
 
   (leaf tide
     :ensure t
-    :init (defun conao3/enable-tide ()
+    :init (defun c/enable-tide ()
             (when (string-equal "tsx" (file-name-extension buffer-file-name))
               (setup-tide-mode)))
     :hook
     (before-save-hook . tide-format-before-save)
-    (web-mode-hook . conao3/enable-tide))
+    (web-mode-hook . c/enable-tide))
 
   (leaf *clojure-modes
     :when (version<= "25.1" emacs-version)
@@ -1078,11 +1078,11 @@
     :bind (:c-mode-base-map
            ("C-c c" . compile))
     :preface
-    (defun conao3/c-mode-common ()
+    (defun c/c-mode-common ()
       (c-set-style "bsd")
       (setq tab-width 4)
       (setq c-basic-offset 4))
-    :hook ((c-mode-common . conao3/c-mode-common)))
+    :hook ((c-mode-common . c/c-mode-common)))
 
   (leaf go-mode
     :ensure t
@@ -1448,12 +1448,12 @@ See `font-lock-add-keywords' and `font-lock-defaults'."
       (font-lock-add-keywords mode keywords)
       (put mode 'font-lock-user-keywords keywords))
 
-    (defun conao3/kill-region-or-backward-kill-word ()
+    (defun c/kill-region-or-backward-kill-word ()
       (interactive)
       (if (region-active-p)
           (kill-region (point) (mark))
         (backward-kill-word 1)))
-    :bind (("C-w" . conao3/kill-region-or-backward-kill-word))
+    :bind (("C-w" . c/kill-region-or-backward-kill-word))
     ;; :config
     ;; (font-lock-user-keywords
     ;;  'c-mode
