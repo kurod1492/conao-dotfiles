@@ -222,7 +222,6 @@
 
 
 (leaf *emacs-buildin
-  :custom ((custom-file . "/dev/null"))
   :config
   (leaf cus-edit
     :custom (;; (custom-file . (locate-user-emacs-file "custom.el"))
