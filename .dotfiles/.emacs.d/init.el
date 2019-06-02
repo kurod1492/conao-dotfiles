@@ -321,8 +321,7 @@
     :custom ((dired-recursive-copies  . 'always)
              (dired-recursive-deletes . 'always))
     :config
-    (leaf dired-x
-      :require t)
+    (leaf dired-x :require t)
     (leaf wdired
       :bind (:dired-mode-map
              ("r" . wdired-change-to-wdired-mode)))
