@@ -213,7 +213,8 @@
 (leaf *reference-packages
   :config
   (leaf use-package :ensure t)
-  (leaf el-get :ensure t
+  (leaf el-get
+    :ensure t
     :init (unless (executable-find "git")
             (warn "'git' couldn't found. el-get can't download any packages"))
     :custom ((el-get-git-shallow-clone  . t)
