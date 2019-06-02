@@ -572,6 +572,11 @@
                 . '((swiper . nil) (t . ivy-posframe-display-at-frame-center)))
                (ivy-posframe-parameters . '((left-fringe . 10)))))
 
+    (leaf company-posframe
+      :doc "Use a posframe as company candidate menu"
+      :ensure t
+      :custom ((company-posframe-mode . t)))
+
     (leaf ddskk-posframe
       :doc "Show Henkan tooltip for ddskk via posframe"
       :after skk
