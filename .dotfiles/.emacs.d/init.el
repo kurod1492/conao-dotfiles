@@ -583,6 +583,11 @@
       :after flycheck
       :custom ((flycheck-posframe-mode . t)))
 
+    (leaf which-key-posframe
+      :ensure t
+      :after which-key
+      :custom ((which-key-posframe-mode . t)))
+
     (leaf ddskk-posframe
       :doc "Show Henkan tooltip for ddskk via posframe"
       :after skk
