@@ -559,18 +559,24 @@
 
   (leaf posframe
     :ensure t
+    :when (version<= "26.1" emacs-version)
+    :when window-system
     :config
     (leaf ivy-posframe
       :doc "Using posframe to show Ivy"
-      :when (version<= "26.1" emacs-version)
-      :when window-system
       :after ivy
       :el-get (conao3/ivy-posframe :branch "ivy-posframe-mode")
       :custom ((ivy-posframe-mode . t)
                (ivy-posframe-height-alist . '((swiper . 20) (t . 40)))
                (ivy-posframe-display-functions-alis
                 . '((swiper . nil) (t . ivy-posframe-display-at-frame-center)))
-               (ivy-posframe-parameters . '((left-fringe . 10))))))
+               (ivy-posframe-parameters . '((left-fringe . 10)))))
+
+    (leaf ddskk-posframe
+      :doc "Show Henkan tooltip for ddskk via posframe"
+      :after skk
+      :el-get (conao3/ddskk-posframe.el)
+      :custom ((ddskk-posframe-mode . t))))
 
   (leaf treemacs
     :when (version<= "25.2" emacs-version)
