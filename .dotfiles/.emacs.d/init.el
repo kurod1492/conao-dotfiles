@@ -511,7 +511,6 @@
             ("C-s" . company-filter-candidates)
             ("C-n" . company-select-next)
             ("C-p" . company-select-previous)
-            ("C-f" . company-complete-selection)
             ("<tab>" . company-complete-selection)))
     :custom ((company-idle-delay            . 0)
              (company-minimum-prefix-length . 1)
