@@ -515,7 +515,7 @@
     :custom ((company-idle-delay            . 0)
              (company-minimum-prefix-length . 1)
              (company-transformers          . '(company-sort-by-occurrence))
-             (global-company-mode . t))
+             (global-company-mode           . t))
     :config
     (leaf company-box
       :when (version<= "26.1" emacs-version)
