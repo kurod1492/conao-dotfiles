@@ -575,7 +575,13 @@
     (leaf company-posframe
       :doc "Use a posframe as company candidate menu"
       :ensure t
+      :after company
       :custom ((company-posframe-mode . t)))
+
+    (leaf flycheck-posframe
+      :ensure t
+      :after flycheck
+      :custom ((flycheck-posframe-mode . t)))
 
     (leaf ddskk-posframe
       :doc "Show Henkan tooltip for ddskk via posframe"
