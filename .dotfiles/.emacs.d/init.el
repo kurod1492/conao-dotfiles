@@ -1348,18 +1348,16 @@ c Show current commit using magit (if magit available).
 
     (leaf highlight-symbol
       :ensure t
-      :config
-      (global-set-key
-       (kbd "C-x H")
-       (defhydra hydra-highlight-symbol
-         (:post (progn
-                  (highlight-symbol-remove-all)))
-         "highlight-symbol"
-         ("." highlight-symbol-at-point "highlight")
-         ("n" highlight-symbol-next "next")
-         ("p" highlight-symbol-prev "prev")
-         ("N" highlight-symbol-next-in-defun "next in defun")
-         ("P" highlight-symbol-prev-in-defun "prev in defun"))))
+      :bind (("C-x H" . hydra-highlight-symbol/body))
+      :hydra (hydra-highlight-symbol
+              (:post (progn
+                       (highlight-symbol-remove-all)))
+              "highlight-symbol"
+              ("." highlight-symbol-at-point "highlight")
+              ("n" highlight-symbol-next "next")
+              ("p" highlight-symbol-prev "prev")
+              ("N" highlight-symbol-next-in-defun "next in defun")
+              ("P" highlight-symbol-prev-in-defun "prev in defun")))
 
     (leaf twittering-mode
       :doc "Major mode for Twitter"
