@@ -426,9 +426,9 @@
     :ensure t
     :bind (("M-u" . hydra-multiple-cursors/body))
     :config
-    (with-eval-after-load 'hydra
-      (defhydra hydra-multiple-cursors (:color pink :hint nil)
-        "
+    :hydra (hydra-multiple-cursors
+            (:color pink :hint nil)
+            "
 									╔════════╗
     Point^^^^^^             Misc^^            Insert                            ║ Cursor ║
   ──────────────────────────────────────────────────────────────────────╨────────╜
@@ -440,22 +440,22 @@
   ╭──────────────────────────────────────────────────────────────────────────────╯
 			   [_q_]: quit, [Click]: point
 "
-        ("l" mc/edit-lines :exit t)
-        ("m" mc/mark-all-like-this :exit t)
-        ("j" mc/mark-next-like-this)
-        ("J" mc/skip-to-next-like-this)
-        ("M-j" mc/unmark-next-like-this)
-        ("k" mc/mark-previous-like-this)
-        ("K" mc/skip-to-previous-like-this)
-        ("M-k" mc/unmark-previous-like-this)
-        ("s" mc/mark-all-in-region-regexp :exit t)
-        ("i" mc/insert-numbers :exit t)
-        ("a" mc/insert-letters :exit t)
-        ("<mouse-1>" mc/add-cursor-on-click)
-        ;; Help with click recognition in this hydra
-        ("<down-mouse-1>" ignore)
-        ("<drag-mouse-1>" ignore)
-        ("q" nil))))
+            ("l" mc/edit-lines :exit t)
+            ("m" mc/mark-all-like-this :exit t)
+            ("j" mc/mark-next-like-this)
+            ("J" mc/skip-to-next-like-this)
+            ("M-j" mc/unmark-next-like-this)
+            ("k" mc/mark-previous-like-this)
+            ("K" mc/skip-to-previous-like-this)
+            ("M-k" mc/unmark-previous-like-this)
+            ("s" mc/mark-all-in-region-regexp :exit t)
+            ("i" mc/insert-numbers :exit t)
+            ("a" mc/insert-letters :exit t)
+            ("<mouse-1>" mc/add-cursor-on-click)
+            ;; Help with click recognition in this hydra
+            ("<down-mouse-1>" ignore)
+            ("<drag-mouse-1>" ignore)
+            ("q" nil)))
 
   (leaf flymake
     :bind (:flymake-mode-map
