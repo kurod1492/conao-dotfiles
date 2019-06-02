@@ -54,8 +54,7 @@
       :custom ((package-archives . '(("org"   . "https://orgmode.org/elpa/")
                                      ("melpa" . "https://melpa.org/packages/")
                                      ("gnu"   . "https://elpa.gnu.org/packages/"))))
-      :config
-      (package-initialize))
+      :config (package-initialize))
     (leaf leaf-keywords
       :load-path `,(locate-user-emacs-file "site-lisp/leaf-keywords.el")
       :require t
