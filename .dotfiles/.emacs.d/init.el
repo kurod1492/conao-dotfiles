@@ -55,7 +55,11 @@
                                      ("melpa" . "https://melpa.org/packages/")
                                      ("gnu"   . "https://elpa.gnu.org/packages/"))))
       :config
-      (package-initialize))))
+      (package-initialize))
+    (leaf leaf-keywords
+      :load-path `,(locate-user-emacs-file "site-lisp/leaf-keywords.el")
+      :require t
+      :config (leaf-keywords-init))))
 
 
 (leaf *initialize-emacs
