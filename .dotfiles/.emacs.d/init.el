@@ -855,9 +855,11 @@
         :doc "Using posframe to show Ivy"
         :when (version<= "26.1" emacs-version)
         :when window-system
-        :ensure t
-        :custom ((ivy-height              . 40)
-                 (ivy-display-function    . #'ivy-posframe-display-at-frame-center)
+        :el-get (conao3/ivy-posframe :branch "ivy-posframe-mode")
+	:custom ((ivy-posframe-height-alist . '((swiper . 20)
+                                                (t      . 40)))
+                 (ivy-posframe-display-functions-alist . '((swiper . nil)
+                                                           (t      . ivy-posframe-display-at-frame-center)))
                  (ivy-posframe-parameters . '((left-fringe . 10))))
         :config
         (let ((inhibit-message t))
