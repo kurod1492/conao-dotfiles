@@ -557,6 +557,21 @@
     (leaf yasnippet-snippets :ensure t)
     (leaf yatemplate :ensure t))
 
+  (leaf posframe
+    :ensure t
+    :config
+    (leaf ivy-posframe
+      :doc "Using posframe to show Ivy"
+      :when (version<= "26.1" emacs-version)
+      :when window-system
+      :after ivy
+      :el-get (conao3/ivy-posframe :branch "ivy-posframe-mode")
+      :custom ((ivy-posframe-mode . t)
+               (ivy-posframe-height-alist . '((swiper . 20) (t . 40)))
+               (ivy-posframe-display-functions-alis
+                . '((swiper . nil) (t . ivy-posframe-display-at-frame-center)))
+               (ivy-posframe-parameters . '((left-fringe . 10))))))
+
   (leaf treemacs
     :when (version<= "25.2" emacs-version)
     :ensure t)
@@ -850,20 +865,6 @@
         :doc "More friendly display transformer for ivy"
         :ensure t
         :custom ((ivy-rich-mode . t)))
-
-      (leaf ivy-posframe
-        :doc "Using posframe to show Ivy"
-        :when (version<= "26.1" emacs-version)
-        :when window-system
-        :el-get (conao3/ivy-posframe :branch "ivy-posframe-mode")
-	:custom ((ivy-posframe-height-alist . '((swiper . 20)
-                                                (t      . 40)))
-                 (ivy-posframe-display-functions-alist . '((swiper . nil)
-                                                           (t      . ivy-posframe-display-at-frame-center)))
-                 (ivy-posframe-parameters . '((left-fringe . 10))))
-        :config
-        (let ((inhibit-message t))
-          (ivy-posframe-enable)))
 
       (leaf ivy-point-history
         :init (el-get-bundle SuzumiyaAoba/ivy-point-history)
