@@ -581,7 +581,8 @@
                (ivy-posframe-height-alist . '((swiper . 30) (t . 40)))
                (ivy-posframe-display-functions-alist
                 . '((swiper . nil) (t . ivy-posframe-display-at-frame-center)))
-               (ivy-posframe-parameters . '((left-fringe . 10)))))
+               (ivy-posframe-parameters . '((left-fringe . 10))))
+      :config (ivy-posframe-mode t))    ; this line needed temporary.
 
     (leaf company-posframe
       :doc "Use a posframe as company candidate menu"
