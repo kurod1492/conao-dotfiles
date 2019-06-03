@@ -60,7 +60,14 @@
       :custom ((package-archives . '(("org"   . "https://orgmode.org/elpa/")
                                      ("melpa" . "https://melpa.org/packages/")
                                      ("gnu"   . "https://elpa.gnu.org/packages/"))))
-      :config (package-initialize))))
+      :config (package-initialize))
+    (leaf hydra
+      :ensure t
+      :config
+      (leaf *hydra-posframe
+        :when (version<= "26.1" emacs-version)
+        :when window-system
+        :custom ((hydra-hint-display-type . 'posframe))))))
 
 
 (leaf *initialize-emacs
@@ -596,13 +603,7 @@
       :doc "Show Henkan tooltip for ddskk via posframe"
       :after skk
       :el-get conao3/ddskk-posframe.el
-      :custom ((ddskk-posframe-mode . t)))
-
-    (leaf hydra-posframe
-      :doc "hydra-posframe is a hydra extension which shows hydra hints on posframe"
-      :after hydra
-      :el-get Ladicle/hydra-posframe
-      :config (hydra-posframe-enable)))
+      :custom ((ddskk-posframe-mode . t))))
 
   (leaf treemacs
     :when (version<= "25.2" emacs-version)
