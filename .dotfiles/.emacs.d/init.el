@@ -44,6 +44,9 @@
   (make-directory user-emacs-directory t))
 
 (prog1 "Load leaf.el"
+  (unless (fboundp 'locate-user-emacs-file)
+      (defun locate-user-emacs-file (dir)
+        (expand-file-name dir user-emacs-directory)))
   (add-to-list 'load-path (locate-user-emacs-file "site-lisp/leaf.el"))
   (require 'leaf)
   (leaf leaf
@@ -98,6 +101,7 @@
                   (or ,stream standard-output))
            (princ "\n"))
          nil)))
+
   (global-unset-key (kbd "M-o"))
   (global-unset-key (kbd "M-t")))
 
