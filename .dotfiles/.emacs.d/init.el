@@ -45,10 +45,13 @@
 
 (prog1 "Load leaf.el"
   (unless (fboundp 'locate-user-emacs-file)
-      (defun locate-user-emacs-file (dir)
-        (expand-file-name dir user-emacs-directory)))
+    (defun locate-user-emacs-file (dir)
+      (expand-file-name dir user-emacs-directory)))
   (add-to-list 'load-path (locate-user-emacs-file "site-lisp/leaf.el"))
+  (add-to-list 'load-path (locate-user-emacs-file "site-lisp/leaf-keywords.el"))
   (require 'leaf)
+  (require 'leaf-keywords)
+  (leaf-keywords-init)
   (leaf leaf
     :doc "Symplify your init.el configuration"
     :doc "Initialize leaf dependent packages"
@@ -57,11 +60,7 @@
       :custom ((package-archives . '(("org"   . "https://orgmode.org/elpa/")
                                      ("melpa" . "https://melpa.org/packages/")
                                      ("gnu"   . "https://elpa.gnu.org/packages/"))))
-      :config (package-initialize))
-    (leaf leaf-keywords
-      :load-path `,(locate-user-emacs-file "site-lisp/leaf-keywords.el")
-      :require t
-      :config (leaf-keywords-init))))
+      :config (package-initialize))))
 
 
 (leaf *initialize-emacs
@@ -570,9 +569,9 @@
     (leaf ivy-posframe
       :doc "Using posframe to show Ivy"
       :after ivy
-      :el-get (c/ivy-posframe :branch "ivy-posframe-mode")
+      :ensure t
       :custom ((ivy-posframe-mode . t)
-               (ivy-posframe-height-alist . '((swiper . 20) (t . 40)))
+               (ivy-posframe-height-alist . '((swiper . 30) (t . 40)))
                (ivy-posframe-display-functions-alis
                 . '((swiper . nil) (t . ivy-posframe-display-at-frame-center)))
                (ivy-posframe-parameters . '((left-fringe . 10)))))
@@ -596,13 +595,13 @@
     (leaf ddskk-posframe
       :doc "Show Henkan tooltip for ddskk via posframe"
       :after skk
-      :el-get (c/ddskk-posframe.el)
+      :el-get conao3/ddskk-posframe.el
       :custom ((ddskk-posframe-mode . t)))
 
     (leaf hydra-posframe
       :doc "hydra-posframe is a hydra extension which shows hydra hints on posframe"
       :after hydra
-      :el-get (Ladicle/hydra-posframe)
+      :el-get Ladicle/hydra-posframe
       :config (hydra-posframe-enable)))
 
   (leaf treemacs
