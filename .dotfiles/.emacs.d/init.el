@@ -572,7 +572,7 @@
       :ensure t
       :custom ((ivy-posframe-mode . t)
                (ivy-posframe-height-alist . '((swiper . 30) (t . 40)))
-               (ivy-posframe-display-functions-alis
+               (ivy-posframe-display-functions-alist
                 . '((swiper . nil) (t . ivy-posframe-display-at-frame-center)))
                (ivy-posframe-parameters . '((left-fringe . 10)))))
 
@@ -636,6 +636,7 @@
   (leaf selected
     :ensure t
     :custom ((selected-global-mode . t))
+    :leaf-autoload nil
     :preface
     (defun c/eval-region ()
       (interactive)
