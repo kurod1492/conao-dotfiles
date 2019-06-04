@@ -1316,12 +1316,12 @@ c Show current commit using magit (if magit available).
     (leaf mew
       :url "http://sleepboy-zzz.blogspot.com/2012/11/mewgmail.html"
       :doc "brew install stunnel"
-      :init (el-get-bundle mew
-              :type git
-              :build ("./configure --with-emacs=emacs-26.2" "make")
-              :url "https://github.com/kazu-yamamoto/Mew.git"
-              :load-path "./"
-              (add-to-list 'exec-path (expand-file-name "mew/bin" el-get-dir)))
+      :el-get `(mew
+                :type git
+                :build (("./configure" ,(format "--with-emacs=emacs-%s" emacs-version)) "make")
+                :url "https://github.com/kazu-yamamoto/Mew.git"
+                :load-path "./"
+                (add-to-list 'exec-path (expand-file-name "mew/bin" el-get-dir)))
       :config
       ;; (defconst my/mew-gmail-prefixes '(("default" "conao3@gmail.com")))
       ;; (setq mew-config-alist (my/mew-create-alist my/mew-gmail-prefixes))
