@@ -581,8 +581,7 @@
                (ivy-posframe-height-alist . '((swiper . 30) (t . 40)))
                (ivy-posframe-display-functions-alist
                 . '((swiper . nil) (t . ivy-posframe-display-at-frame-center)))
-               (ivy-posframe-parameters . '((left-fringe . 10))))
-      :config (ivy-posframe-mode t))    ; this line needed temporary.
+               (ivy-posframe-parameters . '((left-fringe . 10)))))
 
     (leaf company-posframe
       :doc "Use a posframe as company candidate menu"
@@ -1318,7 +1317,8 @@ c Show current commit using magit (if magit available).
       :doc "brew install stunnel"
       :el-get `(mew
                 :type git
-                :build (("./configure" ,(format "--with-emacs=emacs-%s" emacs-version)) "make")
+                :build (("./configure" ,(format "--with-emacs=emacs-%s.%s"
+                                                emacs-major-version emacs-minor-version)) "make")
                 :url "https://github.com/kazu-yamamoto/Mew.git"
                 :load-path "./"
                 (add-to-list 'exec-path (expand-file-name "mew/bin" el-get-dir)))
