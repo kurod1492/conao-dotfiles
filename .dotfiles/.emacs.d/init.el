@@ -624,6 +624,7 @@
               (skk-user-directory   . ,(locate-user-emacs-file "skk/jisyo"))
               (skk-large-jisyo      . ,(locate-user-emacs-file "skk/jisyo/SKK-JISYO.L"))
               (skk-auto-insert-paren . t)
+              (skk-search-katakana . t)
               (skk-use-auto-enclose-pair-of-region . t)
               (skk-undo-kakutei-return-previous-point . t)
               (skk-check-okurigana-on-touroku . 'ask)
