@@ -228,7 +228,9 @@
     :init (unless (executable-find "git")
             (warn "'git' couldn't found. el-get can't download any packages"))
     :custom ((el-get-git-shallow-clone  . t)
-             (el-get-emacswiki-base-url . "http://www.emacswiki.org/emacs/download/"))))
+             (el-get-emacswiki-base-url . "http://www.emacswiki.org/emacs/download/")))
+  (leaf dash :ensure t)
+  (leaf ov :ensure t))
 
 
 (leaf *emacs-buildin
