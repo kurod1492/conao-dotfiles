@@ -657,6 +657,10 @@
             ("q" . keyboard-quit)
             ("t" . org-table-convert-region))))
 
+  (leaf eros
+    :ensure t
+    :custom ((eros-mode . t)))
+
   (leaf origami
     :ensure t
     :custom ((global-origami-mode . t)))
