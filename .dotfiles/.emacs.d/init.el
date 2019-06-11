@@ -876,6 +876,7 @@
     :leaf-defer nil
     :custom ((ivy-re-builders-alist . '((t      . ivy--regex-fuzzy)
                                         (swiper . ivy--regex-plus)))
+             (ivy-use-selectable-prompt . t)
 
              (ivy-mode     . t)
              (counsel-mode . t))
