@@ -1182,6 +1182,97 @@
       :config
       (leaf *built-in-ox-packages
         :config
+        (leaf ox-latex
+          :disabled t
+          :custom `((org-latex-default-class . "jsarticle")
+                    (org-latex-classes
+                     . '(("jsarticle"
+                          "\\documentclass[uplatex, dvipdfmx]{jsarticle}"
+                          ("\\section{%s}"       . "\\section*{%s}")
+                          ("\\subsection{%s}"    . "\\subsection*{%s}")
+                          ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                          ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+                          ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+                         ("beamer"
+                          "\\documentclass[dvipdfmx,12pt]{beamer}"
+                          ("\\section{%s}"       . "\\section*{%s}")
+                          ("\\subsection{%s}"    . "\\subsection*{%s}")
+                          ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                          ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+                          ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))))
+                    (org-latex-hyperref-template
+                     . "\\hypersetup{\n  pdfauthor={%a},\n  pdftitle={%t},\n  pdfkeywords={%k},
+  pdfsubject={%d},\n  pdfcreator={%c},\n  pdflang={%L},\n  pdfborder={0 0 0},
+  colorlinks=false,\n  linkcolor=blue\n}\n")
+                    (org-latex-listings          . ,(and (executable-find "kpsewhich")
+                                                         (not (string= (shell-command-to-string "kpsewhich listing.sty") ""))
+                                                         t))
+                    (org-latex-listings-langs
+                     . '((emacs-lisp "Lisp") (lisp "Lisp") (clojure "Lisp")
+                         (c "C") (cc "C++")
+                         (fortran "fortran")
+                         (perl "Perl") (cperl "Perl")
+                         (python "Python") (ruby "Ruby")
+                         (html "HTML") (xml "XML")
+                         (tex "TeX") (latex "[LaTeX]TeX")
+                         (shell-script "bash")
+                         (gnuplot "Gnuplot")
+                         (ocaml "Caml") (caml "Caml")
+                         (sql "SQL") (sqlite "sql")
+                         (makefile "make")
+                         (R "r")
+                         (shell "bash")))
+                    (org-latex-listings-options . '(("basicstyle" "\\small")
+                                                    ("keywordstyle" "\\color{black}\\bfseries\\underbar")))
+                    (org-latex-compiler     . "uplatex")
+                    (org-latex-bib-compiler . "bibtex")
+                    (org-latex-pdf-process . '("latexmk -gg -pdflatex=\"%latex\" %f"))
+                    (org-latex-logfiles-extensions
+                     . '("aux" "bcf" "blg" "fdb_latexmk" "fls" "figlist" "idx" "log" "nav" "out"
+                         "ptc" "run.xml" "snm" "toc" "vrb" "xdv" "dvi" "bbl"))
+                    (org-latex-packages-alist
+                     . '(
+                         ;;;;;;;;;;;;;;;;;;;;
+                         ;; org depends default packeages
+                         
+                         ("utf8" "inputenc")       ;; enable unicode input
+                         ("T1" "fontenc")          ;; enable unicode output
+                         ("" "graphicx")           ;; insert figures
+                         ("" "grffile")            ;; enable strange filenames
+                         ("" "longtable")          ;; long table with page break
+                         ("" "wrapfig")            ;; text wrap figure
+                         ("" "rotating")           ;; text rotate
+                         ("normalem" "ulem")       ;; text decoration
+                         ("" "textcomp")           ;; symbol font
+                         ("" "capt-of")            ;; add caption at not float env
+                         ("" "hyperref")           ;; hyperlink
+                         ("" "amsmath, amssymb")   ;; math packages
+
+                         ;;;;;;;;;;;;;;;;;;;;
+                         ;; my optionnal packages
+                         
+                         ("" "pxjahyper")          ;; pdf bookmark label
+                         ;; ("" "listings")           ;; code include
+                         ;; ("" "fancyhdr")           ;; header, footer editing
+                         ;; ("" "mdframed")           ;; framing
+                         ;; ("" "here")               ;; figure put here
+                         ;; ("" "lscape")             ;; landscape text, portrait page
+                         ;; ("" "physics")            ;; math useful macros
+                         ;; ("" "okumacro")           ;; useful macros by Dr.okumura
+                         ;; ("" "framed")             ;; framing
+                         ;; ("" "xcolor")             ;; pick color
+                         ;; ("" "multicol")           ;; multi columns
+                         ;; ("" "newtxtext")          ;; tx font
+                         ;; ("" "newtxmath")          ;; tx math font
+                         ("" "geometry")           ;; page layout
+                         ;; ("" "mathtools")          ;; enhance the appearance for amsmath
+                         ;; ("" "subcaption")         ;; multiple figures
+                         "\\geometry{
+top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
+                         "\\pagestyle{fancy}"
+                         "\\rhead{\\thepage{}}"
+                         "\\mathtoolsset{showonlyrefs=true}"
+                         ))))
         (leaf ox-extra
 	  :when (version<= "25.1" emacs-version)
           :config
