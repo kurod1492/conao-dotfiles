@@ -912,7 +912,12 @@
       (leaf ivy-point-history
         :init (el-get-bundle SuzumiyaAoba/ivy-point-history)
         :bind (("C-c b p" . ivy-point-history))
-        :require t))
+        :require t)
+
+      (leaf all-the-icons-ivy
+        :after all-the-icons
+        :ensure t
+        :config (all-the-icons-ivy-setup)))
 
     (leaf *ivy-integration
       :config
