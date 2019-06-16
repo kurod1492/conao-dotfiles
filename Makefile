@@ -46,6 +46,7 @@ $(HOMEDIR)/%: $(TOPDIR)/.dotfiles/%
 
 config: $(CONFIG_FILES:%=$(HOMEDIR)/.config/%)
 $(HOMEDIR)/.config/%: $(TOPDIR)/.config/%
+	mkdir -p $(@D)
 	ln -sf $< $@
 
 ##############################
