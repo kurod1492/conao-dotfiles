@@ -10,6 +10,12 @@ test -r ~/.bashrc && . ~/.bashrc
 # user specific environment and startup programs
 export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 
+# git clone https://github.com/anyenv/anyenv ~/.anyenv
+if [ -d $HOME/.anyenv ]; then
+   export PATH=$HOME/.anyenv/bin:$PATH
+   eval "$(anyenv init -)"
+fi
+
 # bash history settings
 export HISTSIZE=10000
 export HISTFILESIZE=10000
