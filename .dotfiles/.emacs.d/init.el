@@ -621,7 +621,8 @@
   (leaf skk
     :ensure ddskk
     :require t skk-study skk-hint
-    :bind (("C-x j" . skk-auto-fill-mode))
+    :bind (("C-\\"  . skk-mode)
+           ("C-x j" . skk-auto-fill-mode))
     :custom `((default-input-method . "japanese-skk")
               (skk-user-directory   . ,(locate-user-emacs-file "skk/jisyo"))
               (skk-large-jisyo      . ,(locate-user-emacs-file "skk/jisyo/SKK-JISYO.L"))
