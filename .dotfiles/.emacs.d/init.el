@@ -662,6 +662,7 @@
 
   (leaf eros
     :ensure t
+    :disabled t
     :custom ((eros-mode . t)))
 
   (leaf origami
