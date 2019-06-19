@@ -1198,7 +1198,6 @@
       (leaf *built-in-ox-packages
         :config
         (leaf ox-latex
-          :disabled t
           :custom `((org-latex-default-class . "jsarticle")
                     (org-latex-classes
                      . '(("jsarticle"
