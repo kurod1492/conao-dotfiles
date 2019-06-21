@@ -632,7 +632,10 @@
               (skk-use-auto-enclose-pair-of-region . t)
               (skk-undo-kakutei-return-previous-point . t)
               (skk-check-okurigana-on-touroku . 'ask)
-              (skk-henkan-number-to-display-candidates . 15))
+              (skk-henkan-number-to-display-candidates . 15)
+              (skk-dcomp-activate          . t)
+              (skk-dcomp-multiple-activate . nil)
+              (skk-dcomp-multiple-rows     . 10))
     :init
     (let ((skk-jisyo-dir (locate-user-emacs-file "skk/jisyo")))
       (unless (file-directory-p skk-jisyo-dir)
