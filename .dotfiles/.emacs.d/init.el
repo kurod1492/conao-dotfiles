@@ -157,6 +157,10 @@
         :ensure t
         :custom ((httpd-show-backtrace-when-error . t))))
 
+    (leaf liskk
+      :load-path `,(locate-user-emacs-file "site-lisp/liskk.el")
+      :require t)
+
     (leaf navbar
       :load-path `,(locate-user-emacs-file "site-lisp/navbar.el")
       :require t)

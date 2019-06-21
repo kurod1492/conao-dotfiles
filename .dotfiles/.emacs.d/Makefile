@@ -4,6 +4,7 @@ include Makefunc.mk
 
 DEV_PKGS := leaf.el leaf-keywords.el orglyth.el cort-test.el seml-mode.el navbar.el
 DEV_PKGS  += feather.el feather-server.el leaf-browser.el solarized-emacs
+DEV_PKGS  += liskk.el
 DEV_PKGS  += phantom-inline-comment annotate.el point-history
 DEV_PKGS  += ivy-posframe
 
