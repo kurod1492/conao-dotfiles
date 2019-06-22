@@ -378,7 +378,7 @@
     :custom ((sp-highlight-pair-overlay                     . nil)
              (sp-navigate-interactive-always-progress-point . t)
              (smartparens-global-strict-mode                . t))
-    :bind (:smartparens-mode-map
+    :bind ((:smartparens-mode-map
            ;;;;
            ;;;; navigation
 
@@ -436,7 +436,14 @@
            ;; change elements
            ("C-c s (" . sp-rewrap-sexp)
            ("C-c s r" . sp-change-inner)
-           ("C-c s s" . sp-change-encosing)))
+           ("C-c s s" . sp-change-encosing))
+           (:smartparens-strict-mode-map
+            ([remap c-electric-backspace] . sp-backward-delete-char)))
+    :config
+    (sp-with-modes '(c-mode c++-mode)
+      (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
+      (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
+                                                ("* ||\n[i]" "RET")))))
 
   (leaf multiple-cursors
     :ensure t
