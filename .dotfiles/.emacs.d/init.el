@@ -632,7 +632,7 @@
 
   (leaf skk
     :ensure ddskk
-    :require t skk-study skk-hint
+    :require t skk-study
     :bind (("C-\\"  . skk-mode)
            ("C-x j" . skk-auto-fill-mode))
     :custom `((default-input-method . "japanese-skk")
