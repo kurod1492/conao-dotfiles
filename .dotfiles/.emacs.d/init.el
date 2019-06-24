@@ -438,7 +438,7 @@
             ("C-c s r" . sp-change-inner)
             ("C-c s s" . sp-change-encosing))
            (:smartparens-strict-mode-map
-            ([remap c-electric-delete-forward] . sp-delete-char))
+            ([remap c-electric-delete-forward] . sp-delete-char)
             ([remap c-electric-backspace]      . sp-backward-delete-char)))
     :config
     (sp-with-modes '(c-mode c++-mode)
