@@ -108,8 +108,7 @@
            (princ "\n"))
          nil)))
 
-  (global-unset-key (kbd "M-o"))
-  (global-unset-key (kbd "M-t")))
+  (global-unset-key (kbd "M-o")))
 
 
 (leaf *conao3-packages
