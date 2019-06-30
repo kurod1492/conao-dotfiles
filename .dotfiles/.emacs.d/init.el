@@ -338,6 +338,7 @@
     :custom ((save-place-mode . t)))
 
   (leaf dired
+    :after t
     :custom ((dired-recursive-copies  . 'always)
              (dired-recursive-deletes . 'always))
     :config
