@@ -43,31 +43,42 @@
          user-emacs-directory))
   (make-directory user-emacs-directory t))
 
-(prog1 "Load leaf.el"
+(prog1 "leaf.el"
   (unless (fboundp 'locate-user-emacs-file)
     (defun locate-user-emacs-file (dir)
       (expand-file-name dir user-emacs-directory)))
   (add-to-list 'load-path (locate-user-emacs-file "site-lisp/leaf.el"))
   (add-to-list 'load-path (locate-user-emacs-file "site-lisp/leaf-keywords.el"))
   (require 'leaf)
-  (require 'leaf-keywords)
-  (leaf-keywords-init)
+
   (leaf leaf
     :doc "Symplify your init.el configuration"
     :doc "Initialize leaf dependent packages"
     :config
+    (leaf leaf-keywords
+      :require t
+      :config (leaf-keywords-init))
+
     (leaf package
       :custom ((package-archives . '(("org"   . "https://orgmode.org/elpa/")
                                      ("melpa" . "https://melpa.org/packages/")
                                      ("gnu"   . "https://elpa.gnu.org/packages/"))))
       :config (package-initialize))
+
     (leaf hydra
       :ensure t
       :config
       (leaf *hydra-posframe
         :when (version<= "26.1" emacs-version)
         :when window-system
-        :custom ((hydra-hint-display-type . 'posframe))))))
+        :custom ((hydra-hint-display-type . 'posframe))))
+
+    (leaf el-get
+      :ensure t
+      :init (unless (executable-find "git")
+              (warn "'git' couldn't found. el-get can't download any packages"))
+      :custom ((el-get-git-shallow-clone  . t)
+               (el-get-emacswiki-base-url . "http://www.emacswiki.org/emacs/download/")))))
 
 
 (leaf *initialize-emacs
@@ -226,12 +237,6 @@
 (leaf *reference-packages
   :config
   (leaf use-package :ensure t)
-  (leaf el-get
-    :ensure t
-    :init (unless (executable-find "git")
-            (warn "'git' couldn't found. el-get can't download any packages"))
-    :custom ((el-get-git-shallow-clone  . t)
-             (el-get-emacswiki-base-url . "http://www.emacswiki.org/emacs/download/")))
   (leaf dash :ensure t)
   (leaf ov :ensure t))
 
