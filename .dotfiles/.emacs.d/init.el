@@ -294,41 +294,6 @@
              (eval-expression-print-length . nil)
              (eval-expression-print-level  . nil)))
 
-  (leaf mac
-    :doc "implementation of gui terminal on macos"
-    :doc "each symbol can be `control', `meta', `alt', `hyper', or `super'"
-    :doc "`left' meens same value setting its left key"
-    :when (eq 'mac window-system)
-    :custom ((mac-control-modifier       . 'control)
-             (mac-option-modifier        . 'super)
-             (mac-command-modifier       . 'meta)
-
-             (mac-right-control-modifier . 'control)
-             (mac-right-option-modifier  . 'hyper)
-             (mac-right-command-modifier . 'meta)
-
-             ;; use fn key as normal way.
-             ;; (mac-function-modifier      . 'super)
-             ))
-
-  (leaf ns
-    :doc "next/open/gnustep / macos communication module"
-    :when (eq 'ns window-system)
-    :custom ((ns-control-modifier       . 'control)
-             (ns-option-modifier        . 'super)
-             (ns-command-modifier       . 'meta)
-
-             (ns-right-control-modifier . 'control)
-             (ns-right-option-modifier  . 'hyper)
-             (ns-right-command-modifier . 'meta)
-
-             ;; use fn key as normal way.
-             ;; (ns-function-modifier      . 'super)
-             ;; https://www.reddit.com/r/emacs/comments/9jm1az/emacs_rendering_is_broken_in_macos_mojave/e6sg9ei/
-             (default-frame-alist . '((inhibit-double-buffering . t)
-                                      (ns-appearance            . dark)
-                                      (ns-transparent-titlebar  . t)))))
-
   (leaf autorevert
     :doc "revert buffers when files on disk change"
     :custom ((auto-revert-interval . 1)
@@ -372,7 +337,43 @@
 
   (leaf recentf
     :custom ((recentf-exclude . '(".recentf"))
-             (recentf-max-saved-items . 200))))
+             (recentf-max-saved-items . 200)))
+
+  (leaf *ui
+    :config
+    (leaf mac
+      :doc "implementation of gui terminal on macos"
+      :doc "each symbol can be `control', `meta', `alt', `hyper', or `super'"
+      :doc "`left' meens same value setting its left key"
+      :when (eq 'mac window-system)
+      :custom ((mac-control-modifier       . 'control)
+               (mac-option-modifier        . 'super)
+               (mac-command-modifier       . 'meta)
+
+               (mac-right-control-modifier . 'control)
+               (mac-right-option-modifier  . 'hyper)
+               (mac-right-command-modifier . 'meta)
+
+               ;; use fn key as normal way.
+               ;; (mac-function-modifier      . 'super)
+               ))
+    (leaf ns
+      :doc "next/open/gnustep / macos communication module"
+      :when (eq 'ns window-system)
+      :custom ((ns-control-modifier       . 'control)
+               (ns-option-modifier        . 'super)
+               (ns-command-modifier       . 'meta)
+
+               (ns-right-control-modifier . 'control)
+               (ns-right-option-modifier  . 'hyper)
+               (ns-right-command-modifier . 'meta)
+
+               ;; use fn key as normal way.
+               ;; (ns-function-modifier      . 'super)
+               ;; https://www.reddit.com/r/emacs/comments/9jm1az/emacs_rendering_is_broken_in_macos_mojave/e6sg9ei/
+               (default-frame-alist . '((inhibit-double-buffering . t)
+                                        (ns-appearance            . dark)
+                                        (ns-transparent-titlebar  . t)))))))
 
 
 (leaf *minor-mode
