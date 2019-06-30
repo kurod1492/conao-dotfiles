@@ -275,7 +275,7 @@
               (history-length                  . 1000)
               (history-delete-duplicates       . t)
               (inhibit-compacting-font-caches  . t)
-              (scroll-preserve-screen-position . :always)
+              (scroll-preserve-screen-position . t)
 
               (truncate-lines   . t)
               (menu-bar-mode    . t)
