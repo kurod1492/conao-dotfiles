@@ -265,8 +265,6 @@
               (user-mail-address               . "conao3@gmail.com")
               (user-login-name                 . "conao3")
               (debug-on-error                  . t)
-              (eval-expression-print-length    . nil)
-              (eval-expression-print-level     . nil)
               (create-lockfiles                . nil)
               (use-dialog-box                  . nil)
               (use-file-dialog                 . nil)
@@ -288,6 +286,13 @@
                  upcase-region downcase-region
                  narrow-to-region narrow-to-page narrow-to-defun
                  list-timers))))
+
+  (leaf simple
+    :custom ((kill-ring-max . 100)
+             (kill-read-only-ok . t)
+             (kill-whole-line . t)
+             (eval-expression-print-length . nil)
+             (eval-expression-print-level  . nil)))
 
   (leaf mac
     :doc "implementation of gui terminal on macos"
