@@ -287,57 +287,61 @@
                  narrow-to-region narrow-to-page narrow-to-defun
                  list-timers))))
 
-  (leaf simple
-    :custom ((kill-ring-max . 100)
-             (kill-read-only-ok . t)
-             (kill-whole-line . t)
-             (eval-expression-print-length . nil)
-             (eval-expression-print-level  . nil)))
-
-  (leaf autorevert
-    :doc "revert buffers when files on disk change"
-    :custom ((auto-revert-interval . 1)
-             (global-auto-revert-mode . t)))
-
-  (leaf paren
-    :custom ((show-paren-delay . 0.0)
-             (show-paren-mode  . t)))
-
-  (leaf save-place-mode
-    :doc "automatically save place in files"
-    :custom ((save-place-mode . t)))
-
-  (leaf dired
-    :after t
-    :custom ((dired-recursive-copies  . 'always)
-             (dired-recursive-deletes . 'always))
+  (leaf *lisp
     :config
-    (leaf dired-x :require t)
-    (leaf wdired
-      :bind (:dired-mode-map
-             ("r" . wdired-change-to-wdired-mode)))
-    (leaf dired-filter
-      :ensure t
-      :hook ((dired-mode-hook . dired-filter-mode))))
+    (leaf simple
+      :custom ((kill-ring-max . 100)
+               (kill-read-only-ok . t)
+               (kill-whole-line . t)
+               (eval-expression-print-length . nil)
+               (eval-expression-print-level  . nil)))
 
-  (leaf auth-source
-    :url "http://aki2o.hatenablog.jp/entry/2014/09/20/Emacs%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%81%AF%E3%83%91%E3%82%B9%E3%83%AF%E3%83%BC%E3%83%89%E3%81%A8%E3%81%8B%E3%81%AF%E7%9B%B4%E6%9B%B8%E3%81%8D%E3%81%9B%E3%81%9Aauth-source%E4%BD%BF%E3%81%86%E3%81%A8"
-    :custom ((auth-sources . '("~/.secret/authinfo.gpg")))
-    :preface
-    (defun c/auth-source-get-passwd (&rest spec)
-      (let ((founds (apply 'auth-source-search spec)))
-        (when founds
-          (funcall (plist-get (nth 0 founds) :secret))))))
+    (leaf autorevert
+      :doc "revert buffers when files on disk change"
+      :custom ((auto-revert-interval . 1)
+               (global-auto-revert-mode . t)))
 
-  (leaf files
-    :custom ((require-final-newline . t)))
+    (leaf paren
+      :custom ((show-paren-delay . 0.0)
+               (show-paren-mode  . t)))
 
-  (leaf smie
-    :url "https://qiita.com/kawabata@github/items/1a51ff1e22ad7ae824d5")
+    (leaf save-place-mode
+      :doc "automatically save place in files"
+      :custom ((save-place-mode . t)))
 
-  (leaf recentf
-    :custom ((recentf-exclude . '(".recentf"))
-             (recentf-max-saved-items . 200)))
+    (leaf dired
+      :after t
+      :custom ((dired-recursive-copies  . 'always)
+               (dired-recursive-deletes . 'always))
+      :config
+      (leaf dired-x :require t)
+      (leaf wdired
+        :bind (:dired-mode-map
+               ("r" . wdired-change-to-wdired-mode)))
+      (leaf dired-filter
+        :ensure t
+        :hook ((dired-mode-hook . dired-filter-mode))))
+
+    (leaf auth-source
+      :url "http://aki2o.hatenablog.jp/entry/2014/09/20/Emacs%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%81%AF%E3%83%91%E3%82%B9%E3%83%AF%E3%83%BC%E3%83%89%E3%81%A8%E3%81%8B%E3%81%AF%E7%9B%B4%E6%9B%B8%E3%81%8D%E3%81%9B%E3%81%9Aauth-source%E4%BD%BF%E3%81%86%E3%81%A8"
+      :custom ((auth-sources . '("~/.secret/authinfo.gpg")))
+      :preface
+      (defun c/auth-source-get-passwd (&rest spec)
+        (let ((founds (apply 'auth-source-search spec)))
+          (when founds
+            (funcall (plist-get (nth 0 founds) :secret))))))
+
+    (leaf files
+      :custom ((require-final-newline . t)))
+
+    (leaf recentf
+      :custom ((recentf-exclude . '(".recentf"))
+               (recentf-max-saved-items . 200))))
+
+  (leaf *lisp/emacs-lisp
+    :config
+    (leaf smie
+      :url "https://qiita.com/kawabata@github/items/1a51ff1e22ad7ae824d5"))
 
   (leaf *ui
     :config
