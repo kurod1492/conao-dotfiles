@@ -667,6 +667,7 @@
     :ensure t
     :custom ((selected-global-mode . t))
     :leaf-autoload nil
+    :leaf-defer nil
     :preface
     (defun c/eval-region ()
       (interactive)
@@ -682,7 +683,9 @@
             ("w" . osx-dictionary-search-pointer)
             ("5" . query-replace-from-region)
             ("q" . keyboard-quit)
-            ("t" . org-table-convert-region))))
+            ("t" . org-table-convert-region)
+            ("DEL" . delete-region)
+            ("<deletechar>" . delete-region))))
 
   (leaf eros
     :ensure t
