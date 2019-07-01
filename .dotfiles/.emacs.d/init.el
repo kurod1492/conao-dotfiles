@@ -1362,15 +1362,16 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
       (leaf git-commit  :ensure t)
       (leaf transient   :ensure t)
       (leaf with-editor :ensure t)
-      :bind (("M-g s" . magit-status))
-      :config
-      (leaf github-pullrequest
-        :ensure t))
+      :bind (("M-g s" . magit-status)))
 
     (leaf gitattributes-mode :ensure t)
     (leaf gitconfig-mode     :ensure t)
     (leaf gitignore-mode     :ensure t)
-    (leaf gh                 :ensure t)
+    (leaf gh
+      :ensure t
+      :config
+      (leaf github-pullrequest
+        :ensure t))
 
     (leaf git-messenger
       :ensure t
