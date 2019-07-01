@@ -1355,6 +1355,10 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
   :config
   (leaf *git-tools
     :config
+    (leaf magit
+      :when (version<= "25.1" emacs-version)
+      :ensure t
+      :bind (("M-g s" . magit-status)))
     (leaf gitattributes-mode :ensure t)
     (leaf gitconfig-mode     :ensure t)
     (leaf gitignore-mode     :ensure t)
@@ -1366,11 +1370,6 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
     (leaf git-messenger
       :ensure t
       :bind (("C-x v p" . git-messenger:popup-message)))
-
-    (leaf magit
-      :when (version<= "25.1" emacs-version)
-      :ensure t
-      :bind (("M-g s" . magit-status)))
 
     (leaf git-timemachine
       :doc "Walk through git revisions of a file"
