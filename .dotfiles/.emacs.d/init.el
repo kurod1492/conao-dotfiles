@@ -1501,6 +1501,8 @@ c Show current commit using magit (if magit available).
       (setq mail-user-agent 'mew-user-agent)
       (define-mail-user-agent 'mew-user-agent 'mew-user-agent-compose 'mew-draft-send-message 'mew-draft-kill 'mew-send-hook))
 
+    (leaf kubernetes :ensure t)
+
     (leaf highlight-symbol
       :ensure t
       :bind (("C-x H" . hydra-highlight-symbol/body))
