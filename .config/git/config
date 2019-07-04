@@ -47,6 +47,9 @@
 
 	chp = cherry-pick
 
+	see = browse
+	pr = pull-request
+
 	# show list comamnds
 	tags = tag
 	remotes = remote -v
