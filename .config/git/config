@@ -1,84 +1,84 @@
 [user]
-	name = conao3
-	email = conao3@gmail.com
-	signingkey = 81903F6B7B02852F
+        name = conao3
+        email = conao3@gmail.com
+        signingkey = 81903F6B7B02852F
 [core]
-	ignorecase = false
-	quotepath = false
-	precomposeunicode = true
-	autocrlf = input
-	pager = (type diff-highlight &>/dev/null && diff-highlight || cat) | less
-	commentchar = ";"
-	editor = emacsclient -a emacs
+        ignorecase = false
+        quotepath = false
+        precomposeunicode = true
+        autocrlf = input
+        pager = (type diff-highlight &>/dev/null && diff-highlight || cat) | less
+        commentchar = ";"
+        editor = emacsclient -a emacs
 [color]
-	ui = auto
+        ui = auto
 [push]
-	default = simple
-	follow-tags = true
+        default = simple
+        follow-tags = true
 [fetch]
-	prune = true
+        prune = true
 [remote]
-	pushDefault = origin
+        pushDefault = origin
 [rebase]
-	autoStash = true
-	autoSquash = true
+        autoStash = true
+        autoSquash = true
 [diff]
-	algorithm = histogram
+        algorithm = histogram
 [grep]
-	lineNumber = true
+        lineNumber = true
 [commit]
-	verbose = true
-	# gpgsign = true
+        verbose = true
+        # gpgsign = true
 [help]
-	autocorrect = -1
+        autocorrect = -1
 [rerere]
-	enabled = true
+        enabled = true
 [alias]
-	# `git git status` etc.
-	git = !git
+        # `git git status` etc.
+        git = !git
 
-	# short commands
-	st = status
-	cm = commit
-	c  = commit -am
+        # short commands
+        st = status
+        cm = commit
+        c  = commit -am
 
-	br = branch
-	co = checkout
+        br = branch
+        co = checkout
 
-	chp = cherry-pick
+        chp = cherry-pick
 
-	see = browse
-	pr = pull-request
+        see = browse
+        pr = pull-request
 
-	# show list comamnds
-	tags = tag
-	remotes = remote -v
-	branches = branch -a
-	stashes = stash list
+        # show list comamnds
+        tags = tag
+        remotes = remote -v
+        branches = branch -a
+        stashes = stash list
 
         # combine commands
-	coissue = "!f() { hub issue create -m \"$1\" | rev | cut -d/ -f1 | rev | xargs -t -I^ git checkout -b feature#^; }; f"
-	copr = "!f() { git cbranch | rev | cut -d# -f1 | rev | xargs -t -I^ bash -c \
-	\"git push origin feature#^ && hub pull-request -m 'feature#^\n\ndone, close #^.' | \
-	rev | cut -d/ -f1 | rev | xargs -t -I% hub browse -- pull/% \"; }; f"
-	copull = !git checkout master && git pull origin master
+        coissue = "!f() { hub issue create -m \"$1\" | rev | cut -d/ -f1 | rev | xargs -t -I^ git checkout -b feature#^; }; f"
+        copr = "!f() { git cbranch | rev | cut -d# -f1 | rev | xargs -t -I^ bash -c \
+        \"git push origin feature#^ && hub pull-request -m 'feature#^\n\ndone, close #^.' | \
+        rev | cut -d/ -f1 | rev | xargs -t -I% hub browse -- pull/% \"; }; f"
+        copull = !git checkout master && git pull origin master
 
-	# complex comamnds
-	cbranch = !git symbolic-ref --short HEAD
-	alias = config --get-regexp alias.*
-	revoke = reset --soft HEAD^
-	files = !cd ${GIT_PREFIX:-.} && git ls-tree -z --name-only HEAD | xargs -0 -n1 -I@ -- git log -1 --pretty=format:'%C(green)%ai%Creset %C(yellow)%h%Creset @ %C(blue)(%ar)%Creset %C(red)<%an>%Creset' -- @
-	prune-merged-branch = !git branch --merged | grep -vE '\\*|develop|master' | xargs git branch -d
-	remote-fork = "!f() { \
-	git remote rename origin upstream && \
-	git remote add origin \"$(git config remote.upstream.url | sed 's;^\\(git@\\|https://\\)github\\.com[/:][^/]\\+/;git@github.com:conao3/;')\" && \
-	git fetch origin; \
-	}; f"
-	log-pp = !git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	log-day = !git log --date=short --pretty='%cd' | cut -d- -f1,2 | uniq -c
+        # complex comamnds
+        cbranch = !git symbolic-ref --short HEAD
+        alias = config --get-regexp alias.*
+        revoke = reset --soft HEAD^
+        files = !cd ${GIT_PREFIX:-.} && git ls-tree -z --name-only HEAD | xargs -0 -n1 -I@ -- git log -1 --pretty=format:'%C(green)%ai%Creset %C(yellow)%h%Creset @ %C(blue)(%ar)%Creset %C(red)<%an>%Creset' -- @
+        prune-merged-branch = !git branch --merged | grep -vE '\\*|develop|master' | xargs git branch -d
+        remote-fork = "!f() { \
+        git remote rename origin upstream && \
+        git remote add origin \"$(git config remote.upstream.url | sed 's;^\\(git@\\|https://\\)github\\.com[/:][^/]\\+/;git@github.com:conao3/;')\" && \
+        git fetch origin; \
+        }; f"
+        log-pp = !git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+        log-day = !git log --date=short --pretty='%cd' | cut -d- -f1,2 | uniq -c
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+        cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+        path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+        cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+        trustExitCode = true
