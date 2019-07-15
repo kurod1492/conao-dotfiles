@@ -326,7 +326,7 @@
       :url "http://aki2o.hatenablog.jp/entry/2014/09/20/Emacs%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%81%AF%E3%83%91%E3%82%B9%E3%83%AF%E3%83%BC%E3%83%89%E3%81%A8%E3%81%8B%E3%81%AF%E7%9B%B4%E6%9B%B8%E3%81%8D%E3%81%9B%E3%81%9Aauth-source%E4%BD%BF%E3%81%86%E3%81%A8"
       :custom ((auth-sources . '("~/.secret/authinfo.gpg")))
       :preface
-      (defun c/auth-source-get-passwd (&rest spec)
+      (defun /auth-source-get-passwd (&rest spec)
         (let ((founds (apply 'auth-source-search spec)))
           (when founds
             (funcall (plist-get (nth 0 founds) :secret))))))
@@ -573,14 +573,14 @@
     (leaf company-math
       :ensure t
       :preface
-      (defun c/latex-mode-setup ()
+      (defun /latex-mode-setup ()
         (setq-local company-backends
                     (append '((company-math-symbols-latex
                                company-math-symbols-unicode
                                company-latex-commands))
                             company-backends)))
-      :hook ((org-mode-hook . c/latex-mode-setup)
-             (tex-mode-hook . c/latex-mode-setup))))
+      :hook ((org-mode-hook . /latex-mode-setup)
+             (tex-mode-hook . /latex-mode-setup))))
 
   (leaf yasnippet
     :ensure t
@@ -679,7 +679,7 @@
     :leaf-autoload nil
     :leaf-defer nil
     :preface
-    (defun c/eval-region ()
+    (defun /eval-region ()
       (interactive)
       (when mark-active
         (eval-region (region-beginning) (region-end) t)))
@@ -689,7 +689,7 @@
             ("=" . count-words-region)
             ("f" . describe-function)
             ("v" . describe-variable)
-            ("e" . c/eval-region)
+            ("e" . /eval-region)
             ("w" . osx-dictionary-search-pointer)
             ("5" . query-replace-from-region)
             ("q" . keyboard-quit)
@@ -757,12 +757,12 @@
              (which-key-mode . t)))
 
   (leaf dumb-jump
-      :ensure t
-      :custom ((dumb-jump-mode               . t)
-               (dumb-jump-selector           . 'ivy)
-               (dumb-jump-use-visible-window . nil))
-      :bind (("s-." . dumb-jump-go)
-             ("s-," . dumb-jump-back)))
+    :ensure t
+    :custom ((dumb-jump-mode               . t)
+             (dumb-jump-selector           . 'ivy)
+             (dumb-jump-use-visible-window . nil))
+    :bind (("s-." . dumb-jump-go)
+           ("s-," . dumb-jump-back)))
 
   (leaf persp-mode
     :ensure t
@@ -1110,12 +1110,12 @@
 
   (leaf tide
     :ensure t
-    :init (defun c/enable-tide ()
+    :init (defun /enable-tide ()
             (when (string-equal "tsx" (file-name-extension buffer-file-name))
               (setup-tide-mode)))
     :hook
     (before-save-hook . tide-format-before-save)
-    (web-mode-hook . c/enable-tide))
+    (web-mode-hook . /enable-tide))
 
   (leaf *clojure-modes
     :when (version<= "25.1" emacs-version)
@@ -1135,11 +1135,11 @@
     :bind (:c-mode-base-map
            ("C-c c" . compile))
     :preface
-    (defun c/c-mode-common ()
+    (defun /c-mode-common ()
       (c-set-style "bsd")
       (setq tab-width 4)
       (setq c-basic-offset 4))
-    :hook ((c-mode-common . c/c-mode-common)))
+    :hook ((c-mode-common . /c-mode-common)))
 
   (leaf go-mode
     :ensure t
@@ -1602,12 +1602,12 @@ See `font-lock-add-keywords' and `font-lock-defaults'."
       (font-lock-add-keywords mode keywords)
       (put mode 'font-lock-user-keywords keywords))
 
-    (defun c/kill-region-or-backward-kill-word ()
+    (defun /kill-region-or-backward-kill-word ()
       (interactive)
       (if (region-active-p)
           (kill-region (point) (mark))
         (backward-kill-word 1)))
-    :bind (("C-w" . c/kill-region-or-backward-kill-word))
+    :bind (("C-w" . /kill-region-or-backward-kill-word))
     ;; :config
     ;; (font-lock-user-keywords
     ;;  'c-mode
@@ -1618,11 +1618,11 @@ See `font-lock-add-keywords' and `font-lock-defaults'."
 
   (leaf *list-util
     :doc
-    (c/lst-separate 3 '(1 1 1 -1 1 1))
+    (/lst-separate 3 '(1 1 1 -1 1 1))
     ;; => ((1 1 1) (-1 1 1))
 
     :config
-    (defun c/lst-separate (num lst)
+    (defun /lst-separate (num lst)
       "separate LST into NUM."
       (let (ret)
         (while lst
@@ -1633,26 +1633,26 @@ See `font-lock-add-keywords' and `font-lock-defaults'."
 
   (leaf *math-util
     :doc
-    (c/math-mat-string '((1 2 3) (1 2 4)))
+    (/math-mat-string '((1 2 3) (1 2 4)))
     ;; => "[[1,2,3],[1,2,4]]"
 
-    (mapconcat 'c/math-mat-string '(((1 1 1) (-1 1 1) (0 -2 1))
-                                    ((1 2 1) (2 1 1) (1 1 2))
-                                    ((1 1 1) (-1 1 1) (0 -2 1))) "")
+    (mapconcat '/math-mat-string '(((1 1 1) (-1 1 1) (0 -2 1))
+                                   ((1 2 1) (2 1 1) (1 1 2))
+                                   ((1 1 1) (-1 1 1) (0 -2 1))) "")
     ;; => "[[1,1,1],[-1,1,1],[0,-2,1]][[1,2,1],[2,1,1],[1,1,2]][[1,1,1],[-1,1,1],[0,-2,1]]"
 
-    (c/math-mat-string (c/lst-separate 3 '(1 2 3 1 2 4)))
+    (/math-mat-string (/lst-separate 3 '(1 2 3 1 2 4)))
     ;; => "[[1,2,3],[1,2,4]]"
 
-    (mapconcat 'c/math-mat-string
-               (mapcar '(lambda (elm) (c/lst-separate 3 elm))
+    (mapconcat '/math-mat-string
+               (mapcar '(lambda (elm) (/lst-separate 3 elm))
                        '((1 1 1 -1 1 1 0 -2 1)
                          (1 2 1 2 1 1 1 1 2)
                          (1 1 1 -1 1 1 0 -2 1))) "")
     ;; => "[[1,1,1],[-1,1,1],[0,-2,1]][[1,2,1],[2,1,1],[1,1,2]][[1,1,1],[-1,1,1],[0,-2,1]]"
 
     :config
-    (defun c/math-mat-string (lst)
+    (defun /math-mat-string (lst)
       "Create matrix string for Mathematica.
 LST is list of list of elements of matrix.
 
