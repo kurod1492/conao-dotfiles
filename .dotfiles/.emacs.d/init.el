@@ -1668,7 +1668,24 @@ Ex:
         (wrap
          (mapconcat
           (lambda (elm)
-            (wrap (mapconcat 'number-to-string elm ","))) lst ","))))))
+            (wrap (mapconcat 'number-to-string elm ","))) lst ",")))))
+
+  (leaf *mac-util
+    :doc
+    (/copy-str
+     (mapconcat 'c/math-mat-string
+                (mapcar '(lambda (elm) (/lst-separate 3 elm))
+                        '((1 1 1 -1 1 1 0 -2 1)
+                          (1 2 1 2 1 1 1 1 2)
+                          (1 1 1 -1 1 1 0 -2 1))) ""))
+    ;; => "[[1,1,1],[-1,1,1],[0,-2,1]][[1,2,1],[2,1,1],[1,1,2]][[1,1,1],[-1,1,1],[0,-2,1]]"
+
+    :config
+    (defun /copy-str (str)
+      "Copy STR via pbcopy; mac command."
+      (let ((inhibit-message t))
+        (shell-command (format "echo %s | pbcopy" (shell-quote-argument str))))
+      str)))
 
 (provide 'init)
 ;;; init.el ends here
