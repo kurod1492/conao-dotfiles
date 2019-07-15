@@ -1614,7 +1614,61 @@ See `font-lock-add-keywords' and `font-lock-defaults'."
     ;;  '(("!" . font-lock-warning-face)
     ;;    ("hoge" . font-lock-keyword-face)
     ;;    ("[0-9]+" . font-lock-constant-face)))
-    ))
+    )
+
+  (leaf *list-util
+    :doc
+    (c/lst-separate 3 '(1 1 1 -1 1 1))
+    ;; => ((1 1 1) (-1 1 1))
+
+    :config
+    (defun c/lst-separate (num lst)
+      "separate LST into NUM."
+      (let (ret)
+        (while lst
+          (push
+           (let (tmp) (dotimes (_ num) (push (pop lst) tmp)) (nreverse tmp))
+           ret))
+        (nreverse ret))))
+
+  (leaf *math-util
+    :doc
+    (c/math-mat-string '((1 2 3) (1 2 4)))
+    ;; => "[[1,2,3],[1,2,4]]"
+
+    (mapconcat 'c/math-mat-string '(((1 1 1) (-1 1 1) (0 -2 1))
+                                    ((1 2 1) (2 1 1) (1 1 2))
+                                    ((1 1 1) (-1 1 1) (0 -2 1))) "")
+    ;; => "[[1,1,1],[-1,1,1],[0,-2,1]][[1,2,1],[2,1,1],[1,1,2]][[1,1,1],[-1,1,1],[0,-2,1]]"
+
+    (c/math-mat-string (c/lst-separate 3 '(1 2 3 1 2 4)))
+    ;; => "[[1,2,3],[1,2,4]]"
+
+    (mapconcat 'c/math-mat-string
+               (mapcar '(lambda (elm) (c/lst-separate 3 elm))
+                       '((1 1 1 -1 1 1 0 -2 1)
+                         (1 2 1 2 1 1 1 1 2)
+                         (1 1 1 -1 1 1 0 -2 1))) "")
+    ;; => "[[1,1,1],[-1,1,1],[0,-2,1]][[1,2,1],[2,1,1],[1,1,2]][[1,1,1],[-1,1,1],[0,-2,1]]"
+
+    :config
+    (defun c/math-mat-string (lst)
+      "Create matrix string for Mathematica.
+LST is list of list of elements of matrix.
+
+Ex:
+  '((a b c) (d e f) (g h r)) represent below matrix.
+
+  a b c
+  d e f
+  g h r
+
+  and returns \"[[a,b,c],[d,e,f],[g,h,r]]\""
+      (cl-flet ((wrap (str) (format "[%s]" str)))
+        (wrap
+         (mapconcat
+          (lambda (elm)
+            (wrap (mapconcat 'number-to-string elm ","))) lst ","))))))
 
 (provide 'init)
 ;;; init.el ends here
