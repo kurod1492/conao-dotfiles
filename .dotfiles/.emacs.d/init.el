@@ -1307,7 +1307,7 @@
                          
                          ("" "pxjahyper")          ;; pdf bookmark label
                          ;; ("" "listings")           ;; code include
-                         ;; ("" "fancyhdr")           ;; header, footer editing
+                         ("" "fancyhdr")           ;; header, footer editing
                          ;; ("" "mdframed")           ;; framing
                          ;; ("" "here")               ;; figure put here
                          ;; ("" "lscape")             ;; landscape text, portrait page
@@ -1320,7 +1320,7 @@
                          ;; ("" "newtxmath")          ;; tx math font
                          ("" "geometry")           ;; page layout
                          ("" "mathtools")          ;; enhance the appearance for amsmath
-                         ;; ("" "subcaption")         ;; multiple figures
+                         ("" "subcaption")         ;; multiple figures
                          "\\geometry{
 top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
                          "\\pagestyle{fancy}"
