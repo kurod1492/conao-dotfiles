@@ -1289,18 +1289,18 @@
                          ;;;;;;;;;;;;;;;;;;;;
                          ;; org depends default packeages
                          
-                         ("utf8" "inputenc")       ;; enable unicode input
-                         ("T1" "fontenc")          ;; enable unicode output
-                         ("" "graphicx")           ;; insert figures
-                         ("" "grffile")            ;; enable strange filenames
-                         ("" "longtable")          ;; long table with page break
-                         ("" "wrapfig")            ;; text wrap figure
-                         ("" "rotating")           ;; text rotate
-                         ("normalem" "ulem")       ;; text decoration
-                         ("" "textcomp")           ;; symbol font
-                         ("" "capt-of")            ;; add caption at not float env
-                         ("" "hyperref")           ;; hyperlink
-                         ("" "amsmath, amssymb")   ;; math packages
+                         ;; ("utf8" "inputenc")       ;; enable unicode input
+                         ;; ("T1" "fontenc")          ;; enable unicode output
+                         ;; ("" "graphicx")           ;; insert figures
+                         ;; ("" "grffile")            ;; enable strange filenames
+                         ;; ("" "longtable")          ;; long table with page break
+                         ;; ("" "wrapfig")            ;; text wrap figure
+                         ;; ("" "rotating")           ;; text rotate
+                         ;; ("normalem" "ulem")       ;; text decoration
+                         ;; ("" "textcomp")           ;; symbol font
+                         ;; ("" "capt-of")            ;; add caption at not float env
+                         ;; ("" "hyperref")           ;; hyperlink
+                         ;; ("" "amsmath, amssymb")   ;; math packages
 
                          ;;;;;;;;;;;;;;;;;;;;
                          ;; my optionnal packages
@@ -1319,7 +1319,7 @@
                          ;; ("" "newtxtext")          ;; tx font
                          ;; ("" "newtxmath")          ;; tx math font
                          ("" "geometry")           ;; page layout
-                         ;; ("" "mathtools")          ;; enhance the appearance for amsmath
+                         ("" "mathtools")          ;; enhance the appearance for amsmath
                          ;; ("" "subcaption")         ;; multiple figures
                          "\\geometry{
 top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
