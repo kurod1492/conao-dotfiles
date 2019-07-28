@@ -1677,7 +1677,7 @@ Ex:
   (leaf *mac-util
     :doc
     (/copy-str
-     (mapconcat 'c/math-mat-string
+     (mapconcat '/math-mat-string
                 (mapcar '(lambda (elm) (/lst-separate 3 elm))
                         '((1 1 1 -1 1 1 0 -2 1)
                           (1 2 1 2 1 1 1 1 2)
