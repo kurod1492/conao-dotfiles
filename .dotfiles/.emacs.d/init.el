@@ -923,7 +923,7 @@
              (ivy-mode     . t)
              (counsel-mode . t))
     :init
-    (leaf *ivy-ui-requirements
+    (leaf *ivy-requirements
       :config
       (leaf swiper :ensure t)
       (leaf counsel :ensure t))
