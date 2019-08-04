@@ -941,6 +941,11 @@
       :config
       (leaf ivy-prescient
         :when (version<= "25.1" emacs-version)
+        :init
+        (leaf prescient
+          :custom `((prescient-aggressive-file-save . t)
+                    (prescient-save-file            . ,(locate-user-emacs-file "prescient"))
+                    (prescient-persist-mode         . t)))
         :ensure t
         :custom ((ivy-prescient-mode . t)))
 
