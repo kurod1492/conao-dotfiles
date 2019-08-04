@@ -559,6 +559,10 @@
              (company-transformers          . '(company-sort-by-occurrence))
              (global-company-mode           . t))
     :config
+    (leaf company-prescient
+      :ensure t
+      :custom ((company-prescient-mode . t)))
+
     (leaf company-box
       :when (version<= "26.1" emacs-version)
       :ensure t
