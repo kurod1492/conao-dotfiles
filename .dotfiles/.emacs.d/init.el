@@ -935,6 +935,11 @@
     :config
     (leaf *other-ivy-packages
       :config
+      (leaf ivy-prescient
+        :when (version<= "25.1" emacs-version)
+        :ensure t
+        :custom ((ivy-prescient-mode . t)))
+
       (leaf ivy-hydra
         :doc "Additional key bindings for Ivy"
         :ensure t
