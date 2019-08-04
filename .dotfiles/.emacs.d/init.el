@@ -947,7 +947,12 @@
                     (prescient-save-file            . ,(locate-user-emacs-file "prescient"))
                     (prescient-persist-mode         . t)))
         :ensure t
-        :custom ((ivy-prescient-mode . t)))
+        :custom ((ivy-prescient-retain-classic-highlighting . t)
+                 (ivy-prescient-mode . t))
+        :config
+        (mapc (lambda (elm)
+                (add-to-list 'ivy-prescient-sort-commands elm))
+              '(counsel-world-clock counsel-app)))
 
       (leaf ivy-hydra
         :doc "Additional key bindings for Ivy"
