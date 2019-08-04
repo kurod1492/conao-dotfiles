@@ -952,7 +952,7 @@
         :custom ((ivy-rich-mode . t)))
 
       (leaf ivy-point-history
-        :init (el-get-bundle SuzumiyaAoba/ivy-point-history)
+        :el-get SuzumiyaAoba/ivy-point-history
         :bind (("C-c b p" . ivy-point-history))
         :require t)
 
