@@ -1714,4 +1714,9 @@ Ex:
       str)))
 
 (provide 'init)
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
+
 ;;; init.el ends here
