@@ -63,6 +63,10 @@
       :custom ((package-archives . '(("org"   . "https://orgmode.org/elpa/")
                                      ("melpa" . "https://melpa.org/packages/")
                                      ("gnu"   . "https://elpa.gnu.org/packages/"))))
+      :init
+      (leaf *elpa-workaround
+	:when (version= "26.2" emacs-version)
+	:custom ((gnutls-algorithm-priority . "NORMAL:-VERS-TLS1.3")))
       :config (package-initialize))
 
     (leaf hydra
