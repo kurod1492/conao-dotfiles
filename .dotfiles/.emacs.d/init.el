@@ -65,8 +65,8 @@
                                      ("gnu"   . "https://elpa.gnu.org/packages/"))))
       :init
       (leaf *elpa-workaround
-	:when (version= "26.2" emacs-version)
-	:custom ((gnutls-algorithm-priority . "NORMAL:-VERS-TLS1.3")))
+        :when (version= "26.2" emacs-version)
+        :custom ((gnutls-algorithm-priority . "NORMAL:-VERS-TLS1.3")))
       :config (package-initialize))
 
     (leaf hydra
@@ -129,12 +129,12 @@
 (leaf *conao3-packages
   :doc "elisp packages are developed by conao3"
   :init (leaf *dependency
-	  :config
+          :config
           ;; solarized
-	  (leaf dash :ensure t)
+          (leaf dash :ensure t)
 
           ;; phantom-inline-comment
-	  (leaf popwin :ensure t)
+          (leaf popwin :ensure t)
 
           ;; liskk
           (leaf ov :ensure t))
@@ -444,7 +444,7 @@
     :hydra (hydra-multiple-cursors
             (:color pink :hint nil)
             "
-									╔════════╗
+                                                                        ╔════════╗
     Point^^^^^^             Misc^^            Insert                            ║ Cursor ║
   ──────────────────────────────────────────────────────────────────────╨────────╜
      _k_    _K_    _M-k_    [_l_] edit lines  [_i_] numbers
@@ -453,7 +453,7 @@
      ^↓^    ^↓^     ^↓^
      _j_    _J_    _M-j_
   ╭──────────────────────────────────────────────────────────────────────────────╯
-			   [_q_]: quit, [Click]: point
+                           [_q_]: quit, [Click]: point
 "
             ("l" mc/edit-lines :exit t)
             ("m" mc/mark-all-like-this :exit t)
@@ -799,7 +799,7 @@
     ;;           (persp-by-name-and-exists name phash)
     ;;         (if e p
     ;;           (setq p (if (equal persp-nil-name name)
-    ;;       		nil (make-persp :name name)))
+    ;;                  nil (make-persp :name name)))
     ;;           (persp-add p phash)
     ;;           (run-hook-with-args 'persp-created-functions p phash)
     ;;           p))
@@ -809,7 +809,7 @@
     ;; Ignore temporary buffers
     ;; (add-hook 'persp-common-buffer-filter-functions
     ;;           (lambda (b) (or (string-prefix-p "*" (buffer-name b))
-    ;;       	       (string-prefix-p "magit" (buffer-name b)))))
+    ;;                 (string-prefix-p "magit" (buffer-name b)))))
 
     (leaf *ivy-integration
       :url "https://gist.github.com/Bad-ptr/1aca1ec54c3bdb2ee80996eb2b68ad2d#file-persp-ivy-el"
@@ -1351,7 +1351,7 @@ top=2truecm, bottom=2truecm, left=1.5truecm, right=1.5truecm, includefoot}"
                          "\\mathtoolsset{showonlyrefs=true}"
                          ))))
         (leaf ox-extra
-	  :when (version<= "25.1" emacs-version)
+          :when (version<= "25.1" emacs-version)
           :config
           (ox-extras-activate '(latex-header-blocks ignore-headlines))))
 
