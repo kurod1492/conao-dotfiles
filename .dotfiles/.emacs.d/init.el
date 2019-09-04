@@ -60,7 +60,9 @@
       :config (leaf-keywords-init))
 
     (leaf package
-      :custom ((package-archives . '(("org"   . "https://orgmode.org/elpa/")
+      :require gnutls
+      :custom ((gnutls-algorithm-priority . "NORMAL:-VERS-TLS1.3")
+               (package-archives . '(("org"   . "https://orgmode.org/elpa/")
                                      ("melpa" . "https://melpa.org/packages/")
                                      ("gnu"   . "https://elpa.gnu.org/packages/"))))
       :init
