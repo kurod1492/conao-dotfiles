@@ -555,7 +555,7 @@
   (leaf company
     :ensure t
     :leaf-defer nil
-    :diminish c
+    :diminish company-mode
     :bind ((:company-active-map
             ("M-n" . nil)
             ("M-p" . nil)
@@ -563,13 +563,13 @@
             ("C-n" . company-select-next)
             ("C-p" . company-select-previous)
             ("<tab>" . company-complete-selection)))
-    :custom ((company-tooltip-align-annotations t)
-             (company-tooltip-limit 12)
-             (company-idle-delay            . 0)
-             (company-minimum-prefix-length . 1)
-             (company-transformers          . '(company-sort-by-occurrence))
-             (company-show-numbers          . t)
-             (global-company-mode           . t))
+    :custom ((company-tooltip-align-annotations . t)
+             (company-tooltip-limit             . 12)
+             (company-idle-delay                . 0)
+             (company-minimum-prefix-length     . 1)
+             (company-transformers              . '(company-sort-by-occurrence))
+             (company-show-numbers              . t)
+             (global-company-mode               . t))
     :config
     (leaf company-tabnine
       :doc "M-x company-tabnine-install-binary to install binary"
