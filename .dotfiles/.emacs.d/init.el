@@ -823,6 +823,7 @@
 
   (leaf which-key
     :ensure t
+    :diminish which-key-mode
     :custom ((which-key-idle-delay . 3)
              (which-key-replacement-alist
               . '(((nil . "Prefix Command") . (nil . "prefix"))
