@@ -980,6 +980,7 @@
   (leaf ivy
     :ensure t
     :leaf-defer nil
+    :diminish ivy-mode
     :custom ((ivy-re-builders-alist . '((t      . ivy--regex-fuzzy)
                                         (swiper . ivy--regex-plus)))
              (ivy-use-selectable-prompt . t)
