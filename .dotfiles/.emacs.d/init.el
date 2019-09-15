@@ -1710,7 +1710,7 @@ c Show current commit using magit (if magit available).
       "Add user highlighting to KEYWORDS to MODE.
 See `font-lock-add-keywords' and `font-lock-defaults'."
       (unless mode
-        (error "mode should be non-nil "))
+        (error "Mode should be non-nil "))
       (font-lock-remove-keywords mode (get mode 'font-lock-user-keywords))
       (font-lock-add-keywords mode keywords)
       (put mode 'font-lock-user-keywords keywords))
