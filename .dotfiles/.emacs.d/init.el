@@ -285,6 +285,10 @@
       :custom ((show-paren-delay . 0.0)
                (show-paren-mode  . t)))
 
+    (leaf eldoc
+      :doc "Show function arglist or variable docstring in echo area"
+      :diminish eldoc-mode)
+
     (leaf save-place-mode
       :doc "automatically save place in files"
       :custom ((save-place-mode . t)))
