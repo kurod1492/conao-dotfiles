@@ -1115,6 +1115,18 @@
 
 (leaf *major-mode
   :config
+  (leaf c-c++
+    :config
+    (leaf cc-mode
+     :bind (:c-mode-base-map
+            ("C-c c" . compile))
+     :preface
+     (defun /c-mode-common ()
+       (c-set-style "bsd")
+       (setq tab-width 4)
+       (setq c-basic-offset 4))
+     :hook ((c-mode-common . /c-mode-common))))
+
   (leaf plantuml-mode
     :when (version<= "25.1" emacs-version)
     :ensure t)
@@ -1158,16 +1170,6 @@
     (leaf dockerfile-mode     :ensure t)
     (leaf docker-compose-mode :ensure t)
     (leaf docker-tramp        :ensure t))
-
-  (leaf cc-mode
-    :bind (:c-mode-base-map
-           ("C-c c" . compile))
-    :preface
-    (defun /c-mode-common ()
-      (c-set-style "bsd")
-      (setq tab-width 4)
-      (setq c-basic-offset 4))
-    :hook ((c-mode-common . /c-mode-common)))
 
   (leaf go-mode
     :ensure t
