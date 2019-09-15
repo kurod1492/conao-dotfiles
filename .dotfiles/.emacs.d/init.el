@@ -1125,7 +1125,13 @@
        (c-set-style "bsd")
        (setq tab-width 4)
        (setq c-basic-offset 4))
-     :hook ((c-mode-common . /c-mode-common))))
+     :hook ((c-mode-common . /c-mode-common)))
+
+    (leaf disaster
+      :disabled t
+      :ensure t
+      :bind (c-mode-map
+             ("C-c d" . disaster))))
 
   (leaf plantuml-mode
     :when (version<= "25.1" emacs-version)
