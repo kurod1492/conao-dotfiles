@@ -1131,7 +1131,13 @@
       :disabled t
       :ensure t
       :bind (c-mode-map
-             ("C-c d" . disaster))))
+             ("C-c d" . disaster)))
+
+    (leaf clang-format
+      :doc "brew install clang-format"
+      :ensure t
+      :bind (c++-mode-map
+             ("C-c f f" . clang-format))))
 
   (leaf plantuml-mode
     :when (version<= "25.1" emacs-version)
