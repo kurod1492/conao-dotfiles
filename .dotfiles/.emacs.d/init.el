@@ -530,6 +530,7 @@
 
   (leaf flycheck
     :ensure t
+    :custom ((global-flycheck-mode . t))
     :config
     (leaf flycheck-package
       :ensure t
