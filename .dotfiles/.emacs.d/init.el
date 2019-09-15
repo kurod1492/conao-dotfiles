@@ -566,6 +566,12 @@
              (company-show-numbers          . t)
              (global-company-mode           . t))
     :config
+    (leaf company-tabnine
+      :doc "M-x company-tabnine-install-binary to install binary"
+      :ensure t
+      :config
+      (add-to-list 'company-backends #'company-tabnine))
+
     (leaf company-prescient
       :ensure t
       :custom ((company-prescient-mode . t)))
