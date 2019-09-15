@@ -773,6 +773,7 @@
 
   (leaf undo-tree
     :ensure t
+    :diminish undo-tree-mode
     :custom ((global-undo-tree-mode . t)))
 
   (leaf real-auto-save
