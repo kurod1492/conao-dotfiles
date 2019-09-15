@@ -281,6 +281,9 @@
       :custom ((auto-revert-interval . 1)
                (global-auto-revert-mode . t)))
 
+    (leaf abbrev
+      :diminish abbrev-mode)
+
     (leaf paren
       :custom ((show-paren-delay . 0.0)
                (show-paren-mode  . t)))
