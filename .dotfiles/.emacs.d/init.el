@@ -580,6 +580,10 @@
       :ensure t
       :custom ((company-prescient-mode . t)))
 
+    (leaf company-c-headers
+      :ensure t
+      :config (add-to-list 'company-backends 'company-c-headers))
+
     (leaf company-box
       :url "https://github.com/seagle0128/.emacs.d/blob/master/lisp/init-company.el"
       :when (version<= "26.1" emacs-version)
