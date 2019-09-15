@@ -682,6 +682,7 @@
       :doc "Use a posframe as company candidate menu"
       :ensure t
       :after company
+      :diminish company-posframe-mode
       :custom ((company-posframe-mode . t)))
 
     (leaf flycheck-posframe
