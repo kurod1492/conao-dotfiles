@@ -563,6 +563,7 @@
     :custom ((company-idle-delay            . 0)
              (company-minimum-prefix-length . 1)
              (company-transformers          . '(company-sort-by-occurrence))
+             (company-show-numbers          . t)
              (global-company-mode           . t))
     :config
     (leaf company-prescient
