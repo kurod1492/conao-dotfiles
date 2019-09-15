@@ -671,6 +671,7 @@
       :doc "Using posframe to show Ivy"
       :after ivy
       :ensure t
+      :diminish ivy-posframe-mode
       :custom ((ivy-posframe-mode . t)
                (ivy-posframe-height-alist . '((swiper . 30) (t . 40)))
                (ivy-posframe-display-functions-alist
