@@ -1490,6 +1490,7 @@ c Show current commit using magit (if magit available).
   (leaf *misc-tools
     :config
     (leaf mew
+      :disabled t
       :url "http://sleepboy-zzz.blogspot.com/2012/11/mewgmail.html"
       :doc "brew install stunnel"
       :el-get `(mew
