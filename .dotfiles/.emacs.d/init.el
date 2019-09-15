@@ -751,6 +751,7 @@
     :custom ((selected-global-mode . t))
     :leaf-autoload nil
     :leaf-defer nil
+    :diminish selected-minor-mode
     :preface
     (defun /eval-region ()
       (interactive)
