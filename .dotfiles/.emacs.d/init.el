@@ -806,6 +806,7 @@
 
   (leaf page-break-lines
     :ensure t
+    :diminish page-break-lines-mode
     :custom ((global-page-break-lines-mode . t)))
 
   (leaf rainbow-mode
