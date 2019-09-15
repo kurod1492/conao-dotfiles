@@ -285,10 +285,6 @@
       :custom ((show-paren-delay . 0.0)
                (show-paren-mode  . t)))
 
-    (leaf eldoc
-      :doc "Show function arglist or variable docstring in echo area"
-      :diminish eldoc-mode)
-
     (leaf save-place-mode
       :doc "automatically save place in files"
       :custom ((save-place-mode . t)))
@@ -324,6 +320,10 @@
 
   (leaf *lisp/emacs-lisp
     :config
+    (leaf eldoc
+      :doc "Show function arglist or variable docstring in echo area"
+      :diminish eldoc-mode)
+
     (leaf smie
       :url "https://qiita.com/kawabata@github/items/1a51ff1e22ad7ae824d5"))
 
