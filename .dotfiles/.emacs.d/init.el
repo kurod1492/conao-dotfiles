@@ -57,34 +57,36 @@
     :config
     (leaf leaf-keywords
       :require t
-      :config (leaf-keywords-init))
-
-    (leaf package
-      :require gnutls
-      :custom ((gnutls-algorithm-priority . "NORMAL:-VERS-TLS1.3")
-               (package-archives . '(("org"   . "https://orgmode.org/elpa/")
-                                     ("melpa" . "https://melpa.org/packages/")
-                                     ("gnu"   . "https://elpa.gnu.org/packages/"))))
-      :init
-      (leaf *elpa-workaround
-        :when (version= "26.2" emacs-version)
-        :custom ((gnutls-algorithm-priority . "NORMAL:-VERS-TLS1.3")))
-      :config (package-initialize))
-
-    (leaf hydra
-      :ensure t
       :config
-      (leaf *hydra-posframe
-        :when (version<= "26.1" emacs-version)
-        :when window-system
-        :custom ((hydra-hint-display-type . 'posframe))))
+      (leaf package
+        :require gnutls
+        :custom ((package-archives . '(("org"   . "https://orgmode.org/elpa/")
+                                       ("melpa" . "https://melpa.org/packages/")
+                                       ("gnu"   . "https://elpa.gnu.org/packages/"))))
+        :init
+        (leaf *elpa-workaround
+          :when (or (version= "26.1" emacs-version)
+                    (version= "26.2" emacs-version))
+          :custom ((gnutls-algorithm-priority . "NORMAL:-VERS-TLS1.3")))
+        :config (package-initialize))
 
-    (leaf el-get
-      :ensure t
-      :init (unless (executable-find "git")
-              (warn "'git' couldn't found. el-get can't download any packages"))
-      :custom ((el-get-git-shallow-clone  . t)
-               (el-get-emacswiki-base-url . "http://www.emacswiki.org/emacs/download/")))))
+      (leaf hydra
+        :ensure t
+        :config
+        (leaf *hydra-posframe
+          :when (version<= "26.1" emacs-version)
+          :when window-system
+          :custom ((hydra-hint-display-type . 'posframe))))
+
+      (leaf el-get
+        :ensure t
+        :init (unless (executable-find "git")
+                (warn "'git' couldn't found. el-get can't download any packages"))
+        :custom ((el-get-git-shallow-clone  . t)
+                 (el-get-emacswiki-base-url . "http://www.emacswiki.org/emacs/download/")))
+
+      (leaf diminish :ensure t)
+      (leaf-keywords-init))))
 
 
 (leaf *initialize-emacs
@@ -757,6 +759,7 @@
     :custom ((global-page-break-lines-mode . t)))
 
   (leaf rainbow-mode
+    :diminish t
     :ensure t
     :custom ((rainbow-html-colors-major-mode-list
               . '(css-mode html-mode php-mode nxml-mode xml-mode))
