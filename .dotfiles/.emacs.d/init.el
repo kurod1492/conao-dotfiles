@@ -989,7 +989,7 @@
     (leaf *ivy-requirements
       :config
       (leaf swiper :ensure t)
-      (leaf counsel :ensure t))
+      (leaf counsel :ensure t :diminish counsel-mode))
     :bind* (("C-x C-r" . counsel-recentf)
             ("C-s" . swiper))
     :custom ((ivy-initial-inputs-alist   . nil)
